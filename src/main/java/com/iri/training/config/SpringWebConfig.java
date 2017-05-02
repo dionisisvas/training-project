@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
  
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "com.iri.training.web" })
+@ComponentScan({ "com.iri.training" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
  
 	@Override

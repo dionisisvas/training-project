@@ -3,6 +3,6 @@ import com.iri.training.model.User;
 
 public interface UserService {
 
-	User getUserById(String userId);
+	User getUserById(Long userId);
 		
 }

@@ -4,6 +4,6 @@ import com.iri.training.model.User;
 
 public interface UserRepository {
 
-	User getUserById(String userId);
+	User getUserById(Long userId);
 	
 }
