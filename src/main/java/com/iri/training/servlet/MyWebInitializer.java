@@ -1,4 +1,4 @@
-package com.iri.training.servlet3;
+package com.iri.training.servlet;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

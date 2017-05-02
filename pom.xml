@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iri.training</groupId>
-	<artifactId>spring-mvc-maven-annotation-hello-world</artifactId>
+	<artifactId>training-project</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>spring mvc maven</name>
@@ -101,7 +101,7 @@
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 					<wtpversion>2.0</wtpversion>
-					<wtpContextName>spring3</wtpContextName>
+					<wtpContextName>spring</wtpContextName>
 				</configuration>
 			</plugin>
 
@@ -120,7 +120,6 @@
 							<filtering>true</filtering>
 						</resource>
 					</webResources>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 
