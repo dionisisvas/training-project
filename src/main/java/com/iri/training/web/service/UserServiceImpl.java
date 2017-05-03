@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.iri.training.model.User;
 import com.iri.training.repository.UserRepository;
 
+import java.sql.SQLException;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -13,7 +15,7 @@ public class UserServiceImpl implements UserService{
 	UserRepository userRepository;
 	
 	@Override
-	public User getUserById(Long userId) {
+	public User getUserById(Long userId) throws SQLException {
 		
 		//implement code
 		User user = userRepository.getUserById(userId);

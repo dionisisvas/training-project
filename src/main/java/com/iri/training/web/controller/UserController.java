@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
+import java.sql.SQLException;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -19,7 +21,7 @@ public class UserController {
 	UserService userService;
 	
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) {
+	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
 		User user = userService.getUserById(userId);
 		
