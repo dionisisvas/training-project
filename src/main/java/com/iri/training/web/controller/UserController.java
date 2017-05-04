@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
+import java.sql.SQLException;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public ModelAndView getUserPage(@PathVariable final Long userId) {
+	public ModelAndView getUserPage(@PathVariable final Long userId) throws SQLException {
 		String fullName = getUserById(userId).getName() + " " + getUserById(userId).getSurname();
 
 		ModelAndView model = new ModelAndView();
