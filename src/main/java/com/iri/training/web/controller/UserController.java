@@ -20,19 +20,18 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public ModelAndView getUserPage(@PathVariable final Long userId) {
-        String fullName = getUserById(userId).getName() + " " + getUserById(userId).getSurname();
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	public ModelAndView getUserPage(@PathVariable final Long userId) {
+		String fullName = getUserById(userId).getName() + " " + getUserById(userId).getSurname();
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("user-page");
-        model.addObject("full_name", fullName);
+		ModelAndView model = new ModelAndView();
+		model.setViewName("user-page");
+		model.addObject("full_name", fullName);
 
-        return model;
+		return model;
     }
 
 	private User getUserById(final Long userId) {
-
 		//User user = userService.getUserById(userId);
 		User user = new User();
 		user.setUsername("jdoe");
