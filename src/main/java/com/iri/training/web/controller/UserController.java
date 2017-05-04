@@ -1,9 +1,8 @@
 package com.iri.training.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,8 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
-
-import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/user")
