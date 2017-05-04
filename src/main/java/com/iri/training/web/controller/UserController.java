@@ -33,13 +33,8 @@ public class UserController {
 		return model;
     }
 
-	private User getUserById(final Long userId) {
-		//User user = userService.getUserById(userId);
-		User user = new User();
-		user.setUsername("jdoe");
-		user.setPassword("pwd123");
-		user.setName("John");
-		user.setSurname("Doe");
+	private User getUserById(final Long userId) throws SQLException {
+		User user = userService.getUserById(userId);
 
 		return user;
 	}
