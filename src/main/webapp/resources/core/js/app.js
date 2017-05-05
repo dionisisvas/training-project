@@ -1,5 +1,3 @@
-var phonecatApp = angular.module('trainingApp', []);
+'use strict';
 
-trainingApp.controller('UserController', function UserController($scope) {
-
-});
+angular.module('trainingApp', []);

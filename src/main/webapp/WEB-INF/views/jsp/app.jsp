@@ -12,17 +12,19 @@
 		<link href="${bootstrapCss}" rel="stylesheet" />
 		<link href="${coreCss}" rel="stylesheet" />
 
-		<spring:url value="/resources/angular/angular.js" var="angularJs" />
 		<spring:url value="/resources/core/js/app.js" var="coreJs" />
+		<spring:url value="/resources/core/js/option-list.component.js" var="optionListJs" />
+		<spring:url value="/resources/angular/angular.js" var="angularJs" />
 		<spring:url value="/resources/bootstrap/css/bootstrap.min.js" var="bootstrapJs" />
 
-		<script src="${angularJs}"></script>
 		<script src="${coreJs}"></script>
+		<script src="${optionListJs}"></script>
+		<script src="${angularJs}"></script>
 		<script src="${bootstrapJs}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 
-	<body ng-controller="UserController">
+	<body>
 		<p>
 			<c:choose>
 				<c:when test="${not empty guest_name}">
@@ -33,15 +35,7 @@
 				</c:when>
 				<c:otherwise>
 					<h2>Hello guest!</h2>
-					<h4>Options:</h4>
-					<ul>
-						<li>
-							*/<b>hello</b>/{<em>name</em>}
-						</li>
-						<li>
-							*/<b>user</b>/{<em>id</em>} (id = 5 for mock user)
-						</li>
-					</ul>
+					<option-list></option-list>
 				</c:otherwise>
 			</c:choose>
 		</p>
