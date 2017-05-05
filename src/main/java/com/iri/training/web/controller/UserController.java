@@ -27,7 +27,7 @@ public class UserController {
 		String fullName = getUserById(userId).getName() + " " + getUserById(userId).getSurname();
 
 		ModelAndView model = new ModelAndView();
-		model.setViewName("user-page");
+		model.setViewName("app");
 		model.addObject("full_name", fullName);
 
 		return model;
