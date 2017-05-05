@@ -1,9 +1,0 @@
-com\iri\training\config\SpringWebConfig.class
-com\iri\training\repository\UserRepositoryImpl.class
-com\iri\training\model\User.class
-com\iri\training\repository\UserRepository.class
-com\iri\training\web\controller\HelloController.class
-com\iri\training\web\service\UserService.class
-com\iri\training\servlet\MyWebInitializer.class
-com\iri\training\web\controller\UserController.class
-com\iri\training\web\service\UserServiceImpl.class
