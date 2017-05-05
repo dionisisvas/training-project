@@ -12,15 +12,15 @@
 		<link href="${bootstrapCss}" rel="stylesheet" />
 		<link href="${coreCss}" rel="stylesheet" />
 
-		<spring:url value="/resources/core/js/app.js" var="coreJs" />
-		<spring:url value="/resources/core/js/option-list.component.js" var="optionListJs" />
 		<spring:url value="/resources/angular/angular.js" var="angularJs" />
 		<spring:url value="/resources/bootstrap/css/bootstrap.min.js" var="bootstrapJs" />
+		<spring:url value="/resources/core/js/app.js" var="coreJs" />
+		<spring:url value="/resources/core/js/option-list.component.js" var="optionListJs" />
 
-		<script src="${coreJs}"></script>
-		<script src="${optionListJs}"></script>
 		<script src="${angularJs}"></script>
 		<script src="${bootstrapJs}"></script>
+		<script src="${coreJs}"></script>
+		<script src="${optionListJs}"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	</head>
 

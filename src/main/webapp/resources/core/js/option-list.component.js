@@ -7,9 +7,9 @@ angular.
 			'<h4>Options:</h4>' +
 			'<ul>' +
 				'<li ng-repeat="option in $ctrl.options">' +
-					'<b>*/{{option.dir}}/</span>' +
-					'<em>{{option.name}}</em>' +
-					'  -  {{option.info}}'
+					'*/<b>{{option.dir}}</b>/</span>' +
+					'{<em>{{option.name}}</em>}' +
+					'<br>{{option.info}}' +
 				'</li>' +
 			'</ul>',
 		controller: function OptionListController() {
