@@ -14,14 +14,19 @@
 <body>
 	<p>
 		<c:choose>
-			<c:when test="${not empty name}">
-				Hello ${name}
+			<c:when test="${not empty guest_name}">
+				<h2>Hello ${guest_name}!</h3>
 			</c:when>
 			<c:when test="${not empty full_name}">
-				Hello ${full_name}
+				<h2>Welcome back ${full_name}!</h2>
 			</c:when>
 			<c:otherwise>
-				Hello guest!
+				<h2>Hello guest!</h2>
+				<h3>Options:</h3>
+				<ul>
+					<li>*/<b>hello</b>/{<em>name</em>}
+					<li>*/<b>user</b>/{<em>id</em>} (id = 5 for mock user)
+				</ul>
 			</c:otherwise>
 		</c:choose>
 	</p>

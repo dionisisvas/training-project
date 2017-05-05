@@ -21,7 +21,7 @@ public class HelloController {
 	public ModelAndView hello(@PathVariable("name") String name) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("app");
-		model.addObject("msg", name);
+		model.addObject("guest_name", name);
 
 		return model;
 	}
