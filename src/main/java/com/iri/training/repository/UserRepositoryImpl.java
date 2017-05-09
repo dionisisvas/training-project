@@ -10,11 +10,11 @@ import java.sql.DriverManager;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private JdbcTemplate jdbcTemplate;
+    private static JdbcTemplate jdbcTemplate;
 
     @Override
     public User getUserById(Long userId) {
-        // Statement stmt = null;
+        System.out.println("success!!");
         Connection connection = null;
 
         try {
@@ -23,11 +23,10 @@ public class UserRepositoryImpl implements UserRepository {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\test.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:C:\\sqlite\\test.db");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         try {
             if (connection != null) connection.close();
@@ -35,26 +34,27 @@ public class UserRepositoryImpl implements UserRepository {
             ex.printStackTrace();
         }
         return null;
-
     }
+
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public String getName() {
-        return this.jdbcTemplate.queryForObject("select name from USERS", String.class);
+    public static String getName() {
+        return jdbcTemplate.queryForObject("select name from USERS", String.class);
     }
 
-    public String getSurname() {
-        return this.jdbcTemplate.queryForObject("select surname from USERS", String.class);
+    public static String getSurname() {
+        return jdbcTemplate.queryForObject("select surname from USERS", String.class);
     }
 
-    public String getUsername() {
-        return this.jdbcTemplate.queryForObject("select usrbame from USERS", String.class);
+    public static String getUsername() {
+        return jdbcTemplate.queryForObject("select usrname from USERS", String.class);
     }
 
-    public String getPassword() {
-        return this.jdbcTemplate.queryForObject("select password from USERS", String.class);
+    public static String getPassword() {
+        return jdbcTemplate.queryForObject("select password from USERS", String.class);
+
     }
 
 
