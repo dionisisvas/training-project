@@ -1,12 +1,14 @@
 package com.iri.training.model;
 
 public class User {
-	
+
 	private String name;
 	private String surname;
 	private String username;
 	private String password;
-	
+
+
+
 	public String getName() {
 		return name;
 	}
@@ -31,7 +33,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+
 
 }
