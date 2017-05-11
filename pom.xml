@@ -136,6 +136,7 @@
 							<filtering>true</filtering>
 						</resource>
 					</webResources>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 
