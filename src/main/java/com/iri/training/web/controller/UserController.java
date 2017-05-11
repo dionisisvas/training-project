@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
@@ -21,7 +20,7 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public ModelAndView getUserPage(@PathVariable final Long userId) throws SQLException {
-		String fullName = getUserById(userId).getName() + " " + getUserById(userId).getSurname();
+		StringBuilder fullName = new StringBuilder().append(getUserById(userId));
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user-page");
