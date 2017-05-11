@@ -1,13 +1,12 @@
 package com.iri.training.model;
 
 public class User {
-	
+
 	private String name;
 	private String surname;
 	private String username;
 	private String password;
-	private Long userId;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -32,12 +31,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	
 
 }
