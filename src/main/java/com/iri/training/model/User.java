@@ -7,8 +7,6 @@ public class User {
 	private String username;
 	private String password;
 
-
-
 	public String getName() {
 		return name;
 	}
@@ -33,7 +31,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 
 }
