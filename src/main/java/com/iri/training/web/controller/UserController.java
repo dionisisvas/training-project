@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
 @RestController
@@ -29,8 +29,8 @@ public class UserController {
 		return model;
     }
 
-	private String getUserById(final Long userId) throws SQLException {
-		String user = userService.getUserById(userId);
+	private User getUserById(final Long userId) throws SQLException {
+		User user = userService.getUserById(userId);
 
 		return user;
 	}

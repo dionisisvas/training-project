@@ -1,12 +1,13 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import com.iri.training.model.User;
 
 
 public interface UserService {
 
 
-	String getUserById( Long userId) throws SQLException;
+	User getUserById( Long userId) throws SQLException;
 
 
 

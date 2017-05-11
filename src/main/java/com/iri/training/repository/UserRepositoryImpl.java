@@ -8,15 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
+import com.iri.training.model.User;
 
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 	public static void main( String args[] ) {
 
-		
+
 	}
-	public String getUserById(Long userId) throws SQLException {
+	public User getUserById(Long userId) throws SQLException {
 
 		Connection c = null;
 		Statement stmt = null;

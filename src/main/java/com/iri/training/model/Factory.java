@@ -43,7 +43,7 @@ public class Factory {
 		private String phone;
 		private String address;
 
-		public UserBuilder(String Name, String lastName) {
+		public UserBuilder(String name, String lastName) {
 			this.name = name;
 			this.lastName = lastName;
 		}

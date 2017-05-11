@@ -1,12 +1,12 @@
 package com.iri.training.repository;
 
 import java.sql.SQLException;
-
+import com.iri.training.model.User;
 
 
 public interface UserRepository {
 
-	  String getUserById(Long userId) throws SQLException;
+	  User getUserById(Long userId) throws SQLException;
 
 
 }
