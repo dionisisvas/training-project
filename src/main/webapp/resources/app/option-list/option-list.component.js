@@ -1,17 +1,9 @@
 'use strict';
 
 angular.
-	module('trainingApp').
+	module('optionList').
 	component('optionList', {
-		template:
-			'<h4>Options:</h4>' +
-			'<ul>' +
-				'<li ng-repeat="option in $ctrl.options">' +
-					'*/<b>{{option.dir}}</b>/</span>' +
-					'{<em>{{option.name}}</em>}' +
-					'<br>{{option.info}}' +
-				'</li>' +
-			'</ul>',
+		templateUrl: 'resources/app/option-list/option-list.template.html',
 		controller: function OptionListController() {
 		  this.options = [
 			{
