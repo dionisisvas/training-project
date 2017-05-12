@@ -10,18 +10,26 @@
 		<spring:url value="/resources/bootstrap/css/bootstrap.min.css" var="bootstrapCss" />
 
 		<link href="${bootstrapCss}" rel="stylesheet" />
-		<link href="${coreCss}" rel="stylesheet" />
+		<link href="${appCss}" rel="stylesheet" />
 
 		<spring:url value="/resources/angular/angular.js" var="angularJs" />
 		<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
 		<spring:url value="/resources/app/option-list/option-list.module.js" var="optionListModuleJs" />
 		<spring:url value="/resources/app/option-list/option-list.component.js" var="optionListComponentJs" />
+		<spring:url value="/resources/app/user-list/user-list.module.js" var="userListModuleJs" />
+		<spring:url value="/resources/app/user-list/user-list.component.js" var="userListComponentJs" />
+		<spring:url value="/resources/app/user-info/user-info.module.js" var="userInfoModuleJs" />
+		<spring:url value="/resources/app/user-info/user-info.component.js" var="userInfoComponentJs" />
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${angularJs}"></script>
 		<script src="${appModuleJs}"></script>
 		<script src="${optionListModuleJs}"></script>
 		<script src="${optionListComponentJs}"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="${userListModuleJs}"></script>
+		<script src="${userListComponentJs}"></script>
+		<script src="${userInfoModuleJs}"></script>
+		<script src="${userInfoComponentJs}"></script>
 	</head>
 
 	<body>
@@ -32,10 +40,13 @@
 				</c:when>
 				<c:when test="${not empty full_name}">
 					<h2>Welcome back ${full_name}!</h2>
+					<user-info></user-info>
 				</c:when>
 				<c:otherwise>
 					<h2>Hello guest!</h2>
 					<option-list></option-list>
+					<user-info></user-info>
+					<user-list></user-list>
 				</c:otherwise>
 			</c:choose>
 		</p>

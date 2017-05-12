@@ -1,0 +1,42 @@
+[
+    {
+		"id": 0,
+		"name": "John",
+		"surname": "Doe",
+        "age": null,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 1,
+		"name": "Jane",
+		"surname": "Doe",
+        "age": null,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 2,
+		"name": "Chris",
+		"surname": "Daramouskas",
+        "age": 26,
+	    "phone": "(+30) 697 1234 4321",
+		"address": null
+    }, 
+    {
+		"id": 3,
+		"name": "Jason",
+		"surname": "Json",
+        "age": 7,
+	    "phone": null,
+		"address": "Spartis 31"
+    }, 
+    {
+		"id": 4,
+		"name": "Doe",
+		"surname": "Roe",
+        "age": 100,
+	    "phone": "911",
+		"address": "Spartis 31"
+    }
+]
