@@ -1,0 +1,10 @@
+Author:
+	Creative Tail
+Source:
+	https://www.creativetail.com/22-free-people-icons/
+	http://archive.is/SM3oF
+License:
+	CC BY 4.0
+	https://creativecommons.org/licenses/by/4.0/deed.en
+Changes:
+	Files renamed

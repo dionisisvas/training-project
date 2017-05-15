@@ -13,11 +13,27 @@
 			</select>
 		</p>
 	</div>
-	<div class="col-md-10">
+	<div class="col-md-4">
 		<h4>Users:</h4>
 		<ul class="users">
-			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp">
-				{{user.id}}: <strong>{{user.surname}}</strong>, <em>{{user.name}}</em>
+			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail">
+			    <a href="user/{{user.id}}" class="thumb">
+					<div ng-if="user.imageUrl">
+						<img ng-src="{{user.imageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />
+					</div>
+					<div ng-if="!user.imageUrl">
+						<img ng-src="resources/img/users/default-user-img.png" alt="{{user.name}}" height="64" width="64" />
+					</div>
+				</a>
+				<a href="user/{{user.id}}"><strong>{{user.surname}}</strong>, {{user.name}}</a>
+				<p>
+					<div ng-if="user.age">
+						<em>{{user.age}} years old</em>
+					</div>
+					<div ng-if="!user.age">
+						Unknown age
+					</div>
+				</p>
 			</li>
 		</ul>
 	</div>
