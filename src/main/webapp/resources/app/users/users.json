@@ -20,7 +20,7 @@
 		"name": "Chris",
 		"surname": "Daramouskas",
         "age": 26,
-	    "phone": "(+30) 697 1234 4321",
+	    "phone": "(+30) 697 1234 421",
 		"address": null
     }, 
     {
@@ -37,6 +37,126 @@
 		"surname": "Roe",
         "age": 100,
 	    "phone": "911",
-		"address": "Spartis 31"
+		"address": "Peloponisou 13"
+    },
+    {
+		"id": 5,
+		"name": "Jim",
+		"surname": "Doepoulos",
+        "age": 27,
+	    "phone": "697 8585 146",
+		"address": null
+    }, 
+    {
+		"id": 6,
+		"name": "Jane",
+		"surname": "Doepoulos",
+        "age": 22,
+	    "phone": null,
+		"address": "Sintagma"
+    }, 
+    {
+		"id": 7,
+		"name": "Chris",
+		"surname": "Papadopoulos",
+        "age": 44,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 8,
+		"name": "Jason",
+		"surname": "Jsonopoulos",
+        "age": 19,
+	    "phone": null,
+		"address": "Spartiaton 82"
+    }, 
+    {
+		"id": 9,
+		"name": "Doe",
+		"surname": "Roepoulos",
+        "age": 37,
+	    "phone": null,
+		"address": "Thisseos 10"
+    },
+    {
+		"id": 10,
+		"name": "John",
+		"surname": "Doeloglou",
+        "age": null,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 11,
+		"name": "Jane",
+		"surname": "Doeloglou",
+        "age": 62,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 12,
+		"name": "Chris",
+		"surname": "Georgakopoulos",
+        "age": 33,
+	    "phone": "(+30) 694 5674 190",
+		"address": "Asomatwn 32"
+    }, 
+    {
+		"id": 13,
+		"name": "Jason",
+		"surname": "Jsonakis",
+        "age": 91,
+	    "phone": null,
+		"address": "Papaflessa 144"
+    }, 
+    {
+		"id": 14,
+		"name": "Doe",
+		"surname": "Roedakis",
+        "age": 22,
+	    "phone": null,
+		"address": null
+    },
+    {
+		"id": 15,
+		"name": "John",
+		"surname": "Doedakis",
+        "age": 15,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 16,
+		"name": "Jane",
+		"surname": "Doedakis",
+        "age": 21,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 17,
+		"name": "Chris",
+		"surname": "Daramouskas",
+        "age": 24,
+	    "phone": "210 5678 450",
+		"address": "Troon 52"
+    }, 
+    {
+		"id": 18,
+		"name": "Jason",
+		"surname": "Jsonidis",
+        "age": 17,
+	    "phone": null,
+		"address": null
+    }, 
+    {
+		"id": 19,
+		"name": "Doe",
+		"surname": "Roeidis",
+        "age": 13,
+	    "phone": "210 5467 850",
+		"address": "Patreos 54"
     }
 ]

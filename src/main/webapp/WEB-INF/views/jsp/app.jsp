@@ -45,7 +45,6 @@
 				<c:otherwise>
 					<h2>Hello guest!</h2>
 					<option-list></option-list>
-					<user-info></user-info>
 					<user-list></user-list>
 				</c:otherwise>
 			</c:choose>
