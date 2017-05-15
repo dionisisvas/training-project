@@ -1,12 +1,22 @@
 <div class="row">
 	<div class="col-md-2">
-		<h4>Filter by ID, name, address or phone number.</h4>
-		<input type="text" onfocus="if (this.placeholder=='User search...') this.placeholder = ''" placeholder="User search..." name="user_search" ng-model="$ctrl.query">
+		<p>
+			<h4>Filter by ID, name, address or phone number:</h4>
+			<input type="text" onfocus="if (this.placeholder=='User search...') this.placeholder = ''" placeholder="User search..." name="user_search" ng-model="$ctrl.query">
+		</p>
+		<p>
+			<h4>Sort by:</h4>
+			<select ng-model="$ctrl.orderProp">
+			  <option value="id">User ID</option>
+			  <option value="surname">Alphabetical</option>
+			  <option value="age">Age</option>
+			</select>
+		</p>
 	</div>
 	<div class="col-md-10">
 		<h4>Users:</h4>
 		<ul class="users">
-			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query">
+			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp">
 				{{user.id}}: <strong>{{user.surname}}</strong>, <em>{{user.name}}</em>
 			</li>
 		</ul>
