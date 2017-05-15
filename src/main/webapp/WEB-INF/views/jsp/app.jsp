@@ -44,8 +44,10 @@
 				</c:when>
 				<c:otherwise>
 					<h2>Hello guest!</h2>
-					<option-list></option-list>
-					<user-list></user-list>
+					<div class="container-fluid">
+							<option-list></option-list>
+							<user-list></user-list>
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</p>
