@@ -16,7 +16,7 @@
 	<div class="col-md-4">
 		<h4>Users:</h4>
 		<ul class="users">
-			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail">
+			<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit" class="thumbnail">
 			    <a href="user/{{user.id}}" class="thumb">
 					<div ng-if="user.imageUrl">
 						<img ng-src="{{user.imageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />
@@ -34,6 +34,14 @@
 						Unknown age
 					</div>
 				</p>
+			</li>
+			<li>
+				<button ng-click="$ctrl.limit = users.length" ng-if="$ctrl.limit == $ctrl.starting_limit">
+					More...
+				</button>
+				<button ng-click="$ctrl.limit = $ctrl.starting_limit" ng-if="$ctrl.limit != $ctrl.starting_limit">
+					Less...
+				</button>
 			</li>
 		</ul>
 	</div>

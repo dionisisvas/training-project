@@ -7,6 +7,8 @@ angular.
 		controller: ['$http', function UserListController($http) {
 			var self = this;
 			
+			self.starting_limit = 3;
+			self.limit = self.starting_limit;
 			self.orderProp = 'id';
 
 			$http.get('resources/json/users/users.json').then(function(response) {
