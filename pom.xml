@@ -73,8 +73,7 @@
     		<groupId>org.webjars.bower</groupId>
     		<artifactId>angular</artifactId>
     		<version>1.5.11</version>
-
-		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+    	</dependency>
 		<dependency>
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
