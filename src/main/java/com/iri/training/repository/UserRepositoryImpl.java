@@ -1,27 +1,22 @@
 package com.iri.training.repository;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import org.springframework.stereotype.Repository;
-
 import com.iri.training.model.Build;
 import com.iri.training.model.User;
 
 @Repository
-public class UserRepositoryImpl extends Build.UserBuilder implements UserRepository {
-	public static void main( String args[] ) {
+public class UserRepositoryImpl  implements UserRepository {
 
-
-	}
 	public User getUserById(Long userId ) throws SQLException {
 
-		Connection c = null;
-		Statement stmt = null;
+
+		Connection c;
+		Statement stmt;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -36,17 +31,11 @@ public class UserRepositoryImpl extends Build.UserBuilder implements UserReposit
 			while (rs.next()) {
 				//int id = rs.getInt("usrID");
 
-				Build.UserBuilder.UserBuilderName(rs.getString("name"));
-				Build.UserBuilder.UserBuilderSurname(rs.getString("surname"));
-				Build.UserBuilder.UserBuilderUsername(rs.getString("usrname"));
-				Build.UserBuilder.UserBuilderPassword(rs.getString("password"));
+				Build comp = new Build.UserBuilder(
+					rs.getString("name"), rs.getString("surname"),rs.getString("usrname"),rs.getString("password")).build();
 
-				//System.out.println("ID = " + id);
-				//System.out.println("NAME = " + name);
-				//System.out.println("surname= " + surname);
-				//System.out.println("usrname = " + username);
-				//System.out.println("password = " + password);
-				//System.out.println();
+
+				System.out.println();
 			}
 			rs.close();
 			stmt.close();

@@ -1,76 +1,55 @@
-
 package com.iri.training.model;
 
 public class Build {
-	private String name;
-	private  String surname;
-	//private  int id;
-	private  String username;
-	private  String password;
 
-	public Build(UserBuilder builder) {
-		this.name = builder.name;
-		this.surname = builder.surname;
-		//this.id = builder.id;
-		this.username = builder.username;
-		this.password = builder.password;
+	
+	private static String Name;
+	private static String Surname;
+	private static String Username;
+	private static String Password;
+
+	public static String getName() {
+		return Name;
 	}
 
-
-	public static String getName(final String name) {
-		return name;
+	public static String getSurname() {
+		return Surname;
+	}
+	public static String getUsername() {
+		return Username;
+	}
+	public static String getPassword() {
+		return Password;
 	}
 
-	public static String getSurname(final String surname) {
-		return surname;
-	}
-/*
-	public int getId() {
-		return id;
-	}
-*/
-	public static  String getUsername(final String username) {
-		return username;
+	private Build(UserBuilder builder) {
+		this.Name=builder.Name;
+		this.Surname=builder.Surname;
+		this.Username=builder.Username;
+		this.Password=builder.Password;
+
 	}
 
-	public static String getPassword(final String password) {
-		return password;
-	}
+	//Builder Class
+	public static class UserBuilder{
 
-	public static class UserBuilder {
-		private static String name;
-		private static String surname;
-		//private int id;
-		private static String username;
-		private static String password;
 
-		public static void UserBuilderName(final String name) {
-			UserBuilder.name = name;
+		private String Name;
+		private String Surname;
+		private String Username;
+		private String Password;
 
+		public UserBuilder(String name, String surname,String username,String password){
+			this.Name=name;
+			this.Surname=surname;
+			this.Username=username;
+			this.Password=password;
 		}
 
-		public static void UserBuilderSurname(String surname) {
-			UserBuilder.surname = surname;
-
-		}
-/*
-		public void UserBuilderId (int id) {
-			this.id = id;
-
-		}
-*/
-		public static void UserBuilderUsername(String username) {
-			UserBuilder.username = username;
-
-		}
-		public static void UserBuilderPassword(String password) {
-			UserBuilder.password = password;
-
-		}
-
-		public Build build() {
+		public Build build(){
 			return new Build(this);
 		}
 
 	}
+
 }
