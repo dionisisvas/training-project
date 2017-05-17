@@ -4,6 +4,7 @@
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
+		<base href="/spring/">
 		<title>Training Project</title>
 
 		<spring:url value="/resources/css/app.css" var="appCss" />
@@ -13,7 +14,9 @@
 		<link href="${appCss}" rel="stylesheet" />
 
 		<spring:url value="/resources/angular/angular.js" var="angularJs" />
+		<spring:url value="/resources/angular/angular-route.js" var="angularRouteJs" />
 		<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
+		<spring:url value="/resources/app/app.config.js" var="appConfigJs" />
 		<spring:url value="/resources/app/option-list/option-list.module.js" var="optionListModuleJs" />
 		<spring:url value="/resources/app/option-list/option-list.component.js" var="optionListComponentJs" />
 		<spring:url value="/resources/app/user-list/user-list.module.js" var="userListModuleJs" />
@@ -23,7 +26,9 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${angularJs}"></script>
+		<script src="${angularRouteJs}"></script>
 		<script src="${appModuleJs}"></script>
+		<script src="${appConfigJs}"></script>
 		<script src="${optionListModuleJs}"></script>
 		<script src="${optionListComponentJs}"></script>
 		<script src="${userListModuleJs}"></script>
@@ -33,23 +38,6 @@
 	</head>
 
 	<body>
-		<p>
-			<c:choose>
-				<c:when test="${not empty guest_name}">
-					<h2>Hello ${guest_name}!</h3>
-				</c:when>
-				<c:when test="${not empty full_name}">
-					<h2>Welcome back ${full_name}!</h2>
-					<user-info></user-info>
-				</c:when>
-				<c:otherwise>
-					<h2>Hello guest!</h2>
-					<div class="container-fluid">
-							<option-list></option-list>
-							<user-list></user-list>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</p>
+		<div ng-view></div>
 	</body>
 </html>

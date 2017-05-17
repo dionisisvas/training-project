@@ -36,11 +36,11 @@
 				</p>
 			</li>
 			<li>
-				<button ng-click="$ctrl.limit = users.length" ng-if="$ctrl.limit == $ctrl.starting_limit">
-					More...
-				</button>
-				<button ng-click="$ctrl.limit = $ctrl.starting_limit" ng-if="$ctrl.limit != $ctrl.starting_limit">
+				<button ng-click="$ctrl.getLowerLimit()" ng-if="$ctrl.limit > $ctrl.startingLimit">
 					Less...
+				</button>
+				<button ng-click="$ctrl.getHigherLimit()" ng-if="$ctrl.limit < $ctrl.users.length">
+					More...
 				</button>
 			</li>
 		</ul>

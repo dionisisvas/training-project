@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('trainingApp', [
-	'optionList',
-	'userList',
-	'userInfo'
+	'myOptionList',
+	'myUserInfo',	
+	'myUserList',	
+	'ngRoute'
 ]);

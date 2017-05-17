@@ -1,3 +1,5 @@
 'use strict';
 
-angular.module('optionList', []);
+angular.module('myOptionList', [
+	'ngRoute'
+]);
