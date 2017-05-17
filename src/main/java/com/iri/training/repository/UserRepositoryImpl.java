@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import org.springframework.stereotype.Repository;
-import com.iri.training.model.Build;
+
+import com.iri.training.model.Scenario;
+import com.iri.training.model.ScenarioBuilder;
 import com.iri.training.model.User;
 
 @Repository
@@ -31,11 +34,10 @@ public class UserRepositoryImpl  implements UserRepository {
 			while (rs.next()) {
 				//int id = rs.getInt("usrID");
 
-				Build comp = new Build.UserBuilder(
-					rs.getString("name"), rs.getString("surname"),rs.getString("usrname"),rs.getString("password")).build();
+				final Scenario scenario = new ScenarioBuilder().withName(rs.getString("name")).withSurname(rs.getString("surname"))
+					.withUsername(rs.getString("usrname")).withPassword(rs.getString("password")).build();
 
-
-				System.out.println();
+				//System.out.println(scenario.getName());
 			}
 			rs.close();
 			stmt.close();
