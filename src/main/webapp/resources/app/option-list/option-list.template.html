@@ -1,0 +1,13 @@
+<h4>Options:</h4>
+<ul class="options">
+	<li ng-repeat="option in $ctrl.options | filter:$ctrl.query">
+		<div ng-if="option.name">
+			*/spring/<strong>{{option.dir}}/[<em>{{option.name}}</em>]</strong>
+			<br>{{option.info}}
+		</div>
+		<div ng-if="!option.name">
+			<a href="{{option.dir}}">*/spring/<strong>{{option.dir}}</strong></a>
+			<br>{{option.info}}
+		</div>
+	</li>
+</ul>
