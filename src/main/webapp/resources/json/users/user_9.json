@@ -1,0 +1,15 @@
+{
+	"id": 9,
+	"name": "Doe",
+	"surname": "Roepoulos",
+	"age": 17,
+	"phone": null,
+	"address": null,
+	"hobbies": [
+		null
+	],
+	"images": [
+		"resources/img/users/9_0.png",
+		"resources/img/users/9_1.png"
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"id": 0,
+	"name": "John",
+	"surname": "Doe",
+	"age": 25,
+	"phone": "693 5001 982",
+	"address":"10, Doe Street",
+	"hobbies": [
+		"Skiing",
+		"Knitting"
+	],
+	"images": [
+		"resources/img/users/0_0.png",
+		"resources/img/users/0_1.png",
+		"resources/img/users/0_2.png"
+	]
+}

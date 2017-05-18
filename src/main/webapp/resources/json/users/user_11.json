@@ -1,0 +1,14 @@
+{
+	"id": 11,
+	"name": "Jane",
+	"surname": "Doeloglou",
+	"age": 62,
+	"phone": null,
+	"address": null,
+	"hobbies": [
+		"Skiing"
+	],
+	"images": [
+		"resources/img/users/11_0.png"
+	]
+}
