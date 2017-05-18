@@ -14,15 +14,15 @@ body {
 .users li {
 	clear: both;
 	height: 80px;
+	margin-bottom: -0.5em;	
 	padding-top: 15px;
-	margin-bottom: -0.5em;
 }
 
 .thumb {
 	float: left;
 	height: 64px;
-	width: 64px;
 	margin: -0.5em 1em 1em 0;
+	width: 64px;	
 }
 
 .user-profile-img {
@@ -50,13 +50,14 @@ body {
 
 .user-thumbs img {
 	height: 64px;
-	width: 64px;
 	padding: 2px;
+	width: 64px;	
 }
 
 .user-thumbs li {
 	background-color: white;
 	border: 1px solid black;
+	cursor: pointer;
 	display: inline-block;
 	margin: 0.1em;
 }

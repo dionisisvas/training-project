@@ -3,10 +3,10 @@
 		
 		<div class="col-md-1">
 		
-			<div ng-if="$ctrl.user.images[0]">
-				<img class="user-profile-img" ng-src="{{$ctrl.user.images[0]}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}} "/>
+			<div ng-if="$ctrl.mainImageUrl">
+				<img class="user-profile-img" ng-src="{{$ctrl.mainImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}} "/>
 			</div>
-			<div ng-if="!$ctrl.user.images[0]">
+			<div ng-if="!$ctrl.mainImageUrl">
 				<img class="user-profile-img" ng-src="resources/img/users/default-user-img.png" alt="{{$ctrl.user.name}}" />
 			</div>
 			
@@ -18,7 +18,7 @@
 			
 			<ul class="user-thumbs" ng-if="$ctrl.user.images[0]">
 				<li ng-repeat="img in $ctrl.user.images">
-					<img ng-src="{{img}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}}" />
+					<img ng-src="{{img}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}}" ng-click="$ctrl.setImage(img)" />
 				</li>
 			</ul>
 		
