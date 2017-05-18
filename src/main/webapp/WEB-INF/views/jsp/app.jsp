@@ -7,16 +7,21 @@
 		<base href="/spring/">
 		<title>Training Project</title>
 
-		<spring:url value="/resources/css/app.css" var="appCss" />
-		<spring:url value="/resources/bootstrap/css/bootstrap.min.css" var="bootstrapCss" />
+		<spring:url value="/resources/app/css/app.css" var="appCss" />
+		<spring:url value="/resources/app/css/app.animation.css" var="appAnimationCss" />
+		<spring:url value="/resources/lib/bootstrap/css/bootstrap.min.css" var="bootstrapCss" />
 
 		<link href="${bootstrapCss}" rel="stylesheet" />
 		<link href="${appCss}" rel="stylesheet" />
-
-		<spring:url value="/resources/angular/angular.js" var="angularJs" />
-		<spring:url value="/resources/angular/angular-route.js" var="angularRouteJs" />
+		<link href="${appAnimationCss}" rel="stylesheet" />
+		
+		<spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
+		<spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
+		<spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
 		<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
 		<spring:url value="/resources/app/app.config.js" var="appConfigJs" />
+		<spring:url value="/resources/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
+		<spring:url value="/resources/app/error-message/error-message.component.js" var="errorMessageComponentJs" />
 		<spring:url value="/resources/app/option-list/option-list.module.js" var="optionListModuleJs" />
 		<spring:url value="/resources/app/option-list/option-list.component.js" var="optionListComponentJs" />
 		<spring:url value="/resources/app/user-list/user-list.module.js" var="userListModuleJs" />
@@ -26,9 +31,12 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${angularJs}"></script>
+		<script src="${angularAnimateJs}"></script>
 		<script src="${angularRouteJs}"></script>
 		<script src="${appModuleJs}"></script>
 		<script src="${appConfigJs}"></script>
+		<script src="${errorMessageModuleJs}"></script>
+		<script src="${errorMessageComponentJs}"></script>		
 		<script src="${optionListModuleJs}"></script>
 		<script src="${optionListComponentJs}"></script>
 		<script src="${userListModuleJs}"></script>
@@ -38,6 +46,8 @@
 	</head>
 
 	<body>
-		<div ng-view></div>
+		<div class="view-container">
+			<div ng-view class="view-frame"></div>
+		</div>
 	</body>
 </html>

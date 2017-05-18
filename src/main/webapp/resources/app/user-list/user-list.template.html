@@ -17,7 +17,7 @@
 		<div class="col-md-4">
 			<h4>Users:</h4>
 			<ul class="users">
-				<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit" class="thumbnail">
+				<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit" class="thumbnail phone-list-item">
 					<a href="user/{{user.id}}" class="thumb">
 						<div ng-if="user.profileImageUrl">
 							<img ng-src="{{user.profileImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />

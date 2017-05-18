@@ -1,18 +1,13 @@
-<div class="row">
-	<div class="col-md-2">
-		<p>
-			<h4>Filter by name, url or info:</h4>
-			<input type="text" onfocus="if (this.placeholder=='Option search...') this.placeholder = ''" placeholder="Option search..." name="option_search" ng-model="$ctrl.query">
-		</p>
-	</div>
-	<div class="col-md-4">
-		<h4>Options:</h4>
-		<ul class="options">
-			<li ng-repeat="option in $ctrl.options | filter:$ctrl.query">
-				*/<strong>{{option.dir}}</strong>/
-				{<em>{{option.name}}</em>}
-				<br>{{option.info}}
-			</li>
-		</ul>
-	</div>
-</div>
+<h4>Options:</h4>
+<ul class="options">
+	<li ng-repeat="option in $ctrl.options | filter:$ctrl.query">
+		<div ng-if="option.name">
+			*/spring/<strong>{{option.dir}}/[<em>{{option.name}}</em>]</strong>
+			<br>{{option.info}}
+		</div>
+		<div ng-if="!option.name">
+			<a href="{{option.dir}}">*/spring/<strong>{{option.dir}}</strong></a>
+			<br>{{option.info}}
+		</div>
+	</li>
+</ul>

@@ -1,7 +1,16 @@
 body {
 	padding-left: 1em;
 }
+.options {
+	list-style: none;
+}
 
+.options li {
+	clear: both;
+	height: 80px;
+	margin-bottom: -0.5em;	
+	padding-top: 15px;
+}
 .users {
 	list-style: none;
 }
@@ -56,7 +65,7 @@ body {
 
 .user-thumbs li {
 	background-color: white;
-	border: 1px solid black;
+	border: 1px solid #428bca;
 	cursor: pointer;
 	display: inline-block;
 	margin: 0.1em;
@@ -81,6 +90,7 @@ body {
 }
 
 .about li span {
+	color: #428bca;
 	font-size: 1.2em;
 	font-weight: bold;	
 }

@@ -7,15 +7,21 @@ angular.
 		controller: function OptionListController() {
 			this.options = [
 				{
-					id: '0',
-					name: 'name',
-					dir: 'hello',
-					info: 'any string will do'
+					name: null,
+					dir: '',
+					info: 'home dir'
 				}, {
-					id: '1',
+					name: null,
+					dir: 'user',
+					info: 'user list'
+				}, {
 					name: 'id',
 					dir: 'user',
-					info: 'long, id = 5 for mock user'
+					info: 'user list'
+				}, {
+					name: null,
+					dir: 'error',
+					info: 'default not found landing page'
 				}
 			];
 		}
