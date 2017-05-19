@@ -1,0 +1,14 @@
+{
+	"id": 4,
+	"name": "Doe",
+	"surname": "Roe",
+	"age": 100,
+	"phone": "911",
+	"address": "Peloponisou 13",
+	"hobbies": [
+		"Knitting"
+	],
+	"images": [
+		"resources/img/users/4_0.png"
+	]
+}

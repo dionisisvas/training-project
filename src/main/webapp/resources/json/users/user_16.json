@@ -1,0 +1,14 @@
+{
+	"id": 16,
+	"name": "Jane",
+	"surname": "Doedakis",
+	"age": 21,
+	"phone": null,
+	"address": null,
+	"hobbies": [
+		"Gaming"
+	],
+	"images": [
+		null
+	]
+}

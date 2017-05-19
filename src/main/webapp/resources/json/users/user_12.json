@@ -1,0 +1,15 @@
+{
+	"id": 12,
+	"name": "Don",
+	"surname": "Doe",
+	"age": 33,
+	"phone": "(+30) 694 5674 190",
+	"address": "Asomatwn 32",
+	"hobbies": [
+		"Football",
+		"Basketball"
+	],
+	"images": [
+		null
+	]
+}

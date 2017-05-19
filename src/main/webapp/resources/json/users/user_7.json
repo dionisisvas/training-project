@@ -1,0 +1,14 @@
+{
+	"id": 7,
+	"name": "John",
+	"surname": "John",
+	"age": 44,
+	"phone": null,
+	"address": null,
+	"hobbies": [
+		"Tennis"
+	],
+	"images": [
+		"resources/img/users/7_0.png"
+	]
+}

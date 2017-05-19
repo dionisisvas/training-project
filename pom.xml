@@ -12,7 +12,7 @@
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
 		<servletapi.version>3.1.0</servletapi.version>
-		<angular.version>1.5.11</angular.version>
+		<angular.version>1.6.4</angular.version>
 		<underscorejs.version>1.8.3</underscorejs.version>
 	</properties>
 
