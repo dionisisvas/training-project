@@ -10,8 +10,7 @@ public class ConnectToBase
 		Statement stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:C:\\sqlite\\test.db");
-			c.setAutoCommit(false);
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();

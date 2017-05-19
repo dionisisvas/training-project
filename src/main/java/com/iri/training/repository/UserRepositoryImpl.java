@@ -16,37 +16,39 @@ import com.iri.training.model.User;
 public class UserRepositoryImpl  implements UserRepository {
 
 	public User getUserById(Long userId ) throws SQLException {
-
-
+		final User user;
 		Connection c;
 		Statement stmt;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:C:\\sqlite\\test.db");
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
 			System.out.println("Opened database successfully");
+
 			stmt = c.createStatement();
-			String sql = "SELECT * FROM USERS WHERE usrID= ?;";
+			String sql = "SELECT * FROM users WHERE userID= ?;";
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
-			while ( resultSet.next() ) {
-				int id = resultSet.getInt("usrID");
-				final User user= new UserBuilder().withName(resultSet.getString("name")).withSurname(resultSet.getString("surname"))
-					.withUsername(resultSet.getString("usrname")).withPassword(resultSet.getString("password")).build();
 
-			}
+			user = new UserBuilder().withUsername(resultSet.getString("username"))
+									.withUserId(resultSet.getLong("userId"))
+									.withName(resultSet.getString("name"))
+									.withSurname(resultSet.getString("surname"))
+									.withAge(resultSet.getShort("age"))
+									.withPhoneNo(resultSet.getString("phone"))
+									.withAddress(resultSet.getString("address"))
+									.build();
+
 			resultSet.close();
 			stmt.close();
 			c.close();
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-
 			System.exit(0);
+			return null;
 		}
-		System.out.println("Operation done successfully");
 
-		return null;
+		return user;
 	}
-
 }

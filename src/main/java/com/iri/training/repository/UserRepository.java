@@ -6,9 +6,7 @@ import com.iri.training.model.User;
 
 public interface UserRepository {
 
-	  User getUserById(Long userId) throws SQLException;
-
-
+	User getUserById(Long userId) throws SQLException;
 }
 
 

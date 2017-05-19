@@ -3,59 +3,44 @@ package com.iri.training.model;
 
 public class User  {
 
-
+	private String username;
+	private Long userId;
 	private String name;
 	private String surname;
-	private String username;
+	private short age;
+	private String phoneNo;
+	private String address;
 	private String password;
 
+	public String getUsername() { return username; }
 
-	public String getName() {
-		return name;
-	}
+	public void setUsername(final String username) { this.username = username; }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+	public Long getUserId() { return userId; }
 
-	public String getSurname() {
-		return surname;
-	}
+	public void setUserId(final Long userId) { this.userId = userId; }
 
-	public void setSurname(final String surname) {
-		this.surname = surname;
-	}
+	public String getName() { return name; }
 
-	public String getUsername() {
-		return username;
-	}
+	public void setName(final String name) { this.name = name; }
 
-	public void setUsername(final String username) {
-		this.username = username;
-	}
+	public String getSurname() { return surname; }
 
-	public String getPassword() {
-		return password;
-	}
+	public void setSurname(final String surname) { this.surname = surname; }
 
-	public void setPassword(final String password) {
-		this.password = password;
-	}
+	public short getAge() { return age; }
 
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder();
-		builder.append("user name=");
-		builder.append(name);
-		builder.append(", surname=");
-		builder.append(surname);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(",password");
-		builder.append(password);
+	public void setAge(final short age) { this.age = age; }
 
+	public String getPhoneNo() { return phoneNo; }
 
-		return builder.toString();
-	}
+	public void setPhoneNo(final String phoneNo) { this.phoneNo = phoneNo; }
 
+	public String getAddress() { return address; }
+
+	public void setAddress(final String address) { this.address = address; }
+
+	private String getPassword() { return password; }
+
+	private void setPassword(final String password) { this.password = password; }
 }
