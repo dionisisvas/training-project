@@ -13,3 +13,11 @@ The project is ready to be built. After building, use `jetty:run` as a command l
 * Jetty 9
 * AngularJS 1.6.4
 * Bootstrap 3.3.7
+* SQLite 3.18.0
+
+### Database setup ###
+* Download SQLite and:
+  * save it inside the `db` folder located at the root of the project
+  * or add `sqlite3` to your environmental variables
+* Run the `create_db.bat` and you are ready to go!
+
