@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS USER_COMMENT;
 CREATE TABLE IF NOT EXISTS USER_COMMENT(
 	commID 	  	 INTEGER,
 	descrip      TEXT,
-	comdate    	 datetime,
+	comdate    	 TEXT,
 	userID  	 INTEGER, 
 	FOREIGN KEY (userID) REFERENCES USERS(userID)
 );
@@ -13,7 +13,7 @@ INSERT INTO USER_COMMENT(commID, descrip, comdate, userID)
 VALUES ( 0, "John", "2017-08-24 12:45:12", 0);
 
 INSERT INTO USER_COMMENT(commID, descrip, comdate, userID)
-VALUES ( 1, "Jane", "2016-03-24 17:45:12"0);
+VALUES ( 1, "Jane", "2016-03-24 17:45:12",0);
 
 INSERT INTO USER_COMMENT(commID, descrip, comdate, userID)
 VALUES ( 2, "Chris", "2017-04-24 18:45:12", 1);

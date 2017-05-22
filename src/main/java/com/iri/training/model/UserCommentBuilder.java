@@ -1,8 +1,5 @@
 package com.iri.training.model;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class UserCommentBuilder extends UserCommentBuilderBase<UserCommentBuilder> {
 	public static UserCommentBuilder userComment(){return new UserCommentBuilder();}
 	public  UserCommentBuilder() {super( new UserComment());}
@@ -30,18 +27,22 @@ class UserCommentBuilderBase<GeneratorT extends UserCommentBuilderBase<Generator
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withTime(final Time aValue) {
-		instance.setTime(aValue);
+	public GeneratorT withDate(final String aValue) {
+		instance.setDate(aValue);
+
+		return (GeneratorT) this;
+	}
+	@SuppressWarnings("unchecked")
+	public GeneratorT withCommID(final int aValue) {
+		instance.setCommID(aValue);
 
 		return (GeneratorT) this;
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withDate(final Date aValue) {
-		instance.setDate(aValue);
+	public GeneratorT withUserID(final int aValue) {
+		instance.setUserID(aValue);
 
 		return (GeneratorT) this;
 	}
-
-
 }
