@@ -28,8 +28,8 @@ public class UserController {
 		return new ResponseEntity<ArrayDeque<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value= "/user/{id}")
-	public ResponseEntity<User> getUserPage(@PathVariable("id") Long id) throws SQLException {
+	@RequestMapping(value= "/user/{userId}")
+	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long id) throws SQLException {
 		User user = userRepository.getUserById(id);
 		if (user != null)
 		{
