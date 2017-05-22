@@ -1,4 +1,6 @@
-package com.iri.training.model;
+package com.iri.training.model.builder;
+
+import com.iri.training.model.UserComment;
 
 public class UserCommentBuilder extends UserCommentBuilderBase<UserCommentBuilder> {
 	public static UserCommentBuilder userComment(){return new UserCommentBuilder();}

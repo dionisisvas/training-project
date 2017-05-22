@@ -1,4 +1,6 @@
-package com.iri.training.model;
+package com.iri.training.model.builder;
+
+import com.iri.training.model.User;
 
 public class UserBuilder extends BuildBase<UserBuilder> {
 	public static UserBuilder user() {

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.iri.training.model.UserComment;
-import com.iri.training.model.UserCommentBuilder;
+import com.iri.training.model.builder.UserCommentBuilder;
 
 public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override

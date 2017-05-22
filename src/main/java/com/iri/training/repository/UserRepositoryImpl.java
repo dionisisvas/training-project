@@ -6,10 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import org.springframework.stereotype.Repository;
-
-import com.iri.training.model.UserBuilder;
+import com.iri.training.model.builder.UserBuilder;
 import com.iri.training.model.User;
 
 @Repository
