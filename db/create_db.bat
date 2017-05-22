@@ -10,7 +10,8 @@ echo Creating hobbies...
 sqlite3 TrainingApp.db ".read sql/hobbies.sql"
 echo Creating user_hobbies...
 sqlite3 TrainingApp.db ".read sql/user_hobbies.sql"
-
+echo Creating USERCOMMENT...
+sqlite3 TrainingApp.db ".read sql/USERCOMMENT.sql"
 popd
 
 pause
