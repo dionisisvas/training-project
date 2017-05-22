@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users(
 	name      	 TEXT		NOT_NULL,
 	surname   	 TEXT		NOT_NULL,
 	age       	 INTEGER,
-	phoneNo     	 TEXT		UNIQUE,
+	phoneNo      TEXT		UNIQUE,
 	address   	 TEXT,
 	password  	 TEXT, -- Safety above all
 	PRIMARY KEY (userId)
@@ -62,7 +62,7 @@ INSERT INTO users(username, userId, name, surname, age, phoneNo, address, passwo
 VALUES (NULL, 15, "John", "Doedakis",15, NULL, NULL, NULL);
 -- User 16 --
 INSERT INTO users(username, userId, name, surname, age, phoneNo, address, password)
-VALUES (NULL, 16, "Jane", "DoeDAKIS", 21, NULL, NULL, NULL);
+VALUES (NULL, 16, "Jane", "Doedakis", 21, NULL, NULL, NULL);
 -- User 17 --
 INSERT INTO users(username, userId, name, surname, age, phoneNo, address, password)
 VALUES (NULL, 17, "Chris", "Doe", 24, "210 5678 450", "Troon 52", NULL);
