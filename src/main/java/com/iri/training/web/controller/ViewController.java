@@ -15,14 +15,4 @@ public class ViewController {
 	public String notFound() {
 		return "app";
 	}
-
-	@RequestMapping(value = "/user")
-	public String user() {
-		return "app";
-	}
-
-	@RequestMapping(value = "/user/{userId}")
-	public String userId() {
-		return "app";
-	}
 }
