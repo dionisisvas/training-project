@@ -31,8 +31,8 @@ public abstract class UserCommentRepositoryImpl implements UserCommentRepository
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
 			while ( resultSet.next() ) {
-				userComment= new UserCommentBuilder().withDescription(resultSet.getString("descript")).withDate(resultSet.getString("comdate"))
-					.withCommID(resultSet.getInt("commID")).withUserID(resultSet.getInt("userID")).build();
+				userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
+					.withCommID(resultSet.getInt("commentID")).withUserID(resultSet.getInt("userID")).build();
 
 			}
 			resultSet.close();
