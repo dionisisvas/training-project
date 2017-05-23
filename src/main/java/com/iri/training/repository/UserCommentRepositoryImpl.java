@@ -19,7 +19,8 @@ public abstract class UserCommentRepositoryImpl implements UserCommentRepository
 
 		Connection c;
 		Statement stmt;
-
+		UserComment userComment = null;
+		
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
@@ -30,7 +31,7 @@ public abstract class UserCommentRepositoryImpl implements UserCommentRepository
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
 			while ( resultSet.next() ) {
-				final UserComment userComment= new UserCommentBuilder().withDescription(resultSet.getString("descript")).withDate(resultSet.getString("comdate"))
+				userComment= new UserCommentBuilder().withDescription(resultSet.getString("descript")).withDate(resultSet.getString("comdate"))
 					.withCommID(resultSet.getInt("commID")).withUserID(resultSet.getInt("userID")).build();
 
 			}
@@ -44,7 +45,7 @@ public abstract class UserCommentRepositoryImpl implements UserCommentRepository
 		}
 		System.out.println("Operation done successfully");
 
-		return null;
+		return userComment;
 	}
 
 
