@@ -26,7 +26,7 @@ public class UserComment {
 		this.commentDate = commentDate;
 	}
 
-		public int getCommID() {
+		public int getCommentID() {
 		return this.commentID;
 	}
 

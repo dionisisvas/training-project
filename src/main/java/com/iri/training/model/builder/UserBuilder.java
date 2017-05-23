@@ -55,4 +55,31 @@ class BuildBase<GeneratorT extends BuildBase<GeneratorT>> {
 		return (GeneratorT) this;
 	}
 
+	@SuppressWarnings("unchecked")
+	public GeneratorT withAddress(final String aValue) {
+		instance.setAddress(aValue);
+
+		return (GeneratorT) this;
+	}
+	@SuppressWarnings("unchecked")
+	public GeneratorT withPhone(final String aValue) {
+		instance.setPhone(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withAge(final int aValue) {
+		instance.setAge(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withUserID(final int aValue) {
+		instance.setUserID(aValue);
+
+		return (GeneratorT) this;
+	}
+
 }

@@ -8,6 +8,10 @@ public class User  {
 	private String surname;
 	private String username;
 	private String password;
+	private String address;
+	private String phone;
+	private int userID;
+	private int age;
 
 
 	public String getName() {
@@ -16,6 +20,38 @@ public class User  {
 
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(final int userID) {
+		this.userID = userID;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(final int age) {
+		this.age = age;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(final String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(final String address) {
+		this.address = address;
 	}
 
 	public String getSurname() {
@@ -45,14 +81,22 @@ public class User  {
 	@Override
 	public String toString() {
 		final StringBuilder builder = new StringBuilder();
-		builder.append("user name=");
+		builder.append("name=");
 		builder.append(name);
-		builder.append(", surname=");
+		builder.append("surname=");
 		builder.append(surname);
-		builder.append(", username=");
+		builder.append("username=");
 		builder.append(username);
-		builder.append(",password");
+		builder.append("password");
 		builder.append(password);
+		builder.append("address");
+		builder.append(address);
+		builder.append("phone");
+		builder.append(phone);
+		builder.append("userID");
+		builder.append(userID);
+		builder.append("age");
+		builder.append(age);
 
 
 		return builder.toString();

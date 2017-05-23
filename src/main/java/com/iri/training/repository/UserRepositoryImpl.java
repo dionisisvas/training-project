@@ -29,9 +29,10 @@ public abstract class UserRepositoryImpl implements UserRepository {
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
 			while ( resultSet.next() ) {
-				int id = resultSet.getInt("usrID");
 				 user= new UserBuilder().withName(resultSet.getString("name")).withSurname(resultSet.getString("surname"))
-					.withUsername(resultSet.getString("usrname")).withPassword(resultSet.getString("password")).build();
+					.withUsername(resultSet.getString("username")).withPassword(resultSet.getString("password")).withAge(resultSet.getInt("age"))
+					 .withPhone(resultSet.getString("phone")).withAddress(resultSet.getString("address")).withUserID(resultSet.getInt("userID"))
+					 .build();
 
 			}
 			resultSet.close();
