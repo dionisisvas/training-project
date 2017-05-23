@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.stereotype.Repository;
+
 import com.iri.training.model.UserComment;
 import com.iri.training.model.builder.UserCommentBuilder;
 
+@Repository
 public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
@@ -43,4 +46,5 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 		return null;
 	}
+
 }
