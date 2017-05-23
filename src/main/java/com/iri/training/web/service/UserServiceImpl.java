@@ -9,7 +9,7 @@ import com.iri.training.model.User;
 import com.iri.training.repository.UserRepository;
 
 @Service
-public abstract class UserServiceImpl implements UserService{
+public  class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserRepository userRepository;
@@ -17,12 +17,18 @@ public abstract class UserServiceImpl implements UserService{
 	@Override
 	public User getUserById(Long userId) throws SQLException {
 		
-		//implement code
-		User user = userRepository.getUserById(userId);
-		user =userRepository.createUser(user);
+
+		 userRepository.getUserById(userId);
+
+		return null;
+	}
+
+	@Override
+	public User createUser(User user) throws SQLException {
+
+
+		userRepository.createUser(user);
 		return user;
 	}
 
-	
-	
 }

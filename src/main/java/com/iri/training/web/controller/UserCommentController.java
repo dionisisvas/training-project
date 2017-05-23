@@ -24,11 +24,6 @@ public class UserCommentController{
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
-
-		userComment.getDescription(request.getParameter("description"));
-		userComment.getDate(request.getParameter("commentDate"));
-		userComment.getCommID(Integer.parseInt(request.getParameter("commentID")));
-		userComment.getUserID(Integer.parseInt(request.getParameter("userID")));
 		userComment=userCommentService.createUserComment(userComment);
 
 	}
@@ -37,7 +32,7 @@ public class UserCommentController{
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
 	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
-		UserComment userComment = userCommentService.getUserCommentById(userId);
+		 userComment = userCommentService.getUserCommentById(userId);
 
 		return userComment;
 	}

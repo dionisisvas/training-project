@@ -18,7 +18,7 @@ public abstract class UserRepositoryImpl implements UserRepository {
 
 		Connection c;
 		Statement stmt;
-
+        User user = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:C:\\sqlite\\test.db");
@@ -30,7 +30,7 @@ public abstract class UserRepositoryImpl implements UserRepository {
 			ResultSet resultSet = pst.executeQuery( );
 			while ( resultSet.next() ) {
 				int id = resultSet.getInt("usrID");
-				final User user= new UserBuilder().withName(resultSet.getString("name")).withSurname(resultSet.getString("surname"))
+				 user= new UserBuilder().withName(resultSet.getString("name")).withSurname(resultSet.getString("surname"))
 					.withUsername(resultSet.getString("usrname")).withPassword(resultSet.getString("password")).build();
 
 			}
@@ -44,7 +44,7 @@ public abstract class UserRepositoryImpl implements UserRepository {
 		}
 		System.out.println("Operation done successfully");
 
-		return null;
+		return user;
 	}
 
 }

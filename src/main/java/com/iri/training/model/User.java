@@ -10,7 +10,7 @@ public class User  {
 	private String password;
 
 
-	public String getName(final String name) {
+	public String getName() {
 		return name;
 	}
 
@@ -18,7 +18,7 @@ public class User  {
 		this.name = name;
 	}
 
-	public String getSurname(final String surname) {
+	public String getSurname() {
 		return surname;
 	}
 
@@ -26,7 +26,7 @@ public class User  {
 		this.surname = surname;
 	}
 
-	public String getUsername(final String username) {
+	public String getUsername() {
 		return username;
 	}
 
@@ -34,7 +34,7 @@ public class User  {
 		this.username = username;
 	}
 
-	public String getPassword(final String password) {
+	public String getPassword() {
 		return password;
 	}
 

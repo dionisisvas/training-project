@@ -8,17 +8,24 @@ import com.iri.training.model.UserComment;
 import com.iri.training.repository.UserCommentRepository;
 
 
-public class UserCommentServiceImpl {
+public class UserCommentServiceImpl implements UserCommentService {
 	@Autowired
 	UserCommentRepository userCommentRepository;
 
-	//@Override
+	@Override
 	public UserComment getUserCommentById(Long userId) throws SQLException {
 
-		UserComment userComment = userCommentRepository.getUserCommentById(userId);
-		userComment =userCommentRepository.createUserComment(userComment);
-		return userComment;
+		userCommentRepository.getUserCommentById(userId);
+
+		return null;
 
 	}
 
+	@Override
+	public UserComment createUserComment(UserComment userComment) throws SQLException {
+
+		userCommentRepository.createUserComment(userComment);
+		return userComment;
+
+	}
 	}

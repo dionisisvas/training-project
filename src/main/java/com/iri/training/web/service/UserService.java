@@ -9,5 +9,5 @@ public interface UserService {
 
 	User getUserById( Long userId) throws SQLException;
 
-	User createUser(User user);
+	User createUser(User user) throws SQLException;
 }

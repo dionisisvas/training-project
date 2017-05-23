@@ -23,11 +23,6 @@ public class UserController {
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
 	public void createUser(final HttpServletRequest request, @PathVariable("user") User user)throws SQLException{
 
-
-		user.getName(request.getParameter("name"));
-		user.getSurname(request.getParameter("surname"));
-		user.getUsername(request.getParameter("commentID"));
-		user.getPassword(request.getParameter("userID"));
 		user=userService.createUser(user);
 
 	}

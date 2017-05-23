@@ -10,7 +10,7 @@ public class UserComment {
 	    private int userID;
 
 
-		public String getDescription(final String description) {
+		public String getDescription() {
 			return this.description;
 		}
 
@@ -18,7 +18,7 @@ public class UserComment {
 			this.description = description;
 		}
 
-	    public String getDate(final String commentDate) {
+	    public String getDate() {
 		return this.commentDate;
 	}
 
@@ -26,7 +26,7 @@ public class UserComment {
 		this.commentDate = commentDate;
 	}
 
-		public int getCommID(final int commentID) {
+		public int getCommID() {
 		return this.commentID;
 	}
 
@@ -34,7 +34,7 @@ public class UserComment {
 		this.commentID = commentID;
 	}
 
-		public int getUserID(final int userID) {
+		public int getUserID() {
 		return userID;
 	}
 
