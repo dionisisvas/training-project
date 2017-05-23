@@ -11,7 +11,7 @@ import com.iri.training.model.builder.UserBuilder;
 import com.iri.training.model.User;
 
 @Repository
-public class UserRepositoryImpl  implements UserRepository {
+public abstract class UserRepositoryImpl implements UserRepository {
 
 	public User getUserById(Long userId ) throws SQLException {
 

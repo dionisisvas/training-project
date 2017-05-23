@@ -15,8 +15,10 @@ public class UserCommentServiceImpl {
 	//@Override
 	public UserComment getUserCommentById(Long userId) throws SQLException {
 
-		//implement code
-		return null;
+		UserComment userComment = userCommentRepository.getUserCommentById(userId);
+		userComment =userCommentRepository.createUserComment(userComment);
+		return userComment;
+
 	}
 
 	}

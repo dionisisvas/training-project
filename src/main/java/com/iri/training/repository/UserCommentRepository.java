@@ -6,5 +6,5 @@ import com.iri.training.model.UserComment;
 
 public interface UserCommentRepository {
 	UserComment getUserCommentById(Long userId) throws SQLException;
-	UserComment CreateUserComment(UserComment userComment)throws SQLException;
+	UserComment createUserComment(UserComment userComment)throws SQLException;
 }
