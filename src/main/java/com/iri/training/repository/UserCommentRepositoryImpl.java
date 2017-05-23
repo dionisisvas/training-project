@@ -13,7 +13,7 @@ import com.iri.training.model.UserComment;
 import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
-public class UserCommentRepositoryImpl implements UserCommentRepository{
+public abstract class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
@@ -46,5 +46,6 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 		return null;
 	}
+
 
 }

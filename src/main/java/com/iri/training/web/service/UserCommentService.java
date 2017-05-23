@@ -8,6 +8,5 @@ public interface UserCommentService {
 
 	 UserComment getUserCommentById(Long userId) throws SQLException ;
 
-	 UserComment CreateUserComment(String description,String comdate,int commID,int useID)throws SQLException;
-
+	UserComment createUserComment(UserComment userComment)throws SQLException;
 }

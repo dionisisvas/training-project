@@ -4,10 +4,10 @@ package com.iri.training.model;
 public class User  {
 
 
-	public String name;
-	public String surname;
-	public String username;
-	public String password;
+	private String name;
+	private String surname;
+	private String username;
+	private String password;
 
 
 	public String getName() {
