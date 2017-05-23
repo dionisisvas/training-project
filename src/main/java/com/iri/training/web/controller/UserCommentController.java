@@ -14,15 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.UserComment;
 import com.iri.training.web.service.UserCommentService;
 
+import static java.lang.Integer.*;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/userComment")
 public class UserCommentController{
 
 	@Autowired
 	UserCommentService userCommentService;
+	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
+	public void CreateUserComment(final HttpServletRequest request, @PathVariable("description,comdate,commID,userID")  String description,String comdate,int commID,int useID)throws SQLException{
+		UserComment usercomment=new UserComment();
+		usercomment.description=request.getParameter("description");
+		usercomment.comdate=request.getParameter("comdate");
+		usercomment.commID= parseInt(request.getParameter("commID"));
+		usercomment.userID= parseInt(request.getParameter("userID"));
+		
+	}
+
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public UserComment getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+	public UserComment getUserCommentById(final HttpServletRequest requ, @PathVariable final Long userId) throws SQLException {
 
 		UserComment userComment = userCommentService.getUserCommentById(userId);
 

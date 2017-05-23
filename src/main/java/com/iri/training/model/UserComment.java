@@ -4,10 +4,10 @@ public class UserComment {
 
 
 
-		private String description;
-		private String comdate;
-	    private int commID;
-	    private int userID;
+		public String description;
+		public String comdate;
+	    public int commID;
+	    public int userID;
 
 
 		public String getDescription() {
