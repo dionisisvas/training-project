@@ -15,7 +15,7 @@ public  class UserServiceImpl implements UserService{
 	UserRepository userRepository;
 	
 	@Override
-	public User getUserById(Long userId) throws SQLException, ClassNotFoundException {
+	public User getUserById(Long userId) throws SQLException {
 		
 
 		 userRepository.getUserById(userId);
@@ -24,7 +24,7 @@ public  class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User createUser(User user) throws SQLException, ClassNotFoundException {
+	public User createUser(User user) throws SQLException {
 
 
 		userRepository.createUser(user);

@@ -17,7 +17,7 @@ public  class UserRepositoryImpl implements UserRepository {
 	private Statement stmt;
 	private User user = null;
 
-	public Connection getConnection() throws SQLException, ClassNotFoundException {
+	public Connection getConnection() throws SQLException {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -25,7 +25,7 @@ public  class UserRepositoryImpl implements UserRepository {
 			System.out.println("Opened database successfully");
 
 
-		} catch (Exception e) {
+		} catch (ClassNotFoundException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 
 			System.exit(0);
@@ -36,9 +36,9 @@ public  class UserRepositoryImpl implements UserRepository {
 		return c;
 	}
 
-	public User getUserById(Long userId ) throws SQLException, ClassNotFoundException {
+	public User getUserById(Long userId ) throws SQLException {
 
-			c =getConnection();
+			c = getConnection();
 
 			stmt = c.createStatement();
 			String sql = "SELECT * FROM USERS WHERE usrID= ?;";
@@ -60,7 +60,7 @@ public  class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 	@Override
-	public User createUser(final User user) throws SQLException, ClassNotFoundException {
+	public User createUser(final User user) throws SQLException {
 		    c =getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USERS(username, userID, name, surname, age, phone, address, password)VALUES(?,?,?,?,?,?,?,?);";

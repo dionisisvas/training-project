@@ -3,11 +3,12 @@ package com.iri.training.web.service;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.iri.training.model.UserComment;
 import com.iri.training.repository.UserCommentRepository;
 
-
+@Service
 public class UserCommentServiceImpl implements UserCommentService {
 	@Autowired
 	UserCommentRepository userCommentRepository;

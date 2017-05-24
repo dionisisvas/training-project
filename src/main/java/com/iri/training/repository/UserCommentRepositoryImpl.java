@@ -19,7 +19,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	private Statement stmt;
 	private UserComment userComment = null;
 
-	public Connection getConnection() throws SQLException, ClassNotFoundException {
+	public Connection getConnection() throws SQLException {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -27,7 +27,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 			System.out.println("Opened database successfully");
 
 
-		} catch (Exception e) {
+		} catch (ClassNotFoundException e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 
 			System.exit(0);
@@ -39,7 +39,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	}
 
 	@Override
-	public UserComment getUserCommentById(final Long userId) throws SQLException, ClassNotFoundException {
+	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
 		    c =getConnection();
 			stmt = c.createStatement();
@@ -61,7 +61,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	}
 
 	@Override
-	public UserComment createUserComment(final UserComment userComment) throws SQLException, ClassNotFoundException {
+	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
 			c =getConnection();
 			stmt = c.createStatement();
