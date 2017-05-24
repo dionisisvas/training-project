@@ -30,7 +30,7 @@ public class UserCommentController{
 
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException, ClassNotFoundException {
 
 		 userComment = userCommentService.getUserCommentById(userId);
 

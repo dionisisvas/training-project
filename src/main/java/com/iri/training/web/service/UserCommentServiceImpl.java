@@ -13,7 +13,7 @@ public class UserCommentServiceImpl implements UserCommentService {
 	UserCommentRepository userCommentRepository;
 
 	@Override
-	public UserComment getUserCommentById(Long userId) throws SQLException {
+	public UserComment getUserCommentById(Long userId) throws SQLException, ClassNotFoundException {
 
 		userCommentRepository.getUserCommentById(userId);
 

@@ -13,18 +13,35 @@ import com.iri.training.model.UserComment;
 import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
-public abstract class UserCommentRepositoryImpl implements UserCommentRepository{
-	@Override
-	public UserComment getUserCommentById(final Long userId) throws SQLException {
+public class UserCommentRepositoryImpl implements UserCommentRepository{
 
-		Connection c;
-		Statement stmt;
-		UserComment userComment = null;
-		
+	private Connection c;
+	private Statement stmt;
+	private UserComment userComment = null;
+
+	public Connection getConnection() throws SQLException, ClassNotFoundException {
+
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
 			System.out.println("Opened database successfully");
+
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+
+			System.exit(0);
+		}
+		System.out.println("Operation done successfully");
+
+
+		return c;
+	}
+
+	@Override
+	public UserComment getUserCommentById(final Long userId) throws SQLException, ClassNotFoundException {
+
+		    c =getConnection();
 			stmt = c.createStatement();
 			String sql = "SELECT * FROM USER_COMMENT WHERE userID= ?;";
 			PreparedStatement pst = c.prepareStatement(sql);
@@ -38,15 +55,28 @@ public abstract class UserCommentRepositoryImpl implements UserCommentRepository
 			resultSet.close();
 			stmt.close();
 			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 
-			System.exit(0);
-		}
-		System.out.println("Operation done successfully");
 
 		return userComment;
 	}
 
+	@Override
+	public UserComment createUserComment(final UserComment userComment) throws SQLException, ClassNotFoundException {
 
+			c =getConnection();
+			stmt = c.createStatement();
+			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
+			PreparedStatement pst = c.prepareStatement(sql);
+			pst.setInt(1, userComment.getCommentID());
+			pst.setString(2,userComment.getDescription() );
+			pst.setString(3,userComment.getDate());
+			pst.setInt(4,userComment.getUserID());
+			pst.executeUpdate();
+
+			stmt.close();
+			c.close();
+
+
+		return userComment;
+	}
 }
