@@ -7,7 +7,7 @@ import com.iri.training.model.User;
 public interface UserService {
 
 
-	User getUserById( Long userId) throws SQLException;
+	User getUserById( Long userId) throws SQLException, ClassNotFoundException;
 
-	User createUser(User user) throws SQLException;
+	User createUser(User user) throws SQLException, ClassNotFoundException;
 }

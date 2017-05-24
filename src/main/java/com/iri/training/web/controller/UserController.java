@@ -21,14 +21,14 @@ public class UserController {
 	UserService userService;
 	User user;
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
-	public void createUser(final HttpServletRequest request, @PathVariable("user") User user)throws SQLException{
+	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException, ClassNotFoundException {
 
 		user=userService.createUser(user);
 
 	}
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException, ClassNotFoundException {
 		user = userService.getUserById(userId);
 		return user;
 	}
