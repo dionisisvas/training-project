@@ -1,7 +1,6 @@
 package com.iri.training.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,30 +20,13 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	private Statement stmt;
 	private UserComment userComment = null;
 
-	public Connection getConnection() throws SQLException {
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
-
-
-		} catch (ClassNotFoundException e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-
-			System.exit(0);
-		}
-		System.out.println("Operation done successfully");
-
-
-		return c;
-	}
+	ConnectToBase connectToBase;
 
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
 			logger.debug("ENTERED getUserCommentById" + userComment.toString());
-		    c =getConnection();
+		    c =connectToBase.getConnection();
 			stmt = c.createStatement();
 			String sql = "SELECT * FROM USER_COMMENT WHERE userID= ?;";
 			PreparedStatement pst = c.prepareStatement(sql);
@@ -68,7 +50,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
 			logger.debug("ENTERED createUserComment" + userComment.toString());
-			c =getConnection();
+			c =connectToBase.getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
 			PreparedStatement pst = c.prepareStatement(sql);

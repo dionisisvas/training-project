@@ -1,7 +1,6 @@
 package com.iri.training.repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,31 +19,12 @@ public  class UserRepositoryImpl implements UserRepository {
 	private Connection c;
 	private Statement stmt;
 	private User user = null;
-
-	public Connection getConnection() throws SQLException {
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
-
-
-		} catch (ClassNotFoundException e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-
-			System.exit(0);
-		}
-		System.out.println("Operation done successfully");
-
-
-		return c;
-	}
-
+	 ConnectToBase connectToBase;
 	public User getUserById(Long userId ) throws SQLException {
 
 			logger.debug("ENTERED getUserById" + user.toString());
 
-			c = getConnection();
+			c =connectToBase.getConnection();
 
 			stmt = c.createStatement();
 			String sql = "SELECT * FROM USERS WHERE usrID= ?;";
@@ -71,7 +51,7 @@ public  class UserRepositoryImpl implements UserRepository {
 		logger.debug("ENTERED createUser" + user.toString());
 
 
-		    c =getConnection();
+			c =connectToBase.getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USERS(username, userID, name, surname, age, phone, address, password)VALUES(?,?,?,?,?,?,?,?);";
 			PreparedStatement pst = c.prepareStatement(sql);
