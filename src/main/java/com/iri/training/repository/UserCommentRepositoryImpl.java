@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.UserComment;
@@ -14,6 +15,7 @@ import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
 public class UserCommentRepositoryImpl implements UserCommentRepository{
+	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
 
 	private Connection c;
 	private Statement stmt;
@@ -41,6 +43,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
+			logger.debug("ENTERED getUserCommentById" + userComment.toString());
 		    c =getConnection();
 			stmt = c.createStatement();
 			String sql = "SELECT * FROM USER_COMMENT WHERE userID= ?;";
@@ -56,6 +59,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 			stmt.close();
 			c.close();
 
+			logger.debug("EXITING createUserComment" + userComment);
 
 		return userComment;
 	}
@@ -63,6 +67,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
+			logger.debug("ENTERED createUserComment" + userComment);
 			c =getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
@@ -76,6 +81,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 			stmt.close();
 			c.close();
 
+			logger.debug("EXITING createUserComment" + userComment);
 
 		return userComment;
 	}

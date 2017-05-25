@@ -6,12 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
-import com.iri.training.model.builder.UserBuilder;
+
 import com.iri.training.model.User;
+import com.iri.training.model.builder.UserBuilder;
 
 @Repository
 public  class UserRepositoryImpl implements UserRepository {
+	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 
 	private Connection c;
 	private Statement stmt;
@@ -38,6 +42,8 @@ public  class UserRepositoryImpl implements UserRepository {
 
 	public User getUserById(Long userId ) throws SQLException {
 
+			logger.debug("ENTERED getUserById" + user.toString());
+
 			c = getConnection();
 
 			stmt = c.createStatement();
@@ -56,11 +62,15 @@ public  class UserRepositoryImpl implements UserRepository {
 			stmt.close();
 			c.close();
 
+			logger.debug("EXITING getUserById " + user.toString());
 
-		return user;
+			return user;
 	}
 	@Override
 	public User createUser(final User user) throws SQLException {
+		logger.debug("ENTERED createUser" + user);
+
+
 		    c =getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USERS(username, userID, name, surname, age, phone, address, password)VALUES(?,?,?,?,?,?,?,?);";
@@ -78,7 +88,8 @@ public  class UserRepositoryImpl implements UserRepository {
 			stmt.close();
 			c.close();
 
-
+		logger.debug("EXITING createUser " + user);
 		return user;
 	}
+
 }
