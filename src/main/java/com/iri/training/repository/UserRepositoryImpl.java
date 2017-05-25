@@ -68,7 +68,7 @@ public  class UserRepositoryImpl implements UserRepository {
 	}
 	@Override
 	public User createUser(final User user) throws SQLException {
-		logger.debug("ENTERED createUser" + user);
+		logger.debug("ENTERED createUser" + user.toString());
 
 
 		    c =getConnection();
@@ -88,7 +88,7 @@ public  class UserRepositoryImpl implements UserRepository {
 			stmt.close();
 			c.close();
 
-		logger.debug("EXITING createUser " + user);
+		logger.debug("EXITING createUser " + user.toString());
 		return user;
 	}
 

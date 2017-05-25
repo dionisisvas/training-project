@@ -25,11 +25,11 @@ public class UserCommentController{
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
-		logger.debug("ENTERED createUserComment" + userComment);
+		logger.debug("ENTERED createUserComment" + userComment.toString());
 
 		userCommentService.createUserComment(userComment);
 
-		logger.debug("EXITING createUserComment" + userComment);
+		logger.debug("EXITING createUserComment" + userComment.toString());
 
 	}
 

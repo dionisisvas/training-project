@@ -59,7 +59,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 			stmt.close();
 			c.close();
 
-			logger.debug("EXITING createUserComment" + userComment);
+			logger.debug("EXITING createUserComment" + userComment.toString());
 
 		return userComment;
 	}
@@ -67,7 +67,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
-			logger.debug("ENTERED createUserComment" + userComment);
+			logger.debug("ENTERED createUserComment" + userComment.toString());
 			c =getConnection();
 			stmt = c.createStatement();
 			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
@@ -81,7 +81,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 			stmt.close();
 			c.close();
 
-			logger.debug("EXITING createUserComment" + userComment);
+			logger.debug("EXITING createUserComment" + userComment.toString());
 
 		return userComment;
 	}

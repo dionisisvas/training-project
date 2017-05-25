@@ -24,11 +24,11 @@ public class UserController {
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
 	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException, ClassNotFoundException {
 
-		logger.debug("ENTERED createUser" + user);
+		logger.debug("ENTERED createUser" + user.toString());
 
 		userService.createUser(user);
 
-		logger.debug("EXITING createUser " + user);
+		logger.debug("EXITING createUser " + user.toString());
 	}
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
