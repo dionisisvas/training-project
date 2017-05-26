@@ -6,6 +6,6 @@ import com.iri.training.model.UserComment;
 
 public interface UserCommentService {
 
-		UserComment getUserCommentById(Long userId) throws SQLException, ClassNotFoundException;
+		UserComment getUserCommentById(Long userId) throws SQLException;
 		UserComment createUserComment(UserComment userComment) throws SQLException;
 	}

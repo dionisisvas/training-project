@@ -22,7 +22,7 @@ public class UserController {
 	UserService userService;
 	User user;
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
-	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException, ClassNotFoundException {
+	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException {
 
 		logger.debug("ENTERED createUser" + user.toString());
 
@@ -32,7 +32,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException, ClassNotFoundException {
+	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
 
 		logger.debug("ENTERED getUserById" + user.toString());

@@ -9,7 +9,7 @@ import com.iri.training.model.User;
 import com.iri.training.repository.UserRepository;
 
 @Service
-public  class UserServiceImpl implements UserService{
+public  class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
