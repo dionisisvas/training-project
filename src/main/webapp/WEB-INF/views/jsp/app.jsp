@@ -17,9 +17,13 @@
 		
 		<spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
 		<spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
+		<spring:url value="/resources/lib/angular/angular-resource.js" var="angularResourceJs" />		
 		<spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
 		<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
 		<spring:url value="/resources/app/app.config.js" var="appConfigJs" />
+		<spring:url value="/resources/app/core/core.module.js" var="coreModuleJs" />		
+		<spring:url value="/resources/app/core/user/user.module.js" var="userModuleJs" />
+		<spring:url value="/resources/app/core/user/user.service.js" var="userServiceJs" />
 		<spring:url value="/resources/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
 		<spring:url value="/resources/app/error-message/error-message.component.js" var="errorMessageComponentJs" />
 		<spring:url value="/resources/app/option-list/option-list.module.js" var="optionListModuleJs" />
@@ -32,9 +36,13 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="${angularJs}"></script>
 		<script src="${angularAnimateJs}"></script>
+		<script src="${angularResourceJs}"></script>
 		<script src="${angularRouteJs}"></script>
+		<script src="${coreModuleJs}"></script>		
 		<script src="${appModuleJs}"></script>
-		<script src="${appConfigJs}"></script>
+		<script src="${appConfigJs}"></script>	
+		<script src="${userModuleJs}"></script>
+		<script src="${userServiceJs}"></script>
 		<script src="${errorMessageModuleJs}"></script>
 		<script src="${errorMessageComponentJs}"></script>		
 		<script src="${optionListModuleJs}"></script>
