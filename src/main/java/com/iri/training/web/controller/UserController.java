@@ -37,7 +37,7 @@ public class UserController {
 		logger.debug("EXITING createUser " + user.toString());
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<ArrayDeque<User>> getAllUsers() throws SQLException {
 
 		logger.debug("ENTERED getAllUsers");
@@ -52,12 +52,12 @@ public class UserController {
 		return new ResponseEntity<ArrayDeque<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long id) throws SQLException {
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserById");
 
-		User user = userService.getUserById(id);
+		User user = userService.getUserById(userId);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
