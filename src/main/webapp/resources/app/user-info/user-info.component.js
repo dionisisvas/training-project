@@ -11,7 +11,7 @@ angular.
 				self.mainImageUrl = imageUrl;
 			};
 			
-			$http.get(method:'GET', url:'/users/:userId', {id:'@userId'}).then(function(response) {
+			$http.get(method:'GET', url:'/users/:userId').then(function(response) {
 				self.user = response.data;
 				self.setImage(self.user.images[0]);
 			});

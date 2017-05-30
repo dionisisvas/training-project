@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.User;
@@ -18,7 +19,7 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 
-	@RequestMapping(value= "/user")
+	@RequestMapping(value= "/user", method = RequestMethod.GET)
 	public ResponseEntity<ArrayDeque<User>> getAllUsers() throws SQLException {
 		ArrayDeque<User> users = userRepository.getUserArray();
 		if (users != null)
@@ -28,7 +29,7 @@ public class UserController {
 		return new ResponseEntity<ArrayDeque<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value= "/user/{userId}")
+	@RequestMapping(value= "/user/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long id) throws SQLException {
 		User user = userRepository.getUserById(id);
 		if (user != null)
