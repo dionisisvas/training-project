@@ -13,7 +13,7 @@ angular.
 			
 			self.orderProp = 'id';
 			
-			$http.get('resources/json/users.json').then(function(response) {
+			$http.get(method:'GET', url:'/users').then(function(response) {
 				self.users = response.data;
 			});
 		

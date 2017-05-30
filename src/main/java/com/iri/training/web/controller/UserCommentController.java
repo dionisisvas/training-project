@@ -32,19 +32,4 @@ public class UserCommentController{
 		logger.debug("EXITING createUserComment" + userComment.toString());
 
 	}
-
-
-	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
-
-		logger.debug("ENTERED getUserCommentById" + userComment.toString());
-
-		userComment = userCommentService.getUserCommentById(userId);
-
-		logger.debug("EXITING getUserCommentById" + userComment.toString());
-
-
-		return userComment;
-	}
-
 }

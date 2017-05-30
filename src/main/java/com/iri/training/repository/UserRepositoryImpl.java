@@ -1,75 +1,140 @@
 package com.iri.training.repository;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayDeque;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.iri.training.model.User;
 import com.iri.training.model.builder.UserBuilder;
+import com.iri.training.model.User;
 
 @Repository
-public  class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
-
-	private Connection c;
-	private Statement stmt;
-	private User user = null;
-	 ConnectToBase connectToBase;
+	
 	public User getUserById(Long userId ) throws SQLException {
+		logger.debug("ENTERED getUserById for id " + userId);
+		
+		Connection c;
+		Statement stmt;
+						
+		final User user;
 
-			logger.debug("ENTERED getUserById" + user.toString());
-
-			c =connectToBase.getConnection();
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
+			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = "SELECT * FROM USERS WHERE usrID= ?;";
+			String sql = "SELECT * FROM users WHERE userID= ?;";
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
-			while ( resultSet.next() ) {
-				 user = new UserBuilder().withName(resultSet.getString("name")).withSurname(resultSet.getString("surname"))
-					.withUsername(resultSet.getString("username")).withPassword(resultSet.getString("password")).withAge(resultSet.getInt("age"))
-					 .withPhone(resultSet.getString("phone")).withAddress(resultSet.getString("address")).withUserID(resultSet.getInt("userID"))
-					 .build();
 
-			}
+			user = new UserBuilder().withUsername(resultSet.getString("username"))
+									.withUserId(resultSet.getLong("userId"))
+									.withName(resultSet.getString("name"))
+									.withSurname(resultSet.getString("surname"))
+									.withAge(resultSet.getShort("age"))
+									.withPhoneNo(resultSet.getString("phoneNo"))
+									.withAddress(resultSet.getString("address"))
+									.build();
+
 			resultSet.close();
 			stmt.close();
 			c.close();
-
-			logger.debug("EXITING getUserById " + user.toString());
-
-			return user;
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+			return null;
+		}
+		
+		logger.debug("EXITING getUserById for user " + user.toString());
+		
+		return user;
 	}
+
+	public ArrayDeque<User> getUserArray() throws SQLException {
+		logger.debug("ENTERED getUserArray");
+
+		final ArrayDeque<User> usersArrayDeque = new ArrayDeque<>();
+		Connection c;
+		Statement stmt;
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "SELECT username, userId, name, surname, age FROM users;";
+			PreparedStatement pst = c.prepareStatement(sql);
+			ResultSet resultSet = pst.executeQuery( );
+
+			while(resultSet.next()) {
+				usersArrayDeque.add(new UserBuilder().withUsername(resultSet.getString("username"))
+					.withUserId(resultSet.getLong("userId"))
+					.withName(resultSet.getString("name"))
+					.withSurname(resultSet.getString("surname"))
+					.withAge(resultSet.getShort("age"))
+					.build());
+			}
+
+			resultSet.close();
+			stmt.close();
+			c.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+			return null;
+		}
+		
+		logger.debug("EXITING getUserArray");
+		
+		return usersArrayDeque;
+	}
+	
 	@Override
 	public User createUser(final User user) throws SQLException {
-		logger.debug("ENTERED createUser" + user.toString());
 
+		logger.debug("ENTERED createUser");
 
-			c =connectToBase.getConnection();
+		Connection c;
+		Statement stmt;
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
+			System.out.println("Opened database successfully");
+
 			stmt = c.createStatement();
-			String sql = "INSERT INTO USERS(username, userID, name, surname, age, phone, address, password)VALUES(?,?,?,?,?,?,?,?);";
+			String sql = "INSERT INTO users(username, userId, name, surname, age, phoneNo, address, password) VALUES(?,?,?,?,?,?,?,?);";
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setString(1, user.getUsername());
-			pst.setInt(2,user.getUserID());
-			pst.setString(3,user.getName() );
-			pst.setString(4,user.getSurname());
-			pst.setInt(5,user.getAge());
-			pst.setString(6,user.getPhone());
-			pst.setString(7,user.getAddress());
-			pst.setString(8,user.getPassword());
+			pst.setLong(2, user.getUserId());
+			pst.setString(3, user.getName());
+			pst.setString(4, user.getSurname());
+			pst.setShort(5, user.getAge());
+			pst.setString(6, user.getPhoneNo());
+			pst.setString(7, user.getAddress());
+			pst.setString(8, null);
 			pst.executeUpdate();
 
 			stmt.close();
 			c.close();
 
-		logger.debug("EXITING createUser " + user.toString());
-		return user;
+			logger.debug("EXITING createUser");
+			return user;
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+			return null;
+		}
 	}
-
 }

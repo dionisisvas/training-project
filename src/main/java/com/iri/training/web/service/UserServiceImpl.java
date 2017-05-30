@@ -1,6 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.util.ArrayDeque;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +17,15 @@ public  class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(Long userId) throws SQLException {
-		
-
-		 userRepository.getUserById(userId);
-
-		return null;
+		return 	userRepository.getUserById(userId);
 	}
 
 	@Override
 	public User createUser(User user) throws SQLException {
-
-
-		userRepository.createUser(user);
-		return user;
+		return userRepository.createUser(user);
 	}
 
+	public ArrayDeque<User> getUserArray() throws SQLException {
+		return userRepository.getUserArray();
+	}
 }
