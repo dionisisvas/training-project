@@ -5,14 +5,14 @@ angular.
 	component('myUserList', {
 		templateUrl: 'resources/app/user-list/user-list.template.html',
 		controller: ['User',
-			function UserListController(User) {
-				this.users = User.query();
+			function UserListController(User) {			
+				var self = this;
 				
-				var self = this;		
+				self.users = User.query();
+				self.orderProp = 'id';		
 				self.startingLimit = 3;
 				self.limit = self.startingLimit;
 				self.limitStep = 5;
-				self.orderProp = 'id';					
 		
 				self.getHigherLimit = function() {
 					// Increase the limit by the limitStep amount.

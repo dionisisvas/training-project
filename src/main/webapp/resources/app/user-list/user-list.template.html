@@ -8,7 +8,7 @@
 			<p>
 				<h4>Sort by:</h4>
 				<select ng-model="$ctrl.orderProp">
-				  <option value="id">User ID</option>
+				  <option value="userId">User ID</option>
 				  <option value="surname">Alphabetical</option>
 				  <option value="age">Age</option>
 				</select>
@@ -18,7 +18,7 @@
 			<h4>Users:</h4>
 			<ul class="users">
 				<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit" class="thumbnail user-list-item">
-					<a href="user/{{user.id}}" class="thumb">
+					<a href="user/{{user.userId}}" class="thumb">
 						<div ng-if="user.profileImageUrl">
 							<img ng-src="{{user.profileImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />
 						</div>
@@ -26,7 +26,7 @@
 							<img ng-src="resources/img/users/default-user-img.png" alt="{{user.name}}" height="64" width="64" />
 						</div>
 					</a>
-					<a href="user/{{user.id}}"><strong>{{user.surname}}</strong>, {{user.name}}</a>
+					<a href="user/{{user.userId}}"><strong>{{user.surname}}</strong>, {{user.name}}</a>
 					<p>
 						<div ng-if="user.age">
 							<em>{{user.age}} years old</em>
