@@ -11,7 +11,7 @@ angular.
 					template: '<my-option-list></my-option-list>'
 				}).
 				when('/error', {
-					template: '<my-error-message></my-error-message><my-option-list></my-option-list>'
+					template: '<my-error-message></my-error-message>'
 				}).				
 				when('/user', {
 					template: '<my-user-list></my-user-list>'
