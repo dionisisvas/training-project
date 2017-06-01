@@ -4,11 +4,12 @@ angular.
 	module('myUserList').
 	component('myUserList', {
 		templateUrl: 'resources/app/user-list/user-list.template.html',
-		controller: ['User',
-			function UserListController(User) {			
+		controller: ['User', 'Image',
+			function UserListController(User, Image) {			
 				var self = this;
 				
 				self.users = User.query();
+				//self.profileImages = Image.query();
 				self.orderProp = 'id';		
 				self.startingLimit = 3;
 				self.limit = self.startingLimit;

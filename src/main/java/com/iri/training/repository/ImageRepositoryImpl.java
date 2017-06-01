@@ -23,7 +23,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		
 		Connection c;
 		Statement stmt;
-						
+
 		final Image userImg;
 
 		try {

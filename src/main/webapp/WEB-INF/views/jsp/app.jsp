@@ -29,6 +29,8 @@
 	<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
 	<spring:url value="/resources/app/app.config.js" var="appConfigJs" />
 	<spring:url value="/resources/app/core/core.module.js" var="coreModuleJs" />		
+	<spring:url value="/resources/app/core/image/image.module.js" var="imageModuleJs" />
+	<spring:url value="/resources/app/core/image/image.service.js" var="imageServiceJs" />
 	<spring:url value="/resources/app/core/user/user.module.js" var="userModuleJs" />
 	<spring:url value="/resources/app/core/user/user.service.js" var="userServiceJs" />
 	<spring:url value="/resources/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
@@ -47,7 +49,9 @@
 	<script src="${angularRouteJs}"></script>
 	<script src="${coreModuleJs}"></script>		
 	<script src="${appModuleJs}"></script>
-	<script src="${appConfigJs}"></script>	
+	<script src="${appConfigJs}"></script>
+	<script src="${imageModuleJs}"></script>
+	<script src="${imageServiceJs}"></script>	
 	<script src="${userModuleJs}"></script>
 	<script src="${userServiceJs}"></script>
 	<script src="${errorMessageModuleJs}"></script>

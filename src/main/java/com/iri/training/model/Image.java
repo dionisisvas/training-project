@@ -7,7 +7,7 @@ public class Image {
 	private boolean isProfileImg;
 	private String imgUri;
 
-	public Long getImgId() { return imgId;	}
+	public Long getImgId() { return imgId; }
 
 	public void setImgId(final Long imgId) { this.imgId = imgId; }
 
