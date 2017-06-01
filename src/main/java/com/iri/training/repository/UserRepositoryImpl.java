@@ -27,7 +27,7 @@ public  class UserRepositoryImpl implements UserRepository {
 
 		this.dataSource = dataSource;
 	}
-	FileInputStream fis = new FileInputStream("File/myFile_en_US.properties");
+	FileInputStream fis = new FileInputStream("File/app_sql.properties");
 	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
 	private User user = null;
 	public User getUserById(Long userId ) throws SQLException {

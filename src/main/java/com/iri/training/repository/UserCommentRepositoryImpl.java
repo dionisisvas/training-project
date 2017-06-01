@@ -27,7 +27,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 		this.dataSource = dataSource;
 	}
-	FileInputStream fis = new FileInputStream("File/myFile_en_US.properties");
+	FileInputStream fis = new FileInputStream("File/app_sql.properties");
 	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
 
 	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
