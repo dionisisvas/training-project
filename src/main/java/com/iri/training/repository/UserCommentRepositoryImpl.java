@@ -1,5 +1,7 @@
 package com.iri.training.repository;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,10 +20,15 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
+
+	public UserCommentRepositoryImpl() throws IOException {}
+
 	public void setDataSource(DataSource dataSource) {
 
 		this.dataSource = dataSource;
 	}
+	FileInputStream fis = new FileInputStream("File/myFile_en_US.properties");
+	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
 
 	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
 
@@ -33,7 +40,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 			logger.debug("ENTERED getUserCommentById" + userComment.toString());
 
-			String sql="SELECT * FROM USER_COMMENT WHERE userID= ?;";
+			String sql=propety.getString("SELECT_COMMENT");
 		    jdbcTemplate=new JdbcTemplate(dataSource);
 			userComment=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserCommentMapper());
 
@@ -45,7 +52,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
 			logger.debug("ENTERED createUserComment" + userComment.toString());
-			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
+			String sql=propety.getString("CREATE_COMMENT");
 		    jdbcTemplate=new JdbcTemplate(dataSource);
 		    jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
 			System.out.print("UserComment Inserted Successfully");

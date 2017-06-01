@@ -1,5 +1,7 @@
 package com.iri.training.repository;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,16 +20,21 @@ public  class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
+
+	public UserRepositoryImpl() throws IOException {}
+
 	public void setDataSource(DataSource dataSource) {
 
 		this.dataSource = dataSource;
 	}
+	FileInputStream fis = new FileInputStream("File/myFile_en_US.properties");
+	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
 	private User user = null;
 	public User getUserById(Long userId ) throws SQLException {
 
 		logger.debug("ENTERED getUserById" + user.toString());
 
-		String sql = "SELECT * FROM USERS WHERE usrID= ?;";
+		String sql =propety.getString("SELECT_USER");
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		user=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserMapper());
 
@@ -39,7 +46,7 @@ public  class UserRepositoryImpl implements UserRepository {
 	public User createUser(final User user) throws SQLException {
 		logger.debug("ENTERED createUser" + user.toString());
 
-		String sql = "INSERT INTO USERS(username, userID, name, surname, age, phone, address, password)VALUES(?,?,?,?,?,?,?,?);";
+		String sql = propety.getString("CREATE_USER");
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(sql,user.getUsername(),user.getUserID(),user.getName(),user.getSurname(),user.getAge(),user.getPhone(),user.getAddress(),user.getPassword());
 		System.out.print("User Inserted Successfully");
