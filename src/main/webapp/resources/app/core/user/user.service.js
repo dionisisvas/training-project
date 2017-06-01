@@ -4,10 +4,9 @@ angular.
 	module('core.user').
 	factory('User', ['$resource',
 		function($resource) {
-			return $resource('/user/:userId', {}, {
+			return $resource('user/:userId', {}, {
 				query: {
 					method: 'GET',
-					params: {userId: 'users'},
 					isArray: true
 				}
 			});
