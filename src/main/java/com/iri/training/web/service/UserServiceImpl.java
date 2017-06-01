@@ -25,6 +25,7 @@ public  class UserServiceImpl implements UserService {
 		return userRepository.createUser(user);
 	}
 
+	@Override
 	public ArrayDeque<User> getUserArray() throws SQLException {
 		return userRepository.getUserArray();
 	}

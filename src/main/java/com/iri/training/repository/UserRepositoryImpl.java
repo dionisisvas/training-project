@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = "SELECT * FROM users WHERE userID= ?;";
+			String sql = "SELECT * FROM users WHERE userId = ?;";
 			PreparedStatement pst = c.prepareStatement(sql);
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
