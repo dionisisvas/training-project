@@ -3,8 +3,6 @@ package com.iri.training.web.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iri.training.model.UserImage;
+import com.iri.training.model.Image;
 import com.iri.training.web.service.ImageService;
 
 @RestController
@@ -27,47 +25,47 @@ public class ImageController {
 	ImageService imgService;
 
 	@RequestMapping(value = "/{imgId}", method = RequestMethod.GET)
-	public ResponseEntity<UserImage> getUserImage(@PathVariable("imgId") Long imgId) throws SQLException {
+	public ResponseEntity<Image> getUserImage(@PathVariable("imgId") Long imgId) throws SQLException {
 
 		logger.debug("ENTERED getUserImage");
 
-		UserImage userImg = imgService.getImageById(imgId);
+		Image userImg = imgService.getImageById(imgId);
 		if (userImg != null) {
-			return new ResponseEntity<UserImage>(userImg, HttpStatus.OK);
+			return new ResponseEntity<Image>(userImg, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getUserImage");
 
-		return new ResponseEntity<UserImage>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/list/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<UserImage>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
+	public ResponseEntity<ArrayList<Image>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getAllUserImages");
 
-		ArrayList<UserImage> images = imgService.getUserImages(userId);
+		ArrayList<Image> images = imgService.getUserImages(userId);
 		if (images != null) {
-			return new ResponseEntity<ArrayList<UserImage>>(images, HttpStatus.OK);
+			return new ResponseEntity<ArrayList<Image>>(images, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getAllUserImages");
 
-		return new ResponseEntity<ArrayList<UserImage>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ArrayList<Image>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/profile/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<UserImage> getUserProfileImage(@PathVariable("userId") Long userId) throws SQLException {
+	public ResponseEntity<Image> getUserProfileImage(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserProfileImage");
 
-		UserImage profileImage = imgService.getProfileImage(userId);
+		Image profileImage = imgService.getProfileImage(userId);
 		if (profileImage != null) {
-			return new ResponseEntity<UserImage>(profileImage, HttpStatus.OK);
+			return new ResponseEntity<Image>(profileImage, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getUserProfileImage");
 
-		return new ResponseEntity<UserImage>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
 }

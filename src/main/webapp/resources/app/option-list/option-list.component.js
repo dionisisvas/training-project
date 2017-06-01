@@ -15,9 +15,21 @@ angular.
 					dir: 'user',
 					info: 'user list'
 				}, {
-					param: 'id',
+					param: 'userId',
 					dir: 'user',
 					info: 'specific user info'
+				}, {
+					param: 'imgId',
+					dir: 'image',
+					info: 'show specific image'
+				}, {
+					param: 'userId',
+					dir: 'image/list',
+					info: 'show user\'s images'
+				}, {
+					param: 'userId',
+					dir: 'image/profile',
+					info: 'show user\'s profile image'
 				}, {
 					param: null,
 					dir: 'error',

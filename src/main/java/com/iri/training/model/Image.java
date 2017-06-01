@@ -1,6 +1,6 @@
 package com.iri.training.model;
 
-public class UserImage {
+public class Image {
 
 	private Long imgId;
 	private Long userId;

@@ -1,21 +1,21 @@
 package com.iri.training.model.builder;
 
-import com.iri.training.model.UserImage;
+import com.iri.training.model.Image;
 
-public class UserImageBuilder extends UserImageBuilderBase<UserImageBuilder> {
-	public static UserImageBuilder userImage() { return new UserImageBuilder(); }
+public class ImageBuilder extends ImageBuilderBase<ImageBuilder> {
+	public static ImageBuilder userImage() { return new ImageBuilder(); }
 
-	public UserImageBuilder() { super(new UserImage()); }
+	public ImageBuilder() { super(new Image()); }
 
-	public UserImage build() { return getInstance(); }
+	public Image build() { return getInstance(); }
 }
 
-class UserImageBuilderBase<GeneratorT extends UserImageBuilderBase<GeneratorT>> {
-	private final UserImage instance;
+class ImageBuilderBase<GeneratorT extends ImageBuilderBase<GeneratorT>> {
+	private final Image instance;
 
-	protected UserImageBuilderBase(final UserImage aInstance) { instance = aInstance; }
+	protected ImageBuilderBase(final Image aInstance) { instance = aInstance; }
 
-	protected UserImage getInstance() {
+	protected Image getInstance() {
 		return instance;
 	}
 
