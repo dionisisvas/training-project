@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -55,6 +56,21 @@ public  class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 
+	@Override
+	@Cacheable(value="findUser",key="#userId")
+	public User findUserById(final Long userId) throws SQLException {
+		slowQuery(2000L);
+		return new User();
+
+	}
+
+	private void slowQuery(long seconds){
+		try {
+			Thread.sleep(seconds);
+		} catch (InterruptedException e) {
+			throw new IllegalStateException(e);
+		}
+	}
 	private static final class UserMapper implements RowMapper<User>{
         User user;
 		@Override
