@@ -2,10 +2,9 @@
 		 xsi:noNamespaceSchemaLocation="ehcache.xsd"
 		 updateCheck="true"
 		 monitoring="autodetect"
-		 dynamicConfig="true">
+		 dynamicConfig="true" >
 
 	<diskStore path="java.io.tmpdir" />
-
 	<cache name="findUser"
 		   maxEntriesLocalHeap="10000"
 		   maxEntriesLocalDisk="1000"

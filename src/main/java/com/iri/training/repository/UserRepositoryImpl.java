@@ -31,6 +31,8 @@ public  class UserRepositoryImpl implements UserRepository {
 	FileInputStream fis = new FileInputStream("File/app_sql.properties");
 	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
 	private User user = null;
+	@Override
+	@Cacheable(value="findUser",key="#userId")
 	public User getUserById(Long userId ) throws SQLException {
 
 		logger.debug("ENTERED getUserById" + user.toString());
@@ -56,21 +58,6 @@ public  class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 
-	@Override
-	@Cacheable(value="findUser",key="#userId")
-	public User findUserById(final Long userId) throws SQLException {
-		slowQuery(2000L);
-		return new User();
-
-	}
-
-	private void slowQuery(long seconds){
-		try {
-			Thread.sleep(seconds);
-		} catch (InterruptedException e) {
-			throw new IllegalStateException(e);
-		}
-	}
 	private static final class UserMapper implements RowMapper<User>{
         User user;
 		@Override

@@ -9,26 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.User;
-import com.iri.training.repository.UserRepositoryImpl;
 import com.iri.training.web.service.UserService;
 
 
-
+@RestController
+@RequestMapping(value = "/user")
 public class UserController {
-	@RequestMapping(value = "/rest/user")
-	public class UsersResource {
-
-		@Autowired
-		UserRepositoryImpl userCache;
-
-		@RequestMapping(value = "/{userId}")
-		public User getUser(@PathVariable final Long userId) throws SQLException {
-
-			return userCache.findUserById(userId);
-		}
-	}
+	
 	Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	UserService userService;

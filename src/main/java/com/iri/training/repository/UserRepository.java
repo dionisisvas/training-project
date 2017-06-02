@@ -10,7 +10,6 @@ public interface UserRepository {
 
 	  User createUser(User user) throws SQLException;
 
-      User findUserById(Long userId) throws SQLException;
 }
 
 
