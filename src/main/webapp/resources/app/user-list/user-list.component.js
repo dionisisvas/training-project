@@ -9,7 +9,15 @@ angular.
 				var self = this;
 				var profileImage;
 				
-				self.users = User.query();
+				self.users = User.query(function() {
+					self.profileImage = new Array(self.users.length);
+					angular.forEach(self.users, function(user, key) {
+						if (!self.profileImage[key]) {
+							self.profileImage[key] = [];
+						}
+						self.profileImage[key] = Image.get({userId: key});
+					});
+				});
 				self.orderProp = 'userId';		
 				self.startingLimit = 3;
 				self.limit = self.startingLimit;

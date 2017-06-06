@@ -76,11 +76,17 @@ public class ImageRepositoryImpl implements ImageRepository {
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
 
-			userImg = new ImageBuilder().withImageId(resultSet.getLong("imgId"))
-											.withUserId(resultSet.getLong("userId"))
-											.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-											.withImageUri(resultSet.getString("imgUri"))
-											.build();
+			if(resultSet.next()) {
+				userImg = new ImageBuilder().withImageId(resultSet.getLong("imgId"))
+					.withUserId(resultSet.getLong("userId"))
+					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
+					.withImageUri(resultSet.getString("imgUri"))
+					.build();
+			}
+			else
+			{
+				userImg = null;
+			}
 
 			resultSet.close();
 			stmt.close();
@@ -91,7 +97,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 			return null;
 		}
 
-		logger.debug("EXITING getProfileImage for img " + userImg.toString());
+		logger.debug("EXITING getProfileImage for user id " + userId);
 
 		return userImg;
 	}
