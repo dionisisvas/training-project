@@ -18,7 +18,7 @@ import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api/user")
 public class UserController {
 
 	Logger logger = Logger.getLogger(UserController.class);

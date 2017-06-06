@@ -17,7 +17,7 @@ public  class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(Long userId) throws SQLException {
-		return 	userRepository.getUserById(userId);
+		return userRepository.getUserById(userId);
 	}
 
 	@Override

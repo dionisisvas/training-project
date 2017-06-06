@@ -19,10 +19,10 @@
 			<ul class="users">
 				<li ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit" class="thumbnail user-list-item">
 					<a href="user/{{user.userId}}" class="thumb">
-						<div ng-if="user.profileImageUrl">
-							<img ng-src="{{user.profileImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />
+						<div ng-if="$ctrl.profileImage.imgUri">
+							<img ng-src="{{$ctrl.profileImage.imgUri}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{user.name}}" height="64" width="64" />
 						</div>
-						<div ng-if="!user.profileImageUrl">
+						<div ng-if="!$ctrl.profileImage.imgUri">
 							<img ng-src="resources/img/users/default-user-img.png" alt="{{user.name}}" height="64" width="64" />
 						</div>
 					</a>

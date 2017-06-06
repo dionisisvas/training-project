@@ -7,10 +7,10 @@ angular.
 		controller: ['User', 'Image',
 			function UserListController(User, Image) {			
 				var self = this;
+				var profileImage;
 				
 				self.users = User.query();
-				//self.profileImages = Image.query();
-				self.orderProp = 'id';		
+				self.orderProp = 'userId';		
 				self.startingLimit = 3;
 				self.limit = self.startingLimit;
 				self.limitStep = 5;

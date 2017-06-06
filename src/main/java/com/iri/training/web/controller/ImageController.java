@@ -16,7 +16,7 @@ import com.iri.training.model.Image;
 import com.iri.training.web.service.ImageService;
 
 @RestController
-@RequestMapping(value = "/image")
+@RequestMapping(value = "/api/image")
 public class ImageController {
 
 	Logger logger = Logger.getLogger(ImageController.class);
@@ -39,7 +39,7 @@ public class ImageController {
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/list/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userId}/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Image>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getAllUserImages");
@@ -54,7 +54,7 @@ public class ImageController {
 		return new ResponseEntity<ArrayList<Image>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/profile/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userId}/profile", method = RequestMethod.GET)
 	public ResponseEntity<Image> getUserProfileImage(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserProfileImage");

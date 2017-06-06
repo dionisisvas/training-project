@@ -4,7 +4,7 @@ angular.
 	module('core.image').
 	factory('Image', ['$resource',
 		function($resource) {
-			return $resource('image/profile/:userId', {}, {
+			return $resource('api/image/user/:userId/profile', {}, {
 				query: {
 					method: 'GET',
 					isArray: true
