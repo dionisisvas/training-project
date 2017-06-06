@@ -16,11 +16,11 @@ public  class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(Long userId) throws SQLException {
-		
+		//TODO: logs
 
-		 userRepository.getUserById(userId);
+		 User user = userRepository.getUserById(userId);
 
-		return null;
+		return user;
 	}
 
 	@Override

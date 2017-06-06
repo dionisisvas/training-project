@@ -22,26 +22,25 @@ public class UserController {
 	Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	UserService userService;
-	User user;
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
 	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException {
 
-		logger.debug("ENTERED createUser" + user.toString());
+		logger.debug("ENTERED createUser");
 
 		userService.createUser(user);
 
-		logger.debug("EXITING createUser " + user.toString());
+		logger.debug("EXITING createUser " + user);
 	}
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
 	public User getUserById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
 
-		logger.debug("ENTERED getUserById" + user.toString());
+		logger.debug("ENTERED getUserById: " + userId);
 
-		user = userService.getUserById(userId);
+		User user = userService.getUserById(userId);
 
-		logger.debug("EXITING getUserById " + user.toString());
+		logger.debug("EXITING getUserById " + user);
 
 		return user;
 	}
