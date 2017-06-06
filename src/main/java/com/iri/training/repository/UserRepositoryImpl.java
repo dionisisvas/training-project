@@ -37,14 +37,21 @@ public class UserRepositoryImpl implements UserRepository {
 			pst.setLong(1, userId);
 			ResultSet resultSet = pst.executeQuery( );
 
-			user = new UserBuilder().withUsername(resultSet.getString("username"))
-									.withUserId(resultSet.getLong("userId"))
-									.withName(resultSet.getString("name"))
-									.withSurname(resultSet.getString("surname"))
-									.withAge(resultSet.getShort("age"))
-									.withPhoneNo(resultSet.getString("phoneNo"))
-									.withAddress(resultSet.getString("address"))
-									.build();
+			if(resultSet.next()) {
+				user = new UserBuilder()
+					.withUsername(resultSet.getString("username"))
+					.withUserId(resultSet.getLong("userId"))
+					.withName(resultSet.getString("name"))
+					.withSurname(resultSet.getString("surname"))
+					.withAge(resultSet.getShort("age"))
+					.withPhoneNo(resultSet.getString("phoneNo"))
+					.withAddress(resultSet.getString("address"))
+					.build();
+			}
+			else
+			{
+				user = null;
+			}
 
 			resultSet.close();
 			stmt.close();
@@ -78,12 +85,13 @@ public class UserRepositoryImpl implements UserRepository {
 			ResultSet resultSet = pst.executeQuery( );
 
 			while(resultSet.next()) {
-				usersArrayDeque.add(new UserBuilder().withUsername(resultSet.getString("username"))
-					.withUserId(resultSet.getLong("userId"))
-					.withName(resultSet.getString("name"))
-					.withSurname(resultSet.getString("surname"))
-					.withAge(resultSet.getShort("age"))
-					.build());
+				usersArrayDeque.add(new UserBuilder()
+					.withUsername(resultSet.getString("username"))
+					 .withUserId(resultSet.getLong("userId"))
+					 .withName(resultSet.getString("name"))
+					 .withSurname(resultSet.getString("surname"))
+					 .withAge(resultSet.getShort("age"))
+					 .build());
 			}
 
 			resultSet.close();

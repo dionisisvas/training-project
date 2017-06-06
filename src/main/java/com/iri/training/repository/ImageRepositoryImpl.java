@@ -37,11 +37,17 @@ public class ImageRepositoryImpl implements ImageRepository {
 			pst.setLong(1, imgId);
 			ResultSet resultSet = pst.executeQuery( );
 
-			userImg = new ImageBuilder().withImageId(resultSet.getLong("imgId"))
-											.withUserId(resultSet.getLong("userId"))
-											.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-											.withImageUri(resultSet.getString("imgUri"))
-											.build();
+			if(resultSet.next()) {
+				userImg = new ImageBuilder()
+					.withImageId(resultSet.getLong("imgId"))
+					.withUserId(resultSet.getLong("userId"))
+					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
+					.withImageUri(resultSet.getString("imgUri"))
+					.build();
+			}
+			else {
+				userImg = null;
+			}
 
 			resultSet.close();
 			stmt.close();
@@ -77,7 +83,8 @@ public class ImageRepositoryImpl implements ImageRepository {
 			ResultSet resultSet = pst.executeQuery( );
 
 			if(resultSet.next()) {
-				userImg = new ImageBuilder().withImageId(resultSet.getLong("imgId"))
+				userImg = new ImageBuilder()
+					.withImageId(resultSet.getLong("imgId"))
 					.withUserId(resultSet.getLong("userId"))
 					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
 					.withImageUri(resultSet.getString("imgUri"))
@@ -121,11 +128,11 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 			while(resultSet.next()) {
 				images.add(new ImageBuilder()
-									.withImageId(resultSet.getLong("imgId"))
-									.withUserId(resultSet.getLong("userId"))
-									.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-									.withImageUri(resultSet.getString("imgUri"))
-									.build());
+					.withImageId(resultSet.getLong("imgId"))
+					.withUserId(resultSet.getLong("userId"))
+					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
+					.withImageUri(resultSet.getString("imgUri"))
+					.build());
 			}
 
 			resultSet.close();
