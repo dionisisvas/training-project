@@ -2,7 +2,6 @@ package com.iri.training.config;
 
 
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-@EnableCaching
+
 @Configuration
 @ComponentScan({ "com.iri.training" })
 public class EhCacheConfiguration {
@@ -20,11 +19,10 @@ public class EhCacheConfiguration {
 		return new EhCacheCacheManager(ehCacheCacheManager().getObject());
 	}
 
-
 	@Bean
 	public EhCacheManagerFactoryBean ehCacheCacheManager() {
 		EhCacheManagerFactoryBean bean = new EhCacheManagerFactoryBean();
-		bean.setConfigLocation(new ClassPathResource("File/ehcache.xml"));
+		bean.setConfigLocation(new ClassPathResource("ehcache.xml"));
 		bean.setShared(true);
 		return bean;
 	}

@@ -16,6 +16,7 @@
 		<underscorejs.version>1.8.3</underscorejs.version>
 	</properties>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -25,7 +26,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>4.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
     		<groupId>org.springframework</groupId>
@@ -44,7 +45,11 @@
     		<artifactId>spring-jdbc</artifactId>
     		<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>1.5.3.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
     		<artifactId>spring-core</artifactId>
