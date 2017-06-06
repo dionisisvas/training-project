@@ -4,12 +4,16 @@ angular.
 	module('core.image').
 	factory('Image', ['$resource',
 		function($resource) {
-			return $resource('api/image/user/:userId/profile', {}, {
-				query: {
-					method: 'GET',
-					isArray: true
-				}
-			});
+			return {
+				Image: $resource('api/image/:imgId', {}),
+				ProfileImage: $resource('api/image/user/:userId/profile'),
+				UserImages: $resource('api/image/user/:userId/list', {}, {
+					query: {
+						method: 'GET',
+						isArray: true
+					}
+				})
+			};
 		}
 	]);
 

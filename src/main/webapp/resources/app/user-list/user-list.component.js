@@ -15,7 +15,12 @@ angular.
 						if (!self.profileImage[key]) {
 							self.profileImage[key] = [];
 						}
-						self.profileImage[key] = Image.get({userId: key});
+						self.profileImage[key] = Image.ProfileImage.get({userId: key});
+						self.profileImage[key].$promise.then(function(imgResult) {
+							self.profileImage[key] = imgResult;
+						}, function() {
+							console.log("User " + key + " has no profile image.");
+						});
 					});
 				});
 				self.orderProp = 'userId';		
