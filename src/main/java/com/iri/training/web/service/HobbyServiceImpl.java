@@ -5,10 +5,12 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.iri.training.model.Hobby;
 import com.iri.training.repository.HobbyRepository;
 
+@Service
 public class HobbyServiceImpl implements HobbyService{
 
 	@Autowired
@@ -26,6 +28,13 @@ public class HobbyServiceImpl implements HobbyService{
 
 	@Override
 	public ArrayList<Hobby> getUserHobbies(Long userId) throws SQLException {
-		return hobbyRepository.getUserHobbies(userId);
+		final ArrayList<Hobby> userHobbies = new ArrayList<>();
+
+		for (Long hobbyId : hobbyRepository.getUserHobbies(userId))
+		{
+			userHobbies.add(getHobbyById(hobbyId));
+		}
+
+		return userHobbies;
 	}
 }

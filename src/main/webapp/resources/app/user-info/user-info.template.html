@@ -53,8 +53,8 @@
 			</li>
 			<li>
 				<span>Hobbies</span>
-				<ul class="hobbies" ng-if="$ctrl.user.hobbies[0]">
-					<li ng-repeat="hobby in $ctrl.user.hobbies">{{hobby}}</li>
+				<ul class="hobbies" ng-if="$ctrl.userHobbies">
+					<li ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</li>
 				</ul>
 			</li>
 		</ul>
