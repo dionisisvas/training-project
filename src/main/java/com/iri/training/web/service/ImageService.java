@@ -1,7 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.iri.training.model.Image;
 
@@ -11,5 +11,5 @@ public interface ImageService {
 
 	Image getProfileImage(Long userId) throws SQLException;
 
-	ArrayList<Image> getUserImages(Long userId) throws SQLException;
+	List<Image> getUserImages(Long userId) throws SQLException;
 }

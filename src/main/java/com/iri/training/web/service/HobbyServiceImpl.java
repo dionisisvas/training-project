@@ -1,8 +1,8 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +22,15 @@ public class HobbyServiceImpl implements HobbyService{
 	}
 
 	@Override
-	public ArrayDeque<Hobby> getHobbyList() throws SQLException {
+	public List<Hobby> getHobbyList() throws SQLException {
 		return hobbyRepository.getHobbyList();
 	}
 
 	@Override
-	public ArrayList<Hobby> getUserHobbies(Long userId) throws SQLException {
-		final ArrayList<Hobby> userHobbies = new ArrayList<>();
+	public List<Hobby> getUserHobbies(Long userId) throws SQLException {
+		final List<Hobby> userHobbies = new ArrayList<>();
 
-		for (Long hobbyId : hobbyRepository.getUserHobbies(userId))
-		{
+		for (Long hobbyId : hobbyRepository.getUserHobbies(userId)) {
 			userHobbies.add(getHobbyById(hobbyId));
 		}
 

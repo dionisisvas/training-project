@@ -1,7 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.util.ArrayDeque;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public  class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ArrayDeque<User> getUserArray() throws SQLException {
-		return userRepository.getUserArray();
+	public List<User> getUserList() throws SQLException {
+		return userRepository.getUserList();
 	}
 }

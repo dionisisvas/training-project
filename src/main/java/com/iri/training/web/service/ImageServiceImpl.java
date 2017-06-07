@@ -1,7 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public  class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public ArrayList<Image> getUserImages(Long userId) throws SQLException {
+	public List<Image> getUserImages(Long userId) throws SQLException {
 		return 	imgRepository.getUserImages(userId);
 	}
 }

@@ -1,7 +1,6 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -26,18 +25,18 @@ public class HobbyController {
 	HobbyService hobbyService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<ArrayDeque<Hobby>> getAllHobbies() throws SQLException {
+	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {
 
 		logger.debug("ENTERED getAllHobbies");
 
-		ArrayDeque<Hobby> hobbies = hobbyService.getHobbyList();
+		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getHobbyList();
 		if (hobbies != null) {
-			return new ResponseEntity<ArrayDeque<Hobby>>(hobbies, HttpStatus.OK);
+			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getAllHobbies");
 
-		return new ResponseEntity<ArrayDeque<Hobby>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/{hobbyId}", method = RequestMethod.GET)
@@ -60,7 +59,7 @@ public class HobbyController {
 
 		logger.debug("ENTERED getAllUserHobbies");
 
-		ArrayList<Hobby> hobbies = hobbyService.getUserHobbies(userId);
+		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getUserHobbies(userId);
 		if (hobbies != null) {
 			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
 		}

@@ -1,7 +1,7 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,18 +38,18 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<ArrayDeque<User>> getAllUsers() throws SQLException {
+	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
 
 		logger.debug("ENTERED getAllUsers");
 
-		ArrayDeque<User> users = userService.getUserArray();
+		ArrayList<User> users = (ArrayList) userService.getUserList();
 		if (users != null) {
-			return new ResponseEntity<ArrayDeque<User>>(users, HttpStatus.OK);
+			return new ResponseEntity<ArrayList<User>>(users, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getAllUsers");
 
-		return new ResponseEntity<ArrayDeque<User>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ArrayList<User>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)

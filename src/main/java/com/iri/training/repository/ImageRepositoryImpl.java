@@ -1,14 +1,20 @@
 package com.iri.training.repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyResourceBundle;
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.Image;
@@ -17,73 +23,67 @@ import com.iri.training.model.builder.ImageBuilder;
 @Repository
 public class ImageRepositoryImpl implements ImageRepository {
 	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
-	
+
+	private JdbcTemplate jdbcTemplate;
+	private ConnectToBase dbConnection = new ConnectToBase();
+	private DataSource dataSource = dbConnection .getDataSource();
+	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
+
+	public ImageRepositoryImpl() throws IOException {}
+
+	@Override
 	public Image getImageById(Long imgId) throws SQLException {
 		logger.debug("ENTERED getImageById for id " + imgId);
-		
-		Connection c;
-		Statement stmt;
 
 		final Image userImg;
 
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM user_images WHERE imgId = ?;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, imgId);
-			ResultSet resultSet = pst.executeQuery( );
-
-			if(resultSet.next()) {
-				userImg = new ImageBuilder()
-					.withImageId(resultSet.getLong("imgId"))
-					.withUserId(resultSet.getLong("userId"))
-					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-					.withImageUri(resultSet.getString("imgUri"))
-					.build();
-			}
-			else {
-				userImg = null;
-			}
-
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
-		}
+		String sql = property.getString("RETRIEVE_IMG");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		userImg = jdbcTemplate.query(sql, new Object[]{imgId}, new ImageResultSetExtractor());
 		
 		logger.debug("EXITING getImageById for img " + userImg.toString());
 		
 		return userImg;
 	}
 
+	@Override
 	public Image getProfileImage(Long userId) throws SQLException {
 		logger.debug("ENTERED getProfileImage for user id " + userId);
 
-		Connection c;
-		Statement stmt;
+		final Image userProfileImg;
 
-		final Image userImg;
+		String sql = property.getString("RETRIEVE_PROFILE_IMG");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		userProfileImg = jdbcTemplate.query(sql, new Object[]{userId}, new ImageResultSetExtractor());
 
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
+		logger.debug("EXITING getProfileImage for user id " + userId);
 
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM user_images WHERE userId = ? AND isProfileImg = 1;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, userId);
-			ResultSet resultSet = pst.executeQuery( );
+		return userProfileImg;
+	}
 
-			if(resultSet.next()) {
-				userImg = new ImageBuilder()
+	@Override
+	public List<Image> getUserImages(Long userId) throws SQLException {
+		logger.debug("ENTERED getUserImages");
+
+		String sql = property.getString("RETRIEVE_USER_IMGS");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		final List<Image> images = jdbcTemplate.query(sql, new Object[]{userId}, new ImageListResultSetExtractor());
+
+		logger.debug("EXITING getUserImages");
+
+		return images;
+	}
+
+	private static final class ImageResultSetExtractor implements ResultSetExtractor<Image> {
+
+		@Override
+		public Image extractData(final ResultSet resultSet) throws SQLException {
+
+			final Image img;
+
+			if (resultSet.next()) {
+				img = new ImageBuilder()
 					.withImageId(resultSet.getLong("imgId"))
 					.withUserId(resultSet.getLong("userId"))
 					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
@@ -92,42 +92,21 @@ public class ImageRepositoryImpl implements ImageRepository {
 			}
 			else
 			{
-				userImg = null;
+				return null;
 			}
 
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
+			return img;
 		}
-
-		logger.debug("EXITING getProfileImage for user id " + userId);
-
-		return userImg;
 	}
-	public ArrayList<Image> getUserImages(Long userId) throws SQLException {
-		logger.debug("ENTERED ggetUserImages");
 
-		final ArrayList<Image> images = new ArrayList<>();
-		Connection c;
-		Statement stmt;
+	private static final class ImageListResultSetExtractor implements ResultSetExtractor<List<Image>> {
 
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
+		@Override
+		public List<Image> extractData(final ResultSet resultSet) throws SQLException {
 
-			stmt = c.createStatement();
-			String sql = "SELECT imgId, userId, isProfileImg, imgUri FROM user_images WHERE userId = ?;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, userId);
-			ResultSet resultSet = pst.executeQuery( );
-
-			while(resultSet.next()) {
-				images.add(new ImageBuilder()
+			final List<Image> imgList = new ArrayList<>();
+			while (resultSet.next()) {
+				imgList.add(new ImageBuilder()
 					.withImageId(resultSet.getLong("imgId"))
 					.withUserId(resultSet.getLong("userId"))
 					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
@@ -135,17 +114,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 					.build());
 			}
 
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
+			return imgList;
 		}
-		
-		logger.debug("EXITING getUserImages");
-		
-		return images;
 	}
 }

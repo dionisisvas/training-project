@@ -43,8 +43,7 @@ public class ImageController {
 	public ResponseEntity<ArrayList<Image>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getAllUserImages");
-
-		ArrayList<Image> images = imgService.getUserImages(userId);
+		ArrayList<Image> images = (ArrayList) imgService.getUserImages(userId);
 		if (images != null) {
 			return new ResponseEntity<ArrayList<Image>>(images, HttpStatus.OK);
 		}

@@ -1,15 +1,20 @@
 package com.iri.training.repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.PropertyResourceBundle;
+
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.Hobby;
@@ -19,26 +24,63 @@ import com.iri.training.model.builder.HobbyBuilder;
 public class HobbyRepositoryImpl implements HobbyRepository {
 	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
 
+	private JdbcTemplate jdbcTemplate;
+	private ConnectToBase dbConnection = new ConnectToBase();
+	private DataSource dataSource = dbConnection .getDataSource();
+	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
+
+	public HobbyRepositoryImpl() throws IOException {}
+
 	@Override
 	public Hobby getHobbyById(Long hobbyId) throws SQLException {
 		logger.debug("ENTERED getHobbyById for id " + hobbyId);
 
-		Connection c;
-		Statement stmt;
-
 		final Hobby hobby;
 
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
+		String sql = property.getString("RETRIEVE_HOBBY");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		hobby = jdbcTemplate.query(sql, new Object[]{hobbyId}, new HobbyResultSetExtractor());
 
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM hobbies WHERE hobbyId = ?;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, hobbyId);
-			ResultSet resultSet = pst.executeQuery( );
-			if(resultSet.next()) {
+		logger.debug("EXITING getHobbyById for id " + hobbyId);
+
+		return hobby;
+	}
+
+	@Override
+	public List<Long> getUserHobbies(Long userId) throws SQLException {
+		logger.debug("ENTERED getUserHobbies");
+
+		String sql = property.getString("RETRIEVE_USER_HOBBIES");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		final List<Long> userHobbies = jdbcTemplate.query(sql, new Object[]{userId}, new UserHobbyListResultSetExtractor());
+
+		logger.debug("EXITING getUserHobbies");
+
+		return userHobbies;
+	}
+
+	@Override
+	public List<Hobby> getHobbyList() throws SQLException {
+		logger.debug("ENTERED getHobbyList");
+
+		String sql = property.getString("RETRIEVE_USER_HOBBIES");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		final List<Hobby> hobbies = jdbcTemplate.query(sql, new Object[]{}, new HobbyListResultSetExtractor());
+
+		logger.debug("EXITING getHobbyList");
+
+		return hobbies;
+	}
+
+	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
+
+		@Override
+		public Hobby extractData(final ResultSet resultSet) throws SQLException {
+
+			final Hobby hobby;
+
+			if (resultSet.next()) {
 				hobby = new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("hobbyId"))
 					.withHobbyName(resultSet.getString("hobbyName"))
@@ -47,97 +89,42 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 			}
 			else
 			{
-				hobby = null;
+				return null;
 			}
 
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
+			return hobby;
 		}
-
-		logger.debug("EXITING getHobbyById for id " + hobbyId);
-
-		return hobby;
 	}
 
-	@Override
-	public ArrayList<Long> getUserHobbies(Long userId) throws SQLException {
-		logger.debug("ENTERED getUserHobbies");
+	private static final class HobbyListResultSetExtractor implements ResultSetExtractor<List<Hobby>> {
 
-		final ArrayList<Long> userHobbies = new ArrayList<>();
-		Connection c;
-		Statement stmt;
+		@Override
+		public List<Hobby> extractData(final ResultSet resultSet) throws SQLException {
 
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM user_hobbies WHERE userId = ?;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, userId);
-			ResultSet resultSet = pst.executeQuery( );
-
-			while(resultSet.next()) {
-				userHobbies.add(resultSet.getLong("hobbyId"));
-			}
-
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
-		}
-
-		logger.debug("EXITING getUserHobbies");
-
-		return userHobbies;
-	}
-
-	@Override
-	public ArrayDeque<Hobby> getHobbyList() throws SQLException {
-		logger.debug("ENTERED getHobbyList");
-
-		final ArrayDeque<Hobby> hobbies = new ArrayDeque<>();
-		Connection c;
-		Statement stmt;
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM hobbies;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			ResultSet resultSet = pst.executeQuery( );
-
-			while(resultSet.next()) {
-				hobbies.add(new HobbyBuilder()
+			final List<Hobby> hobbyList = new ArrayList<>();
+			while (resultSet.next()) {
+				hobbyList.add(new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("hobbyId"))
 					.withHobbyName(resultSet.getString("hobbyName"))
 					.withDescription(resultSet.getString("description"))
 					.build());
 			}
 
-			resultSet.close();
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-			return null;
+			return hobbyList;
 		}
+	}
 
-		logger.debug("EXITING getHobbyList");
+	private static final class UserHobbyListResultSetExtractor implements ResultSetExtractor<List<Long>> {
 
-		return hobbies;
+		@Override
+		public List<Long> extractData(final ResultSet resultSet) throws SQLException {
+
+			final List<Long> userHobbyList = new ArrayList<>();
+			while (resultSet.next()) {
+				userHobbyList.add(resultSet.getLong("hobbyId"));
+			}
+
+			return userHobbyList;
+		}
 	}
 }
