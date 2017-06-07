@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('myUserList', [
-	'ngRoute'
+	'core.image',
+	'core.user'
 ]);

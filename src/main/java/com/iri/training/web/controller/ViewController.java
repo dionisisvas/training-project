@@ -1,9 +1,9 @@
 package com.iri.training.web.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class ViewController {
 
 	@RequestMapping(value = "")
@@ -16,4 +16,8 @@ public class ViewController {
 		return "app";
 	}
 
+	@RequestMapping(value = "/user/*")
+	public String userPage() {
+		return "app";
+	}
 }

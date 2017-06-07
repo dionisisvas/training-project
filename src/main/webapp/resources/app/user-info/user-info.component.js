@@ -4,16 +4,42 @@ angular.
 	module('myUserInfo').
 	component('myUserInfo', {
 		templateUrl: 'resources/app/user-info/user-info.template.html',
-		controller: ['$http', '$routeParams', function UserInfoController($http, $routeParams) {
-			var self = this;			
-			
-			self.setImage = function setImage(imageUrl) {
-				self.mainImageUrl = imageUrl;
-			};
-			
-			$http.get('resources/json/users/user_' + $routeParams.userId + '.json').then(function(response) {
-				self.user = response.data;
-				self.setImage(self.user.images[0]);
-			});
+		controller: ['$routeParams', 'Hobby', 'Image', 'User',
+			function UserInfoController($routeParams, Hobby, Image, User) {
+				var self = this;
+				var userHobbies;			
+				var userImages;	
+				var profileImageUrl;
+				
+				self.setProfileImageUri = function setProfileImageUri(imageUri) {
+					self.profileImageUrl = imageUri;
+				};
+				
+				self.getUserImages = function() {
+					self.userImages = Image.UserImages.query({userId: $routeParams.userId}, function() {
+						self.setProfileImageUri(self.userImages[0].imgUri);
+					});
+					self.userImages.$promise.then(function(imgResult) {
+						self.userImages = imgResult;
+					}, function() {
+						console.log("User " + $routeParams.userId + " has no images.");
+					});					
+				}
+				
+				self.getUserHobbies = function() {
+					self.userHobbies = Hobby.UserHobbies.query({userId: $routeParams.userId});
+					self.userHobbies.$promise.then(function(hobbiesResult) {
+						self.userHobbies = hobbiesResult;
+					}, function() {
+						console.log("User " + $routeParams.userId + " has no hobbies.");
+					});					
+				}	
+				
+				self.user = User.get({userId: $routeParams.userId}, function(user) {
+					self.getUserImages();
+					self.getUserHobbies();
+				});	
+
+				
 		}]
 	});

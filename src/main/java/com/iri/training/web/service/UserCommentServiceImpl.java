@@ -19,7 +19,6 @@ public class UserCommentServiceImpl implements UserCommentService {
 		userCommentRepository.getUserCommentById(userId);
 
 		return null;
-
 	}
 
 	@Override
@@ -27,6 +26,5 @@ public class UserCommentServiceImpl implements UserCommentService {
 
 		userCommentRepository.createUserComment(userComment);
 		return userComment;
-
 	}
-	}
+}

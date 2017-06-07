@@ -2,10 +2,10 @@ package com.iri.training.repository;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.sql.DataSource;
+import java.util.ArrayDeque;
 
 import org.apache.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
@@ -13,12 +13,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.iri.training.model.User;
 import com.iri.training.model.builder.UserBuilder;
+import com.iri.training.model.User;
 
 @Repository
-public  class UserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
+
 	private JdbcTemplate jdbcTemplate;
 	ConnectToBase connectToBase=new ConnectToBase();
 	private DataSource dataSource=connectToBase.getDataSource();
@@ -48,8 +49,10 @@ public  class UserRepositoryImpl implements UserRepository {
 
 		return user;
 	}
+	
 	@Override
 	public User createUser(final User user) throws SQLException {
+
 		logger.debug("ENTERED createUser: " + user);
 
 		String sql = propety.getString("CREATE_USER");
