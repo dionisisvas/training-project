@@ -65,8 +65,40 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 	}
 
 	@Override
-	public ArrayList<Hobby> getUserHobbies(Long userId) throws SQLException {
-		return null;
+	public ArrayList<Long> getUserHobbies(Long userId) throws SQLException {
+		logger.debug("ENTERED getUserHobbies");
+
+		final ArrayList<Long> userHobbies = new ArrayList<>();
+		Connection c;
+		Statement stmt;
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:db\\TrainingApp.db");
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "SELECT * FROM user_hobbies WHERE userId = ?;";
+			PreparedStatement pst = c.prepareStatement(sql);
+			pst.setLong(1, userId);
+			ResultSet resultSet = pst.executeQuery( );
+
+			while(resultSet.next()) {
+				userHobbies.add(resultSet.getLong("hobbyId"));
+			}
+
+			resultSet.close();
+			stmt.close();
+			c.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+			return null;
+		}
+
+		logger.debug("EXITING getUserHobbies");
+
+		return userHobbies;
 	}
 
 	@Override

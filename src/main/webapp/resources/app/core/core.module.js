@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('core', [
-	'core.user',
-	'core.image'
+	'core.hobby',
+	'core.image',
+	'core.user'
 ]);

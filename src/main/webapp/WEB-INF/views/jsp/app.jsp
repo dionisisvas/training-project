@@ -28,7 +28,9 @@
 	<spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
 	<spring:url value="/resources/app/app.module.js" var="appModuleJs" />
 	<spring:url value="/resources/app/app.config.js" var="appConfigJs" />
-	<spring:url value="/resources/app/core/core.module.js" var="coreModuleJs" />		
+	<spring:url value="/resources/app/core/core.module.js" var="coreModuleJs" />
+	<spring:url value="/resources/app/core/hobby/hobby.module.js" var="hobbyModuleJs" />
+	<spring:url value="/resources/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />	
 	<spring:url value="/resources/app/core/image/image.module.js" var="imageModuleJs" />
 	<spring:url value="/resources/app/core/image/image.service.js" var="imageServiceJs" />
 	<spring:url value="/resources/app/core/user/user.module.js" var="userModuleJs" />
@@ -50,6 +52,8 @@
 	<script src="${coreModuleJs}"></script>		
 	<script src="${appModuleJs}"></script>
 	<script src="${appConfigJs}"></script>
+	<script src="${hobbyModuleJs}"></script>
+	<script src="${hobbyServiceJs}"></script>		
 	<script src="${imageModuleJs}"></script>
 	<script src="${imageServiceJs}"></script>	
 	<script src="${userModuleJs}"></script>

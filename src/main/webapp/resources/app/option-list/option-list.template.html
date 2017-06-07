@@ -1,13 +1,28 @@
-<h4>Options:</h4>
-<ul class="options">
-	<li ng-repeat="option in $ctrl.options | filter:$ctrl.query">
-		<div ng-if="option.param">
-			*/spring/<strong>{{option.dir}}</strong>/<em>{{option.param}}</em>
-			<br>{{option.info}}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+			<h4>Pages:</h4>
+			<ul class="pages">
+				<li ng-repeat="page in $ctrl.pageOptions">
+					<div ng-if="page.param">
+						*/spring/<strong>{{page.dir}}</strong>/<em>{{page.param}}</em>
+						<br>{{page.info}}
+					</div>
+					<div ng-if="!page.param">
+						<a href="{{page.dir}}">*/spring/<strong>{{page.dir}}</strong></a>
+						<br>{{page.info}}
+					</div>
+				</li>
+			</ul>
 		</div>
-		<div ng-if="!option.param">
-			<a href="{{option.dir}}">*/spring/<strong>{{option.dir}}</strong></a>
-			<br>{{option.info}}
+		<div class="col-md-3">		
+			<h4>REST API:</h4>
+			<ul class="apis">
+				<li ng-repeat="api in $ctrl.restOptions">
+					*/spring/api/<strong>{{api.dir}}</strong>/<em>{{api.param}}</em><strong>{{api.dir2}}</strong>
+					<br>{{api.info}}
+				</li>
+			</ul>
 		</div>
-	</li>
-</ul>
+	</div>
+</div>

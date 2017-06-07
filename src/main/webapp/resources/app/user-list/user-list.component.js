@@ -4,8 +4,8 @@ angular.
 	module('myUserList').
 	component('myUserList', {
 		templateUrl: 'resources/app/user-list/user-list.template.html',
-		controller: ['User', 'Image',
-			function UserListController(User, Image) {			
+		controller: ['Image', 'User',
+			function UserListController(Image, User) {			
 				var self = this;
 				var profileImage;
 				

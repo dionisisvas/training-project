@@ -15,4 +15,9 @@ public class ViewController {
 	public String notFound() {
 		return "app";
 	}
+
+	@RequestMapping(value = "/user/*")
+	public String userPage() {
+		return "app";
+	}
 }

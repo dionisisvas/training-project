@@ -39,7 +39,7 @@ public class ImageController {
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/user/{userId}/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Image>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
 
 		logger.debug("ENTERED getAllUserImages");
