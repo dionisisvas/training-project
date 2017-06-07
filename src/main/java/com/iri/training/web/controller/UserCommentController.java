@@ -21,7 +21,6 @@ public class UserCommentController{
 	Logger logger = Logger.getLogger(UserCommentController.class);
 	@Autowired
 	UserCommentService userCommentService;
-	UserComment userComment;
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
@@ -31,5 +30,18 @@ public class UserCommentController{
 
 		logger.debug("EXITING createUserComment" + userComment.toString());
 
+	}
+
+	@RequestMapping(value = "id/{userCommentId}", method = RequestMethod.GET)
+	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+
+		logger.debug("ENTERED getUserCommentById" );
+
+		UserComment userComment = userCommentService.getUserCommentById(userId);
+
+		logger.debug("EXITING getUserCommentById" + userComment.toString());
+
+
+		return userComment;
 	}
 }

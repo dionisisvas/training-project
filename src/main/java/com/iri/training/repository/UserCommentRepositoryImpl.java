@@ -1,12 +1,15 @@
 package com.iri.training.repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.UserComment;
@@ -14,57 +17,54 @@ import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
 public class UserCommentRepositoryImpl implements UserCommentRepository{
+	ConnectToBase connectToBase=new ConnectToBase();
+	private DataSource dataSource=connectToBase.getDataSource();
+	private JdbcTemplate jdbcTemplate;
+
+	public UserCommentRepositoryImpl() throws IOException {}
+
+	public void setDataSource(DataSource dataSource) {
+
+		this.dataSource = dataSource;
+	}
+	FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	java.util.PropertyResourceBundle propety = new java.util.PropertyResourceBundle(fis);
+
 	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
 
-	private Connection c;
-	private Statement stmt;
-	private UserComment userComment = null;
-
-	ConnectToBase connectToBase;
 
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
-			logger.debug("ENTERED getUserCommentById" + userComment.toString());
-		    c =connectToBase.getConnection();
-			stmt = c.createStatement();
-			String sql = "SELECT * FROM USER_COMMENT WHERE userID= ?;";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setLong(1, userId);
-			ResultSet resultSet = pst.executeQuery( );
-			while ( resultSet.next() ) {
-				userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
-					.withCommID(resultSet.getInt("commentID")).withUserID(resultSet.getInt("userID")).build();
+			logger.debug("ENTERED getUserCommentById: " + userId);
 
-			}
-			resultSet.close();
-			stmt.close();
-			c.close();
-
-			logger.debug("EXITING createUserComment" + userComment.toString());
+			String sql=propety.getString("SELECT_COMMENT");
+		    jdbcTemplate=new JdbcTemplate(dataSource);
+			UserComment userComment=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserCommentMapper());
 
 		return userComment;
+
 	}
 
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
-			logger.debug("ENTERED createUserComment" + userComment.toString());
-			c =connectToBase.getConnection();
-			stmt = c.createStatement();
-			String sql = "INSERT INTO USER_COMMENT(commentID,description,commentDate,userID)VALUES(?,?,?,?);";
-			PreparedStatement pst = c.prepareStatement(sql);
-			pst.setInt(1, userComment.getCommentID());
-			pst.setString(2,userComment.getDescription() );
-			pst.setString(3,userComment.getDate());
-			pst.setInt(4,userComment.getUserID());
-			pst.executeUpdate();
+			logger.debug("ENTERED createUserComment: " + userComment);
+			String sql=propety.getString("CREATE_COMMENT");
+		    jdbcTemplate=new JdbcTemplate(dataSource);
+		    jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
+			System.out.print("UserComment Inserted Successfully");
 
-			stmt.close();
-			c.close();
-
-			logger.debug("EXITING createUserComment" + userComment.toString());
+			logger.debug("EXITING createUserComment: " + userComment);
 
 		return userComment;
+	}
+	private static final class UserCommentMapper implements RowMapper<UserComment> {
+		@Override public UserComment mapRow(final ResultSet resultSet, final int i) throws SQLException {
+
+			UserComment userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
+					.withCommID(resultSet.getInt("commentID")).withUserID(resultSet.getInt("userID")).build();
+			return userComment;
+		}
 	}
 }

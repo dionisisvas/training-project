@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
+
 @RestController
 @RequestMapping(value = "/api/user")
 public class UserController {
@@ -25,16 +26,15 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	User user;
-
+  
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
 	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException {
 
-		logger.debug("ENTERED createUser" + user.toString());
+		logger.debug("ENTERED createUser");
 
 		userService.createUser(user);
 
-		logger.debug("EXITING createUser " + user.toString());
+		logger.debug("EXITING createUser " + user);
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
