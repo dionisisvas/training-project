@@ -20,11 +20,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.4.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.4.3</version>
 		</dependency>
@@ -54,11 +49,6 @@
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-jdbc</artifactId>
     		<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>1.5.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

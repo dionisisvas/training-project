@@ -17,8 +17,8 @@ import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
 public class UserCommentRepositoryImpl implements UserCommentRepository{
-
-	private DataSource dataSource=ConnectToBase.getDataSource();
+	ConnectToBase connectToBase=new ConnectToBase();
+	private DataSource dataSource=connectToBase.getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
 	public UserCommentRepositoryImpl() throws IOException {}

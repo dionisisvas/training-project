@@ -20,7 +20,8 @@ import com.iri.training.model.builder.UserBuilder;
 public  class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 	private JdbcTemplate jdbcTemplate;
-	private DataSource dataSource=ConnectToBase.getDataSource();
+	ConnectToBase connectToBase=new ConnectToBase();
+	private DataSource dataSource=connectToBase.getDataSource();
 
 
 	public UserRepositoryImpl() throws IOException {}
