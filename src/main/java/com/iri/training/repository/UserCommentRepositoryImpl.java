@@ -17,8 +17,8 @@ import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
 public class UserCommentRepositoryImpl implements UserCommentRepository{
-
-	private DataSource dataSource;
+	ConnectToBase connectToBase=new ConnectToBase();
+	private DataSource dataSource=connectToBase.getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
 	public UserCommentRepositoryImpl() throws IOException {}
@@ -32,17 +32,15 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
 
-	private UserComment userComment = null;
-
 
 	@Override
 	public UserComment getUserCommentById(final Long userId) throws SQLException {
 
-			logger.debug("ENTERED getUserCommentById" + userComment.toString());
+			logger.debug("ENTERED getUserCommentById: " + userId);
 
 			String sql=propety.getString("SELECT_COMMENT");
 		    jdbcTemplate=new JdbcTemplate(dataSource);
-			userComment=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserCommentMapper());
+			UserComment userComment=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserCommentMapper());
 
 		return userComment;
 
@@ -51,21 +49,20 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
-			logger.debug("ENTERED createUserComment" + userComment.toString());
+			logger.debug("ENTERED createUserComment: " + userComment);
 			String sql=propety.getString("CREATE_COMMENT");
 		    jdbcTemplate=new JdbcTemplate(dataSource);
 		    jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
 			System.out.print("UserComment Inserted Successfully");
 
-			logger.debug("EXITING createUserComment" + userComment.toString());
+			logger.debug("EXITING createUserComment: " + userComment);
 
-		return null;
+		return userComment;
 	}
 	private static final class UserCommentMapper implements RowMapper<UserComment> {
-		UserComment userComment;
 		@Override public UserComment mapRow(final ResultSet resultSet, final int i) throws SQLException {
 
-			userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
+			UserComment userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
 					.withCommID(resultSet.getInt("commentID")).withUserID(resultSet.getInt("userID")).build();
 			return userComment;
 		}
