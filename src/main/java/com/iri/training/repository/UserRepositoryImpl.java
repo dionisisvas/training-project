@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
@@ -15,7 +17,6 @@ import org.apache.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.User;
@@ -72,33 +73,13 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getUserId(),
 								 user.getName(),
 								 user.getSurname(),
-								 user.getAge(),
+								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
 								 user.getAddress());
 		System.out.print("User Inserted Successfully");
 
 		logger.debug("EXITING createUser: " + user);
 		return user;
-	}
-
-	private static final class UserRowMapper implements RowMapper<User>{
-
-		@Override
-		public User mapRow(final ResultSet resultSet, final int i) throws SQLException {
-			final User user;
-
-			user = new UserBuilder()
-				.withUsername(resultSet.getString("username"))
-				.withUserId(resultSet.getLong("userId"))
-				.withName(resultSet.getString("name"))
-				.withSurname(resultSet.getString("surname"))
-				.withAge(resultSet.getShort("age"))
-				.withPhoneNo(resultSet.getString("phoneNo"))
-				.withAddress(resultSet.getString("address"))
-				.build();
-
-			return user;
-		}
 	}
 
 	private static final class UserResultSetExtractor implements ResultSetExtractor<User> {
@@ -114,7 +95,9 @@ public class UserRepositoryImpl implements UserRepository {
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
-					.withAge(resultSet.getShort("age"))
+					.withDateOfBirth(LocalDate.parse(
+						resultSet.getString("dob"),
+						DateTimeFormatter.ISO_LOCAL_DATE))
 					.withPhoneNo(resultSet.getString("phoneNo"))
 					.withAddress(resultSet.getString("address"))
 					.build();
@@ -140,7 +123,9 @@ public class UserRepositoryImpl implements UserRepository {
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
-					.withAge(resultSet.getShort("age"))
+					.withDateOfBirth(LocalDate.parse(
+						resultSet.getString("dob"),
+						DateTimeFormatter.ISO_LOCAL_DATE))
 					.build());
 			}
 
