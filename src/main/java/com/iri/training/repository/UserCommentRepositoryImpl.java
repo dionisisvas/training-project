@@ -34,15 +34,15 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 
 
 	@Override
-	public UserComment getUserCommentById(final Long userId) throws SQLException {
+	public UserComment getCommentsByUserId(final Long userId) throws SQLException {
 
 			logger.debug("ENTERED getUserCommentById: " + userId);
 
 			String sql=propety.getString("SELECT_COMMENT");
 		    jdbcTemplate=new JdbcTemplate(dataSource);
 			UserComment userComment=jdbcTemplate.queryForObject(sql,new Object[]{userId},new UserCommentMapper());
-
-		return userComment;
+		    logger.debug("EXITING getCommentsByUserId: " + userComment);
+		    return userComment;
 
 	}
 
@@ -60,11 +60,17 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 		return userComment;
 	}
 	private static final class UserCommentMapper implements RowMapper<UserComment> {
-		@Override public UserComment mapRow(final ResultSet resultSet, final int i) throws SQLException {
 
-			UserComment userComment= new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
+		@Override
+		public UserComment mapRow(final ResultSet resultSet, final int i) throws SQLException {
+
+
+			UserComment userComment = new UserCommentBuilder().withDescription(resultSet.getString("description")).withDate(resultSet.getString("commentDate"))
 					.withCommID(resultSet.getInt("commentID")).withUserID(resultSet.getInt("userID")).build();
-			return userComment;
-		}
+
+
+				return userComment;
+			}
+
 	}
 }

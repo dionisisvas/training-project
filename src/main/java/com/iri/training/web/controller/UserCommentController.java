@@ -24,23 +24,23 @@ public class UserCommentController{
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
-		logger.debug("ENTERED createUserComment" + userComment.toString());
+		logger.debug("ENTERED createUserComment" + userComment);
 
 		userCommentService.createUserComment(userComment);
 
-		logger.debug("EXITING createUserComment" + userComment.toString());
+		logger.debug("EXITING createUserComment" + userComment);
 
 	}
 
 
-	@RequestMapping(value = "id/{userCommentId}", method = RequestMethod.GET)
-	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
+	public UserComment getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserCommentById" );
+		logger.debug("ENTERED getCommentsByUserId" );
 
-		UserComment userComment = userCommentService.getUserCommentById(userId);
+		UserComment userComment = userCommentService.getCommentsByUserId(userId);
 
-		logger.debug("EXITING getUserCommentById" + userComment.toString());
+		logger.debug("EXITING getCommentsByUserId" + userComment);
 
 
 		return userComment;
