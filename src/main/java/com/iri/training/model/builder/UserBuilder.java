@@ -1,5 +1,7 @@
 package com.iri.training.model.builder;
 
+import java.time.LocalDate;
+
 import com.iri.training.model.User;
 
 public class UserBuilder extends UserBuilderBase<UserBuilder> {
@@ -51,6 +53,13 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	@SuppressWarnings("unchecked")
 	public GeneratorT withAge(final short aValue) {
 		instance.setAge(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withDateOfBirth(final LocalDate aValue) {
+		instance.setDateOfBirth(aValue);
 
 		return (GeneratorT) this;
 	}

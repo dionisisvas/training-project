@@ -1,5 +1,6 @@
 package com.iri.training.model;
 
+import java.time.LocalDate;
 
 public class User  {
 
@@ -8,6 +9,7 @@ public class User  {
 	private String name;
 	private String surname;
 	private short age;
+	private LocalDate dateOfBirth;
 	private String phoneNo;
 	private String address;
 	private String password;
@@ -31,6 +33,10 @@ public class User  {
 	public short getAge() { return age; }
 
 	public void setAge(final short age) { this.age = age; }
+
+	public LocalDate getDateOfBirth() { return dateOfBirth; }
+
+	public void setDateOfBirth(final LocalDate dateOfBirth) {this.dateOfBirth = dateOfBirth; }
 
 	public String getPhoneNo() { return phoneNo; }
 

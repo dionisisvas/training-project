@@ -1,6 +1,9 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,7 +22,10 @@ public  class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(Long userId) throws SQLException {
-		return userRepository.getUserById(userId);
+		User user = userRepository.getUserById(userId);
+		user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+
+		return user;
 	}
 
 	@Override
@@ -29,6 +35,11 @@ public  class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getUserList() throws SQLException {
-		return userRepository.getUserList();
+		List<User> userList = new ArrayList<User>(userRepository.getUserList());
+		for (User user : userList) {
+			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+		}
+
+		return userList;
 	}
 }
