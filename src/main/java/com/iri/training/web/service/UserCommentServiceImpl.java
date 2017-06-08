@@ -17,9 +17,9 @@ public class UserCommentServiceImpl implements UserCommentService {
 	UserCommentRepository userCommentRepository;
 
 	@Override
-	public UserComment getCommentsByUserId(Long userId) throws SQLException {
+	public List<UserComment> getCommentsByUserId(Long userId) throws SQLException {
 		logger.debug("ENTERED getCommentsByUserId: " + userId);
-		UserComment	 userComment=userCommentRepository.getCommentsByUserId(userId);
+		List<UserComment> userComment=userCommentRepository.getCommentsByUserId(userId);
 		logger.debug("EXITING getCommentsByUserId " + userComment);
 		return userComment;
 

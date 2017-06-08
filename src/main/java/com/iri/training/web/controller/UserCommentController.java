@@ -2,6 +2,7 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,11 +35,11 @@ public class UserCommentController{
 
 
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public UserComment getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+	public List<UserComment> getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
 		logger.debug("ENTERED getCommentsByUserId" );
 
-		UserComment userComment = userCommentService.getCommentsByUserId(userId);
+		List<UserComment> userComment = userCommentService.getCommentsByUserId(userId);
 
 		logger.debug("EXITING getCommentsByUserId" + userComment);
 
