@@ -1,4 +1,5 @@
-*.json data
-*.sql data
+*.db 	binary
+*.json	data
+*.sql	data
 
 src/main/webapp/resources/lib/* linguist-vendored
