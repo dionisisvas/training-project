@@ -17,11 +17,14 @@ public class UserCommentServiceImpl implements UserCommentService {
 	UserCommentRepository userCommentRepository;
 
 	@Override
+
 	public List<UserComment> getCommentsByUserId(Long userId) throws SQLException {
 		logger.debug("ENTERED getCommentsByUserId: " + userId);
 		List<UserComment> userComment=userCommentRepository.getCommentsByUserId(userId);
 		logger.debug("EXITING getCommentsByUserId " + userComment);
 		return userComment;
+
+
 
 	}
 

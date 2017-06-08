@@ -2,29 +2,35 @@ package com.iri.training.model.builder;
 
 import com.iri.training.model.User;
 
-public class UserBuilder extends BuildBase<UserBuilder> {
-	public static UserBuilder user() {
-		return new UserBuilder();
-	}
+public class UserBuilder extends UserBuilderBase<UserBuilder> {
+	public static UserBuilder user() { return new UserBuilder(); }
 
-	public UserBuilder() {
-		super(new User());
-	}
+	public UserBuilder() { super(new User()); }
 
-	public User build() {
-		return getInstance();
-	}
+	public User build() { return getInstance(); }
 }
 
-class BuildBase<GeneratorT extends BuildBase<GeneratorT>> {
+class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	private final User instance;
 
-	protected BuildBase(final User aInstance) {
-		instance = aInstance;
-	}
+	protected UserBuilderBase(final User aInstance) { instance = aInstance; }
 
 	protected User getInstance() {
 		return instance;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withUsername(final String aValue) {
+		instance.setUsername(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withUserId(final Long aValue) {
+		instance.setUserId(aValue);
+
+		return (GeneratorT) this;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,16 +47,17 @@ class BuildBase<GeneratorT extends BuildBase<GeneratorT>> {
 		return (GeneratorT) this;
 	}
 
+
 	@SuppressWarnings("unchecked")
-	public GeneratorT withUsername(final String aValue) {
-		instance.setUsername(aValue);
+	public GeneratorT withAge(final short aValue) {
+		instance.setAge(aValue);
 
 		return (GeneratorT) this;
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withPassword(final String aValue) {
-		instance.setPassword(aValue);
+	public GeneratorT withPhoneNo(final String aValue) {
+		instance.setPhoneNo(aValue);
 
 		return (GeneratorT) this;
 	}
@@ -61,25 +68,4 @@ class BuildBase<GeneratorT extends BuildBase<GeneratorT>> {
 
 		return (GeneratorT) this;
 	}
-	@SuppressWarnings("unchecked")
-	public GeneratorT withPhone(final String aValue) {
-		instance.setPhone(aValue);
-
-		return (GeneratorT) this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public GeneratorT withAge(final int aValue) {
-		instance.setAge(aValue);
-
-		return (GeneratorT) this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public GeneratorT withUserID(final int aValue) {
-		instance.setUserID(aValue);
-
-		return (GeneratorT) this;
-	}
-
 }

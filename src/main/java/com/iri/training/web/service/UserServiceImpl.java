@@ -1,6 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,16 @@ public  class UserServiceImpl implements UserService {
 	
 	@Override
 	public User getUserById(Long userId) throws SQLException {
-		logger.debug("ENTERED getUserById: " + userId);
-
-		 User user = userRepository.getUserById(userId);
-		logger.debug("EXITING getUserById " + user);
-		return user;
+		return userRepository.getUserById(userId);
 	}
 
 	@Override
 	public User createUser(User user) throws SQLException {
-
-		logger.debug("ENTERED createUser: " + user);
-		userRepository.createUser(user);
-		logger.debug("EXITING createUser: " + user);
-		return user;
+		return userRepository.createUser(user);
 	}
 
+	@Override
+	public List<User> getUserList() throws SQLException {
+		return userRepository.getUserList();
+	}
 }

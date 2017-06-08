@@ -34,8 +34,10 @@ public class UserCommentController{
 	}
 
 
+
 	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
 	public List<UserComment> getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+
 
 		logger.debug("ENTERED getCommentsByUserId" );
 
@@ -46,5 +48,4 @@ public class UserCommentController{
 
 		return userComment;
 	}
-
 }

@@ -3,103 +3,44 @@ package com.iri.training.model;
 
 public class User  {
 
-
+	private String username;
+	private Long userId;
 	private String name;
 	private String surname;
-	private String username;
-	private String password;
+	private short age;
+	private String phoneNo;
 	private String address;
-	private String phone;
-	private int userID;
-	private int age;
+	private String password;
 
+	public String getUsername() { return username; }
 
-	public String getName() {
-		return name;
-	}
+	public void setUsername(final String username) { this.username = username; }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+	public Long getUserId() { return userId; }
 
-	public int getUserID() {
-		return userID;
-	}
+	public void setUserId(final Long userId) { this.userId = userId; }
 
-	public void setUserID(final int userID) {
-		this.userID = userID;
-	}
+	public String getName() { return name; }
 
-	public int getAge() {
-		return age;
-	}
+	public void setName(final String name) { this.name = name; }
 
-	public void setAge(final int age) {
-		this.age = age;
-	}
+	public String getSurname() { return surname; }
 
-	public String getPhone() {
-		return phone;
-	}
+	public void setSurname(final String surname) { this.surname = surname; }
 
-	public void setPhone(final String phone) {
-		this.phone = phone;
-	}
+	public short getAge() { return age; }
 
-	public String getAddress() {
-		return address;
-	}
+	public void setAge(final short age) { this.age = age; }
 
-	public void setAddress(final String address) {
-		this.address = address;
-	}
+	public String getPhoneNo() { return phoneNo; }
 
-	public String getSurname() {
-		return surname;
-	}
+	public void setPhoneNo(final String phoneNo) { this.phoneNo = phoneNo; }
 
-	public void setSurname(final String surname) {
-		this.surname = surname;
-	}
+	public String getAddress() { return address; }
 
-	public String getUsername() {
-		return username;
-	}
+	public void setAddress(final String address) { this.address = address; }
 
-	public void setUsername(final String username) {
-		this.username = username;
-	}
+	private String getPassword() { return password; }
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(final String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder();
-		builder.append("name=");
-		builder.append(name);
-		builder.append("surname=");
-		builder.append(surname);
-		builder.append("username=");
-		builder.append(username);
-		builder.append("password");
-		builder.append(password);
-		builder.append("address");
-		builder.append(address);
-		builder.append("phone");
-		builder.append(phone);
-		builder.append("userID");
-		builder.append(userID);
-		builder.append("age");
-		builder.append(age);
-
-
-		return builder.toString();
-	}
-
+	private void setPassword(final String password) { this.password = password; }
 }
