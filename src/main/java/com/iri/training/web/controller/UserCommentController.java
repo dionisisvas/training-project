@@ -2,6 +2,7 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,22 +25,25 @@ public class UserCommentController{
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
-		logger.debug("ENTERED createUserComment" + userComment.toString());
+		logger.debug("ENTERED createUserComment" + userComment);
 
 		userCommentService.createUserComment(userComment);
 
-		logger.debug("EXITING createUserComment" + userComment.toString());
+		logger.debug("EXITING createUserComment" + userComment);
 
 	}
 
-	@RequestMapping(value = "id/{userCommentId}", method = RequestMethod.GET)
-	public UserComment getUserCommentById(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserCommentById" );
 
-		UserComment userComment = userCommentService.getUserCommentById(userId);
+	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
+	public List<UserComment> getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
-		logger.debug("EXITING getUserCommentById" + userComment.toString());
+
+		logger.debug("ENTERED getCommentsByUserId" );
+
+		List<UserComment> userComment = userCommentService.getCommentsByUserId(userId);
+
+		logger.debug("EXITING getCommentsByUserId" + userComment);
 
 
 		return userComment;
