@@ -44,8 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		user = jdbcTemplate.query(sql, new Object[]{userId}, new UserResultSetExtractor());
 
-		logger.debug("RETRIEVED User: " + user);
-		logger.debug("EXITING getUserById for userId: " + userId);
+		logger.debug("EXITING getUserById: " + user);
 
 		return user;
 	}
@@ -58,8 +57,7 @@ public class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<User> usersList = jdbcTemplate.query(sql, new UserListResultSetExtractor());
 
-		logger.debug("RETRIEVED " + usersList.size() + " users");
-		logger.debug("EXITING getUserList");
+		logger.debug("EXITING getUserList: " + usersList);
 
 		return usersList;
 	}

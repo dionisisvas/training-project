@@ -41,8 +41,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		final List<UserComment> userComment=jdbcTemplate.query(sql,new Object[]{userId},new UserCommentMapper());
 
-		logger.debug("RETRIEVED " + userComment.size() + " comments");
-		logger.debug("EXITING getCommentsByUserId for userId: " + userId);
+		logger.debug("EXITING getCommentsByUserId: " + userComment);
 		return userComment;
 
 	}
@@ -56,7 +55,7 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
 
-		logger.debug("EXITING createUserComment for comment: " + userComment);
+		logger.debug("EXITING createUserComment: " + userComment);
 
 		return userComment;
 	}
