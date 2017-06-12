@@ -3,7 +3,7 @@
 angular.
 	module('myUserInfo').
 	component('myUserInfo', {
-		templateUrl: 'resources/app/user-info/user-info.template.html',
+		templateUrl: 'app/user-info/user-info.template.html',
 		controller: ['$routeParams', 'Hobby', 'Image', 'User',
 			function UserInfoController($routeParams, Hobby, Image, User) {
 				var self = this;

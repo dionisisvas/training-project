@@ -22,3 +22,4 @@ db/*.exe
 
 # Log4j
 logs/
+*.db
