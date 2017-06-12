@@ -27,14 +27,14 @@ public class ImageController {
 	@RequestMapping(value = "/{imgId}", method = RequestMethod.GET)
 	public ResponseEntity<Image> getUserImage(@PathVariable("imgId") Long imgId) throws SQLException {
 
-		logger.debug("ENTERED getUserImage");
+		logger.debug("ENTERED getUserImage for imgId: " + imgId);
 
 		Image userImg = imgService.getImageById(imgId);
 		if (userImg != null) {
 			return new ResponseEntity<Image>(userImg, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserImage");
+		logger.debug("EXITING getUserImage for imgId: " + imgId);
 
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
@@ -42,13 +42,13 @@ public class ImageController {
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Image>> getAllUserImages(@PathVariable("userId") Long userId) throws SQLException {
 
-		logger.debug("ENTERED getAllUserImages");
+		logger.debug("ENTERED getAllUserImages for userId: " + userId);
 		ArrayList<Image> images = (ArrayList) imgService.getUserImages(userId);
 		if (images != null) {
 			return new ResponseEntity<ArrayList<Image>>(images, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getAllUserImages");
+		logger.debug("EXITING getAllUserImages for userId: " + userId);
 
 		return new ResponseEntity<ArrayList<Image>>(HttpStatus.NOT_FOUND);
 	}
@@ -56,14 +56,14 @@ public class ImageController {
 	@RequestMapping(value = "/user/{userId}/profile", method = RequestMethod.GET)
 	public ResponseEntity<Image> getUserProfileImage(@PathVariable("userId") Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserProfileImage");
+		logger.debug("ENTERED getUserProfileImage for userId: " + userId);
 
 		Image profileImage = imgService.getProfileImage(userId);
 		if (profileImage != null) {
 			return new ResponseEntity<Image>(profileImage, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserProfileImage");
+		logger.debug("EXITING getUserProfileImage for userId: " + userId);
 
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}

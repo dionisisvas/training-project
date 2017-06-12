@@ -1,4 +1,4 @@
-*.db 	binary
+*.db 	data
 *.json	data
 *.sql	data
 

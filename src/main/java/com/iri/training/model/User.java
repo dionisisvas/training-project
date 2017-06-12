@@ -49,4 +49,24 @@ public class User  {
 	private String getPassword() { return password; }
 
 	private void setPassword(final String password) { this.password = password; }
+
+	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("User{");
+		sb.append("username='");
+		sb.append(username);
+		sb.append('\'');
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", name='");
+		sb.append(name);
+		sb.append('\'');
+		sb.append(", surname='");
+		sb.append(surname);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
+	}
 }

@@ -34,22 +34,22 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 	@Override
 	public Image getImageById(Long imgId) throws SQLException {
-		logger.debug("ENTERED getImageById for id " + imgId);
+		logger.debug("ENTERED getImageById for imgId: " + imgId);
 
 		final Image userImg;
 
 		String sql = property.getString("RETRIEVE_IMG");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		userImg = jdbcTemplate.query(sql, new Object[]{imgId}, new ImageResultSetExtractor());
-		
-		logger.debug("EXITING getImageById for img " + userImg.toString());
+
+		logger.debug("EXITING getImageById: " + userImg);
 		
 		return userImg;
 	}
 
 	@Override
 	public Image getProfileImage(Long userId) throws SQLException {
-		logger.debug("ENTERED getProfileImage for user id " + userId);
+		logger.debug("ENTERED getProfileImage for userId: " + userId);
 
 		final Image userProfileImg;
 
@@ -57,7 +57,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		userProfileImg = jdbcTemplate.query(sql, new Object[]{userId}, new ImageResultSetExtractor());
 
-		logger.debug("EXITING getProfileImage for user id " + userId);
+		logger.debug("EXITING getProfileImage: " + userProfileImg);
 
 		return userProfileImg;
 	}
@@ -70,7 +70,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<Image> images = jdbcTemplate.query(sql, new Object[]{userId}, new ImageListResultSetExtractor());
 
-		logger.debug("EXITING getUserImages");
+		logger.debug("EXITING getUserImages: " + images);
 
 		return images;
 	}

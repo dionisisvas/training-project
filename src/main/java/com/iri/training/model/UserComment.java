@@ -2,8 +2,6 @@ package com.iri.training.model;
 
 public class UserComment {
 
-
-
 		private String description;
 		private String commentDate;
 		private int commentID;
@@ -41,22 +39,19 @@ public class UserComment {
 		public void setUserID(final int userID) {
 		this.userID = userID;
 	}
-		@Override
-		public String toString() {
-			final StringBuilder builder = new StringBuilder();
-			builder.append("description=");
-			builder.append(description);
-			builder.append("commentID=");
-			builder.append(commentID);
-			builder.append("commentDate=");
-			builder.append(commentDate);
-			builder.append("userID=");
-			builder.append(userID);
 
+	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
 
-			return builder.toString();
-		}
+		sb.append("UserComment{");
+		sb.append("commentID=");
+		sb.append(commentID);
+		sb.append(", userId=");
+		sb.append(userID);
+		sb.append('}');
 
+		return sb.toString();
+	}
 }
 
 
