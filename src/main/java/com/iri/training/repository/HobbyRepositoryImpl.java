@@ -42,8 +42,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		hobby = jdbcTemplate.query(sql, new Object[]{hobbyId}, new HobbyResultSetExtractor());
 
-		logger.debug("RETRIEVED Hobby: " + hobby);
-		logger.debug("EXITING getHobbyById for hobbyId: " + hobbyId);
+		logger.debug("EXITING getHobbyById: " + hobby);
 
 		return hobby;
 	}
@@ -56,8 +55,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<Long> userHobbies = jdbcTemplate.query(sql, new Object[]{userId}, new UserHobbyListResultSetExtractor());
 
-		logger.debug("RETRIEVED " + userHobbies.size() + " hobbies");
-		logger.debug("EXITING getUserHobbies for userId: " + userId);
+		logger.debug("EXITING getUserHobbies: " + userHobbies);
 
 		return userHobbies;
 	}
@@ -66,12 +64,11 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 	public List<Hobby> getHobbyList() throws SQLException {
 		logger.debug("ENTERED getHobbyList");
 
-		String sql = property.getString("RETRIEVE_USER_HOBBIES");
+		String sql = property.getString("RETRIEVE_HOBBY_LIST");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Hobby> hobbies = jdbcTemplate.query(sql, new Object[]{}, new HobbyListResultSetExtractor());
+		final List<Hobby> hobbies = jdbcTemplate.query(sql, new HobbyListResultSetExtractor());
 
-		logger.debug("RETRIEVED " + hobbies.size() + " hobbies");
-		logger.debug("EXITING getHobbyList");
+		logger.debug("EXITING getHobbyList: " + hobbies);
 
 		return hobbies;
 	}

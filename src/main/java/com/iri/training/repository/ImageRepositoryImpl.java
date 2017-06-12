@@ -42,8 +42,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		userImg = jdbcTemplate.query(sql, new Object[]{imgId}, new ImageResultSetExtractor());
 
-		logger.debug("RETRIEVED Image: " + userImg);
-		logger.debug("EXITING getImageById for imgId: " + imgId);
+		logger.debug("EXITING getImageById: " + userImg);
 		
 		return userImg;
 	}
@@ -58,8 +57,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		userProfileImg = jdbcTemplate.query(sql, new Object[]{userId}, new ImageResultSetExtractor());
 
-		logger.debug("RETRIEVED Image: " + userProfileImg);
-		logger.debug("EXITING getProfileImage for userId: " + userId);
+		logger.debug("EXITING getProfileImage: " + userProfileImg);
 
 		return userProfileImg;
 	}
@@ -72,8 +70,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<Image> images = jdbcTemplate.query(sql, new Object[]{userId}, new ImageListResultSetExtractor());
 
-		logger.debug("RETRIEVED " + images.size() + " images");
-		logger.debug("EXITING getUserImages");
+		logger.debug("EXITING getUserImages: " + images);
 
 		return images;
 	}
