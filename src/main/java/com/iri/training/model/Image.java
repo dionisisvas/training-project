@@ -24,11 +24,18 @@ public class Image {
 	public void setImgUri(final String imgUri) { this.imgUri = imgUri; }
 
 	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
 
-		return "Image{" +
-			"imgId=" + imgId +
-			", userId=" + userId +
-			", imgUri='" + imgUri + '\'' +
-			'}';
+		sb.append("Image{");
+		sb.append("imgId=");
+		sb.append(imgId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", imgUri='");
+		sb.append(imgUri);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
 	}
 }

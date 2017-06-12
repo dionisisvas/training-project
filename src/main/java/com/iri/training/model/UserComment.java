@@ -41,11 +41,16 @@ public class UserComment {
 	}
 
 	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
 
-		return "UserComment{" +
-			"commentID=" + commentID +
-			", userID=" + userID +
-			'}';
+		sb.append("UserComment{");
+		sb.append("commentID=");
+		sb.append(commentID);
+		sb.append(", userId=");
+		sb.append(userID);
+		sb.append('}');
+
+		return sb.toString();
 	}
 }
 

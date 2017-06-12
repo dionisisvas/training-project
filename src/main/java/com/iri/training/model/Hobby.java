@@ -19,10 +19,16 @@ public class Hobby {
 	public void setDescription(final String description) { this.description = description; }
 
 	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
 
-		return "Hobby{" +
-			"hobbyId=" + hobbyId +
-			", hobbyName='" + hobbyName + '\'' +
-			'}';
+		sb.append("Hobby{");
+		sb.append("hobbyId=");
+		sb.append(hobbyId);
+		sb.append(", hobbyName='");
+		sb.append(hobbyName);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
 	}
 }

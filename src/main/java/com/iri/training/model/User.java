@@ -51,12 +51,22 @@ public class User  {
 	private void setPassword(final String password) { this.password = password; }
 
 	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
 
-		return "User{" +
-			"username='" + username + '\'' +
-			", userId=" + userId +
-			", name='" + name + '\'' +
-			", surname='" + surname + '\'' +
-			'}';
+		sb.append("User{");
+		sb.append("username='");
+		sb.append(username);
+		sb.append('\'');
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", name='");
+		sb.append(name);
+		sb.append('\'');
+		sb.append(", surname='");
+		sb.append(surname);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
 	}
 }

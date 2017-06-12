@@ -50,13 +50,13 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
-		logger.debug("ENTERED createUserComment for comment: " + userComment.toString());
+		logger.debug("ENTERED createUserComment for comment: " + userComment);
 
 		String sql=property.getString("CREATE_COMMENT");
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
 
-		logger.debug("EXITING createUserComment for comment: " + userComment.toString());
+		logger.debug("EXITING createUserComment for comment: " + userComment);
 
 		return userComment;
 	}

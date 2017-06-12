@@ -42,7 +42,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		hobby = jdbcTemplate.query(sql, new Object[]{hobbyId}, new HobbyResultSetExtractor());
 
-		logger.debug("RETRIEVED Hobby: " + hobby.toString());
+		logger.debug("RETRIEVED Hobby: " + hobby);
 		logger.debug("EXITING getHobbyById for hobbyId: " + hobbyId);
 
 		return hobby;
