@@ -3,7 +3,7 @@
 angular.
 	module('myUserList').
 	component('myUserList', {
-		templateUrl: 'resources/app/user-list/user-list.template.html',
+		templateUrl: 'app/user-list/user-list.template.html',
 		controller: ['Image', 'User',
 			function UserListController(Image, User) {			
 				var self = this;

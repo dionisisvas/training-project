@@ -3,7 +3,7 @@
 angular.
 	module('myOptionList').
 	component('myOptionList', {
-		templateUrl: 'resources/app/option-list/option-list.template.html',
+		templateUrl: 'app/option-list/option-list.template.html',
 		controller: function OptionListController() {
 			this.pageOptions = [
 				{
