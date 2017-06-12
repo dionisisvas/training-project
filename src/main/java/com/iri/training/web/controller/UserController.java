@@ -3,13 +3,13 @@ package com.iri.training.web.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,14 +27,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
   
-	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
-	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException {
+	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String createUser(@RequestBody User user) throws SQLException {
 
 		logger.debug("ENTERED createUser");
 
 		userService.createUser(user);
 
 		logger.debug("EXITING createUser " + user);
+		return "User successfully created";
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)

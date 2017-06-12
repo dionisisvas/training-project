@@ -36,6 +36,8 @@
 	<spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
 	<spring:url value="/app/user-info/user-info.module.js" var="userInfoModuleJs" />
 	<spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />
+	<spring:url value="/app/user-create/create.module.js" var="createModuleJs" />
+	<spring:url value="/app/user-create/create.component.js" var="userCreateComponentJs" />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${angularJs}"></script>
@@ -58,7 +60,9 @@
 	<script src="${userListModuleJs}"></script>
 	<script src="${userListComponentJs}"></script>
 	<script src="${userInfoModuleJs}"></script>
-	<script src="${userInfoComponentJs}"></script>			
+	<script src="${userInfoComponentJs}"></script>
+	<script src="${createModuleJs}"></script>
+	<script src="${userCreateComponentJs}"></script>
 	</head>
 
 	<body>

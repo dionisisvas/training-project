@@ -20,4 +20,9 @@ public class ViewController {
 	public String userPage() {
 		return "app";
 	}
+
+	@RequestMapping(value = "/create/user")
+	public String userCreatePage() {
+		return "app";
+	}
 }
