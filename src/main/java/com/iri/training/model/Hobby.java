@@ -17,4 +17,12 @@ public class Hobby {
 	public String getDescription() { return description; }
 
 	public void setDescription(final String description) { this.description = description; }
+
+	@Override public String toString() {
+
+		return "Hobby{" +
+			"hobbyId=" + hobbyId +
+			", hobbyName='" + hobbyName + '\'' +
+			'}';
+	}
 }

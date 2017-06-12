@@ -37,14 +37,15 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	@Cacheable(value="findUser", key="#userId")
 	public User getUserById(Long userId ) throws SQLException {
-		logger.debug("ENTERED getUserById: " + userId);
+		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user;
 		String sql = property.getString("RETRIEVE_USER");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		user = jdbcTemplate.query(sql, new Object[]{userId}, new UserResultSetExtractor());
 
-		logger.debug("EXITING getUserById " + user);
+		logger.debug("RETRIEVED User: " + user.toString());
+		logger.debug("EXITING getUserById for userId: " + userId);
 
 		return user;
 	}
@@ -57,6 +58,7 @@ public class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<User> usersList = jdbcTemplate.query(sql, new UserListResultSetExtractor());
 
+		logger.debug("RETRIEVED " + usersList.size() + " users");
 		logger.debug("EXITING getUserList");
 
 		return usersList;
@@ -65,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User createUser(final User user) throws SQLException {
 
-		logger.debug("ENTERED createUser: " + user);
+		logger.debug("ENTERED createUser for user: " + user.toString());
 
 		String sql = property.getString("CREATE_USER");
 		jdbcTemplate=new JdbcTemplate(dataSource);
@@ -76,9 +78,8 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
 								 user.getAddress());
-		System.out.print("User Inserted Successfully");
 
-		logger.debug("EXITING createUser: " + user);
+		logger.debug("EXITING createUser: " + user.toString());
 		return user;
 	}
 

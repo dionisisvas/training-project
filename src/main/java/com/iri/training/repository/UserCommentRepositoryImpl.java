@@ -35,12 +35,14 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public List<UserComment> getCommentsByUserId(final Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserCommentById: " + userId);
+		logger.debug("ENTERED getUserCommentById for userId: " + userId);
 
 		String sql=property.getString("SELECT_COMMENT");
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		final List<UserComment> userComment=jdbcTemplate.query(sql,new Object[]{userId},new UserCommentMapper());
-		logger.debug("EXITING getCommentsByUserId: " + userComment);
+
+		logger.debug("RETRIEVED " + userComment.size() + " comments");
+		logger.debug("EXITING getCommentsByUserId for userId: " + userId);
 		return userComment;
 
 	}
@@ -48,13 +50,13 @@ public class UserCommentRepositoryImpl implements UserCommentRepository{
 	@Override
 	public UserComment createUserComment(final UserComment userComment) throws SQLException {
 
-		logger.debug("ENTERED createUserComment: " + userComment);
+		logger.debug("ENTERED createUserComment for comment: " + userComment.toString());
+
 		String sql=property.getString("CREATE_COMMENT");
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
-		System.out.print("UserComment Inserted Successfully");
 
-		logger.debug("EXITING createUserComment: " + userComment);
+		logger.debug("EXITING createUserComment for comment: " + userComment.toString());
 
 		return userComment;
 	}

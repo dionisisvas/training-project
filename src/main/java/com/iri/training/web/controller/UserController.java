@@ -30,11 +30,11 @@ public class UserController {
 	@RequestMapping(value = "create/{user}", method = RequestMethod.GET)
 	public void createUser(final HttpServletRequest request, @PathVariable("user") User user) throws SQLException {
 
-		logger.debug("ENTERED createUser");
+		logger.debug("ENTERED createUser for userId: " + user.getUserId());
 
 		userService.createUser(user);
 
-		logger.debug("EXITING createUser " + user);
+		logger.debug("EXITING createUser for userId: " + user.getUserId());
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -53,16 +53,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long userId) throws SQLException {
+	public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById");
+		logger.debug("ENTERED getUser for userId: " + userId);
 
 		User user = userService.getUserById(userId);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserPage " + user.toString());
+		logger.debug("EXITING getUser for userId: " + userId);
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}

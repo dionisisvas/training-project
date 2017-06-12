@@ -22,4 +22,13 @@ public class Image {
 	public String getImgUri() { return imgUri; }
 
 	public void setImgUri(final String imgUri) { this.imgUri = imgUri; }
+
+	@Override public String toString() {
+
+		return "Image{" +
+			"imgId=" + imgId +
+			", userId=" + userId +
+			", imgUri='" + imgUri + '\'' +
+			'}';
+	}
 }
