@@ -1,68 +1,23 @@
-<!DOCTYPE html>
-<html lang="en-US">  
- <body ng-app="myApp">
- <div ng-controller="CreateController">
-	<form name="personForm" >
-	
-	
-	<div class="form-group" >
-        <label class=blue_font>USERNAME</label>
-        <input class=form-control type="text" id="USERNAME" ng-model="personForm.username" placeholder="USERNAME" autocomplete="off">
-    </div>
-    
-    <div class="form-group" >
-        <label class=blue_font>USERID</label>
-        <input class=form-control type="text" id="Email" ng-model="personForm.userId" placeholder="USERID" autocomplete="off">
-    </div>
-    
-    <div class="form-group" >
-        <label class=blue_font>NAME</label>
-        <input class=form-control type="text" id="NAME" ng-model="personForm.name" placeholder="NAME" autocomplete="off">
-    </div>
-    
-    <div class="form-group" >
-        <label class=blue_font>SURNAME</label>
-        <input class=form-control type="text" id="SURNAME" ng-model="personForm.surname" placeholder="SURNAME" autocomplete="off">
-    </div>
-	
-	<div class="form-group" >
-        <label class=blue_font>AGE</label>
-        <input class=form-control type="text" id="AGE" ng-model="personForm.age" placeholder="AGE" autocomplete="off">
-    </div>
-	
-	<div class="form-group" >
-        <label class=blue_font>DATE OF BIRTH</label>
-        <input class=form-control type="text" id="dob" ng-model="personForm.dob" placeholder="dob" autocomplete="off">
-    </div>
-	
-	<div class="form-group" >
-        <label class=blue_font>PHONE</label>
-        <input class=form-control type="text" id="phoneNo" ng-model="personForm.phoneNo" placeholder="phoneNo" autocomplete="off">
-    </div>
-	
-	<div class="form-group" >
-        <label class=blue_font>ADDRESS</label>
-        <input class=form-control type="text" id="address" ng-model="personForm.address" placeholder="address" autocomplete="off">
-    </div>
-	
-	<div class="form-group" >
-        <label class=blue_font>PASSWORD</label>
-        <input class=form-control type="text" id="password" ng-model="personForm.password" placeholder="password" autocomplete="off">
-    </div>
 
- 
+<form ng-submit="send_form()" >
 
-    <div >
-      <button class="btn btn_blue" type="button" data-ng-click="create()" id="Create" >Create</button>
-    </div>
-  </div>
-</div>
-	
-  
-	      
-	</form>
-	</div>
+USERNAME:<input class=form-control type="text" id="USERNAME" ng-model="username" placeholder="USERNAME" autocomplete="off"/><br />
 
+USERID:<input class=form-control type="text" id="Email" ng-model="userId" placeholder="USERID" autocomplete="off"/><br />
 
- </body>
-</html>  
+NAME:<input class=form-control type="text" id="NAME" ng-model="name" placeholder="NAME" autocomplete="off"/><br />
+
+SURNAME:<input class=form-control type="text" id="SURNAME" ng-model="surname" placeholder="SURNAME" autocomplete="off"/><br />
+
+AGE:<input class=form-control type="text" id="AGE" ng-model="age" placeholder="AGE" autocomplete="off"/><br />
+
+DATE OF BIRTH:<input class=form-control type="text" id="dob" ng-model="dob" placeholder="dob" autocomplete="off"/><br />
+
+PHONE:<input class=form-control type="text" id="phoneNo" ng-model="phoneNo" placeholder="phoneNo" autocomplete="off"/><br />
+
+ADDRESS:<input class=form-control type="text" id="address" ng-model="address" placeholder="address" autocomplete="off"/><br />
+
+PASSWORD: <input class=form-control type="text" id="password" ng-model="password" placeholder="password" autocomplete="off"/><br />
+
+<p><input type='submit' name='Submit' value='Submit' /></p>
+</form>

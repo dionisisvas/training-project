@@ -28,14 +28,14 @@ public class UserController {
 	UserService userService;
   
 	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String createUser(@RequestBody User user) throws SQLException {
+	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 
 		logger.debug("ENTERED createUser");
 
 		userService.createUser(user);
 
 		logger.debug("EXITING createUser " + user);
-		return "User successfully created";
+		return new ResponseEntity( HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
