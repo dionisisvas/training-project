@@ -1,23 +1,35 @@
+<body>
+	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
-<form ng-submit="send_form()" >
+	<form id="myform" name="myform">
+USERNAME:<input name="ff" class=form-control type="text" id="USERNAME" ng-model="username" placeholder="USERNAME" autocomplete="off"/><br />
 
-USERNAME:<input class=form-control type="text" id="USERNAME" ng-model="username" placeholder="USERNAME" autocomplete="off"/><br />
+USERID:<input name="ff" class=form-control type="text" id="Email" ng-model="userId" placeholder="USERID" autocomplete="off"/><br />
 
-USERID:<input class=form-control type="text" id="Email" ng-model="userId" placeholder="USERID" autocomplete="off"/><br />
+NAME:<input name="ff" class=form-control type="text" id="NAME" ng-model="name" placeholder="NAME" autocomplete="off"/><br />
 
-NAME:<input class=form-control type="text" id="NAME" ng-model="name" placeholder="NAME" autocomplete="off"/><br />
+SURNAME:<input name="ff" class=form-control type="text" id="SURNAME" ng-model="surname" placeholder="SURNAME" autocomplete="off"/><br />
 
-SURNAME:<input class=form-control type="text" id="SURNAME" ng-model="surname" placeholder="SURNAME" autocomplete="off"/><br />
+AGE:<input name="ff" class=form-control type="text" id="AGE" ng-model="age" placeholder="age" autocomplete="off"/><br />
 
-AGE:<input class=form-control type="text" id="AGE" ng-model="age" placeholder="AGE" autocomplete="off"/><br />
+DATE OF BIRTH:<input name="ff" class=form-control type="text" id="dob" ng-model="dob" placeholder="dob" autocomplete="off"/><br />
 
-DATE OF BIRTH:<input class=form-control type="text" id="dob" ng-model="dob" placeholder="dob" autocomplete="off"/><br />
+PHONE:<input name="ff" class=form-control type="text" id="phoneNo" ng-model="phoneNo" placeholder="phoneNo" autocomplete="off"/><br />
 
-PHONE:<input class=form-control type="text" id="phoneNo" ng-model="phoneNo" placeholder="phoneNo" autocomplete="off"/><br />
+ADDRESS:<input name="ff" class=form-control type="text" id="address" ng-model="address" placeholder="address" autocomplete="off"/><br />
 
-ADDRESS:<input class=form-control type="text" id="address" ng-model="address" placeholder="address" autocomplete="off"/><br />
+		<label for="password">Password</label>
+		<input id="password" name="password" ng-keyup='validatePassword()'/>
+		<br/>
+		<label for="password_again">Again</label>
+		<input class="left" id="password_again" name="password_again"  ng-keyup='validatePassword()'/>
 
-PASSWORD: <input class=form-control type="text" id="password" ng-model="password" placeholder="password" autocomplete="off"/><br />
 
-<p><input type='submit' name='Submit' value='Submit' /></p>
-</form>
+	</form>
+<p><input type='button' name='Submit' value='Submit' ng-click='send_form()'/></p>
+
+
+</body>
