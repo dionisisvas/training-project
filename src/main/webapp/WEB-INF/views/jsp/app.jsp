@@ -32,6 +32,8 @@
 	<spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
 	<spring:url value="/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
 	<spring:url value="/app/error-message/error-message.component.js" var="errorMessageComponentJs" />
+	<spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
+	<spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
 	<spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
 	<spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
 	<spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
@@ -57,6 +59,8 @@
 	<script src="${userServiceJs}"></script>
 	<script src="${errorMessageModuleJs}"></script>
 	<script src="${errorMessageComponentJs}"></script>		
+	<script src="${homePageModuleJs}"></script>
+	<script src="${homePageComponentJs}"></script>		
 	<script src="${optionListModuleJs}"></script>
 	<script src="${optionListComponentJs}"></script>
 	<script src="${userListModuleJs}"></script>

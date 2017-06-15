@@ -5,6 +5,7 @@ angular.module('trainingApp', [
 	'ngRoute',
 	'core',
 	'myErrorMessage',
+	'myHomePage',
 	'myOptionList',
 	'myUserInfo',	
 	'myUserList'
