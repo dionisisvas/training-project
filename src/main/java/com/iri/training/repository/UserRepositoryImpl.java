@@ -73,9 +73,7 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getUserId(),
 								 user.getName(),
 								 user.getSurname(),
-								 user.getDateOfBirth(
-
-								 ),
+								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
 								 user.getAddress(),
 			                     user.getPassword());
