@@ -77,4 +77,9 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 
 		return (GeneratorT) this;
 	}
+	public GeneratorT withPassword(final String aValue) {
+		instance.setPassword(aValue);
+
+		return (GeneratorT) this;
+	}
 }
