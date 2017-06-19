@@ -42,14 +42,14 @@ public class HobbyController {
 	@RequestMapping(value = "/{hobbyId}", method = RequestMethod.GET)
 	public ResponseEntity<Hobby> getHobby(@PathVariable("hobbyId") Long hobbyId) throws SQLException {
 
-		logger.debug("ENTERED getHobby");
+		logger.debug("ENTERED getHobby for hobbyId: " + hobbyId);
 
 		Hobby hobby = hobbyService.getHobbyById(hobbyId);
 		if (hobby != null) {
 			return new ResponseEntity<Hobby>(hobby, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getHobby");
+		logger.debug("EXITING getHobby for hobbyId: " + hobbyId);
 
 		return new ResponseEntity<Hobby>(HttpStatus.NOT_FOUND);
 	}
@@ -57,14 +57,14 @@ public class HobbyController {
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Hobby>> getAllUserHobbies(@PathVariable("userId") Long userId) throws SQLException {
 
-		logger.debug("ENTERED getAllUserHobbies");
+		logger.debug("ENTERED getAllUserHobbies for userId: " + userId);
 
 		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getUserHobbies(userId);
 		if (hobbies != null) {
 			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getAllUserHobbies");
+		logger.debug("EXITING getAllUserHobbies for userId: " + userId);
 
 		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
 	}
