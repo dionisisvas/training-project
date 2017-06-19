@@ -5,7 +5,6 @@ angular.
 		templateUrl: 'app/user-create/index.html',
 		controller: ['$scope', '$http',
 		function CreateController($scope, $http) {
-
 $(document).ready(function(){
 
     	$("#myName").focusout(function(){
@@ -35,11 +34,11 @@ $(document).ready(function(){
         		$("#error_lastname").text("");
         	}
        });
-        $("#dob").focusout(function(){
+        $("#dateOfBirth").focusout(function(){
     		if($(this).val()==''){
         		$(this).css("border-color", "#FF0000");
         			$('#submit').attr('disabled',true);
-        			$("#error_dob").text("* You have to enter your Date of Birth!");
+        			$("#error_dateOfBirth").text("* You have to enter your Date of Birth!");
         	}
         	else
         	{
@@ -76,7 +75,7 @@ $(document).ready(function(){
         	{
                     $(this).css("border-color", "#FF0000");
         			$('#submit').attr('disabled',true);
-        			$("#error_phone").text("* Lenght of Phone Number Should Be Ten");
+        			$("#error_phone").text("* Length of Phone Number Should Be Ten");
         	}
         	else if(!$.isNumeric(pho))
         	{
@@ -159,11 +158,11 @@ $(document).ready(function(){
         			$('#submit').attr('disabled',true);
         			 $("#error_lastname").text("* You have to enter your Last name!");
         	}
-   			if($("#dob" ).val()=='')
+   			if($("#dateOfBirth" ).val()=='')
    			{
-        		$("#dob").css("border-color", "#FF0000");
+        		$("#dateOfBirth").css("border-color", "#FF0000");
         			$('#submit').attr('disabled',true);
-        			 $("#error_dob").text("* You have to enter your Date of Birth!");
+        			 $("#dateOfBirth").text("* You have to enter your Date of Birth!");
         	}
    			if($("#age" ).val()=='')
    			{
@@ -182,12 +181,13 @@ $(document).ready(function(){
                 		userId :  $('#userID').val(),
                 		name :  $('#myName').val(),
                 		surname :  $('#lastname').val(),
-                		dob :  $('#dob').val(),
+                		dateOfBirth :  $('#dateOfBirth').val(),
                 		phoneNo :  $('#phone').val(),
                 		address :  $('#address').val(),
                 		password : $('#password').val()
 
                 });
+
                 $http.put('http://localhost:8080/spring/api/user/create',user);
 
 			});

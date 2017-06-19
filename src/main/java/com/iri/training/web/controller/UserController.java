@@ -5,15 +5,21 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import com.iri.training.model.User;
 import com.iri.training.web.service.UserService;
 
@@ -24,20 +30,28 @@ public class UserController {
 
 	Logger logger = Logger.getLogger(UserController.class);
 
-	@Autowired
+
+		@Autowired
 	UserService userService;
-  
+
 	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 
-		logger.debug("ENTERED createUser");
+		logger.debug("ENTERED createUser: "+user);
 
 		userService.createUser(user);
 
 		logger.debug("EXITING createUser " + user);
 		return new ResponseEntity( HttpStatus.OK);
 	}
-
+	@Bean(name = "OBJECT_MAPPER_BEAN")
+	public ObjectMapper jsonObjectMapper() {
+		return Jackson2ObjectMapperBuilder.json()
+			.serializationInclusion(JsonInclude.Include.NON_NULL) // Don’t include null values
+			.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS) //ISODate
+			.modules(new JSR310Module())
+			.build();
+	}
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
 
@@ -56,14 +70,14 @@ public class UserController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById");
+		logger.debug("ENTERED getUserById: "+ userId);
 
 		User user = userService.getUserById(userId);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserPage " + user.toString());
+		logger.debug("EXITING getUserPage " + user);
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
