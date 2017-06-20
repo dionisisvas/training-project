@@ -19,6 +19,9 @@ angular.
 				when('/user/:userId', {
 					template: '<my-user-info></my-user-info>'
 				}).
+				when('/create/user', {
+                	template: '<my-app></my-app>'
+               	}).
 				otherwise('/error');
 		}
 	]);

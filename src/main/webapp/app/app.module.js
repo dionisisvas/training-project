@@ -7,5 +7,6 @@ angular.module('trainingApp', [
 	'myErrorMessage',
 	'myOptionList',
 	'myUserInfo',	
-	'myUserList'
+	'myUserList',
+	'myApp'
 ]);

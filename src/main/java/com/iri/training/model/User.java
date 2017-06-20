@@ -46,9 +46,12 @@ public class User  {
 
 	public void setAddress(final String address) { this.address = address; }
 
-	private String getPassword() { return password; }
+	public String getPassword() { return password; }
 
-	private void setPassword(final String password) { this.password = password; }
+	public void setPassword(final String password) { this.password = password; }
+
+
+	
 
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -69,4 +72,5 @@ public class User  {
 
 		return sb.toString();
 	}
+
 }

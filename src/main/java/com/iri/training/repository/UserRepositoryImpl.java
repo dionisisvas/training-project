@@ -75,7 +75,11 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getSurname(),
 								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
-								 user.getAddress());
+								 user.getAddress(),
+			           user.getPassword());
+		System.out.print("User Inserted Successfully");
+
+
 
 		logger.debug("EXITING createUser: " + user);
 		return user;
@@ -99,6 +103,7 @@ public class UserRepositoryImpl implements UserRepository {
 						DateTimeFormatter.ISO_LOCAL_DATE))
 					.withPhoneNo(resultSet.getString("phoneNo"))
 					.withAddress(resultSet.getString("address"))
+					.withPassword(resultSet.getString("password"))
 					.build();
 			}
 			else
