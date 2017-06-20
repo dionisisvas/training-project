@@ -34,7 +34,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 
 	@Override
 	public Hobby getHobbyById(Long hobbyId) throws SQLException {
-		logger.debug("ENTERED getHobbyById for id " + hobbyId);
+		logger.debug("ENTERED getHobbyById for hobbyId: " + hobbyId);
 
 		final Hobby hobby;
 
@@ -42,20 +42,20 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		hobby = jdbcTemplate.query(sql, new Object[]{hobbyId}, new HobbyResultSetExtractor());
 
-		logger.debug("EXITING getHobbyById for id " + hobbyId);
+		logger.debug("EXITING getHobbyById: " + hobby);
 
 		return hobby;
 	}
 
 	@Override
 	public List<Long> getUserHobbies(Long userId) throws SQLException {
-		logger.debug("ENTERED getUserHobbies");
+		logger.debug("ENTERED getUserHobbies for userId: " + userId);
 
 		String sql = property.getString("RETRIEVE_USER_HOBBIES");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<Long> userHobbies = jdbcTemplate.query(sql, new Object[]{userId}, new UserHobbyListResultSetExtractor());
 
-		logger.debug("EXITING getUserHobbies");
+		logger.debug("EXITING getUserHobbies: " + userHobbies);
 
 		return userHobbies;
 	}
@@ -64,11 +64,11 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 	public List<Hobby> getHobbyList() throws SQLException {
 		logger.debug("ENTERED getHobbyList");
 
-		String sql = property.getString("RETRIEVE_USER_HOBBIES");
+		String sql = property.getString("RETRIEVE_HOBBY_LIST");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Hobby> hobbies = jdbcTemplate.query(sql, new Object[]{}, new HobbyListResultSetExtractor());
+		final List<Hobby> hobbies = jdbcTemplate.query(sql, new HobbyListResultSetExtractor());
 
-		logger.debug("EXITING getHobbyList");
+		logger.debug("EXITING getHobbyList: " + hobbies);
 
 		return hobbies;
 	}

@@ -25,12 +25,11 @@ public class UserCommentController{
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 
-		logger.debug("ENTERED createUserComment" + userComment);
+		logger.debug("ENTERED createUserComment for commentId: " + userComment.getCommentID());
 
 		userCommentService.createUserComment(userComment);
 
-		logger.debug("EXITING createUserComment" + userComment);
-
+		logger.debug("EXITING createUserComment for commentId: " + userComment.getCommentID());
 	}
 
 
@@ -39,11 +38,11 @@ public class UserCommentController{
 	public List<UserComment> getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
 
 
-		logger.debug("ENTERED getCommentsByUserId" );
+		logger.debug("ENTERED getCommentsByUserId for userId: " + userId);
 
 		List<UserComment> userComment = userCommentService.getCommentsByUserId(userId);
 
-		logger.debug("EXITING getCommentsByUserId" + userComment);
+		logger.debug("EXITING getCommentsByUserId for userId: " + userId);
 
 
 		return userComment;

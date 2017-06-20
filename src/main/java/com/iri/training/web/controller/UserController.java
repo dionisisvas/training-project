@@ -34,6 +34,7 @@ public class UserController {
 		@Autowired
 	UserService userService;
 
+
 	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 
@@ -61,16 +62,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUserPage(@PathVariable("userId") Long userId) throws SQLException {
+	public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) throws SQLException {
+
 
 		logger.debug("ENTERED getUserById: "+ userId);
+
 
 		User user = userService.getUserById(userId);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
+
 		logger.debug("EXITING getUserPage " + user);
+
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
