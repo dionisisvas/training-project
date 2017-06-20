@@ -4,7 +4,7 @@
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
-		<base href="/IRI/TrainingApp/">
+		<base href="/home/">
 		<title>IRI Training Project</title>
 
 		<spring:url value="/resources/css/app.css" var="appCss" />

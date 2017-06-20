@@ -5,7 +5,7 @@
 	<artifactId>training-project</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>IRI training project - spring mvc maven angularjs</name>
+	<name>IRI training project</name>
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
@@ -155,7 +155,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>/IRI/TrainingApp</contextPath>
+						<contextPath>/home</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
