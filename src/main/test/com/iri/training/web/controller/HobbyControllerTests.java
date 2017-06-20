@@ -33,11 +33,15 @@ public class HobbyControllerTests {
 
 	@Test
 	public void testGetHobby() throws Exception {
-
+		this.mockMvc.perform(get("api/hobby/{hobbyId}", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 
 	@Test
 	public void testGetAllUserHobbies() throws Exception {
-
+		this.mockMvc.perform(get("api/hobby/user/{userId}", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 }

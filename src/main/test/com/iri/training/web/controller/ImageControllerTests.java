@@ -26,16 +26,22 @@ public class ImageControllerTests {
 
 	@Test
 	public void testGetAllUserImages() throws Exception {
-
+		this.mockMvc.perform(get("api/image/user/{userId}", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 
 	@Test
-	public void testGetUserImage() throws Exception {
-
+	public void testGetImage() throws Exception {
+		this.mockMvc.perform(get("api/image/{imgId}", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 
 	@Test
 	public void testGetUserProfileImage() throws Exception {
-
+		this.mockMvc.perform(get("api/image/user/{userId}/profile", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 }

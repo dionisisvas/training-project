@@ -25,16 +25,16 @@ public class ImageController {
 	ImageService imgService;
 
 	@RequestMapping(value = "/{imgId}", method = RequestMethod.GET)
-	public ResponseEntity<Image> getUserImage(@PathVariable("imgId") Long imgId) throws SQLException {
+	public ResponseEntity<Image> getImage(@PathVariable("imgId") Long imgId) throws SQLException {
 
-		logger.debug("ENTERED getUserImage for imgId: " + imgId);
+		logger.debug("ENTERED getImage for imgId: " + imgId);
 
 		Image userImg = imgService.getImageById(imgId);
 		if (userImg != null) {
 			return new ResponseEntity<Image>(userImg, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserImage for imgId: " + imgId);
+		logger.debug("EXITING getImage for imgId: " + imgId);
 
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}

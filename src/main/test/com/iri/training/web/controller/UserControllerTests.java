@@ -33,6 +33,8 @@ public class UserControllerTests {
 
 	@Test
 	public void testGetUser() throws Exception {
-
+		this.mockMvc.perform(get("api/user/{userId}", 0L).accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+			.andExpect(status().isOk())
+			.andExpect(content().contentType("application/json"));
 	}
 }
