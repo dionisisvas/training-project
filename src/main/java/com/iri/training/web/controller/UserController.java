@@ -52,13 +52,6 @@ public class UserController {
 			.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS) //ISODate
 			.modules(new JSR310Module())
 			.build();
-
-		logger.debug("ENTERED createUser: " + user);
-
-		userService.createUser(user);
-
-		logger.debug("EXITING createUser : "+ user));
-
 	}
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
