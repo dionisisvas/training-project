@@ -1,7 +1,7 @@
 package com.iri.training.repository.test.web.controller;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HelloWorld.class)
+@WebMvcTest(UserController.class)
 public class UserControllerTests {
 
 	@Autowired
@@ -9,7 +9,7 @@ public class UserControllerTests {
 
 	@Before
 	public void setup() {
-
+		this.mockMvc = standaloneSetup(new UserController()).build();
 	}
 
 	}

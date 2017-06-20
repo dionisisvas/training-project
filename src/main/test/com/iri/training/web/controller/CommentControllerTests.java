@@ -1,7 +1,7 @@
 package com.iri.training.repository.test.web.controller;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HelloWorld.class)
+@WebMvcTest(CommentController.class)
 public class CommentControllerTests {
 
 	@Autowired
@@ -9,7 +9,7 @@ public class CommentControllerTests {
 
 	@Before
 	public void setup() {
-
+		this.mockMvc = standaloneSetup(new CommentController()).build();
 	}
 
 	@Test
