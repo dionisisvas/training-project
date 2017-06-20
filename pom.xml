@@ -10,6 +10,7 @@
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
+		<spring-boot.version>1.5.4.RELEASE</spring-boot.version>
 		<jstl.version>1.2</jstl.version>
 		<servletapi.version>3.1.0</servletapi.version>
 		<angular.version>1.6.4</angular.version>
@@ -87,6 +88,12 @@
 		</dependency>
 
 		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-test</artifactId>
+    		<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
@@ -121,6 +128,20 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-test</artifactId>
+    		<version>${spring-boot.version}</version>
+    		<scope>test</scope>
+		</dependency>
+
+		<dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-test</artifactId>
+  			<version>${spring-boot.version}</version>
+  			<scope>test</scope>
 		</dependency>
 
 		<dependency>
