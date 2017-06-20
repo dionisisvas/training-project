@@ -4,8 +4,8 @@
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
-		<base href="/spring/">
-		<title>Training Project</title>
+		<base href="/home/">
+		<title>IRI Training Project</title>
 
 		<spring:url value="/resources/css/app.css" var="appCss" />
 		<spring:url value="/resources/css/app.animation.css" var="appAnimationCss" />
@@ -26,10 +26,14 @@
 	<spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />	
 	<spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
 	<spring:url value="/app/core/image/image.service.js" var="imageServiceJs" />
+	<spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
+	<spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
 	<spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
 	<spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
 	<spring:url value="/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
 	<spring:url value="/app/error-message/error-message.component.js" var="errorMessageComponentJs" />
+	<spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
+	<spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
 	<spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
 	<spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
 	<spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
@@ -51,10 +55,14 @@
 	<script src="${hobbyServiceJs}"></script>		
 	<script src="${imageModuleJs}"></script>
 	<script src="${imageServiceJs}"></script>	
+	<script src="${optionModuleJs}"></script>
+	<script src="${optionServiceJs}"></script>		
 	<script src="${userModuleJs}"></script>
 	<script src="${userServiceJs}"></script>
 	<script src="${errorMessageModuleJs}"></script>
 	<script src="${errorMessageComponentJs}"></script>		
+	<script src="${homePageModuleJs}"></script>
+	<script src="${homePageComponentJs}"></script>		
 	<script src="${optionListModuleJs}"></script>
 	<script src="${optionListComponentJs}"></script>
 	<script src="${userListModuleJs}"></script>

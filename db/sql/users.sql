@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users(
 	name      	 TEXT		NOT_NULL,
 	surname   	 TEXT		NOT_NULL,
 	dob       	 TEXT,
-	phoneNo      TEXT		UNIQUE,
+	phoneNo      TEXT,
 	address   	 TEXT,
 	password  	 TEXT -- Safety above all
 

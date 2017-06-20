@@ -8,7 +8,7 @@ angular.
 
 		    $routeProvider.
 				when('/', {
-					template: '<my-option-list></my-option-list>'
+					template: '<my-home-page></my-home-page>'
 				}).
 				when('/error', {
 					template: '<my-error-message></my-error-message>'
