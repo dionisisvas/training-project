@@ -44,14 +44,7 @@ public class UserController {
 		logger.debug("EXITING createUser " + user);
 		return new ResponseEntity( HttpStatus.OK);
 	}
-	@Bean(name = "OBJECT_MAPPER_BEAN")
-	public ObjectMapper jsonObjectMapper() {
-		return Jackson2ObjectMapperBuilder.json()
-			.serializationInclusion(JsonInclude.Include.NON_NULL) // Don’t include null values
-			.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS) //ISODate
-			.modules(new JSR310Module())
-			.build();
-	}
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
 
