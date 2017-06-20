@@ -12,6 +12,12 @@
 		"isAPI": false
 	},
 	{
+		"param": null,
+		"dir": ["create/user"],
+		"info": "user specific info",
+		"isAPI": false
+	},	    
+	{
 		"param": "userId",
 		"dir": ["user"],
 		"info": "user specific info",
@@ -33,6 +39,12 @@
 		"param": "userId",
 		"dir": ["user"],
 		"info": "get a user by id",
+		"isAPI": true
+	},
+	{
+		"param": null,
+		"dir": ["user/create"],
+		"info": "register a user",
 		"isAPI": true
 	},	
 	{
