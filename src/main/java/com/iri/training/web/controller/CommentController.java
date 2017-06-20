@@ -18,8 +18,8 @@ import com.iri.training.web.service.UserCommentService;
 
 @RestController
 @RequestMapping("/userComment")
-public class UserCommentController{
-	Logger logger = Logger.getLogger(UserCommentController.class);
+public class CommentController {
+	Logger logger = Logger.getLogger(CommentController.class);
 	@Autowired
 	UserCommentService userCommentService;
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
