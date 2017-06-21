@@ -27,14 +27,7 @@
 						</div>
 					</a>
 					<a href="user/{{user.userId}}"><strong>{{user.surname}}</strong>, {{user.name}}</a>
-					<p>
-						<div ng-if="user.age">
-							<em>{{user.age}} years old</em>
-						</div>
-						<div ng-if="!user.age">
-							Unknown age
-						</div>
-					</p>
+					<p><em>{{user.age}} years old</em></p>
 				</li>
 				<li ng-hide="($ctrl.users | filter: $ctrl.query).length < 4">
 					<button ng-click="$ctrl.getLowerLimit()" ng-if="$ctrl.limit > $ctrl.startingLimit">

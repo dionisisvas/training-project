@@ -11,7 +11,7 @@ angular.
 					template: '<my-home-page></my-home-page>'
 				}).
 				when('/error', {
-					template: '<my-error-message></my-error-message>'
+					template: '<my-error-page></my-error-page>'
 				}).				
 				when('/user', {
 					template: '<my-user-list></my-user-list>'

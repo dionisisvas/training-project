@@ -30,8 +30,8 @@
         <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
         <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
         <spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
-        <spring:url value="/app/error-message/error-message.module.js" var="errorMessageModuleJs" />
-        <spring:url value="/app/error-message/error-message.component.js" var="errorMessageComponentJs" />
+        <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
+        <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
         <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
         <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
         <spring:url value="/app/nav-bar/nav-bar.module.js" var="navBarModuleJs" />
@@ -68,8 +68,8 @@
         <script src="${optionServiceJs}"></script>		
         <script src="${userModuleJs}"></script>
         <script src="${userServiceJs}"></script>
-        <script src="${errorMessageModuleJs}"></script>
-        <script src="${errorMessageComponentJs}"></script>		
+        <script src="${errorPageModuleJs}"></script>
+        <script src="${errorPageComponentJs}"></script>		
         <script src="${homePageModuleJs}"></script>
         <script src="${homePageComponentJs}"></script>		
         <script src="${navBarModuleJs}"></script>
@@ -86,6 +86,7 @@
 
 	<body>
 		<div class="view-container">
+            <my-nav-bar></my-nav-bar>
 			<div ng-view class="view-frame"></div>
 		</div>
 	</body>
