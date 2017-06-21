@@ -6,6 +6,7 @@ angular.module('trainingApp', [
 	'core',
 	'myErrorMessage',
 	'myHomePage',
+    'myNavBar',
 	'myOptionList',
 	'myUserInfo',	
 	'myUserList',
