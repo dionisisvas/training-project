@@ -7,6 +7,9 @@ body {
     padding-left: 0.5em;
 }
 
+.optional-field {
+    color: #707070;
+}
 .nav-bar-margin {
     margin-top: 60px;
 }

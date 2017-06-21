@@ -5,194 +5,123 @@ angular.
 	component('myUserRegistration', {
 		templateUrl: 'app/user-registration/user-registration.template.html',
 		controller: ['$scope', '$http',
-		function CreateController($scope, $http) {
-$(document).ready(function(){
+            function UserRegistrationController($scope, $http) {
+                $(document).ready(function(){
 
-    	$("#myName").focusout(function(){
-    		if($(this).val()==''){
-        		$(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#error_name").text("* You have to enter your first name!");
-        	}
-        	else
-        	{
-        		$(this).css("border-color", "#2eb82e");
-        		$('#submit').attr('disabled',false);
-        		$("#error_name").text("");
-
-        	}
-       });
-        $("#lastname").focusout(function(){
-    		if($(this).val()==''){
-        		$(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_lastname").text("* You have to enter your Last name!");
-        	}
-        	else
-        	{
-        		$(this).css("border-color", "#2eb82e");
-        		$('#submit').attr('disabled',false);
-        		$("#error_lastname").text("");
-        	}
-       });
-        $("#dateOfBirth").focusout(function(){
-    		if($(this).val()==''){
-        		$(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_dateOfBirth").text("* You have to enter your Date of Birth!");
-        	}
-        	else
-        	{
-        		$(this).css("border-color", "#2eb82e");
-        		$('#submit').attr('disabled',false);
-        		$("#error_dob").text("");
-        	}
-       });
-        $("#gender").focusout(function(){
-        	$(this).css("border-color", "#2eb82e");
-
-       });
-        $("#age").focusout(function(){
-    		if($(this).val()==''){
-        		$(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_age").text("* You have to enter your Age!");
-        	}
-        	else
-        	{
-        		$(this).css({"border-color":"#2eb82e"});
-        		$('#submit').attr('disabled',false);
-        		$("#error_age").text("");
-        	}
-        	});
-        $("#phone").focusout(function(){
-            var pho =$("#phone").val();
-    		if($(this).val()==''){
-        		$(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_phone").text("* You have to enter your Phone Number!");
-        	}
-        	else if (pho.length!=10)
-        	{
-                    $(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_phone").text("* Length of Phone Number Should Be Ten");
-        	}
-        	else if(!$.isNumeric(pho))
-        	{
-        	        $(this).css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			$("#error_phone").text("* Phone Number Should Be Numeric");
-        	}
-        	else{
-        		$(this).css({"border-color":"#2eb82e"});
-        		$('#submit').attr('disabled',false);
-        		$("#error_phone").text("");
-        	}
-
-    	});
-    	 $("#password").focusout(function(){
-                    var password =$("#password").val();
-            		if($(this).val()==''){
-                		$(this).css("border-color", "#FF0000");
-                			$('#submit').attr('disabled',true);
-                			$("#error_password").text("* You have to enter your Password!");
-                	}
-                	else if (password.length<8)
-                	{
+                    $("#name").focusout(function() {
+                        if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
-                			$('#submit').attr('disabled',true);
-                			$("#error_password").text("* Length of Password Should Be At Least 8");
-                	}
-                	else if(!password.match(/[A-Z]/))
-                	{
-                	        $(this).css("border-color", "#FF0000");
-                			$('#submit').attr('disabled',true);
-                			$("#error_password").text("* At Least One Capital Letter");
-                	}else if(!password.match(/[a-z]/))
-                    {
+                            $('#submit').attr('disabled', true);
+                            $("#error_name").text("* Please enter your first name.");
+                        }
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_name").text("");
+                        }
+                    });
+                    
+                    $("#lastName").focusout(function() {
+                        if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
-                            $('#submit').attr('disabled',true);
-                            $("#error_password").text("* At Least One Lowercase Letter");
-                    }else if(!password.match(/\d/))
-                     {
-                    		 $(this).css("border-color", "#FF0000");
-                    		 $('#submit').attr('disabled',true);
-                             $("#error_password").text("* At Least One Number");
-                     }else{
-                		$(this).css({"border-color":"#2eb82e"});
-                		$('#submit').attr('disabled',false);
-                		$("#error_phone").text("");
-                	}
+                            $('#submit').attr('disabled', true);
+                            $("#error_lastName").text("* Please enter your last name.");
+                        }
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_lastName").text("");
+                        }
+                    });
+                    
+                    $("#dateOfBirth").focusout(function() {
+                        if ($(this).val() == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_dateOfBirth").text("* Please enter your date of birth.");
+                        }
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_dateOfBirth").text("");
+                        }
+                    });
 
-            	});
-            	$("#cpassword").focusout(function(){
-            	var cpassword =$("#cpassword").val();
-                    		if($(this).val()==''){
-                        		$(this).css("border-color", "#FF0000");
-                        			$('#submit').attr('disabled',true);
-                        			$("#error_cpassword").text("* You have to enter Password Again!");
-                        	}else if($('#password').val()!=$('#cpassword').val())
-                             {
-                               $(this).css("border-color", "#FF0000");
-                               $('#submit').attr('disabled',true);
-                               $("#error_cpassword").text("* Wrong Password");
-                             }
-                        	else
-                        	{
-                        		$(this).css("border-color", "#2eb82e");
-                        		$('#submit').attr('disabled',false);
-                        		$("#error_cpassword").text("");
-                        	}
-                       });
+                    $("#password").focusout(function() {
+                        var checkFailed = false;
+                        var pwd = $(this).val();
+                        if (pwd == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_password").text("* Please choose a password!");
+                        }
+                        else if (pwd.length < 8) {
+                                $(this).css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_password").text("* The password should be at least 8 characters long.");
+                                checkFailed = true;
+                        }
+                        else {
+                            if (!pwd.match(/[A-Z]/) || !pwd.match(/[a-z]/) || !pwd.match(/\d/)) {
+                                $(this).css("border-color", "#FFFF00");
+                                $('#submit').attr('disabled', false);
+                                $("#warning_password").text("* Suggestion: your password should be mixed case alphanumerical.");
+                            }   
+                            else {
+                                $(this).css("border-color", "#2eb82e");
+                                $('#submit').attr('disabled', false);
+                                $("#error_password").text("");                               
+                            }
+                            
+                            pwdRepeat = $('#passwordRepeat').val();    
+                            if (pwdRepeat != '') {
+                                if (pwdRepeat != pwd) {
+                                    $(this).css("border-color", "#FF0000");
+                                    $('#submit').attr('disabled', true);
+                                    $("#error_passwordRepeat").text("* Passwords don't match.");    
+                                }
+                                else {
+                                    $(this).css("border-color", "#2eb82e");
+                                    $('#submit').attr('disabled', false);
+                                    $("#error_passwordRepeat").text("");                                      
+                                }    
+                            } 
+                        }   
+                    });
+                    
+                    $("#passwordRepeat").focusout(function() {
+                        var passwordRepeat = $(this).val();
+                        if (passwordRepeat == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_passwordRepeat").text("* Please repeat your password!");
+                        }
+                        else if (passwordRepeat != $('#password').val()) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_passwordRepeat").text("* Passwords don't match.");
+                        }
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_passwordRepeat").text("");
+                        }
+                    });
 
-   		$( "#submit" ).click(function() {
-   			if($("#myName" ).val()=='')
-   			{
-        		$("#myName").css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#error_name").text("* You have to enter your first name!");
-        	}
-        	if($("#lastname" ).val()=='')
-   			{
-        		$("#lastname").css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#error_lastname").text("* You have to enter your Last name!");
-        	}
-   			if($("#dateOfBirth" ).val()=='')
-   			{
-        		$("#dateOfBirth").css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#dateOfBirth").text("* You have to enter your Date of Birth!");
-        	}
-   			if($("#age" ).val()=='')
-   			{
-        		$("#age").css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#error_age").text("* You have to enter your Age!");
-        	}
-        	if($("#phone" ).val()=='')
-   			{
-        		$("#phone").css("border-color", "#FF0000");
-        			$('#submit').attr('disabled',true);
-        			 $("#error_phone").text("* You have to enter your Phone Number!");
-        	}
-        	var user =JSON.stringify({
-                		username : $('#username').val(),
-                		userId :  $('#userID').val(),
-                		name :  $('#myName').val(),
-                		surname :  $('#lastname').val(),
-                		dateOfBirth :  $('#dateOfBirth').val(),
-                		phoneNo :  $('#phone').val(),
-                		address :  $('#address').val(),
-                		password : $('#password').val()
+                    $("#submit").click(function() {                        
+                        var user = JSON.stringify({
+                                    username :    $('#username').val(),
+                                    userId :      $('#userID').val(),
+                                    name :        $('#myName').val(),
+                                    surname :     $('#lastname').val(),
+                                    dateOfBirth : $('#dateOfBirth').val(),
+                                    phoneNo :     $('#phone').val(),
+                                    address :     $('#address').val(),
+                                    password :    $('#password').val()
+                        });
 
-                });
-
-                $http.put('http://localhost:8080/spring/api/user/create',user);
-
-			});
-	});
-
-}]
-});
+                        $http.put('http://localhost:8080/spring/api/user/create',user);
+                    });             
+            });
+        }]
+    });
