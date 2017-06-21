@@ -39,11 +39,11 @@
         <spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
         <spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
         <spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
-        <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
+        <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />        
         <spring:url value="/app/user-info/user-info.module.js" var="userInfoModuleJs" />
-        <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />
-        <spring:url value="/app/user-create/create.module.js" var="createModuleJs" />
-        <spring:url value="/app/user-create/create.component.js" var="userCreateComponentJs" />
+        <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />        
+        <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
+        <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
 
         <script
             src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -80,8 +80,8 @@
         <script src="${userListComponentJs}"></script>
         <script src="${userInfoModuleJs}"></script>
         <script src="${userInfoComponentJs}"></script>
-        <script src="${createModuleJs}"></script>
-        <script src="${userCreateComponentJs}"></script>
+        <script src="${userRegistrationModuleJs}"></script>
+        <script src="${userRegistrationComponentJs}"></script>
 	</head>
 
 	<body>

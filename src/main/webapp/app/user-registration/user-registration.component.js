@@ -1,8 +1,9 @@
 'use strict';
+
 angular.
-	module('myApp',['ngRoute']).
-	component('myApp', {
-		templateUrl: 'app/user-create/index.html',
+	module('myUserRegistration',['ngRoute']).
+	component('myUserRegistration', {
+		templateUrl: 'app/user-registration/user-registration.template.html',
 		controller: ['$scope', '$http',
 		function CreateController($scope, $http) {
 $(document).ready(function(){

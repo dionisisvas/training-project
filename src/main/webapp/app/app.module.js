@@ -8,7 +8,7 @@ angular.module('trainingApp', [
 	'myHomePage',
     'myNavBar',
 	'myOptionList',
+	'myUserRegistration',
 	'myUserInfo',	
-	'myUserList',
-	'myApp'
+	'myUserList'
 ]);

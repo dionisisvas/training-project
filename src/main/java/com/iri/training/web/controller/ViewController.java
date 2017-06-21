@@ -21,7 +21,7 @@ public class ViewController {
 		return "app";
 	}
 
-	@RequestMapping(value = "/create/user")
+	@RequestMapping(value = "/register")
 	public String userCreatePage() {
 		return "app";
 	}
