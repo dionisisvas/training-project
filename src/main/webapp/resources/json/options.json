@@ -13,8 +13,8 @@
 	},
 	{
 		"param": null,
-		"dir": ["create/user"],
-		"info": "user specific info",
+		"dir": ["register"],
+		"info": "user registration",
 		"isAPI": false
 	},	    
 	{

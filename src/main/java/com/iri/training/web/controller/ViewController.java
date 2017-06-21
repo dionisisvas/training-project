@@ -16,13 +16,14 @@ public class ViewController {
 		return "app";
 	}
 
+	@RequestMapping(value = "/error")
+	public String errorPage() { return "app"; }
+
 	@RequestMapping(value = "/user/*")
-	public String userPage() {
+	public String userInfo() {
 		return "app";
 	}
 
 	@RequestMapping(value = "/register")
-	public String userCreatePage() {
-		return "app";
-	}
+	public String userRegistration() { return "app"; }
 }
