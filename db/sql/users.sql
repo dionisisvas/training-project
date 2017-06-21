@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-	username   	 TEXT       UNIQUE,	
-	userId 	  	 INTEGER    PRIMARY KEY AUTOINCREMENT,
-	name      	 TEXT		NOT_NULL,
-	surname   	 TEXT		NOT_NULL,
-	dob       	 TEXT       NOT_NULL,
-	phoneNo      TEXT,
-	address   	 TEXT,
-	password  	 TEXT -- Safety above all
+    username    TEXT        UNIQUE,
+    userId      INTEGER     PRIMARY KEY AUTOINCREMENT,
+    name        TEXT        NOT_NULL,
+    surname     TEXT        NOT_NULL,
+    dob         TEXT        NOT_NULL,
+    phoneNo     TEXT,
+    address     TEXT,
+    password    TEXT -- Safety above all
 );
 
 BEGIN TRANSACTION;

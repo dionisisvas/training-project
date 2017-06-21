@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid nav-bar-margin">
 	<div class="row">
 		<div class="col-md-2">
 			<p>
@@ -27,7 +27,12 @@
 						</div>
 					</a>
 					<a href="user/{{user.userId}}"><strong>{{user.surname}}</strong>, {{user.name}}</a>
-					<p><em>{{user.age}} years old</em></p>
+                    <div ng-if="user.age">
+                        <p><em>{{user.age}} years old</em></p>
+                    </div>
+                    <div ng-if="!user.age">
+                        <p><em>Unknown age</em></p>
+                    </div>                    
 				</li>
 				<li ng-hide="($ctrl.users | filter: $ctrl.query).length < 4">
 					<button ng-click="$ctrl.getLowerLimit()" ng-if="$ctrl.limit > $ctrl.startingLimit">
