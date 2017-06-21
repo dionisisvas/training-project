@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iri.training.model.UserComment;
-import com.iri.training.repository.UserCommentRepository;
+import com.iri.training.repository.CommentRepository;
 
 @Service
-public class UserCommentServiceImpl implements UserCommentService {
-	Logger logger = Logger.getLogger(UserCommentServiceImpl.class);
+public class CommentServiceImpl implements CommentService {
+	Logger logger = Logger.getLogger(CommentServiceImpl.class);
 	@Autowired
-	UserCommentRepository userCommentRepository;
+	CommentRepository userCommentRepository;
 
 	@Override
 

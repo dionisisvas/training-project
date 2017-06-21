@@ -27,9 +27,9 @@ public class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
-	private ConnectToBase dbConnection = new ConnectToBase();
+	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/app_sql.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 	public UserRepositoryImpl() throws IOException {}
@@ -76,12 +76,10 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
 								 user.getAddress(),
-			           user.getPassword());
-		System.out.print("User Inserted Successfully");
-
-
+								 user.getPassword());
 
 		logger.debug("EXITING createUser: " + user);
+
 		return user;
 	}
 

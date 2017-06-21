@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.iri.training.model.UserComment;
 
-public interface UserCommentRepository {
+public interface CommentRepository {
 	List<UserComment> getCommentsByUserId(Long userId) throws SQLException;
 	UserComment createUserComment(UserComment userComment) throws SQLException;
 }

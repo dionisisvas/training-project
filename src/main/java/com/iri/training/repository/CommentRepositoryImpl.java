@@ -19,17 +19,17 @@ import com.iri.training.model.UserComment;
 import com.iri.training.model.builder.UserCommentBuilder;
 
 @Repository
-public class UserCommentRepositoryImpl implements UserCommentRepository{
+public class CommentRepositoryImpl implements CommentRepository {
 
-	Logger logger = Logger.getLogger(UserCommentRepositoryImpl.class);
+	Logger logger = Logger.getLogger(CommentRepositoryImpl.class);
 	private JdbcTemplate jdbcTemplate;
-	private ConnectToBase dbConnection = new ConnectToBase();
+	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/app_sql.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 
-	public UserCommentRepositoryImpl() throws IOException {}
+	public CommentRepositoryImpl() throws IOException {}
 
 
 	@Override

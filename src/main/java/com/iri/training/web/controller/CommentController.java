@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.UserComment;
-import com.iri.training.web.service.UserCommentService;
+import com.iri.training.web.service.CommentService;
 
 @RestController
 @RequestMapping("/userComment")
 public class CommentController {
 	Logger logger = Logger.getLogger(CommentController.class);
 	@Autowired
-	UserCommentService userCommentService;
+	CommentService userCommentService;
 	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
 	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
 

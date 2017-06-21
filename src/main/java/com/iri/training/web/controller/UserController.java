@@ -32,11 +32,12 @@ public class UserController {
 	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 
-		logger.debug("ENTERED createUser: "+user);
+		logger.debug("ENTERED createUser: " +user);
 
 		userService.createUser(user);
 
 		logger.debug("EXITING createUser " + user);
+
 		return new ResponseEntity( HttpStatus.OK);
 	}
 
@@ -59,7 +60,7 @@ public class UserController {
 	public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) throws SQLException {
 
 
-		logger.debug("ENTERED getUserById: "+ userId);
+		logger.debug("ENTERED getUserById: " + userId);
 
 
 		User user = userService.getUserById(userId);

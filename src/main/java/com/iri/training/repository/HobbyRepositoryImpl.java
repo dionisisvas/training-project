@@ -25,9 +25,9 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
-	private ConnectToBase dbConnection = new ConnectToBase();
+	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/app_sql.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 	public HobbyRepositoryImpl() throws IOException {}
