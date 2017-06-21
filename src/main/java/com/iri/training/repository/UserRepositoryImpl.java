@@ -29,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("src/main/resources/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 	public UserRepositoryImpl() throws IOException {}
