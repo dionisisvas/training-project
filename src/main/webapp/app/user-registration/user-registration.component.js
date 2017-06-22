@@ -25,10 +25,18 @@ angular.
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username can only contain alphanumerical characters.");
                         }                         
-                        else {
-                            $(this).css("border-color", "#2eb82e");
-                            $('#submit').attr('disabled', false);
-                            $("#error_username").text("");
+                        else {  
+                            var self = $(this);
+                            var tmpUser = User.UserByUsername.get({username: username});
+                            tmpUser.$promise.then(function(userResult) {
+                                self.css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_username").text("* This username is already in use.");                          
+                            }, function() {
+                                self.css("border-color", "#2eb82e");
+                                $('#submit').attr('disabled', false);
+                                $("#error_username").text("");                          
+                            });
                         }
                     });
                     

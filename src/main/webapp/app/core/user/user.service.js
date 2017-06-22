@@ -5,6 +5,7 @@ angular.
 	factory('User', ['$resource',
 		function($resource) {
 			return {
+				UserByUsername: $resource('api/user/:username'),                
 				UserById: $resource('api/user/uid/:userId'),
 				UserList: $resource('api/user/list'),                
                 Register: $resource('api/user/register')

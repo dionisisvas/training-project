@@ -23,7 +23,9 @@ public  class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(String username) throws SQLException {
 		User user = userRepository.getUser(username);
-		user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+		if (user != null) {
+			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+		}
 
 		return user;
 	}
@@ -31,7 +33,9 @@ public  class UserServiceImpl implements UserService {
 	@Override
 	public User getUserById(Long userId) throws SQLException {
 		User user = userRepository.getUserById(userId);
-		user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+		if (user != null) {
+			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+		}
 
 		return user;
 	}
