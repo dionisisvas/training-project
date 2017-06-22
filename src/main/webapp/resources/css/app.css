@@ -10,10 +10,14 @@ body {
 .optional-field {
     color: #707070;
 }
-.nav-bar-margin {
+
+.mt-0 {
     margin-top: 60px;
 }
 
+.pl-1 {
+    padding-left: 0.5em;
+}
 .project-info {
     background-color: #d9edf7;
 }

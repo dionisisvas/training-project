@@ -16,6 +16,12 @@
 		"dir": ["register"],
 		"info": "user registration",
 		"isAPI": false
+	},	
+	{
+		"param": null,
+		"dir": ["login"],
+		"info": "user authentication",
+		"isAPI": false
 	},	    
 	{
 		"param": "userId",

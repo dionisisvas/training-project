@@ -7,7 +7,31 @@ angular.
 		controller: ['$scope', '$http',
             function UserRegistrationController($scope, $http) {
                 $(document).ready(function(){
-
+                    
+                    $("#username").focusout(function() {
+                        var username = $(this).val();                        
+                        if (username == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_username").text("* Please choose a username.");
+                        }
+                        else if (username.length < 3) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_username").text("* The username must be at least 3 characters long.");
+                        }
+                        else if (username.match(/[\W]/)) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_username").text("* The username can only contain alphanumerical characters.");
+                        }                         
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_username").text("");
+                        }
+                    });
+                    
                     $("#name").focusout(function() {
                         if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
@@ -48,7 +72,6 @@ angular.
                     });
 
                     $("#password").focusout(function() {
-                        var checkFailed = false;
                         var pwd = $(this).val();
                         if (pwd == '') {
                             $(this).css("border-color", "#FF0000");
@@ -111,16 +134,15 @@ angular.
                     $("#submit").click(function() {                        
                         var user = JSON.stringify({
                                     username :    $('#username').val(),
-                                    userId :      $('#userID').val(),
-                                    name :        $('#myName').val(),
-                                    surname :     $('#lastname').val(),
+                                    name :        $('#name').val(),
+                                    surname :     $('#lastName').val(),
                                     dateOfBirth : $('#dateOfBirth').val(),
+                                    password :    $('#password').val(),                                    
                                     phoneNo :     $('#phone').val(),
-                                    address :     $('#address').val(),
-                                    password :    $('#password').val()
+                                    address :     $('#address').val()
                         });
 
-                        $http.put('http://localhost:8080/spring/api/user/create',user);
+                        $http.put('http://localhost:8080/home/api/user/create',user);
                     });             
             });
         }]
