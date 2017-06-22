@@ -19,7 +19,15 @@ public  class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
+	@Override
+	public User getUser(String username) throws SQLException {
+		User user = userRepository.getUser(username);
+		user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+
+		return user;
+	}
+
 	@Override
 	public User getUserById(Long userId) throws SQLException {
 		User user = userRepository.getUserById(userId);

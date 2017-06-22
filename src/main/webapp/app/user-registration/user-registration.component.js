@@ -1,11 +1,11 @@
 'use strict';
 
 angular.
-	module('myUserRegistration',['ngRoute']).
+	module('myUserRegistration').
 	component('myUserRegistration', {
 		templateUrl: 'app/user-registration/user-registration.template.html',
-		controller: ['$scope', '$http',
-            function UserRegistrationController($scope, $http) {
+		controller: ['User',
+            function UserRegistrationController(User) {
                 $(document).ready(function(){
                     
                     $("#username").focusout(function() {
@@ -95,20 +95,6 @@ angular.
                                 $('#submit').attr('disabled', false);
                                 $("#error_password").text("");                               
                             }
-                            
-                            pwdRepeat = $('#passwordRepeat').val();    
-                            if (pwdRepeat != '') {
-                                if (pwdRepeat != pwd) {
-                                    $(this).css("border-color", "#FF0000");
-                                    $('#submit').attr('disabled', true);
-                                    $("#error_passwordRepeat").text("* Passwords don't match.");    
-                                }
-                                else {
-                                    $(this).css("border-color", "#2eb82e");
-                                    $('#submit').attr('disabled', false);
-                                    $("#error_passwordRepeat").text("");                                      
-                                }    
-                            } 
                         }   
                     });
                     
@@ -142,7 +128,7 @@ angular.
                                     address :     $('#address').val()
                         });
 
-                        $http.put('http://localhost:8080/home/api/user/create',user);
+                        User.Register.save(user);
                     });             
             });
         }]

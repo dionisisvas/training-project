@@ -35,7 +35,7 @@ angular.
 					});					
 				}	
 				
-				self.user = User.get({userId: $routeParams.userId}, function(user) {
+				self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
 					self.getUserImages();
 					self.getUserHobbies();
 				});	

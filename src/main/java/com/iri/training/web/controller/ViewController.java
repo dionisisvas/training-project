@@ -19,7 +19,7 @@ public class ViewController {
 	@RequestMapping(value = "/error")
 	public String errorPage() { return "app"; }
 
-	@RequestMapping(value = "/user/*")
+	@RequestMapping(value = "/user/**")
 	public String userInfo() {
 		return "app";
 	}

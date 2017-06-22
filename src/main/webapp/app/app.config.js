@@ -13,10 +13,10 @@ angular.
 				when('/error', {
 					template: '<my-error-page></my-error-page>'
 				}).				
-				when('/user', {
+				when('/user/list', {
 					template: '<my-user-list></my-user-list>'
 				}).
-				when('/user/:userId', {
+				when('/user/uid/:userId', {
 					template: '<my-user-info></my-user-info>'
 				}).
 				when('/register', {

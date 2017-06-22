@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('myUserRegistration', [
-    'ngRoute'
+    'ngRoute',
+    'core.user'
 ]);
 

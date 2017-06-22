@@ -35,12 +35,26 @@ public class UserRepositoryImpl implements UserRepository {
 	public UserRepositoryImpl() throws IOException {}
 
 	@Override
+	public User getUser(final String username) throws SQLException {
+		logger.debug("ENTERED getUser for username: " + username);
+
+		final User user;
+		String sql = property.getString("RETRIEVE_USER_BY_USERNAME");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		user = jdbcTemplate.query(sql, new Object[]{username}, new UserResultSetExtractor());
+
+		logger.debug("EXITING getUser: " + user);
+
+		return user;
+	}
+
+	@Override
 	@Cacheable(value="findUser", key="#userId")
 	public User getUserById(Long userId ) throws SQLException {
 		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user;
-		String sql = property.getString("RETRIEVE_USER");
+		String sql = property.getString("RETRIEVE_USER_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		user = jdbcTemplate.query(sql, new Object[]{userId}, new UserResultSetExtractor());
 

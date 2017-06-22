@@ -7,7 +7,7 @@
 	},
 	{
 		"param": null,
-		"dir": ["user"],
+		"dir": ["user/list"],
 		"info": "user list",
 		"isAPI": false
 	},
@@ -25,7 +25,7 @@
 	},	    
 	{
 		"param": "userId",
-		"dir": ["user"],
+		"dir": ["user/uid"],
 		"info": "user specific info",
 		"isAPI": false
 	},	
@@ -37,19 +37,19 @@
 	},	
 	{
 		"param": null,
-		"dir": ["user"],
+		"dir": ["user/list"],
 		"info": "get the user list",
 		"isAPI": true
 	},	
 	{
 		"param": "userId",
-		"dir": ["user"],
+		"dir": ["user/uid"],
 		"info": "get a user by id",
 		"isAPI": true
 	},
 	{
 		"param": null,
-		"dir": ["user/create"],
+		"dir": ["user/register"],
 		"info": "register a user",
 		"isAPI": true
 	},	
@@ -73,7 +73,7 @@
 	},		
 	{
 		"param": null,
-		"dir": ["hobby"],
+		"dir": ["hobby/list"],
 		"info": "get a list of all hobbies",
 		"isAPI": true
 	},	

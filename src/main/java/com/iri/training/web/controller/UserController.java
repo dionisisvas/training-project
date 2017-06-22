@@ -25,13 +25,12 @@ public class UserController {
 	Logger logger = Logger.getLogger(UserController.class);
 
 
-		@Autowired
+	@Autowired
 	UserService userService;
 
 
-	@RequestMapping(value = "/create", method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
-
 		logger.debug("ENTERED createUser: " +user);
 
 		userService.createUser(user);
@@ -41,7 +40,7 @@ public class UserController {
 		return new ResponseEntity( HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
 
 		logger.debug("ENTERED getAllUsers");
@@ -56,8 +55,27 @@ public class UserController {
 		return new ResponseEntity<ArrayList<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUser(@PathVariable("userId") Long userId) throws SQLException {
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	public ResponseEntity<User> getUser(@PathVariable("username") String username) throws SQLException {
+
+
+		logger.debug("ENTERED getUser: " + username);
+
+
+		User user = userService.getUser(username);
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		}
+
+
+		logger.debug("EXITING getUser " + user);
+
+
+		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET)
+	public ResponseEntity<User> getUserById(@PathVariable("userId") Long userId) throws SQLException {
 
 
 		logger.debug("ENTERED getUserById: " + userId);
@@ -69,7 +87,7 @@ public class UserController {
 		}
 
 
-		logger.debug("EXITING getUserPage " + user);
+		logger.debug("EXITING getUserById " + user);
 
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
