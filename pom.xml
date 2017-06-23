@@ -9,7 +9,7 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<spring.version>4.2.4.RELEASE</spring.version>
+		<spring.version>4.2.9.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
 		<servletapi.version>3.1.0</servletapi.version>
 		<angular.version>1.6.4</angular.version>
@@ -18,7 +18,6 @@
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.19</mockito.version>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
@@ -73,11 +72,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-jwt</artifactId>
 		</dependency>
 
 		<dependency>
