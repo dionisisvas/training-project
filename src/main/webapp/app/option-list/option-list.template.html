@@ -1,28 +1,24 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3">
-			<h4>Pages:</h4>
-			<ul class="pages">
-				<li ng-repeat="page in $ctrl.pageOptions">
-					<div ng-if="page.param">
-						*/spring/<strong>{{page.dir}}</strong>/<em>{{page.param}}</em>
-						<br>{{page.info}}
-					</div>
-					<div ng-if="!page.param">
-						<a href="{{page.dir}}">*/spring/<strong>{{page.dir}}</strong></a>
-						<br>{{page.info}}
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="col-md-3">		
-			<h4>REST API:</h4>
-			<ul class="apis">
-				<li ng-repeat="api in $ctrl.restOptions">
-					*/spring/api/<strong>{{api.dir}}</strong>/<em>{{api.param}}</em><strong>{{api.dir2}}</strong>
-					<br>{{api.info}}
-				</li>
-			</ul>
-		</div>
-	</div>
+<div class="col-md-3">
+	<h4>Pages:</h4>
+	<ul class="pages">
+		<li ng-repeat="option in $ctrl.options" ng-if="!option.isAPI">
+			<div ng-if="option.param">
+				<font size="3.2em">*/home/<strong>{{option.dir[0]}}</strong>/<em>{{option.param}}</em></font>
+				<span class="text-info"><br>{{option.info}}</span>
+			</div>
+			<div ng-if="!option.param">
+				<font size="3.2em"><a href="{{option.dir[0]}}">*/home/<strong>{{option.dir[0]}}</strong></a></font>
+				<span class="text-info"><br>{{option.info}}</span>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="col-md-3">		
+	<h4>REST API:</h4>
+	<ul class="apis">			
+		<li ng-repeat="option in $ctrl.options" ng-if="option.isAPI">
+			<font size="3.2em">*/home/api/<strong>{{option.dir[0]}}</strong>/<em>{{option.param}}</em><strong>{{option.dir[1]}}</strong></font>
+			<span class="text-info"><br>{{option.info}}</span>
+		</li>
+	</ul>
 </div>

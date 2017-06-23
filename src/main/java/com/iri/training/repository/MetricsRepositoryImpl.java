@@ -23,9 +23,9 @@ public class MetricsRepositoryImpl implements MetricsRepository {
 private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
-	private ConnectToBase dbConnection = new ConnectToBase();
+	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 	public MetricsRepositoryImpl() throws IOException {}

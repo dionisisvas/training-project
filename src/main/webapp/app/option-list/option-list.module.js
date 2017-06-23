@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('myOptionList', [
-	'ngRoute'
+	'ngRoute',
+	'core.option'
 ]);

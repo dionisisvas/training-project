@@ -22,4 +22,20 @@ public class Image {
 	public String getImgUri() { return imgUri; }
 
 	public void setImgUri(final String imgUri) { this.imgUri = imgUri; }
+
+	@Override public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Image{");
+		sb.append("imgId=");
+		sb.append(imgId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", imgUri='");
+		sb.append(imgUri);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
+	}
 }
