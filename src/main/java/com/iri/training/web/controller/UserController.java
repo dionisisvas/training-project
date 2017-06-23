@@ -28,18 +28,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
-		logger.debug("ENTERED createUser: " +user);
-
-		userService.createUser(user);
-
-		logger.debug("EXITING createUser " + user);
-
-		return new ResponseEntity( HttpStatus.OK);
-	}
-
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
 
@@ -86,10 +74,29 @@ public class UserController {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
-
 		logger.debug("EXITING getUserById " + user);
 
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
+		logger.debug("ENTERED createUser: " +user);
+
+		userService.createUser(user);
+
+		logger.debug("EXITING createUser: " + user);
+
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity authUser(@RequestBody String authToken) throws SQLException {
+		logger.debug("ENTERED authUser");
+
+		logger.debug("EXITING authUser");
+
+		return new ResponseEntity(HttpStatus.OK);
 	}
 }

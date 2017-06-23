@@ -93,14 +93,15 @@ angular.
                                 checkFailed = true;
                         }
                         else {
-                            if (!pwd.match(/[A-Z]/) || !pwd.match(/[a-z]/) || !pwd.match(/\d/)) {
+                            if (!pwd.match(/[A-Z]/) || !pwd.match(/[a-z]/) || !pwd.match(/\d/) || !pwd.match(/[\W]/)) {
                                 $(this).css("border-color", "#FFFF00");
                                 $('#submit').attr('disabled', false);
-                                $("#warning_password").text("* Suggestion: your password should be mixed case alphanumerical.");
+                                $("#warning_password").text("* Suggestion: your password should be mixed case with alphanumerical and symbol characters.");
                             }   
                             else {
                                 $(this).css("border-color", "#2eb82e");
                                 $('#submit').attr('disabled', false);
+                                $("#warning_password").text(""); 
                                 $("#error_password").text("");                               
                             }
                         }   

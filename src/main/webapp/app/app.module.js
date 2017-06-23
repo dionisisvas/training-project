@@ -10,5 +10,6 @@ angular.module('trainingApp', [
 	'myOptionList',
 	'myUserRegistration',
 	'myUserInfo',	
-	'myUserList'
+	'myUserList',
+    'myUserLogin'
 ]);

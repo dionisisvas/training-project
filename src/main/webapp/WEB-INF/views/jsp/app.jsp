@@ -39,7 +39,9 @@
         <spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
         <spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
         <spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
-        <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />        
+        <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />            
+        <spring:url value="/app/user-login/user-login.module.js" var="userLoginModuleJs" />
+        <spring:url value="/app/user-login/user-login.component.js" var="userLoginComponentJs" />        
         <spring:url value="/app/user-info/user-info.module.js" var="userInfoModuleJs" />
         <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />        
         <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
@@ -78,6 +80,8 @@
         <script src="${optionListComponentJs}"></script>
         <script src="${userListModuleJs}"></script>
         <script src="${userListComponentJs}"></script>
+        <script src="${userLoginModuleJs}"></script>
+        <script src="${userLoginComponentJs}"></script>        
         <script src="${userInfoModuleJs}"></script>
         <script src="${userInfoComponentJs}"></script>
         <script src="${userRegistrationModuleJs}"></script>

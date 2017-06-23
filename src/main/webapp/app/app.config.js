@@ -22,6 +22,9 @@ angular.
 				when('/register', {
                 	template: '<my-user-registration></my-user-registration>'
                	}).
+				when('/login', {
+                	template: '<my-user-login></my-user-login>'
+               	}).                
 				otherwise('/error');
 		}
 	]);
