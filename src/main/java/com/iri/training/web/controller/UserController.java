@@ -82,7 +82,7 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
-		logger.debug("ENTERED createUser: " +user);
+		logger.debug("ENTERED createUser: " + user);
 
 		userService.createUser(user);
 
@@ -91,7 +91,7 @@ public class UserController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity authUser(@RequestBody String authToken) throws SQLException {
 		logger.debug("ENTERED authUser");
 

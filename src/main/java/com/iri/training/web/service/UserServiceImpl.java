@@ -49,7 +49,9 @@ public  class UserServiceImpl implements UserService {
 	public List<User> getUserList() throws SQLException {
 		List<User> userList = new ArrayList<User>(userRepository.getUserList());
 		for (User user : userList) {
-			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+			if (user != null) {
+				user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+			}
 		}
 
 		return userList;
