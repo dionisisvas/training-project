@@ -24,7 +24,10 @@ angular.
                	}).
 				when('/login', {
                 	template: '<my-user-login></my-user-login>'
-               	}).                
+               	}).
+               	when('/statistic', {
+                    template: '<my-user-statistics></my-user-statistics>'
+                }).
 				otherwise('/error');
 		}
 	]);
