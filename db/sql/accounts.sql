@@ -2,7 +2,8 @@ DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
     userId      INTEGER     NOT_NULL UNIQUE,
     username    TEXT        NOT_NULL UNIQUE,
-    password    TEXT        NOT_NULL
+    password    TEXT        NOT_NULL,
+ 	FOREIGN KEY (userId) REFERENCES users(userId)   
 );
 
 BEGIN TRANSACTION;

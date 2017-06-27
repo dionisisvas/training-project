@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class User  {
 
-	private String username;
 	private Long userId;
 	private String name;
 	private String surname;
@@ -12,11 +11,6 @@ public class User  {
 	private LocalDate dateOfBirth;
 	private String phoneNo;
 	private String address;
-	private String password;
-
-	public String getUsername() { return username; }
-
-	public void setUsername(final String username) { this.username = username; }
 
 	public Long getUserId() { return userId; }
 
@@ -46,20 +40,10 @@ public class User  {
 
 	public void setAddress(final String address) { this.address = address; }
 
-	public String getPassword() { return password; }
-
-	public void setPassword(final String password) { this.password = password; }
-
-
-	
-
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("User{");
-		sb.append("username='");
-		sb.append(username);
-		sb.append('\'');
 		sb.append(", userId=");
 		sb.append(userId);
 		sb.append(", name='");

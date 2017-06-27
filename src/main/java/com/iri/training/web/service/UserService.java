@@ -8,7 +8,7 @@ import com.iri.training.model.User;
 
 public interface UserService {
 
-	User getUser(String username) throws SQLException;
+	User getUserByUsername(String username) throws SQLException;
 
 	User getUserById(Long userId) throws SQLException;
 

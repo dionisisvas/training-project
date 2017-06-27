@@ -44,19 +44,19 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUser(@PathVariable("username") String username) throws SQLException {
+	public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) throws SQLException {
 
 
-		logger.debug("ENTERED getUser: " + username);
+		logger.debug("ENTERED getUserByUsername: " + username);
 
 
-		User user = userService.getUser(username);
+		User user = userService.getUserByUsername(username);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
 
-		logger.debug("EXITING getUser " + user);
+		logger.debug("EXITING getUserByUsername " + user);
 
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);

@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS user_images(
     imgId           INTEGER     PRIMARY KEY AUTOINCREMENT,
     userId          INTEGER     NOT_NULL,
     isProfileImg    BOOLEAN     DEFAULT '0',
-    imgUri          TEXT        NOT_NULL UNIQUE
+    imgUri          TEXT        NOT_NULL UNIQUE,
+	FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
 BEGIN TRANSACTION;
