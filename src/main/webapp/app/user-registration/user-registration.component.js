@@ -25,10 +25,18 @@ angular.
                             $('#submit').attr('disabled', true);
                             $("#error_email").text("* Not a valid email.");                            
                         }
-                        else {
-                            $(this).css("border-color", "#2eb82e");
-                            $('#submit').attr('disabled', false);
-                            $("#error_email").text("");
+                        else {  
+                            var self = $(this);
+                            var tmpUser = Account.AccountByEmail.get({email: email});
+                            tmpUser.$promise.then(function(accountResult) {
+                                self.css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_email").text("* This email is already in use.");                          
+                            }, function() {
+                                self.css("border-color", "#2eb82e");
+                                $('#submit').attr('disabled', false);
+                                $("#error_email").text("");                          
+                            });
                         }
                     });  
                     
@@ -165,7 +173,7 @@ angular.
                         self.account =  JSON.stringify({
                                     username :    $('#username').val(),
                                     password :    $('#password').val(),
-                                    email:        $('#email').val(),
+                                    email:        $('#email').val()
                         });
  
                         var userRegistration = User.Register.save(user);

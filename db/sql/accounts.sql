@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS accounts(
     accountId   INTEGER     PRIMARY KEY AUTOINCREMENT,
     username    TEXT        NOT_NULL UNIQUE,
     password    TEXT        NOT_NULL,
-    email       TEXT        NOT_NULL
+    email       TEXT        NOT_NULL UNIQUE
 );
 
 BEGIN TRANSACTION;

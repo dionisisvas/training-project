@@ -7,6 +7,7 @@ angular.
 			return {
 				AccountByUsername: $resource('api/account/:username'),                
 				AccountById: $resource('api/account/id/:accountId'),
+				AccountByEmail: $resource('api/account/email/:email'),                  
 				AccountList: $resource('api/account/list'),                
                 Create: $resource('api/account/create')
 			};

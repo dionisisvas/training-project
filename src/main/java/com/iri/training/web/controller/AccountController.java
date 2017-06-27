@@ -33,11 +33,12 @@ public class AccountController {
 		logger.debug("ENTERED getAllAccounts");
 
 		ArrayList<Account> accounts = (ArrayList) accountService.getAccountList();
+
+		logger.debug("EXITING getAllAccounts");
+
 		if (accounts != null) {
 			return new ResponseEntity<ArrayList<Account>>(accounts, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getAllAccounts");
 
 		return new ResponseEntity<ArrayList<Account>>(HttpStatus.NOT_FOUND);
 	}
@@ -50,13 +51,12 @@ public class AccountController {
 
 
 		Account account = accountService.getAccount(username);
-		if (account != null) {
-			return new ResponseEntity<Account>(account, HttpStatus.OK);
-		}
-
 
 		logger.debug("EXITING getAccount " + account);
 
+		if (account != null) {
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
+		}
 
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
@@ -69,17 +69,35 @@ public class AccountController {
 
 
 		Account account = accountService.getAccountById(accountId);
+
+		logger.debug("EXITING getAccountById " + account);
+
 		if (account != null) {
 			return new ResponseEntity<Account>(account, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getAccountById " + account);
+		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
+	}
 
+	@RequestMapping(value = "/email/{email:.+}", method = RequestMethod.GET)
+	public ResponseEntity<Account> getAccountByEmail(@PathVariable("email") String email) throws SQLException {
+
+
+		logger.debug("ENTERED getAccountByEmail: " + email);
+
+
+		Account account = accountService.getAccountByEmail(email);
+
+		logger.debug("EXITING getAccountByEmail: " + account);
+
+		if (account != null) {
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
+		}
 
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createAccount(@RequestBody Account account) throws SQLException {
 		logger.debug("ENTERED createAccount: " + account);
 

@@ -34,6 +34,12 @@ public  class AccountServiceImpl implements AccountService {
 		return account;
 	}
 
+	@Override public Account getAccountByEmail(final String email) throws SQLException {
+		Account account = accountRepository.getAccountByEmail(email);
+
+		return account;
+	}
+
 	@Override
 	public Account createAccount(Account account) throws SQLException {
 		return accountRepository.createAccount(account);
