@@ -28,8 +28,8 @@ public  class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account getAccountById(Long userId) throws SQLException {
-		Account account = accountRepository.getAccountById(userId);
+	public Account getAccountById(Long accountId) throws SQLException {
+		Account account = accountRepository.getAccountById(accountId);
 
 		return account;
 	}

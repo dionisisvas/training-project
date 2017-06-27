@@ -22,6 +22,8 @@
         <spring:url value="/app/app.module.js" var="appModuleJs" />
         <spring:url value="/app/app.config.js" var="appConfigJs" />
         <spring:url value="/app/core/core.module.js" var="coreModuleJs" />
+        <spring:url value="/app/core/account/account.module.js" var="accountModuleJs" />
+        <spring:url value="/app/core/account/account.service.js" var="accountServiceJs" />	        
         <spring:url value="/app/core/hobby/hobby.module.js" var="hobbyModuleJs" />
         <spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />	
         <spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
@@ -62,6 +64,8 @@
         <script src="${coreModuleJs}"></script>		
         <script src="${appModuleJs}"></script>
         <script src="${appConfigJs}"></script>
+        <script src="${accountModuleJs}"></script>
+        <script src="${accountServiceJs}"></script>	        
         <script src="${hobbyModuleJs}"></script>
         <script src="${hobbyServiceJs}"></script>		
         <script src="${imageModuleJs}"></script>

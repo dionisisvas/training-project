@@ -4,8 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
@@ -48,14 +46,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	@Cacheable(value="findAccount", key="#userId")
-	public Account getAccountById(Long userId ) throws SQLException {
-		logger.debug("ENTERED getAccountById for userId: " + userId);
+	@Cacheable(value="findAccount", key="#accountId")
+	public Account getAccountById(Long accountId ) throws SQLException {
+		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 
 		final Account account;
 		String sql = property.getString("RETRIEVE_ACCOUNT_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		account = jdbcTemplate.query(sql, new Object[]{userId}, new AccountResultSetExtractor());
+		account = jdbcTemplate.query(sql, new Object[]{accountId}, new AccountResultSetExtractor());
 
 		logger.debug("EXITING getAccountById: " + account);
 
@@ -82,9 +80,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 		String sql = property.getString("CREATE_ACCOUNT");
 		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql, account.getUserId(),
-								 account.getUsername(),
-								 account.getPassword());
+		jdbcTemplate.update(sql, account.getUsername(),
+								 account.getPassword(),
+								 account.getEmail());
 
 		logger.debug("EXITING createAccount: " + account);
 
@@ -100,9 +98,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 			if (resultSet.next()) {
 				account = new AccountBuilder()
-					.withUserId(resultSet.getLong("userId"))
+					.withAccountId(resultSet.getLong("userId"))
 					.withUsername(resultSet.getString("username"))
 					.withPassword(resultSet.getString("password"))
+					.withEmail(resultSet.getString("email"))
 					.build();
 			}
 			else
@@ -123,8 +122,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 			while (resultSet.next()) {
 				accountList.add(new AccountBuilder()
 					.withUsername(resultSet.getString("username"))
-					.withUserId(resultSet.getLong("userId"))
-					.withPassword(resultSet.getString("password"))
+					.withAccountId(resultSet.getLong("userId"))
+					.withEmail(resultSet.getString("email"))
 					.build());
 			}
 

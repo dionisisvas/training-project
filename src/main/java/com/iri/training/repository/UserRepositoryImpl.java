@@ -35,6 +35,20 @@ public class UserRepositoryImpl implements UserRepository {
 	public UserRepositoryImpl() throws IOException {}
 
 	@Override
+	public User getUserByUsername(final String username) throws SQLException {
+		logger.debug("ENTERED getUserByUsername for username: " + username);
+
+		final User user;
+		String sql = property.getString("RETRIEVE_USER_BY_USERNAME");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		user = jdbcTemplate.query(sql, new Object[]{username}, new UserResultSetExtractor());
+
+		logger.debug("EXITING getUserByUsername: " + user);
+
+		return user;
+	}
+
+	@Override
 	@Cacheable(value="findUser", key="#userId")
 	public User getUserById(Long userId ) throws SQLException {
 		logger.debug("ENTERED getUserById for userId: " + userId);
@@ -68,8 +82,8 @@ public class UserRepositoryImpl implements UserRepository {
 		logger.debug("ENTERED createUser for user: " + user);
 
 		String sql = property.getString("CREATE_USER");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql, user.getUserId(),
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql, user.getUsername(),
 								 user.getName(),
 								 user.getSurname(),
 								 user.getDateOfBirth(),
@@ -90,6 +104,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 			if (resultSet.next()) {
 				user = new UserBuilder()
+					.withUsername(resultSet.getString("username"))
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
@@ -117,6 +132,7 @@ public class UserRepositoryImpl implements UserRepository {
 			final List<User> userList = new ArrayList<>();
 			while (resultSet.next()) {
 				userList.add(new UserBuilder()
+					.withUsername(resultSet.getString("username"))
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))

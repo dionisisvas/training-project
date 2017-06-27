@@ -80,7 +80,7 @@ public class UserController {
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 		logger.debug("ENTERED createUser: " + user);
 

@@ -9,7 +9,7 @@ public interface AccountService {
 
 	Account getAccount(String username) throws SQLException;
 
-	Account getAccountById(Long userId) throws SQLException;
+	Account getAccountById(Long accountId) throws SQLException;
 
 	List<Account> getAccountList() throws SQLException;
 

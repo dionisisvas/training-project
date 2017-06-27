@@ -22,6 +22,13 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
+	public GeneratorT withUsername(final String aValue) {
+		instance.setUsername(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
 	public GeneratorT withUserId(final Long aValue) {
 		instance.setUserId(aValue);
 

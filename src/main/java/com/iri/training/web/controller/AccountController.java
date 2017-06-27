@@ -61,14 +61,14 @@ public class AccountController {
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<Account> getAccountById(@PathVariable("userId") Long userId) throws SQLException {
+	@RequestMapping(value = "/id/{accountId}", method = RequestMethod.GET)
+	public ResponseEntity<Account> getAccountById(@PathVariable("accountId") Long accountId) throws SQLException {
 
 
-		logger.debug("ENTERED getAccountById: " + userId);
+		logger.debug("ENTERED getAccountById: " + accountId);
 
 
-		Account account = accountService.getAccountById(userId);
+		Account account = accountService.getAccountById(accountId);
 		if (account != null) {
 			return new ResponseEntity<Account>(account, HttpStatus.OK);
 		}
@@ -79,7 +79,7 @@ public class AccountController {
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity createAccount(@RequestBody Account account) throws SQLException {
 		logger.debug("ENTERED createAccount: " + account);
 

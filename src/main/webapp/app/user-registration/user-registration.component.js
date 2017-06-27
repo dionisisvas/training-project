@@ -4,8 +4,8 @@ angular.
 	module('myUserRegistration').
 	component('myUserRegistration', {
 		templateUrl: 'app/user-registration/user-registration.template.html',
-		controller: ['User',
-            function UserRegistrationController(User) {
+		controller: ['Account', 'User',
+            function UserRegistrationController(Account, User) {
                 $(document).ready(function(){
                     
                     $("#username").focusout(function() {
@@ -27,8 +27,8 @@ angular.
                         }                         
                         else {  
                             var self = $(this);
-                            var tmpUser = User.UserByUsername.get({username: username});
-                            tmpUser.$promise.then(function(userResult) {
+                            var tmpUser = Account.AccountByUsername.get({username: username});
+                            tmpUser.$promise.then(function(accountResult) {
                                 self.css("border-color", "#FF0000");
                                 $('#submit').attr('disabled', true);
                                 $("#error_username").text("* This username is already in use.");                          
@@ -126,18 +126,29 @@ angular.
                         }
                     });
 
-                    $("#submit").click(function() {                        
+                    $("#submit").click(function() {  
+                        var self = this;
+                        
                         var user = JSON.stringify({
                                     username :    $('#username').val(),
                                     name :        $('#name').val(),
                                     surname :     $('#lastName').val(),
-                                    dateOfBirth : $('#dateOfBirth').val(),
-                                    password :    $('#password').val(),                                    
-                                    phoneNo :     $('#phone').val(),
+                                    dateOfBirth : $('#dateOfBirth').val(),                                
+                                    phoneNo :     $('#phoneNo').val(),
                                     address :     $('#address').val()
                         });
-
-                        User.Register.save(user);
+                        
+                        self.account =  JSON.stringify({
+                                    username :    $('#username').val(),
+                                    password :    $('#password').val(),
+                                    email:        null
+                        });
+ 
+                        var userRegistration = User.Register.save(user);
+                        
+						userRegistration.$promise.then(function(userRegResult) {
+                            Account.Create.save(self.account);  
+						});                                   
                     });             
             });
         }]

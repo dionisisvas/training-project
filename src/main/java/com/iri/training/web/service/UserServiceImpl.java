@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iri.training.model.Account;
 import com.iri.training.model.User;
 import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
@@ -20,14 +19,11 @@ public  class UserServiceImpl implements UserService {
 	Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	AccountRepository accountRepository;
-	@Autowired
 	UserRepository userRepository;
 
 	@Override
 	public User getUserByUsername(String username) throws SQLException {
-		final Account account = accountRepository.getAccount(username);
-		User user = userRepository.getUserById(account.getUserId());
+		User user = userRepository.getUserByUsername(username);
 
 		if (user != null) {
 			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));

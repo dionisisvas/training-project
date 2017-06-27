@@ -20,8 +20,8 @@ class AccountBuilderBase<GeneratorT extends AccountBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withUserId(final Long aValue) {
-		instance.setUserId(aValue);
+	public GeneratorT withAccountId(final Long aValue) {
+		instance.setAccountId(aValue);
 
 		return (GeneratorT) this;
 	}
@@ -36,6 +36,12 @@ class AccountBuilderBase<GeneratorT extends AccountBuilderBase<GeneratorT>> {
 
 	public GeneratorT withPassword(final String aValue) {
 		instance.setPassword(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	public GeneratorT withEmail(final String aValue) {
+		instance.setEmail(aValue);
 
 		return (GeneratorT) this;
 	}
