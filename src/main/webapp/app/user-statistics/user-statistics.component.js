@@ -48,8 +48,41 @@ angular.
 
                         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
                         chart.draw(data, options);
-                      }
-                      	})
+
+                 google.charts.load('current',{'packages':['bar']});
+                 google.charts.setOnLoadCallback(drawStuff);
+}
+            function drawStuff() {
+             var data = new google.visualization.arrayToDataTable([
+               ['User Age', 'Users'],
+               ["18-24 Years Old", self.first],
+               ["25-34 years old", self.second],
+               ["35-44 years old", self.third],
+               ["45-54 years old", self.forth],
+               ["55-64 years old", self.fifth],
+               ["65-74 years old", self.sixth],
+               ["75 years or older",self.seventh]
+             ]);
+
+             var options = {
+               title: 'User Age',
+               width: 900,
+               legend: { position: 'none' },
+               chart: { title: 'User Age'},
+               bars: 'vertical',
+               axes: {
+                 x: {
+                   0: { side: 'bottom', label: 'Percentage'} // Top x-axis.
+                 }
+               },
+               bar: { groupWidth: "90%" }
+             };
+
+             var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+             chart.draw(data, options);
+           };
+
+  })
   });
    }]
   });
