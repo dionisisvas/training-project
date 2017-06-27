@@ -178,9 +178,17 @@ angular.
  
                         var userRegistration = User.Register.save(user);
                         
-						userRegistration.$promise.then(function(userRegResult) {
-                            Account.Create.save(self.account);  
-						});                                   
+						userRegistration.$promise.then(function() {
+                            var accRegistration = Account.Create.save(self.account);  
+                            
+                            accRegistration.$promise.then(function() {
+                                console.log("Registration succeeded");
+                            }, function(accRegResults) {
+                                console.error("Account registration failed");                              
+                            });
+						}, function(userRegResults) {
+                            console.error("User registration failed");
+                        });                                   
                     });             
             });
         }]
