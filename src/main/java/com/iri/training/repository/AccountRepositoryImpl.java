@@ -60,6 +60,19 @@ public class AccountRepositoryImpl implements AccountRepository {
 		return account;
 	}
 
+	@Override public Account getAccountByEmail(final String email) throws SQLException {
+		logger.debug("ENTERED getAccountByEmail for email: " + email);
+
+		final Account account;
+		String sql = property.getString("RETRIEVE_ACCOUNT_BY_EMAIL");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		account = jdbcTemplate.query(sql, new Object[]{email}, new AccountResultSetExtractor());
+
+		logger.debug("EXITING getAccountByEmail: " + account);
+
+		return account;
+	}
+
 	@Override
 	public List<Account> getAccountList() throws SQLException {
 		logger.debug("ENTERED getAccountList");
@@ -98,7 +111,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 			if (resultSet.next()) {
 				account = new AccountBuilder()
-					.withAccountId(resultSet.getLong("userId"))
+					.withAccountId(resultSet.getLong("accountId"))
 					.withUsername(resultSet.getString("username"))
 					.withPassword(resultSet.getString("password"))
 					.withEmail(resultSet.getString("email"))
@@ -122,7 +135,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 			while (resultSet.next()) {
 				accountList.add(new AccountBuilder()
 					.withUsername(resultSet.getString("username"))
-					.withAccountId(resultSet.getLong("userId"))
+					.withAccountId(resultSet.getLong("accountId"))
 					.withEmail(resultSet.getString("email"))
 					.build());
 			}

@@ -11,6 +11,8 @@ public interface AccountService {
 
 	Account getAccountById(Long accountId) throws SQLException;
 
+	Account getAccountByEmail(String email) throws SQLException;
+
 	List<Account> getAccountList() throws SQLException;
 
 	Account createAccount(Account account) throws SQLException;

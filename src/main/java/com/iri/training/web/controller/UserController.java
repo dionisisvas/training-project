@@ -34,11 +34,12 @@ public class UserController {
 		logger.debug("ENTERED getAllUsers");
 
 		ArrayList<User> users = (ArrayList) userService.getUserList();
+
+		logger.debug("EXITING getAllUsers");
+
 		if (users != null) {
 			return new ResponseEntity<ArrayList<User>>(users, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getAllUsers");
 
 		return new ResponseEntity<ArrayList<User>>(HttpStatus.NOT_FOUND);
 	}
@@ -49,15 +50,13 @@ public class UserController {
 
 		logger.debug("ENTERED getUserByUsername: " + username);
 
-
 		User user = userService.getUserByUsername(username);
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
-		}
-
 
 		logger.debug("EXITING getUserByUsername " + user);
 
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		}
 
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
@@ -65,22 +64,20 @@ public class UserController {
 	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<User> getUserById(@PathVariable("userId") Long userId) throws SQLException {
 
-
 		logger.debug("ENTERED getUserById: " + userId);
 
-
 		User user = userService.getUserById(userId);
+
+		logger.debug("EXITING getUserById " + user);
+
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
-		logger.debug("EXITING getUserById " + user);
-
-
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
 		logger.debug("ENTERED createUser: " + user);
 
@@ -91,7 +88,7 @@ public class UserController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity authUser(@RequestBody String authToken) throws SQLException {
 		logger.debug("ENTERED authUser");
 
