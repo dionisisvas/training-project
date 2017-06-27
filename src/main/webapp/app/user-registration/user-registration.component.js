@@ -6,7 +6,31 @@ angular.
 		templateUrl: 'app/user-registration/user-registration.template.html',
 		controller: ['Account', 'User',
             function UserRegistrationController(Account, User) {
+                function validateEmail(email) {
+                    var rgx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return rgx.test(email);
+                } 
+                
                 $(document).ready(function(){
+                    
+                    $("#email").focusout(function() {
+                        var email = $(this).val();                          
+                        if (email == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_email").text("* Please enter your email.");
+                        }
+                        else if (!validateEmail(email)) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_email").text("* Not a valid email.");                            
+                        }
+                        else {
+                            $(this).css("border-color", "#2eb82e");
+                            $('#submit').attr('disabled', false);
+                            $("#error_email").text("");
+                        }
+                    });  
                     
                     $("#username").focusout(function() {
                         var username = $(this).val();                        
@@ -141,7 +165,7 @@ angular.
                         self.account =  JSON.stringify({
                                     username :    $('#username').val(),
                                     password :    $('#password').val(),
-                                    email:        null
+                                    email:        $('#email').val(),
                         });
  
                         var userRegistration = User.Register.save(user);

@@ -18,6 +18,14 @@ body {
 .pl-1 {
     padding-left: 0.5em;
 }
+
+.mt-2 {
+    margin-top: -5px;
+}
+
+.mt-3 {
+    margin-top: -3px;
+}
 .project-info {
     background-color: #d9edf7;
 }
