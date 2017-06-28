@@ -23,8 +23,7 @@ angular.
                	else if(user.age<=54 && user.age>=45){self.forth++;}
                	else if(user.age<=64 && user.age>=55){self.fifth++;}
                	else if(user.age<=74 && user.age>=65){self.sixth++;}
-               	else (user.age>=75)
-               	{self.seventh++;}
+               	else if(user.age>=75) {self.seventh++;}
 
                	  google.charts.load('visualization', '1', {packages:["corechart"]});
                    google.charts.setOnLoadCallback(drawChart);
