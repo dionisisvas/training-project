@@ -4,11 +4,11 @@
 		<li ng-repeat="option in $ctrl.options" ng-if="!option.isAPI">
 			<div ng-if="option.param">
 				<font size="3.2em">*/home/<strong>{{option.dir[0]}}</strong>/<em>{{option.param}}</em></font>
-				<font color="#686868"><br>{{option.info}}</font>
+				<span class="text-info"><br>{{option.info}}</span>
 			</div>
 			<div ng-if="!option.param">
 				<font size="3.2em"><a href="{{option.dir[0]}}">*/home/<strong>{{option.dir[0]}}</strong></a></font>
-				<font color="#686868"><br>{{option.info}}</font>
+				<span class="text-info"><br>{{option.info}}</span>
 			</div>
 		</li>
 	</ul>
@@ -18,7 +18,7 @@
 	<ul class="apis">			
 		<li ng-repeat="option in $ctrl.options" ng-if="option.isAPI">
 			<font size="3.2em">*/home/api/<strong>{{option.dir[0]}}</strong>/<em>{{option.param}}</em><strong>{{option.dir[1]}}</strong></font>
-			<font color="#686868"><br>{{option.info}}</font>
+			<span class="text-info"><br>{{option.info}}</span>
 		</li>
 	</ul>
 </div>

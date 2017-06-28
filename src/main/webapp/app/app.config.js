@@ -11,17 +11,23 @@ angular.
 					template: '<my-home-page></my-home-page>'
 				}).
 				when('/error', {
-					template: '<my-error-message></my-error-message>'
+					template: '<my-error-page></my-error-page>'
 				}).				
-				when('/user', {
+				when('/user/list', {
 					template: '<my-user-list></my-user-list>'
 				}).
-				when('/user/:userId', {
+				when('/user/uid/:userId', {
 					template: '<my-user-info></my-user-info>'
 				}).
-				when('/create/user', {
-                	template: '<my-app></my-app>'
+				when('/register', {
+                	template: '<my-user-registration></my-user-registration>'
                	}).
+				when('/login', {
+                	template: '<my-user-login></my-user-login>'
+               	}).
+               	when('/statistic', {
+                    template: '<my-user-statistics></my-user-statistics>'
+                }).
 				otherwise('/error');
 		}
 	]);

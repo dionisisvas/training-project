@@ -1,6 +1,8 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,11 @@ public class MetricsServiceImpl implements MetricsService{
 		Metrics metrics = metricsRepository.getMetricsByUserId(userId);
 		logger.debug("EXITING getMetricsByUserId " + metrics );
 		return  metrics;
+	}
+
+	@Override
+	public List<Metrics> getMetricsList() throws SQLException {
+		List<Metrics> metricsList = new ArrayList<Metrics>(metricsRepository.getMetricsList());
+		return metricsList;
 	}
 }

@@ -27,12 +27,26 @@ public class UserRepositoryImpl implements UserRepository {
 	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
-	private ConnectToBase dbConnection = new ConnectToBase();
+	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("File/app_sql.properties");
+	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
 
 	public UserRepositoryImpl() throws IOException {}
+
+	@Override
+	public User getUser(final String username) throws SQLException {
+		logger.debug("ENTERED getUser for username: " + username);
+
+		final User user;
+		String sql = property.getString("RETRIEVE_USER_BY_USERNAME");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		user = jdbcTemplate.query(sql, new Object[]{username}, new UserResultSetExtractor());
+
+		logger.debug("EXITING getUser: " + user);
+
+		return user;
+	}
 
 	@Override
 	@Cacheable(value="findUser", key="#userId")
@@ -40,7 +54,7 @@ public class UserRepositoryImpl implements UserRepository {
 		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user;
-		String sql = property.getString("RETRIEVE_USER");
+		String sql = property.getString("RETRIEVE_USER_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		user = jdbcTemplate.query(sql, new Object[]{userId}, new UserResultSetExtractor());
 
@@ -76,12 +90,10 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
 								 user.getAddress(),
-			           user.getPassword());
-		System.out.print("User Inserted Successfully");
-
-
+								 user.getPassword());
 
 		logger.debug("EXITING createUser: " + user);
+
 		return user;
 	}
 

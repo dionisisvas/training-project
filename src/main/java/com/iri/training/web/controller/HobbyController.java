@@ -24,7 +24,7 @@ public class HobbyController {
 	@Autowired
 	HobbyService hobbyService;
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {
 
 		logger.debug("ENTERED getAllHobbies");

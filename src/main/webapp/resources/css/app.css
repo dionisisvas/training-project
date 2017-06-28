@@ -2,6 +2,22 @@ body {
 	padding-left: 1em;
 }
 
+.text-info {
+    color: #686868;
+    padding-left: 0.5em;
+}
+
+.optional-field {
+    color: #707070;
+}
+
+.mt-0 {
+    margin-top: 60px;
+}
+
+.pl-1 {
+    padding-left: 0.5em;
+}
 .project-info {
     background-color: #d9edf7;
 }

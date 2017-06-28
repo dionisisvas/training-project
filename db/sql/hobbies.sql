@@ -1,52 +1,51 @@
 DROP TABLE IF EXISTS hobbies;
 CREATE TABLE IF NOT EXISTS hobbies(
-	hobbyId		INTEGER   NOT_NULL,
-	hobbyName  		TEXT      NOT_NULL UNIQUE,
-	description	TEXT,
-	PRIMARY KEY (hobbyId)
+    hobbyId         INTEGER     PRIMARY KEY AUTOINCREMENT,
+    hobbyName       TEXT        NOT_NULL UNIQUE,
+    description     TEXT
 );
 
 BEGIN TRANSACTION;
 -- Skiing --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (0, "Skiing", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Skiing", NULL);
 -- Knitting --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (1, "Knitting", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Knitting", NULL);
 -- Chess --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (2, "Chess", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Chess", NULL);
 -- Biking --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (3, "Biking", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Biking", NULL);
 -- Travelling --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (4, "Travelling", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Travelling", NULL);
 -- Jogging --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (5, "Jogging", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Jogging", NULL);
 -- Martial Arts --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (6, "Martial Arts", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Martial Arts", NULL);
 -- Tennis --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (7, "Tennis", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Tennis", NULL);
 -- Football --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (8, "Football", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Football", NULL);
 -- Basketball --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (9, "Basketball", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Basketball", NULL);
 -- Cooking --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (10, "Cooking", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Cooking", NULL);
 -- Gardenning --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (11, "Gardenning", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Gardenning", NULL);
 -- Gaming --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (12, "Gaming", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Gaming", NULL);
 -- Swimming --
-INSERT INTO hobbies(hobbyId, hobbyName, description)
-VALUES (13, "Swimming", NULL);
+INSERT INTO hobbies(hobbyName, description)
+VALUES ("Swimming", NULL);
 COMMIT;

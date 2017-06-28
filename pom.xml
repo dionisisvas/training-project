@@ -9,8 +9,9 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<spring.version>4.2.4.RELEASE</spring.version>
-		<spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+
+		<spring.version>4.2.9.RELEASE</spring.version>
+
 		<jstl.version>1.2</jstl.version>
 		<servletapi.version>3.1.0</servletapi.version>
 		<angular.version>1.6.4</angular.version>
@@ -20,19 +21,19 @@
 		<mockito.version>1.10.19</mockito.version>
 	</properties>
 
-
 	<dependencies>
-
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.4.3</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.4.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
@@ -46,15 +47,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.4.3</version>
-		</dependency>
-
-		<dependency>
-    		<groupId>org.springframework</groupId>
-   			<artifactId>spring-web</artifactId>
-    		<version>${spring.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
@@ -64,27 +59,21 @@
 		</dependency>
 
 		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-jdbc</artifactId>
-    		<version>${spring.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-    		<artifactId>spring-core</artifactId>
-    		<version>${spring.version}</version>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-context</artifactId>
-    		<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-beans</artifactId>
-    		<version>${spring.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
@@ -107,10 +96,10 @@
 		</dependency>
 		
 		<dependency>
-    		<groupId>org.webjars.bower</groupId>
-    		<artifactId>angular</artifactId>
-    		<version>1.6.4</version>
-    	</dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular</artifactId>
+			<version>${angular.version}</version>
+	 	</dependency>
 		
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -119,9 +108,9 @@
 		</dependency>
 		
 		<dependency>
-    		<groupId>org.webjars</groupId>
-    		<artifactId>underscorejs</artifactId>
-    		<version>${underscorejs.version}</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>underscorejs</artifactId>
+			<version>${underscorejs.version}</version>
 		</dependency>
 
 		<dependency>
@@ -146,22 +135,20 @@
 
 		<dependency>
 			<scope>test</scope>
-    		<groupId>junit</groupId>
-    		<artifactId>junit</artifactId>
-    		<version>${junit.version}</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
 		</dependency>
 
 		<dependency>
 			<scope>test</scope>
-    		<groupId>org.mockito</groupId>
+			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -218,5 +205,4 @@
 
 		</plugins>
 	</build>
-
 </project>

@@ -3,7 +3,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
-public  class ConnectToBase {
+public class DatabaseConnection {
 
 		@Bean
 		public  DriverManagerDataSource getDataSource() {

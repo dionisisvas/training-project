@@ -4,10 +4,13 @@ angular.module('trainingApp', [
 	'ngAnimate',
 	'ngRoute',
 	'core',
-	'myErrorMessage',
+	'myErrorPage',
 	'myHomePage',
+    'myNavBar',
 	'myOptionList',
+	'myUserRegistration',
 	'myUserInfo',	
 	'myUserList',
-	'myApp'
+    'myUserLogin',
+    'myUserStatistics'
 ]);

@@ -1,11 +1,14 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,4 +37,19 @@ public class MetricsController {
 
 		return metrics;
 	}
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Metrics>> getAllMetrics() throws SQLException {
+
+		logger.debug("ENTERED getAllUsers");
+
+		ArrayList<Metrics> metrics = (ArrayList) metricsService.getMetricsList();
+		if (metrics != null) {
+			return new ResponseEntity<ArrayList<Metrics>>(metrics, HttpStatus.OK);
+		}
+
+		logger.debug("EXITING getAllMetrics");
+
+		return new ResponseEntity<ArrayList<Metrics>>(HttpStatus.NOT_FOUND);
 	}
+}
