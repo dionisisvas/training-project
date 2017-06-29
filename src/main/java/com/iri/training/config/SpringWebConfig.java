@@ -36,6 +36,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+
 	@Bean(name = "OBJECT_MAPPER_BEAN")
 	public ObjectMapper jsonObjectMapper() {
 		return Jackson2ObjectMapperBuilder.json()

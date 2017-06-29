@@ -77,9 +77,9 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User createUser(final User user) throws SQLException {
+	public User addUser(final User user) throws SQLException {
 
-		logger.debug("ENTERED createUser for user: " + user);
+		logger.debug("ENTERED addUser for user: " + user);
 
 		String sql = property.getString("CREATE_USER");
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -90,7 +90,7 @@ public class UserRepositoryImpl implements UserRepository {
 								 user.getPhoneNo(),
 								 user.getAddress());
 
-		logger.debug("EXITING createUser: " + user);
+		logger.debug("EXITING addUser: " + user);
 
 		return user;
 	}

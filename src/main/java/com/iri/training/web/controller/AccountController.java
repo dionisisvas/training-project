@@ -2,6 +2,9 @@ package com.iri.training.web.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.ServletException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.Account;
 import com.iri.training.web.service.AccountService;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping(value = "/api/account")
@@ -97,7 +103,7 @@ public class AccountController {
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity createAccount(@RequestBody Account account) throws SQLException {
 		logger.debug("ENTERED createAccount: " + account);
 
@@ -106,5 +112,35 @@ public class AccountController {
 		logger.debug("EXITING createAccount: " + account);
 
 		return new ResponseEntity(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String loginAccount(@RequestBody Account account) throws SQLException, ServletException {
+		logger.debug("ENTERED loginAccount");
+
+		if ((account.getUsername() == null && account.getEmail() == null)
+			|| account.getPassword() == null) {
+			throw new ServletException("Insufficient login data.");
+		}
+		else if ((accountService.getAccountByEmail(account.getEmail()) == null)
+				&& accountService.getAccount(account.getUsername()) == null) {
+			throw new SQLException("Account doesn't exist.");
+		}
+		else
+		{
+			// pwd verification here
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("accountId/");
+		sb.append(accountService.getAccount(account.getUsername()).getAccountId());
+
+		logger.debug("EXITING loginAccount");
+
+		return Jwts.builder().setIssuer("IRI Training App")
+			.setSubject(sb.toString())
+			.setIssuedAt(new Date())
+			.signWith(SignatureAlgorithm.HS256, "secretkey")
+			.compact();
 	}
 }

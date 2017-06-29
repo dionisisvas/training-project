@@ -46,7 +46,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	@Cacheable(value="findAccount", key="#accountId")
 	public Account getAccountById(Long accountId ) throws SQLException {
 		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 

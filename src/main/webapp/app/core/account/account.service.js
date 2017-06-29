@@ -9,7 +9,7 @@ angular.
 				AccountById: $resource('api/account/id/:accountId'),
 				AccountByEmail: $resource('api/account/email/:email'),                  
 				AccountList: $resource('api/account/list'),                
-                Create: $resource('api/account/create')
+                Create: $resource('api/account/register')
 			};
 		}
 	]);

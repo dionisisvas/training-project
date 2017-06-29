@@ -77,23 +77,15 @@ public class UserController {
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity createUser(@RequestBody User user) throws SQLException {
-		logger.debug("ENTERED createUser: " + user);
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity addUser(@RequestBody User user) throws SQLException {
+		logger.debug("ENTERED addUser: " + user);
 
-		userService.createUser(user);
+		userService.addUser(user);
 
-		logger.debug("EXITING createUser: " + user);
-
-		return new ResponseEntity(HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity authUser(@RequestBody String authToken) throws SQLException {
-		logger.debug("ENTERED authUser");
-
-		logger.debug("EXITING authUser");
+		logger.debug("EXITING addUser: " + user);
 
 		return new ResponseEntity(HttpStatus.OK);
 	}
+
 }
