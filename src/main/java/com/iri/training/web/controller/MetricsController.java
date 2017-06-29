@@ -26,7 +26,7 @@ public class MetricsController {
 	@Autowired
 	MetricsService metricsService;
 
-	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
 	public Metrics getMetricsByUserId(final HttpServletRequest request,@PathVariable final Long userId) throws SQLException {
 
 		logger.debug("ENTERED getMetricsByUserId");
@@ -38,7 +38,7 @@ public class MetricsController {
 		return metrics;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value ="/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Metrics>> getAllMetrics() throws SQLException {
 
 		logger.debug("ENTERED getAllUsers");

@@ -48,7 +48,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 
 		logger.debug("ENTERED getMetricsList");
 
-		String sql = property.getString("");
+		String sql = property.getString("RETRIEVE_METRICS_LIST");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		final List<Metrics> metricsList = jdbcTemplate.query(sql, new MetricsRepositoryImpl.MetricsListResultSetExtractor());
 
