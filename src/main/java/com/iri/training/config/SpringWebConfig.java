@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @EnableWebMvc
 @Configuration
@@ -41,7 +41,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return Jackson2ObjectMapperBuilder.json()
 			.serializationInclusion(JsonInclude.Include.NON_NULL) // Don’t include null values
 			.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS) //ISODate
-			.modules(new JSR310Module())
+			.modules(new JavaTimeModule())
 			.build();
 	}
 }
