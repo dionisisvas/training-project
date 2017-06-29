@@ -27,13 +27,13 @@ public class Account {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("Account{");
-		sb.append(", accountId=");
+		sb.append("accountId=");
 		sb.append(accountId);
 		sb.append('\'');
-		sb.append("username='");
+		sb.append(", username='");
 		sb.append(username);
 		sb.append('\'');
-		sb.append("email='");
+		sb.append(", email='");
 		sb.append(email);
 		sb.append('\'');
 		sb.append('}');

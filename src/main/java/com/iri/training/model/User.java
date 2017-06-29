@@ -49,7 +49,7 @@ public class User  {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("User{");
-		sb.append(", username='");
+		sb.append("username='");
 		sb.append(username);
 		sb.append('\'');
 		sb.append(", userId='");
