@@ -176,10 +176,10 @@ angular.
                                     email:        $('#email').val()
                         });
  
-                        var userRegistration = User.Register.save(user);
+                        var userRegistration = User.Add.save(user);
                         
 						userRegistration.$promise.then(function() {
-                            var accRegistration = Account.Create.save(self.account);  
+                            var accRegistration = Account.Register.save(self.account);  
                             
                             accRegistration.$promise.then(function() {
                                 console.log("Registration succeeded");

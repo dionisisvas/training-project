@@ -115,8 +115,8 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String loginAccount(@RequestBody Account account) throws SQLException, ServletException {
-		logger.debug("ENTERED loginAccount");
+	public String authAccount(@RequestBody Account account) throws SQLException, ServletException {
+		logger.debug("ENTERED authAccount");
 
 		if ((account.getUsername() == null && account.getEmail() == null)
 			|| account.getPassword() == null) {
@@ -135,7 +135,7 @@ public class AccountController {
 		sb.append("accountId/");
 		sb.append(accountService.getAccount(account.getUsername()).getAccountId());
 
-		logger.debug("EXITING loginAccount");
+		logger.debug("EXITING authAccount");
 
 		return Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(sb.toString())

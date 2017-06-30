@@ -8,7 +8,7 @@ angular.
 				UserByUsername: $resource('api/user/:username'),                
 				UserById: $resource('api/user/uid/:userId'),
 				UserList: $resource('api/user/list'),                
-                Register: $resource('api/user/add')
+                Add: $resource('api/user/add')
 			};
 		}
 	]);
