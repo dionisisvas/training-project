@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.Account;
 import com.iri.training.web.service.AccountService;
+import com.iri.training.web.service.UserService;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -32,6 +33,8 @@ public class AccountController {
 
 	@Autowired
 	AccountService accountService;
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Account>> getAllAccounts() throws SQLException {
@@ -128,19 +131,14 @@ public class AccountController {
 			// pwd verification here
 		}
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("accountId/");
-		sb.append(accountService.getAccount(account.getUsername()).getAccountId());
-
-		logger.debug("EXITING authAccount");
-
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
-			.setSubject(sb.toString())
+			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
 			.setIssuedAt(new Date())
+			.claim("Name", userService.getUserByUsername(account.getUsername()).getName())
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
 
-		sb = new StringBuilder();
+		logger.debug("EXITING authAccount");
 
 		return new ResponseEntity<String>(new StringBuilder(200)
 												.append("{\"token\": \"")
