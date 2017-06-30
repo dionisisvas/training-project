@@ -115,19 +115,16 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String authAccount(@RequestBody Account account) throws SQLException, ServletException {
+	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException, ServletException {
 		logger.debug("ENTERED authAccount");
 
-		if ((account.getUsername() == null && account.getEmail() == null)
-			|| account.getPassword() == null) {
+		if (account.getUsername() == null || account.getPassword() == null) {
 			throw new ServletException("Insufficient login data.");
 		}
-		else if ((accountService.getAccountByEmail(account.getEmail()) == null)
-				&& accountService.getAccount(account.getUsername()) == null) {
+		else if (accountService.getAccount(account.getUsername()) == null) {
 			throw new SQLException("Account doesn't exist.");
 		}
-		else
-		{
+		else {
 			// pwd verification here
 		}
 
@@ -137,10 +134,19 @@ public class AccountController {
 
 		logger.debug("EXITING authAccount");
 
-		return Jwts.builder().setIssuer("IRI Training App")
+		String jwt = Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(sb.toString())
 			.setIssuedAt(new Date())
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
+
+		sb = new StringBuilder();
+
+		return new ResponseEntity<String>(new StringBuilder(200)
+												.append("{\"token\": \"")
+												.append(jwt)
+												.append("\"}")
+											.toString(),
+											HttpStatus.OK);
 	}
 }

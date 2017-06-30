@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('myUserLogin', [
-    'ngRoute'
+    'ngRoute',
+    'core.account'
 ]);
 

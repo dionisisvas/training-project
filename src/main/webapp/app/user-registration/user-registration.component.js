@@ -175,20 +175,16 @@ angular.
                                     password :    $('#password').val(),
                                     email:        $('#email').val()
                         });
- 
-                        var userRegistration = User.Add.save(user);
                         
-						userRegistration.$promise.then(function() {
-                            var accRegistration = Account.Register.save(self.account);  
-                            
-                            accRegistration.$promise.then(function() {
+                        User.Add.save(user, function() {
+                            Account.Register.save(self.account, function() {
                                 console.log("Registration succeeded");
-                            }, function(accRegResults) {
-                                console.error("Account registration failed");                              
+                            }, function() {
+                                console.error("Account registration failed");
                             });
-						}, function(userRegResults) {
+                        }, function() {
                             console.error("User registration failed");
-                        });                                   
+                        });                             
                     });             
             });
         }]
