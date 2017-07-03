@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.servlet.ServletException;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.model.Account;
+import com.iri.training.model.User;
 import com.iri.training.web.service.AccountService;
 import com.iri.training.web.service.UserService;
 
@@ -107,25 +106,26 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity createAccount(@RequestBody Account account) throws SQLException {
-		logger.debug("ENTERED createAccount: " + account);
+	public ResponseEntity registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
+		logger.debug("ENTERED registerAccount: " + rw.getAccount() + rw.getUser());
 
-		accountService.createAccount(account);
+		accountService.createAccount(rw.getAccount());
+		userService.addUser(rw.getUser());
 
-		logger.debug("EXITING createAccount: " + account);
+		logger.debug("EXITING registerAccount: " + rw.getAccount() + rw.getUser());
 
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException, ServletException {
+	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException {
 		logger.debug("ENTERED authAccount");
 
 		if (account.getUsername() == null || account.getPassword() == null) {
-			throw new ServletException("Insufficient login data.");
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
 		}
 		else if (accountService.getAccount(account.getUsername()) == null) {
-			throw new SQLException("Account doesn't exist.");
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
 		else {
 			// pwd verification here
@@ -134,7 +134,7 @@ public class AccountController {
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
 			.setIssuedAt(new Date())
-			.claim("Name", userService.getUserByUsername(account.getUsername()).getName())
+			.claim("name", userService.getUserByUsername(account.getUsername()).getName())
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
 
@@ -146,5 +146,19 @@ public class AccountController {
 												.append("\"}")
 											.toString(),
 											HttpStatus.OK);
+	}
+
+	private static class RegistrationWrapper {
+
+		private Account account;
+		private User user;
+
+		public Account getAccount() { return account; }
+
+		public void setAccount(Account account) { this.account = account; }
+
+		public User getUser() { return user; }
+
+		public void setUser(User user) { this.user = user; }
 	}
 }

@@ -159,7 +159,12 @@ angular.
                     });
 
                     $("#submit").click(function() {  
-                        var self = this;
+
+                        var account = JSON.stringify({
+                                    username :    $('#username').val(),
+                                    password :    $('#password').val(),
+                                    email:        $('#email').val()
+                        });
                         
                         var user = JSON.stringify({
                                     username :    $('#username').val(),
@@ -170,20 +175,12 @@ angular.
                                     address :     $('#address').val()
                         });
                         
-                        self.account =  JSON.stringify({
-                                    username :    $('#username').val(),
-                                    password :    $('#password').val(),
-                                    email:        $('#email').val()
-                        });
+                        var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
                         
-                        User.Add.save(user, function() {
-                            Account.Register.save(self.account, function() {
-                                console.log("Registration succeeded");
-                            }, function() {
-                                console.error("Account registration failed");
-                            });
+                        Account.Register.save(dataWrapper, function() {
+                            console.log("Registration succeeded");
                         }, function() {
-                            console.error("User registration failed");
+                            console.error("Registration failed");
                         });                             
                     });             
             });

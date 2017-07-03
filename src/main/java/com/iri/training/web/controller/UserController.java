@@ -77,15 +77,4 @@ public class UserController {
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity addUser(@RequestBody User user) throws SQLException {
-		logger.debug("ENTERED addUser: " + user);
-
-		userService.addUser(user);
-
-		logger.debug("EXITING addUser: " + user);
-
-		return new ResponseEntity(HttpStatus.OK);
-	}
-
 }
