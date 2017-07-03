@@ -15,7 +15,7 @@ import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
 
 @Service
-public  class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 	Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired

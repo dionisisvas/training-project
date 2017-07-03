@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Image;
 import com.iri.training.web.service.ImageService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/image")
 public class ImageController {

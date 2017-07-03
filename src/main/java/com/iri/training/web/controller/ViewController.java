@@ -3,6 +3,7 @@ package com.iri.training.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@SuppressWarnings("unused")
 @Controller
 public class ViewController {
 
@@ -20,9 +21,7 @@ public class ViewController {
 	public String errorPage() { return "app"; }
 
 	@RequestMapping(value = "/user/**")
-	public String userInfo() {
-		return "app";
-	}
+	public String userInfo() { return "app"; }
 
 	@RequestMapping(value = "/register")
 	public String userRegistration() { return "app"; }

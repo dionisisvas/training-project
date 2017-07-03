@@ -23,6 +23,7 @@ import com.iri.training.web.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/account")
 public class AccountController {

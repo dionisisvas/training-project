@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Hobby;
 import com.iri.training.web.service.HobbyService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/hobby")
 public class HobbyController {

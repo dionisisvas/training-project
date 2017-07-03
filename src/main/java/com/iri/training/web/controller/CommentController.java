@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.UserComment;
 import com.iri.training.web.service.CommentService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("/userComment")
 public class CommentController {
