@@ -41,22 +41,40 @@ angular.
          self.master=0;
          self.noDiploma=0;
          self.professional=0;
-         self.users = User.UserList.query(function() {
-                   angular.forEach(self.users, function(user, key) {
-                   if (user.age<=24 && user.age>=18){self.first++}
-                   else if(user.age<=34 && user.age>=25){self.second++;}
-                   else if(user.age<=44 && user.age>=35){self.third++;}
-                   else if(user.age<=54 && user.age>=45){self.forth++;}
-                   else if(user.age<=64 && user.age>=55){self.fifth++;}
-                   else if(user.age<=74 && user.age>=65){self.sixth++;}
-                   else if(user.age>=75) {self.seventh++;}
+
+self.users = User.UserList.query(function() {
+angular.forEach(self.users, function(user) {
+if (user.age<=24 && user.age>=18){self.first++}
+else if(user.age<=34 && user.age>=25){self.second++;}
+else if(user.age<=44 && user.age>=35){self.third++;}
+else if(user.age<=54 && user.age>=45){self.forth++;}
+else if(user.age<=64 && user.age>=55){self.fifth++;}
+else if(user.age<=74 && user.age>=65){self.sixth++;}
+else if(user.age>=75) {self.seventh++;}
+self.metrics = Metrics.MetricsList.query(function() {
+angular.forEach(self.metrics, function(metrics) {
+if (metrics.height<=1.70){self.heightShort++}
+else if(metrics.height>1.70 && metrics.height<=1.80){self.heightMedium++;}
+else if(metrics.height>1.80){self.heightTall++;}
+
+if ((metrics.weight/(metrics.height*metrics.height))<18.5){self.thin++;}
+else if((metrics.weight/(metrics.height*metrics.height))>=18.5 &&(metrics.weight/(metrics.height*metrics.height))<=25){self.medium++;}
+else if((metrics.weight/(metrics.height*metrics.height))>25){self.fat++;}
+
+if((metrics.education).valueOf()==("University Education").valueOf()){self.university++;}
+else if((metrics.education).valueOf()==("High School Diploma").valueOf()){self.school++;}
+else if((metrics.education).valueOf()==("Doctorate Degree").valueOf()){self.doctorate++;}
+else if((metrics.education).valueOf()==("Master's Degree").valueOf()){self.master++;}
+else if((metrics.education).valueOf()==("No High School Diploma").valueOf()){self.noDiploma++;}
+else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.professional++;}
+
 
         google.charts.load('visualization', '1', {packages:["corechart"]});
 
 
                    google.charts.setOnLoadCallback(drawChart);
 
-                      function drawChart(x,y) {
+                      	function drawChart(x,y) {
                           var dataAge = google.visualization.arrayToDataTable([
                           ['Task', 'User Age'],
                           ['18-24 Years Old', self.first],
@@ -111,7 +129,7 @@ angular.
                         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
                                 chart.draw(dataAge, options1);
 
-                               $scope.updateChart = function () {
+                               $scope.updateChart = (self.users,self.metrics,function () {
                                 if ($scope.selectedChart.chart === null || $scope.selectedChart.chart.id === 1) {
                                     x = dataAge;
                                     y=options1;
@@ -131,7 +149,7 @@ angular.
                                 }
                                 chart.draw(x, y);
                                 self.chart1.draw(x, y);
-                               };
+                               });
 
 
 
@@ -142,28 +160,10 @@ angular.
             function drawStuff() {
             self.chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
            };
-})
-  });
-
-  self.metrics = Metrics.MetricsList.query(function() {
-  angular.forEach(self.metrics, function(metrics, key) {
-if (metrics.height<=1.70){self.heightShort++}
-else if(metrics.height>1.70 && metrics.height<=1.80){self.heightMedium++;}
-else if(metrics.height>1.80){self.heightTall++;}
-
-if ((metrics.weight/(metrics.height*metrics.height))<18.5){self.thin++;}
-else if((metrics.weight/(metrics.height*metrics.height))>=18.5 &&(metrics.weight/(metrics.height*metrics.height))<=25){self.medium++;}
-else if((metrics.weight/(metrics.height*metrics.height))>25){self.fat++;}
-
-if((metrics.education).valueOf()==("University Education").valueOf()){self.university++;}
-else if((metrics.education).valueOf()==("High School Diploma").valueOf()){self.school++;}
-else if((metrics.education).valueOf()==("Doctorate Degree").valueOf()){self.doctorate++;}
-else if((metrics.education).valueOf()==("Master's Degree").valueOf()){self.master++;}
-else if((metrics.education).valueOf()==("No High School Diploma").valueOf()){self.noDiploma++;}
-else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.professional++;}
-
-  });
-  });
+});
+});
+});
+});
 
   }]
   })
