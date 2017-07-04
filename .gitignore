@@ -12,6 +12,10 @@ bin/
 # Mac
 .DS_Store
 
+# SQLite
+*.db
+db/*.exe
+
 # Maven
 log/
 target/
