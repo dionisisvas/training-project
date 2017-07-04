@@ -4,8 +4,8 @@ angular.
 	module('myUserLogin').
 	component('myUserLogin', {
 		templateUrl: 'app/user-login/user-login.template.html',
-		controller: ['Account', 'JWToken',
-            function UserLoginController(Account, JWToken) {
+		controller: ['$location', 'Account', 'JWToken',
+            function UserLoginController($location, Account, JWToken) {
                 $(document).ready(function(){
                     
                     $("#submit").click(function() {                        
@@ -16,8 +16,10 @@ angular.
                         });
                         
                         Account.Login.save(account, function(response) {
-                            JWToken.setToken(response.token);
                             console.log("Login succeeded");
+                            JWToken.setToken(response.token).then(function() {
+                                $location.path('/');
+                            });
                         }, function() {
                             console.error("Login failed");
                         });              
