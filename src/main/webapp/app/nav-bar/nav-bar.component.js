@@ -4,8 +4,16 @@ angular.
 	module('myNavBar').
 	component('myNavBar', {
 		templateUrl: 'app/nav-bar/nav-bar.template.html',
-		controller: [function NavBarController() {
-            var self = this;
-            self.isLoggedIn = false;
+		controller: ['JWToken',
+            function NavBarController(JWToken) {
+                var self = this;
+                
+                self.tkn = JWToken.getToken();
+                
+                if (self.tkn) {
+                    self.isLoggedIn = true;
+                } else {
+                    self.isLoggedIn = false;
+                }
 		}]
 	});

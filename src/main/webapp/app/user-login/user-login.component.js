@@ -4,9 +4,8 @@ angular.
 	module('myUserLogin').
 	component('myUserLogin', {
 		templateUrl: 'app/user-login/user-login.template.html',
-		controller: ['Account',
-            function UserLoginController(Account) {
-                var self = this;
+		controller: ['Account', 'JWToken',
+            function UserLoginController(Account, JWToken) {
                 $(document).ready(function(){
                     
                     $("#submit").click(function() {                        
@@ -17,7 +16,7 @@ angular.
                         });
                         
                         Account.Login.save(account, function(response) {
-                            self.jwt = response.token;
+                            JWToken.setToken(response.token);
                             console.log("Login succeeded");
                         }, function() {
                             console.error("Login failed");

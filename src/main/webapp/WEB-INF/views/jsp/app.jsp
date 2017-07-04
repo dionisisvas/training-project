@@ -28,6 +28,8 @@
         <spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />	
         <spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
         <spring:url value="/app/core/image/image.service.js" var="imageServiceJs" />
+        <spring:url value="/app/core/jwtoken/jwtoken.module.js" var="jwtokenModuleJs" />
+        <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
         <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
         <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
         <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
@@ -69,7 +71,9 @@
         <script src="${hobbyModuleJs}"></script>
         <script src="${hobbyServiceJs}"></script>		
         <script src="${imageModuleJs}"></script>
-        <script src="${imageServiceJs}"></script>	
+        <script src="${imageServiceJs}"></script>	        
+        <script src="${jwtokenModuleJs}"></script>
+        <script src="${jwtokenServiceJs}"></script>	
         <script src="${optionModuleJs}"></script>
         <script src="${optionServiceJs}"></script>		
         <script src="${userModuleJs}"></script>
