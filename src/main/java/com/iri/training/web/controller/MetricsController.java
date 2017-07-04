@@ -18,7 +18,7 @@ import com.iri.training.model.Metrics;
 import com.iri.training.web.service.MetricsService;
 
 @RestController
-@RequestMapping(value = "/metrics")
+@RequestMapping(value = "api/metrics")
 public class MetricsController {
 
 	Logger logger = Logger.getLogger(MetricsController.class);
@@ -26,7 +26,7 @@ public class MetricsController {
 	@Autowired
 	MetricsService metricsService;
 
-	@RequestMapping(value = "/id/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public Metrics getMetricsByUserId(final HttpServletRequest request,@PathVariable final Long userId) throws SQLException {
 
 		logger.debug("ENTERED getMetricsByUserId");
