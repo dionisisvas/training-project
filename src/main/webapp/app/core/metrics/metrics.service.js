@@ -5,8 +5,8 @@ angular.
 	factory('Metrics', ['$resource',
 		function($resource) {
 			return {
-				MetricsByUserId: $resource('metrics/id/{userId}'),
-				MetricsList: $resource('metrics/list')
+				MetricsByUserId: $resource('api/metrics/{userId}'),
+				MetricsList: $resource('api/metrics/list')
 			};
 		}
 	]);
