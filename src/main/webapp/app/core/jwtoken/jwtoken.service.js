@@ -6,6 +6,7 @@ angular.
 		function($cookieStore, $http, $q) {
             var self = this;
             self.token = $cookieStore.get('myToken');
+            $http.defaults.headers.common['Authorization'] = self.token;
             
             self.setToken = function(tkn) {
                 var deferred = $q.defer();

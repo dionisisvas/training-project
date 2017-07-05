@@ -7,10 +7,8 @@ angular.
 		controller: ['JWToken',
             function NavBarController(JWToken) {
                 var self = this;
-                
-                self.tkn = JWToken.getToken();
-                
-                if (self.tkn) {
+                                
+                if (JWToken.getToken()) {
                     self.isLoggedIn = true;
                 } else {
                     self.isLoggedIn = false;
