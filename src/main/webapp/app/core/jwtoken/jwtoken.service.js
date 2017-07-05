@@ -22,6 +22,19 @@ angular.
             self.getToken = function() {
                 return self.token;
             }
+            
+            self.removeToken = function() {
+                var deferred = $q.defer();  
+                
+                if ($cookieStore.get('myToken')) {
+                    $cookieStore.remove('myToken');
+                    self.token = null;
+                }
+                
+                deferred.resolve();
+                
+                return deferred.promise;
+            }
 		}
 	]);
 
