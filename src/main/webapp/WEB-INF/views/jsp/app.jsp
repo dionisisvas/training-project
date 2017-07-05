@@ -14,6 +14,7 @@
 		<link href="${bootstrapCss}" rel="stylesheet" />
 		<link href="${appCss}" rel="stylesheet" />
 		<link href="${appAnimationCss}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
         <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
         <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
@@ -60,6 +61,7 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
             crossorigin="anonymous"></script>
             <script  src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
         <script src="${angularResourceJs}"></script>

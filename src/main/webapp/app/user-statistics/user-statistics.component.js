@@ -160,6 +160,25 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
             function drawStuff() {
             self.chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
            };
+
+						  var dataEdu1 = [
+                          ['Task', 'User Education'],
+                          ['University Education', self.third],
+                          ['High School Diploma', user.name],
+                          ['Doctorate Degree', user.age],
+                          ['Master Degree', user.surname],
+                          ['No High School Diploma', self.first],
+                          ['Professional Degree', self.second]
+                          ];
+
+                    $(document).ready(function() {
+                        $('#example').DataTable( {
+                         paging: true,
+                         searching: true,
+                         destroy: true
+                        } );
+                    } );
+
 });
 });
 });
