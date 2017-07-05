@@ -17,6 +17,7 @@
 
         <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
         <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
+        <spring:url value="/resources/lib/angular/angular-cookies.js" var="angularCookiesJs" />
         <spring:url value="/resources/lib/angular/angular-resource.js" var="angularResourceJs" />		
         <spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
         <spring:url value="/app/app.module.js" var="appModuleJs" />
@@ -61,6 +62,7 @@
             crossorigin="anonymous"></script>        
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
+        <script src="${angularCookiesJs}"></script>
         <script src="${angularResourceJs}"></script>
         <script src="${angularRouteJs}"></script>
         <script src="${coreModuleJs}"></script>		

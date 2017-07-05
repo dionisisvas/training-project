@@ -2,15 +2,16 @@
 
 angular.
 	module('core.jwtoken').
-	service('JWToken', ['$q',
-		function($q) {
+	service('JWToken', ['$cookieStore', '$http', '$q',
+		function($cookieStore, $http, $q) {
             var self = this;
-            var token = null;
+            self.token = $cookieStore.get('myToken');
             
             self.setToken = function(tkn) {
                 var deferred = $q.defer();
                 
                 self.token = tkn;
+                $cookieStore.put('myToken', self.token);
                 
                 deferred.resolve();
                 

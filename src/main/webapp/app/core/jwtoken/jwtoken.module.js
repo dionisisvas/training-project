@@ -1,3 +1,6 @@
 'use strict';
 
-angular.module('core.jwtoken', ['ngResource']);
+angular.module('core.jwtoken', [
+    'ngCookies',
+    'ngResource'
+]);
