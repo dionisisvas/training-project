@@ -15,3 +15,10 @@ bin/
 # Maven
 log/
 target/
+
+# SQLite
+*.db
+db/*.exe
+
+# Log4j
+logs/

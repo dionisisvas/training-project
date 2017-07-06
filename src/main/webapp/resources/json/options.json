@@ -1,0 +1,92 @@
+[
+	{
+		"param": null,
+		"dir": null,
+		"info": "home dir",
+		"isAPI": false
+	},
+	{
+		"param": null,
+		"dir": ["user/list"],
+		"info": "user list",
+		"isAPI": false
+	},
+	{
+		"param": null,
+		"dir": ["register"],
+		"info": "user registration",
+		"isAPI": false
+	},	
+	{
+		"param": null,
+		"dir": ["login"],
+		"info": "user authentication",
+		"isAPI": false
+	},	    
+	{
+		"param": "userId",
+		"dir": ["user/uid"],
+		"info": "user specific info",
+		"isAPI": false
+	},	
+	{
+		"param": null,
+		"dir": ["error"],
+		"info": "default not found landing page",
+		"isAPI": false
+	},	
+	{
+		"param": null,
+		"dir": ["user/list"],
+		"info": "get the user list",
+		"isAPI": true
+	},	
+	{
+		"param": "userId",
+		"dir": ["user/uid"],
+		"info": "get a user by id",
+		"isAPI": true
+	},
+	{
+		"param": null,
+		"dir": ["user/add"],
+		"info": "add a user",
+		"isAPI": true
+	},	
+	{
+		"param": "imgId",
+		"dir": ["image"],
+		"info": "get an image by id",
+		"isAPI": true
+	},	
+	{
+		"param": "userId",
+		"dir": ["image/user"],
+		"info": "get a list of images by userId",
+		"isAPI": true
+	},	
+	{
+		"param": "userId",
+		"dir": ["image/user", "/profile"],
+		"info": "get a users profile image",
+		"isAPI": true
+	},		
+	{
+		"param": null,
+		"dir": ["hobby/list"],
+		"info": "get a list of all hobbies",
+		"isAPI": true
+	},	
+	{
+		"param": "hobbyId",
+		"dir": ["hobby"],
+		"info": "get hobby by its id",
+		"isAPI": true
+	},	
+	{
+		"param": "userId",
+		"dir": ["hobby/user"],
+		"info": "get a list of hobbies by userId",
+		"isAPI": true
+	}	
+]

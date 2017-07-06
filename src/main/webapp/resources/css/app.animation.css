@@ -1,0 +1,69 @@
+/* User list animation */
+.user-list-item.ng-enter,
+.user-list-item.ng-leave,
+.user-list-item.ng-move {
+	transition: 0.5s linear all;
+}
+
+.user-list-item.ng-enter,
+.user-list-item.ng-move {
+	height: 0;
+	opacity: 0;
+	overflow: hidden;
+}
+
+.user-list-item.ng-enter.ng-enter-active,
+.user-list-item.ng-move.ng-move-active {
+	height: 85px;
+	opacity: 1;
+}
+
+.user-list-item.ng-leave {
+	opacity: 1;
+	overflow: hidden;
+}
+
+.user-list-item.ng-leave.ng-leave-active {
+	height: 0;
+	opacity: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+/* View transitions */
+.view-container {
+	position: relative;
+}
+
+.view-frame {
+	margin-top: 10px;
+}
+
+.view-frame.ng-enter,
+.view-frame.ng-leave {
+	background: white;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.view-frame.ng-enter {
+	animation: 1s fade-in;
+	z-index: 100;
+}
+
+.view-frame.ng-leave {
+	animation: 1s fade-out;
+	z-index: 99;
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+	from { opacity: 1; }
+	to   { opacity: 0; }
+}
