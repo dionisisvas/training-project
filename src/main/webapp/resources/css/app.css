@@ -26,6 +26,11 @@ body {
 .mt-3 {
     margin-top: -3px;
 }
+
+.ml-4 {
+    margin-left: 10px;
+}
+
 .project-info {
     background-color: #d9edf7;
 }
