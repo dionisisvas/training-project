@@ -4,8 +4,8 @@ angular.
    module('myUserStatistics').
    component('myUserStatistics', {
       templateUrl: 'app/user-statistics/user-statistics.template.html',
-      controller: ['User','Metrics','$scope',
-         function UserStatisticList( User,Metrics,$scope) {
+      controller: ['User','Metrics','$scope','$http',
+         function UserStatisticList( User,Metrics,$scope,$http) {
          $scope.chartOptions = [{
                  id: 1,
                  name: "Age"
@@ -75,7 +75,7 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
                    google.charts.setOnLoadCallback(drawChart);
 
                       	function drawChart(x,y) {
-                          var dataAge = google.visualization.arrayToDataTable([
+                          self.dataAge = google.visualization.arrayToDataTable([
                           ['Task', 'User Age'],
                           ['18-24 Years Old', self.first],
                           ['25-34 years old', self.second],
@@ -110,7 +110,7 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
                           ['Professional Degree', self.professional]
                           ]);
 
-                        var options1 = {
+                        self.options1 = {
                           title: 'User Age',
                           is3D: true,
                         };
@@ -127,12 +127,12 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
                            is3D: true,
                         };
                         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                                chart.draw(dataAge, options1);
+                                chart.draw(self.dataAge, self.options1);
 
                                $scope.updateChart = (self.users,self.metrics,function () {
                                 if ($scope.selectedChart.chart === null || $scope.selectedChart.chart.id === 1) {
-                                    x = dataAge;
-                                    y=options1;
+                                    x = self.dataAge;
+                                    y=self.options1;
                                 }
 
                                 if ($scope.selectedChart.chart !== undefined && $scope.selectedChart.chart.id === 2) {
@@ -151,14 +151,13 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
                                 self.chart1.draw(x, y);
                                });
 
-
-
                  google.charts.load('current',{'packages':['bar']});
                  google.charts.setOnLoadCallback(drawStuff);
 }
 
             function drawStuff() {
             self.chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
+            self.chart1.draw(self.dataAge, self.options1);
            };
 
 						  var dataEdu1 = [
@@ -171,13 +170,42 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
                           ['Professional Degree', self.second]
                           ];
 
+
                     $(document).ready(function() {
+
                         $('#example').DataTable( {
-                         paging: true,
-                         searching: true,
-                         destroy: true
+                        destroy: true,
+                            "processing": true,
+                            "ajax": {
+                                "url": "$scope.array0fPosts",
+
+                                 dataSrc : ''
+                            },
+                            "columns": [
+                                { "data": "height" },
+                                { "data": "weight" },
+                                { "data": "nationality" },
+                                { "data": "place_of_birth" },
+                                { "data": "education" }
+                            ]
                         } );
+
                     } );
+
+
+
+
+
+
+$http.get("http://localhost:8080/home/api/metrics/list/").then(
+function(data){
+$scope.array0fPosts=data;
+
+})
+$http.get("http://localhost:8080/home/api/user/list/").then(
+function(data){
+$scope.array0fPosts1=data;
+})
 
 });
 });
