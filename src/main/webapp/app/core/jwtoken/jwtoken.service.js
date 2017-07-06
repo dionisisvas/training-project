@@ -5,14 +5,13 @@ angular.
 	service('JWToken', ['$cookieStore', '$http', '$q',
 		function($cookieStore, $http, $q) {
             var self = this;
-            self.token = $cookieStore.get('myToken');
-            $http.defaults.headers.common['Authorization'] = self.token;
-            
+         
             self.setToken = function(tkn) {
                 var deferred = $q.defer();
                 
                 self.token = tkn;
                 $cookieStore.put('myToken', self.token);
+                $http.defaults.headers.common['Authorization'] = 'Bearer ' + self.token;
                 
                 deferred.resolve();
                 
@@ -28,13 +27,17 @@ angular.
                 
                 if ($cookieStore.get('myToken')) {
                     $cookieStore.remove('myToken');
-                    self.token = null;
                 }
+                
+                $http.defaults.headers.common['Authorization'] = '';
+                self.token = null;
                 
                 deferred.resolve();
                 
                 return deferred.promise;
             }
+            
+            self.setToken($cookieStore.get('myToken'));
 		}
 	]);
 
