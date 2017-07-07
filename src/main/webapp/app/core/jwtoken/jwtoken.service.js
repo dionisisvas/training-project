@@ -37,6 +37,24 @@ angular.
                 return deferred.promise;
             }
             
+            self.decodeToken = function(tkn) {  
+                return atob(tkn);
+            }
+            
+            self.getTokenBody = function(tkn) {
+                var tokenParts;
+                
+                if (tkn) {
+                    tokenParts = tkn.split('.');
+                }
+                
+                if (tokenParts.length !== 3) {
+                    return null;
+                } else {
+                    return self.decodeToken(tokenParts[1]);
+                }
+            }
+        
             self.setToken($cookieStore.get('myToken'));
 		}
 	]);
