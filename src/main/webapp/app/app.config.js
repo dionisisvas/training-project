@@ -25,6 +25,9 @@ angular.
 				when('/login', {
                 	template: '<my-nav-bar></my-nav-bar><my-user-login></my-user-login>'
                	}).                
+        when('/statistic', {
+                    template: '<my-user-statistics></my-user-statistics>'
+                }).
 				otherwise('/error');
 		}
 	]);

@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PropertyResourceBundle;
 
 import javax.sql.DataSource;
@@ -15,9 +17,10 @@ import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.Metrics;
 import com.iri.training.model.builder.MetricsBuilder;
+
 @Repository
 public class MetricsRepositoryImpl implements MetricsRepository {
-	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
+private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
@@ -41,7 +44,18 @@ public class MetricsRepositoryImpl implements MetricsRepository {
 
 	}
 
+	@Override public List<Metrics> getMetricsList() throws SQLException {
 
+		logger.debug("ENTERED getMetricsList");
+
+		String sql = property.getString("RETRIEVE_METRICS_LIST");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		final List<Metrics> metricsList = jdbcTemplate.query(sql, new MetricsRepositoryImpl.MetricsListResultSetExtractor());
+
+		logger.debug("EXITING getMetricsList");
+
+		return metricsList;
+	}
 
 	private static final class UserMetricsMapper implements ResultSetExtractor<Metrics> {
 
@@ -64,6 +78,26 @@ public class MetricsRepositoryImpl implements MetricsRepository {
 			}
 
 			return  metrics;
+		}
+	}
+
+	private static final class MetricsListResultSetExtractor implements ResultSetExtractor<List<Metrics>> {
+
+		@Override
+		public List<Metrics> extractData(final ResultSet resultSet) throws SQLException {
+
+			final List<Metrics> metricsList = new ArrayList<>();
+			while (resultSet.next()) {
+				metricsList.add(new MetricsBuilder()
+					.withHeight(resultSet.getDouble("height"))
+					.withWeight(resultSet.getDouble("weight"))
+					.withNationality(resultSet.getString("nationality"))
+					.withPlace_of_birth(resultSet.getString("place_of_birth"))
+					.withEducation(resultSet.getString("education"))
+					.build());
+			}
+
+			return metricsList;
 		}
 	}
 

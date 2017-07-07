@@ -31,6 +31,8 @@
         <spring:url value="/app/core/image/image.service.js" var="imageServiceJs" />
         <spring:url value="/app/core/jwtoken/jwtoken.module.js" var="jwtokenModuleJs" />
         <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
+        <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
+        <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
         <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
         <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
         <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
@@ -51,6 +53,8 @@
         <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />        
         <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
         <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
+        <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
+        <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
 
         <script
             src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -59,7 +63,8 @@
         <script 
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-            crossorigin="anonymous"></script>        
+            crossorigin="anonymous"></script>
+            <script  src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
         <script src="${angularCookiesJs}"></script>
@@ -71,11 +76,13 @@
         <script src="${accountModuleJs}"></script>
         <script src="${accountServiceJs}"></script>	        
         <script src="${hobbyModuleJs}"></script>
-        <script src="${hobbyServiceJs}"></script>		
+        <script src="${hobbyServiceJs}"></script>
         <script src="${imageModuleJs}"></script>
         <script src="${imageServiceJs}"></script>	        
         <script src="${jwtokenModuleJs}"></script>
         <script src="${jwtokenServiceJs}"></script>	
+        <script src="${metricsModuleJs}"></script>
+        <script src="${metricsServiceJs}"></script>
         <script src="${optionModuleJs}"></script>
         <script src="${optionServiceJs}"></script>		
         <script src="${userModuleJs}"></script>
@@ -96,11 +103,12 @@
         <script src="${userInfoComponentJs}"></script>
         <script src="${userRegistrationModuleJs}"></script>
         <script src="${userRegistrationComponentJs}"></script>
+        <script src="${userStatisticsModuleJs}"></script>
+        <script src="${userStatisticComponentJs}"></script>
 	</head>
 
 	<body>
 		<div class="view-container">
-            <my-nav-bar></my-nav-bar>
 			<div ng-view class="view-frame"></div>
 		</div>
 	</body>

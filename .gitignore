@@ -12,13 +12,13 @@ bin/
 # Mac
 .DS_Store
 
-# Maven
-log/
-target/
-
 # SQLite
 *.db
 db/*.exe
+
+# Maven
+log/
+target/
 
 # Log4j
 logs/

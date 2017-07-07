@@ -1,0 +1,9 @@
+<div class="container-fluid mt-0">
+	<div class="row">
+		<div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-2">
+	<select ng-init="selectedChart.chart = chartOptions[0]; updateChart();" ng-model="selectedChart.chart" ng-change="updateChart();" ng-options="c.name for c in chartOptions track by c.id"></select>
+<div id="piechart_3d" style="width: 900px; height: 400px; "data="dataAge"></div>
+<div id="top_x_div" style="width: 900px; height: 400px;"></div>
+</div>
+</div>
+</div>

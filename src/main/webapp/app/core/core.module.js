@@ -6,5 +6,6 @@ angular.module('core', [
 	'core.image',
     'core.jwtoken',
 	'core.option',
-	'core.user'
+	'core.user',
+	'core.metrics'
 ]);

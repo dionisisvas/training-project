@@ -34,7 +34,13 @@
 		"dir": ["error"],
 		"info": "default not found landing page",
 		"isAPI": false
-	},	
+	},
+	{
+	   "param": null,
+	   "dir": ["statistic"],
+	   "info": "user charts",
+	   "isAPI": false
+    },
 	{
 		"param": null,
 		"dir": ["user/list"],
@@ -88,5 +94,17 @@
 		"dir": ["hobby/user"],
 		"info": "get a list of hobbies by userId",
 		"isAPI": true
-	}	
+	},
+	{
+		"param": "userId",
+		"dir": ["metrics"],
+		"info": "get a list of metrics by userId",
+		"isAPI": true
+	},
+	{
+		"param": null,
+		"dir": ["metrics/list"],
+		"info": "get a list of all metrics",
+		"isAPI": true
+	}
 ]
