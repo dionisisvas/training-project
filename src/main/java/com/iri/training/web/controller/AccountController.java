@@ -120,7 +120,7 @@ public class AccountController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException {
-		logger.debug("ENTERED authAccount");
+		logger.debug("ENTERED authAccount" + account);
 
 		if (account.getUsername() == null || account.getPassword() == null) {
 			return new ResponseEntity("Insufficient log in data.", HttpStatus.BAD_REQUEST);
@@ -128,7 +128,7 @@ public class AccountController {
 		else if (accountService.getAccount(account.getUsername()) == null) {
 			return new ResponseEntity("Username does not exist.", HttpStatus.NOT_FOUND);
 		}
-		else if (accountService.getAccount(account.getUsername()).getPassword() != account.getPassword()) {
+		else if (!accountService.getAccount(account.getUsername()).getPassword().equals(account.getPassword())) {
 			return new ResponseEntity("Invalid log in details.", HttpStatus.BAD_REQUEST);
 		}
 
@@ -139,7 +139,7 @@ public class AccountController {
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
 
-		logger.debug("EXITING authAccount");
+		logger.debug("EXITING authAccount" + account);
 
 		return new ResponseEntity<String>(new StringBuilder(200)
 												.append("{\"token\": \"")
