@@ -70,6 +70,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withNationality(resultSet.getString("nationality"))
 					.withPlace_of_birth(resultSet.getString("place_of_birth"))
 					.withEducation(resultSet.getString("education"))
+					.withUserId(resultSet.getLong("userId"))
 					.build();
 			}
 			else
@@ -94,6 +95,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withNationality(resultSet.getString("nationality"))
 					.withPlace_of_birth(resultSet.getString("place_of_birth"))
 					.withEducation(resultSet.getString("education"))
+					.withUserId(resultSet.getLong("userId"))
 					.build());
 			}
 
