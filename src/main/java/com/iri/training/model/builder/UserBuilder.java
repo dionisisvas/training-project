@@ -49,7 +49,6 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 		return (GeneratorT) this;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	public GeneratorT withAge(final short aValue) {
 		instance.setAge(aValue);
@@ -74,11 +73,6 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	@SuppressWarnings("unchecked")
 	public GeneratorT withAddress(final String aValue) {
 		instance.setAddress(aValue);
-
-		return (GeneratorT) this;
-	}
-	public GeneratorT withPassword(final String aValue) {
-		instance.setPassword(aValue);
 
 		return (GeneratorT) this;
 	}

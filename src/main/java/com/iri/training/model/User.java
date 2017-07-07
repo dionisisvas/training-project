@@ -12,7 +12,6 @@ public class User  {
 	private LocalDate dateOfBirth;
 	private String phoneNo;
 	private String address;
-	private String password;
 
 	public String getUsername() { return username; }
 
@@ -46,13 +45,6 @@ public class User  {
 
 	public void setAddress(final String address) { this.address = address; }
 
-	public String getPassword() { return password; }
-
-	public void setPassword(final String password) { this.password = password; }
-
-
-	
-
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
 
@@ -60,8 +52,9 @@ public class User  {
 		sb.append("username='");
 		sb.append(username);
 		sb.append('\'');
-		sb.append(", userId=");
+		sb.append(", userId='");
 		sb.append(userId);
+		sb.append('\'');
 		sb.append(", name='");
 		sb.append(name);
 		sb.append('\'');

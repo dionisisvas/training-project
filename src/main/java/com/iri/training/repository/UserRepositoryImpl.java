@@ -35,15 +35,15 @@ public class UserRepositoryImpl implements UserRepository {
 	public UserRepositoryImpl() throws IOException {}
 
 	@Override
-	public User getUser(final String username) throws SQLException {
-		logger.debug("ENTERED getUser for username: " + username);
+	public User getUserByUsername(final String username) throws SQLException {
+		logger.debug("ENTERED getUserByUsername for username: " + username);
 
 		final User user;
 		String sql = property.getString("RETRIEVE_USER_BY_USERNAME");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		user = jdbcTemplate.query(sql, new Object[]{username}, new UserResultSetExtractor());
 
-		logger.debug("EXITING getUser: " + user);
+		logger.debug("EXITING getUserByUsername: " + user);
 
 		return user;
 	}
@@ -77,22 +77,20 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public User createUser(final User user) throws SQLException {
+	public User addUser(final User user) throws SQLException {
 
-		logger.debug("ENTERED createUser for user: " + user);
+		logger.debug("ENTERED addUser for user: " + user);
 
 		String sql = property.getString("CREATE_USER");
-		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update(sql, user.getUsername(),
-								 user.getUserId(),
 								 user.getName(),
 								 user.getSurname(),
 								 user.getDateOfBirth(),
 								 user.getPhoneNo(),
-								 user.getAddress(),
-								 user.getPassword());
+								 user.getAddress());
 
-		logger.debug("EXITING createUser: " + user);
+		logger.debug("EXITING addUser: " + user);
 
 		return user;
 	}
@@ -115,7 +113,6 @@ public class UserRepositoryImpl implements UserRepository {
 						DateTimeFormatter.ISO_LOCAL_DATE))
 					.withPhoneNo(resultSet.getString("phoneNo"))
 					.withAddress(resultSet.getString("address"))
-					.withPassword(resultSet.getString("password"))
 					.build();
 			}
 			else

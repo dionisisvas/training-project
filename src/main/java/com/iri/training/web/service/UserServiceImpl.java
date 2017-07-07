@@ -11,18 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iri.training.model.User;
+import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
 
 @Service
-public  class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 	Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	UserRepository userRepository;
 
 	@Override
-	public User getUser(String username) throws SQLException {
-		User user = userRepository.getUser(username);
+	public User getUserByUsername(String username) throws SQLException {
+		User user = userRepository.getUserByUsername(username);
+
 		if (user != null) {
 			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
 		}
@@ -41,15 +43,17 @@ public  class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(User user) throws SQLException {
-		return userRepository.createUser(user);
+	public User addUser(User user) throws SQLException {
+		return userRepository.addUser(user);
 	}
 
 	@Override
 	public List<User> getUserList() throws SQLException {
 		List<User> userList = new ArrayList<User>(userRepository.getUserList());
 		for (User user : userList) {
-			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+			if (user != null) {
+				user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+			}
 		}
 
 		return userList;

@@ -17,15 +17,20 @@
 
         <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
         <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
+        <spring:url value="/resources/lib/angular/angular-cookies.js" var="angularCookiesJs" />
         <spring:url value="/resources/lib/angular/angular-resource.js" var="angularResourceJs" />		
         <spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
         <spring:url value="/app/app.module.js" var="appModuleJs" />
         <spring:url value="/app/app.config.js" var="appConfigJs" />
         <spring:url value="/app/core/core.module.js" var="coreModuleJs" />
+        <spring:url value="/app/core/account/account.module.js" var="accountModuleJs" />
+        <spring:url value="/app/core/account/account.service.js" var="accountServiceJs" />	        
         <spring:url value="/app/core/hobby/hobby.module.js" var="hobbyModuleJs" />
         <spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />	
         <spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
         <spring:url value="/app/core/image/image.service.js" var="imageServiceJs" />
+        <spring:url value="/app/core/jwtoken/jwtoken.module.js" var="jwtokenModuleJs" />
+        <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
         <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
         <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
         <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
@@ -62,17 +67,22 @@
             <script  src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
+        <script src="${angularCookiesJs}"></script>
         <script src="${angularResourceJs}"></script>
         <script src="${angularRouteJs}"></script>
         <script src="${coreModuleJs}"></script>		
         <script src="${appModuleJs}"></script>
         <script src="${appConfigJs}"></script>
+        <script src="${accountModuleJs}"></script>
+        <script src="${accountServiceJs}"></script>	        
         <script src="${hobbyModuleJs}"></script>
         <script src="${hobbyServiceJs}"></script>
+        <script src="${imageModuleJs}"></script>
+        <script src="${imageServiceJs}"></script>	        
+        <script src="${jwtokenModuleJs}"></script>
+        <script src="${jwtokenServiceJs}"></script>	
         <script src="${metricsModuleJs}"></script>
         <script src="${metricsServiceJs}"></script>
-        <script src="${imageModuleJs}"></script>
-        <script src="${imageServiceJs}"></script>	
         <script src="${optionModuleJs}"></script>
         <script src="${optionServiceJs}"></script>		
         <script src="${userModuleJs}"></script>
@@ -99,7 +109,6 @@
 
 	<body>
 		<div class="view-container">
-            <my-nav-bar></my-nav-bar>
 			<div ng-view class="view-frame"></div>
 		</div>
 	</body>
