@@ -123,13 +123,13 @@ public class AccountController {
 		logger.debug("ENTERED authAccount");
 
 		if (account.getUsername() == null || account.getPassword() == null) {
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Insufficient log in data.", HttpStatus.BAD_REQUEST);
 		}
 		else if (accountService.getAccount(account.getUsername()) == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
+			return new ResponseEntity("Username does not exist.", HttpStatus.NOT_FOUND);
 		}
-		else {
-			// pwd verification here
+		else if (accountService.getAccount(account.getUsername()).getPassword() != account.getPassword()) {
+			return new ResponseEntity("Invalid log in details.", HttpStatus.BAD_REQUEST);
 		}
 
 		String jwt = Jwts.builder().setIssuer("IRI Training App")

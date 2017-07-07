@@ -20,8 +20,8 @@ angular.
                             JWToken.setToken(response.token).then(function() {
                                 $location.path('/');
                             });
-                        }, function() {
-                            console.error("Login failed");
+                        }, function(data) {
+                            console.error("Login failed: " + data);
                         });              
                     });             
             });
