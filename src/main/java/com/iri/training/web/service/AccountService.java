@@ -16,4 +16,6 @@ public interface AccountService {
 	List<Account> getAccountList() throws SQLException;
 
 	Account createAccount(Account account) throws SQLException;
+
+	boolean verifyNewAccount(Account account);
 }

@@ -107,15 +107,24 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
+	public ResponseEntity<String> registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
 		logger.debug("ENTERED registerAccount: " + rw.getAccount() + rw.getUser());
 
-		accountService.createAccount(rw.getAccount());
-		userService.addUser(rw.getUser());
+		if ( accountService.verifyNewAccount(rw.getAccount()) &&
+			 userService.verifyNewUser(rw.getUser())) {
 
-		logger.debug("EXITING registerAccount: " + rw.getAccount() + rw.getUser());
+			accountService.createAccount(rw.getAccount());
+			userService.addUser(rw.getUser());
 
-		return new ResponseEntity(HttpStatus.OK);
+			logger.debug("EXITING registerAccount: " + rw.getAccount() + rw.getUser());
+
+			return new ResponseEntity("Registration success.", HttpStatus.OK);
+		}
+		else {
+			logger.debug("EXITING registerAccount - Registration failed");
+
+			return new ResponseEntity("New registration verification failed.", HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
