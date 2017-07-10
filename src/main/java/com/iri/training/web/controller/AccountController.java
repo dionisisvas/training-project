@@ -110,7 +110,8 @@ public class AccountController {
 	public ResponseEntity<String> registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
 		logger.debug("ENTERED registerAccount: " + rw.getAccount() + rw.getUser());
 
-		if ( accountService.verifyNewAccount(rw.getAccount())) {
+		if ( accountService.verifyNewAccount(rw.getAccount()) &&
+			 userService.verifyNewUser(rw.getUser())) {
 
 			accountService.createAccount(rw.getAccount());
 			userService.addUser(rw.getUser());
