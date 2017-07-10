@@ -52,11 +52,16 @@ angular.
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username must be at least 3 characters long.");
                         }
+                        else if ( username.length > 24) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_username").text("* The username must be at most 24 characters long.");
+                        }
                         else if (username.match(/[\W]/)) {
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username can only contain alphanumerical characters.");
-                        }                         
+                        }                
                         else {  
                             var self = $(this);
                             var tmpUser = Account.AccountByUsername.get({username: username});
@@ -122,6 +127,12 @@ angular.
                                 $(this).css("border-color", "#FF0000");
                                 $('#submit').attr('disabled', true);
                                 $("#error_password").text("* The password should be at least 8 characters long.");
+                                checkFailed = true;
+                        }
+                        else if (pwd.length > 64) {
+                                $(this).css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_password").text("* The password should be at most 64 characters long.");
                                 checkFailed = true;
                         }
                         else {
