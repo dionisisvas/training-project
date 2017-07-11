@@ -24,6 +24,7 @@ public class Hobby {
 		sb.append("Hobby{");
 		sb.append("hobbyId=");
 		sb.append(hobbyId);
+		sb.append('\'');
 		sb.append(", hobbyName='");
 		sb.append(hobbyName);
 		sb.append('\'');

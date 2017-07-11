@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Image;
 import com.iri.training.web.service.ImageService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/image")
 public class ImageController {
@@ -30,11 +31,12 @@ public class ImageController {
 		logger.debug("ENTERED getImage for imgId: " + imgId);
 
 		Image userImg = imgService.getImageById(imgId);
+
+		logger.debug("EXITING getImage for imgId: " + imgId);
+
 		if (userImg != null) {
 			return new ResponseEntity<Image>(userImg, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getImage for imgId: " + imgId);
 
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}
@@ -44,11 +46,12 @@ public class ImageController {
 
 		logger.debug("ENTERED getAllUserImages for userId: " + userId);
 		ArrayList<Image> images = (ArrayList) imgService.getUserImages(userId);
+
+		logger.debug("EXITING getAllUserImages for userId: " + userId);
+
 		if (images != null) {
 			return new ResponseEntity<ArrayList<Image>>(images, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getAllUserImages for userId: " + userId);
 
 		return new ResponseEntity<ArrayList<Image>>(HttpStatus.NOT_FOUND);
 	}
@@ -59,11 +62,12 @@ public class ImageController {
 		logger.debug("ENTERED getUserProfileImage for userId: " + userId);
 
 		Image profileImage = imgService.getProfileImage(userId);
+
+		logger.debug("EXITING getUserProfileImage for userId: " + userId);
+
 		if (profileImage != null) {
 			return new ResponseEntity<Image>(profileImage, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getUserProfileImage for userId: " + userId);
 
 		return new ResponseEntity<Image>(HttpStatus.NOT_FOUND);
 	}

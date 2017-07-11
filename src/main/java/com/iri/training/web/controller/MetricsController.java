@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Metrics;
 import com.iri.training.web.service.MetricsService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "api/metrics")
 public class MetricsController {

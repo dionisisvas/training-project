@@ -55,8 +55,8 @@
 	},
 	{
 		"param": null,
-		"dir": ["user/register"],
-		"info": "register a user",
+		"dir": ["user/add"],
+		"info": "add a user",
 		"isAPI": true
 	},	
 	{

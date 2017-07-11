@@ -2,6 +2,7 @@
 
 angular.module('trainingApp', [
 	'ngAnimate',
+    'ngCookies',
 	'ngRoute',
 	'core',
 	'myErrorPage',

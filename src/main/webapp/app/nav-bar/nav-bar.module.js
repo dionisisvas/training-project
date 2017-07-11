@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('myNavBar', [
-	'ngRoute'
+	'ngRoute',
+    'core.jwtoken'
 ]);

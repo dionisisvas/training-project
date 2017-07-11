@@ -29,8 +29,10 @@ public class Image {
 		sb.append("Image{");
 		sb.append("imgId=");
 		sb.append(imgId);
+		sb.append('\'');
 		sb.append(", userId=");
 		sb.append(userId);
+		sb.append('\'');
 		sb.append(", imgUri='");
 		sb.append(imgUri);
 		sb.append('\'');
