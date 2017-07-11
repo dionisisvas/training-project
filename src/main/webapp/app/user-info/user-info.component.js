@@ -18,8 +18,10 @@ angular.
 				self.getUserImages = function() {
 					self.userImages = Image.UserImages.query({userId: $routeParams.userId});
 					self.userImages.$promise.then(function(imgResult) {
-                        self.setProfileImageUri(self.userImages[0].imgUri);
-						self.userImages = imgResult;
+                        self.userImages = imgResult;
+                        if (self.userImages.length > 0) {
+                            self.setProfileImageUri(self.userImages[0].imgUri);
+                        }
 					}, function() {
 						console.log("User " + $routeParams.userId + " has no images.");
 					});					

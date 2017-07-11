@@ -4,9 +4,41 @@ angular.
 	module('myUserRegistration').
 	component('myUserRegistration', {
 		templateUrl: 'app/user-registration/user-registration.template.html',
-		controller: ['User',
-            function UserRegistrationController(User) {
+		controller: ['Account', 'User',
+            function UserRegistrationController(Account, User) {
+                function validateEmail(email) {
+                    var rgx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return rgx.test(email);
+                } 
+                
                 $(document).ready(function(){
+                    
+                    $("#email").focusout(function() {
+                        var email = $(this).val();                          
+                        if (email == '') {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_email").text("* Please enter your email.");
+                        }
+                        else if (!validateEmail(email)) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_email").text("* Not a valid email.");                            
+                        }
+                        else {  
+                            var self = $(this);
+                            var tmpUser = Account.AccountByEmail.get({email: email});
+                            tmpUser.$promise.then(function(accountResult) {
+                                self.css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_email").text("* This email is already in use.");                          
+                            }, function() {
+                                self.css("border-color", "#2eb82e");
+                                $('#submit').attr('disabled', false);
+                                $("#error_email").text("");                          
+                            });
+                        }
+                    });  
                     
                     $("#username").focusout(function() {
                         var username = $(this).val();                        
@@ -20,15 +52,20 @@ angular.
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username must be at least 3 characters long.");
                         }
+                        else if ( username.length > 24) {
+                            $(this).css("border-color", "#FF0000");
+                            $('#submit').attr('disabled', true);
+                            $("#error_username").text("* The username must be at most 24 characters long.");
+                        }
                         else if (username.match(/[\W]/)) {
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username can only contain alphanumerical characters.");
-                        }                         
+                        }                
                         else {  
                             var self = $(this);
-                            var tmpUser = User.UserByUsername.get({username: username});
-                            tmpUser.$promise.then(function(userResult) {
+                            var tmpUser = Account.AccountByUsername.get({username: username});
+                            tmpUser.$promise.then(function(accountResult) {
                                 self.css("border-color", "#FF0000");
                                 $('#submit').attr('disabled', true);
                                 $("#error_username").text("* This username is already in use.");                          
@@ -92,6 +129,12 @@ angular.
                                 $("#error_password").text("* The password should be at least 8 characters long.");
                                 checkFailed = true;
                         }
+                        else if (pwd.length > 64) {
+                                $(this).css("border-color", "#FF0000");
+                                $('#submit').attr('disabled', true);
+                                $("#error_password").text("* The password should be at most 64 characters long.");
+                                checkFailed = true;
+                        }
                         else {
                             if (!pwd.match(/[A-Z]/) || !pwd.match(/[a-z]/) || !pwd.match(/\d/) || !pwd.match(/[\W]/)) {
                                 $(this).css("border-color", "#FFFF00");
@@ -126,18 +169,30 @@ angular.
                         }
                     });
 
-                    $("#submit").click(function() {                        
+                    $("#submit").click(function() {  
+
+                        var account = JSON.stringify({
+                                    username :    $('#username').val(),
+                                    password :    $('#password').val(),
+                                    email:        $('#email').val()
+                        });
+                        
                         var user = JSON.stringify({
                                     username :    $('#username').val(),
                                     name :        $('#name').val(),
                                     surname :     $('#lastName').val(),
-                                    dateOfBirth : $('#dateOfBirth').val(),
-                                    password :    $('#password').val(),                                    
-                                    phoneNo :     $('#phone').val(),
+                                    dateOfBirth : $('#dateOfBirth').val(),                                
+                                    phoneNo :     $('#phoneNo').val(),
                                     address :     $('#address').val()
                         });
-
-                        User.Register.save(user);
+                        
+                        var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
+                        
+                        Account.Register.save(dataWrapper, function() {
+                            console.log("Registration succeeded");
+                        }, function() {
+                            console.error("Registration failed");
+                        });                             
                     });             
             });
         }]

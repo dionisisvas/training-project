@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Hobby;
 import com.iri.training.web.service.HobbyService;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/hobby")
 public class HobbyController {
@@ -30,11 +31,12 @@ public class HobbyController {
 		logger.debug("ENTERED getAllHobbies");
 
 		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getHobbyList();
+
+		logger.debug("EXITING getAllHobbies");
+
 		if (hobbies != null) {
 			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getAllHobbies");
 
 		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
 	}
@@ -45,11 +47,12 @@ public class HobbyController {
 		logger.debug("ENTERED getHobby for hobbyId: " + hobbyId);
 
 		Hobby hobby = hobbyService.getHobbyById(hobbyId);
+
+		logger.debug("EXITING getHobby for hobbyId: " + hobbyId);
+
 		if (hobby != null) {
 			return new ResponseEntity<Hobby>(hobby, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getHobby for hobbyId: " + hobbyId);
 
 		return new ResponseEntity<Hobby>(HttpStatus.NOT_FOUND);
 	}
@@ -60,11 +63,12 @@ public class HobbyController {
 		logger.debug("ENTERED getAllUserHobbies for userId: " + userId);
 
 		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getUserHobbies(userId);
+
+		logger.debug("EXITING getAllUserHobbies for userId: " + userId);
+
 		if (hobbies != null) {
 			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
 		}
-
-		logger.debug("EXITING getAllUserHobbies for userId: " + userId);
 
 		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
 	}
