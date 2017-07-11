@@ -86,9 +86,7 @@ public class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate.update(sql, user.getUsername(),
 								 user.getName(),
 								 user.getSurname(),
-								 user.getDateOfBirth(),
-								 user.getPhoneNo(),
-								 user.getAddress());
+								 user.getDateOfBirth());
 
 		logger.debug("EXITING addUser: " + user);
 
