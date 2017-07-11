@@ -159,58 +159,46 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
             self.chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
             self.chart1.draw(self.dataAge, self.options1);
            };
-
-						  var dataEdu1 = [
-                          ['Task', 'User Education'],
-                          ['University Education', self.third],
-                          ['High School Diploma', user.name],
-                          ['Doctorate Degree', user.age],
-                          ['Master Degree', user.surname],
-                          ['No High School Diploma', self.first],
-                          ['Professional Degree', self.second]
-                          ];
-
-
-                    $(document).ready(function() {
-
+  var d1=$.getJSON('http://localhost:8080/home/api/metrics/list/', {}, function (a) {
+  var d2= $.getJSON('http://localhost:8080/home/api/user/list/', {}, function (b) {
+  var ret = b.map(x => Object.assign(x, a.find(y => y.userId == x.userId)));
+                    $.when(d1,d2,ret).then(function() {
+                    $.fn.dataTable.ext.errMode = 'none';
                         $('#example').DataTable( {
                         destroy: true,
                             "processing": true,
-                            "ajax": {
-                                "url": "$scope.array0fPosts",
-
-                                 dataSrc : ''
-                            },
+                            data:ret,
                             "columns": [
+                                { "data": "name" },
+                                { "data": "surname" },
+                                { "data": "age" },
                                 { "data": "height" },
                                 { "data": "weight" },
                                 { "data": "nationality" },
                                 { "data": "place_of_birth" },
                                 { "data": "education" }
-                            ]
-                        } );
+							]
+                        });
+                     });
 
-                    } );
+   });
+   });
+});
 
-
-
-
-
-
-$http.get("http://localhost:8080/home/api/metrics/list/").then(
-function(data){
-$scope.array0fPosts=data;
-
-})
-$http.get("http://localhost:8080/home/api/user/list/").then(
-function(data){
-$scope.array0fPosts1=data;
-})
 
 });
 });
 });
+
+$(document).ready(function() {
+    $('input:radio[name=bedStatus]').change(function() {
+        if($('#1').css('display')!='none'){
+            $('#2').html($().html()).show().siblings('div').hide();
+            }else if($('#2').css('display')!='none'){
+                $('#1').show().siblings('div').hide();
+            }
+    });
 });
 
-  }]
+}]
   })
