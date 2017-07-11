@@ -181,9 +181,7 @@ angular.
                                     username :    $('#username').val(),
                                     name :        $('#name').val(),
                                     surname :     $('#lastName').val(),
-                                    dateOfBirth : $('#dateOfBirth').val(),                                
-                                    phoneNo :     $('#phoneNo').val(),
-                                    address :     $('#address').val()
+                                    dateOfBirth : $('#dateOfBirth').val()
                         });
                         
                         var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
