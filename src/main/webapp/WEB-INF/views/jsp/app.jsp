@@ -73,8 +73,7 @@
             <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
             <script src="https://cdn.datatables.net/rowreorder/1.0.0/js/dataTables.rowReorder.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnuubBPo0ChOf3oe2UaZG25dPG_QJQ-BE&libraries=places&callback=initMap"
-                    async defer></script>
+
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
         <script src="${angularCookiesJs}"></script>

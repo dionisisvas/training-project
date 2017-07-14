@@ -4,36 +4,36 @@ angular.
    module('myUserMaps').
    component('myUserMaps', {
       templateUrl: 'app/user-maps/user-maps.template.html',
-      controller: [
-         function UserMaps() {
+      controller: ['Metrics',
+  function UserMaps(Metrics) {
+var a = {};
+
+self.metrics = Metrics.MetricsList.query(function() {
+angular.forEach(self.metrics, function(metrics,key) {
+if (_.has(a,metrics.nationality)){ a[metrics.nationality]++;}
+else{a[metrics.nationality] = 1}
 
 
-      google.charts.load('current', {
+
+     function drawRegionsMap() {
+     var d1=_.keys(a);
+     var d2=_.values(a);
+        var data =new google.visualization.DataTable();
+          data.addColumn('string', 'd1');
+            data.addColumn('number', 'Number Of Users');
+            for(var i = 0; i < d1.length; i++)
+              data.addRow([d1[i], d2[i]]);
+
+        var options = {};
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+        chart.draw(data, options);
+      }
+google.charts.load('current', {
         'packages':['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
-
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700],
-          ['GREECE',800]
-        ]);
-
-        var options = {};
-
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-        chart.draw(data, options);
-      }
-
+      })
+      })
 }]
 })
