@@ -57,6 +57,8 @@
         <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
         <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
         <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
+        <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
+        <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
 
         <script
             src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -71,6 +73,7 @@
             <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
             <script src="https://cdn.datatables.net/rowreorder/1.0.0/js/dataTables.rowReorder.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
         <script src="${angularCookiesJs}"></script>
@@ -111,6 +114,8 @@
         <script src="${userRegistrationComponentJs}"></script>
         <script src="${userStatisticsModuleJs}"></script>
         <script src="${userStatisticComponentJs}"></script>
+        <script src="${userMapsModuleJs}"></script>
+        <script src="${userMapsComponentJs}"></script>
 	</head>
 
 	<body>
