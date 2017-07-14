@@ -28,6 +28,9 @@ angular.
                	when('/statistic', {
                     template: '<my-nav-bar></my-nav-bar><my-user-statistics></my-user-statistics>'
                 }).
+                when('/maps', {
+                template: '<my-nav-bar></my-nav-bar><my-user-maps></my-user-maps>'
+                }).
 				otherwise('/error');
 		}
 
