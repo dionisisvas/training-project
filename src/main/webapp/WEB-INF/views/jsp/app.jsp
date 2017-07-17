@@ -18,17 +18,15 @@
     <link href="${appAnimationCss}" rel="stylesheet" />
   </head>
 
-  <body>
+  <body ng-cloak>
 
     <div class="view-container">
-      <md-toolbar class="md-warn">
-        <div class="md-toolbar-tools">
-          <h2 class="md-flex">IRI Training App</h2>
-        </div>
-      </md-toolbar>
-      <md-content flex layout-padding>
-        <div ng-view class="view-frame"></div>
-      </md-content>
+      <div md-theme="myTheme">
+        <my-nav-bar></my-nav-bar>
+        <md-content flex layout-padding>
+          <div ng-view class="view-frame"></div>
+        </md-content>
+      <div md-theme="myTheme">
     </div>
 
     <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />

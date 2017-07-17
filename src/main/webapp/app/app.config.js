@@ -2,11 +2,16 @@
 
 angular.
     module('trainingApp').
-    config(['$httpProvider', '$locationProvider' ,'$routeProvider',
-        function config($httpProvider, $locationProvider, $routeProvider) {
+    config(['$httpProvider', '$locationProvider', '$mdThemingProvider', '$routeProvider',
+        function config($httpProvider, $locationProvider, $mdThemingProvider, $routeProvider) {
             $httpProvider.defaults.withCredentials = true;
 
             $locationProvider.html5Mode(true);
+
+            $mdThemingProvider.theme('myTheme')
+                .primaryPalette('deep-orange')
+                .accentPalette('amber')
+                .warnPalette('red');
 
             $routeProvider.
                 when('/', {
