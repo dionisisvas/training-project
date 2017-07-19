@@ -2,3 +2,9 @@ html,
 body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+
+/* Sidenav */
+
+md-sidenav {
+  height: 100%;
+}

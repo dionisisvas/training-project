@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <base href="/home/">
     <meta name="description" content="An intern training application.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IRI Training Project</title>
 
     <spring:url value="/resources/css/app.css" var="appCss" />
@@ -20,13 +20,22 @@
 
   <body ng-cloak>
 
-    <div class="view-container">
-      <div md-theme="myTheme">
-        <my-nav-bar></my-nav-bar>
-        <md-content flex layout-padding>
-          <div ng-view class="view-frame"></div>
-        </md-content>
-      <div md-theme="myTheme">
+    <div layout="column" class="view-container" flex>
+      <div md-theme="myTheme" flex>
+
+        <my-toolbar></my-toolbar>
+
+        <div layout="row" flex>
+
+          <my-sidenav></my-sidenav>
+
+          <md-content md-whiteframe="4" id="content" flex layout-padding>
+            <div ng-view class="view-frame"></div>
+          </md-content>
+
+        </div>
+
+      </div>
     </div>
 
     <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
@@ -57,10 +66,12 @@
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
     <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
-    <spring:url value="/app/nav-bar/nav-bar.module.js" var="navBarModuleJs" />
-    <spring:url value="/app/nav-bar/nav-bar.component.js" var="navBarComponentJs" />
     <spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
     <spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
+    <spring:url value="/app/sidenav/sidenav.module.js" var="sidenavModuleJs" />
+    <spring:url value="/app/sidenav/sidenav.component.js" var="sidenavComponentJs" />
+    <spring:url value="/app/toolbar/toolbar.module.js" var="toolbarModuleJs" />
+    <spring:url value="/app/toolbar/toolbar.component.js" var="toolbarComponentJs" />
     <spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
     <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
     <spring:url value="/app/user-login/user-login.module.js" var="userLoginModuleJs" />
@@ -106,10 +117,12 @@
     <script src="${errorPageComponentJs}"></script>
     <script src="${homePageModuleJs}"></script>
     <script src="${homePageComponentJs}"></script>
-    <script src="${navBarModuleJs}"></script>
-    <script src="${navBarComponentJs}"></script>
     <script src="${optionListModuleJs}"></script>
     <script src="${optionListComponentJs}"></script>
+    <script src="${sidenavModuleJs}"></script>
+    <script src="${sidenavComponentJs}"></script>
+    <script src="${toolbarModuleJs}"></script>
+    <script src="${toolbarComponentJs}"></script>
     <script src="${userListModuleJs}"></script>
     <script src="${userListComponentJs}"></script>
     <script src="${userLoginModuleJs}"></script>

@@ -1,13 +1,13 @@
 'use strict';
 
 angular.
-	module('myNavBar').
-	component('myNavBar', {
-		templateUrl: 'app/nav-bar/nav-bar.template.html',
-		controller: ['$location', 'JWToken',
-            function NavBarController($location, JWToken) {
+    module('myToolbar').
+    component('myToolbar', {
+        templateUrl: 'app/toolbar/toolbar.template.html',
+        controller: ['$location', 'JWToken',
+            function ToolbarController($location, JWToken) {
                 var self = this;
-                
+
                 if (JWToken.getToken()) {
                     self.isLoggedIn = true;
                     self.tokenBody = JSON.parse(JWToken.getTokenBody(JWToken.getToken()));
@@ -15,13 +15,12 @@ angular.
                     self.isLoggedIn = false;
                     self.tokenBody = null;
                 }
-                
+
                 self.logout = function() {
-                
                     JWToken.removeToken().then(function() {
-                                self.isLoggedIn = false; 
-                                $location.path('/');
-                        });
+                        self.isLoggedIn = false;
+                        $location.path('/');
+                    });
                 }
-		}]
-	});
+            }]
+    });
