@@ -13,6 +13,7 @@
     <spring:url value="/resources/css/app.animation.css" var="appAnimationCss" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css" />
     <link href="${appCss}" rel="stylesheet" />
     <link href="${appAnimationCss}" rel="stylesheet" />
@@ -29,7 +30,7 @@
 
           <my-sidenav></my-sidenav>
 
-          <md-content md-whiteframe="4" id="content" flex layout-padding>
+          <md-content md-whiteframe="6" id="content" flex layout-padding>
             <div ng-view class="view-frame"></div>
           </md-content>
 

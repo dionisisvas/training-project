@@ -1,10 +1,33 @@
+/*********************** General ***********************/
 html,
 body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-/* Sidenav */
+/*********************** Toolbar ***********************/
+md-toolbar .md-toolbar-tools{
+  background: white;
+  color: rgb(255, 87, 34);
+}
 
+/*********************** Sidenav ***********************/
 md-sidenav {
   height: 100%;
 }
+md-sidenav .my-sidenav-container {
+  background: rgb(255, 87, 34);
+}
+/* Sidenav > Toolbar */
+md-sidenav .my-sidenav-toolbar {
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.40);
+}
+md-sidenav .my-sidenav-toolbar .my-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  margin: 5px 0px 0px 2px;
+}
+md-sidenav .my-sidenav-toolbar .my-user-info {
+  margin-left: 4px;
+}
+/* Sidenav > Content */
