@@ -9,7 +9,10 @@ angular.
             $locationProvider.html5Mode(true);
 
             $mdThemingProvider.theme('myTheme')
-                .primaryPalette('deep-orange')
+                .primaryPalette('deep-orange', {
+                  'hue-2': '500',
+                  'hue-3': '700'
+                })
                 .accentPalette('amber')
                 .warnPalette('red');
 
