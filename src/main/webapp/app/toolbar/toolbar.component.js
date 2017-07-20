@@ -4,9 +4,10 @@ angular.
     module('myToolbar').
     component('myToolbar', {
         templateUrl: 'app/toolbar/toolbar.template.html',
-        controller: ['$location', 'JWToken',
-            function ToolbarController($location, JWToken) {
+        controller: ['$location', 'focusBroadcast', 'JWToken',
+            function ToolbarController($location, focusBroadcast, JWToken) {
                 var self = this;
+                self.showSearch = false;
 
                 if (JWToken.getToken()) {
                     self.isLoggedIn = true;
@@ -14,6 +15,13 @@ angular.
                 } else {
                     self.isLoggedIn = false;
                     self.tokenBody = null;
+                }
+
+                self.toggleSearch = function() {
+                    self.showSearch = !self.showSearch;
+                    if (self.showSearch) {
+                        focusBroadcast('showSearch');
+                    }
                 }
 
                 self.logout = function() {

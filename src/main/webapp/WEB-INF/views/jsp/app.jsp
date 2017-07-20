@@ -51,6 +51,9 @@
     <spring:url value="/app/core/core.module.js" var="coreModuleJs" />
     <spring:url value="/app/core/account/account.module.js" var="accountModuleJs" />
     <spring:url value="/app/core/account/account.service.js" var="accountServiceJs" />
+    <spring:url value="/app/core/focus-on/focus-on.module.js" var="focusOnModuleJs" />
+    <spring:url value="/app/core/focus-on/focus-on.directive.js" var="focusOnDirectiveJs" />
+    <spring:url value="/app/core/focus-on/focus-on.service.js" var="focusOnServiceJs" />
     <spring:url value="/app/core/hobby/hobby.module.js" var="hobbyModuleJs" />
     <spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />
     <spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
@@ -102,6 +105,9 @@
     <script src="${appConfigJs}"></script>
     <script src="${accountModuleJs}"></script>
     <script src="${accountServiceJs}"></script>
+    <script src="${focusOnModuleJs}"></script>
+    <script src="${focusOnDirectiveJs}"></script>
+    <script src="${focusOnServiceJs}"></script>
     <script src="${hobbyModuleJs}"></script>
     <script src="${hobbyServiceJs}"></script>
     <script src="${imageModuleJs}"></script>

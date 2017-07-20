@@ -2,10 +2,11 @@
 
 angular.module('core', [
     'core.account',
-	'core.hobby',
-	'core.image',
+    'core.focusOn',
+    'core.hobby',
+    'core.image',
     'core.jwtoken',
-	'core.option',
-	'core.user',
-	'core.metrics'
+    'core.option',
+    'core.user',
+    'core.metrics'
 ]);

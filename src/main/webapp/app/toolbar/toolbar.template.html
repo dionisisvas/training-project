@@ -1,9 +1,16 @@
-<md-toolbar layout="row" md-whiteframe="4">
+<md-toolbar layout="row" md-whiteframe="2">
   <div class="md-toolbar-tools">
 
     <h2 class="md-flex">IRI Training App</h2>
+
     <span flex></span>
-    <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> search </md-icon>
+
+    <md-button class="md-icon-button" ng-click="$ctrl.toggleSearch()">
+      <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> search </md-icon>
+    </md-button>  
+    <md-input-container class="md-block" ng-show="$ctrl.showSearch" md-no-float>
+      <input ng-model="text" type="text" id="search" placeholder="Search..." ng-blur="$ctrl.toggleSearch()" focus-on="showSearch">
+    </md-input-container>
     <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> more_vert </md-icon>
   </div>
 </md-toolbar>
