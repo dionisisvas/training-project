@@ -12,11 +12,11 @@
       <input ng-model="text" type="text" id="search" placeholder="Search..." ng-blur="$ctrl.toggleSearch()" focus-on="showSearch">
     </md-input-container>
 
-    <md-menu md-position-mode="target-left bottom"  md-offset="-22 6">
+    <md-menu md-position-mode="target-left bottom">
       <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
         <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> more_vert </md-icon>
       </md-button>
-      <md-menu-content width="4">
+      <md-menu-content width="3">
         <md-menu-item>
           <md-button class="missing-url">
             <md-icon md-font-set="material-icons"> info_outline </md-icon>About
