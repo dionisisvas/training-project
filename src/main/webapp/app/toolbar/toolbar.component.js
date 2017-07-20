@@ -8,6 +8,7 @@ angular.
             function ToolbarController($location, focusBroadcast, JWToken) {
                 var self = this;
                 self.showSearch = false;
+                self.githubUrl = 'https://github.com/dionisisvas/training-project/';
 
                 if (JWToken.getToken()) {
                     self.isLoggedIn = true;

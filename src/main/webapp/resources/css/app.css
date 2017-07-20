@@ -3,11 +3,17 @@ html,
 body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
+.missing-url:hover {
+  text-decoration: #E64A19 double line-through;
+}
 
 /*********************** Toolbar ***********************/
 md-toolbar .md-toolbar-tools{
   background: white;
   color: rgb(255, 87, 34);
+}
+md-toolbar .md-block {
+  height: 66%;
 }
 
 /*********************** Sidenav ***********************/
@@ -32,7 +38,3 @@ md-sidenav .my-sidenav-toolbar .my-user-info {
   margin-left: 4px;
 }
 /* Sidenav > Content */
-
-md-toolbar .md-block {
-  height: 66%;
-}
