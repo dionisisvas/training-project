@@ -2,6 +2,7 @@
 
 angular.module('core', [
     'core.account',
+    'core.authorization',
     'core.focusOn',
     'core.hobby',
     'core.image',

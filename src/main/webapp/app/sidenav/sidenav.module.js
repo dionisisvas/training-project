@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('mySidenav', [
-    'ngRoute'
+    'ngRoute',
+    'core.jwtoken'
 ]);

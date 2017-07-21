@@ -1,20 +1,20 @@
 'use strict';
 
 angular.
-	module('myUserRegistration').
-	component('myUserRegistration', {
-		templateUrl: 'app/user-registration/user-registration.template.html',
-		controller: ['Account', 'User',
-            function UserRegistrationController(Account, User) {
+    module('myUserRegistration').
+    component('myUserRegistration', {
+        templateUrl: 'app/user-registration/user-registration.template.html',
+        controller: ['Account', 'Authorization',
+            function UserRegistrationController(Account, Authorization) {
                 function validateEmail(email) {
                     var rgx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     return rgx.test(email);
-                } 
-                
+                }
+
                 $(document).ready(function(){
-                    
+
                     $("#email").focusout(function() {
-                        var email = $(this).val();                          
+                        var email = $(this).val();
                         if (email == '') {
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
@@ -23,25 +23,25 @@ angular.
                         else if (!validateEmail(email)) {
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
-                            $("#error_email").text("* Not a valid email.");                            
+                            $("#error_email").text("* Not a valid email.");
                         }
-                        else {  
+                        else {
                             var self = $(this);
                             var tmpUser = Account.AccountByEmail.get({email: email});
                             tmpUser.$promise.then(function(accountResult) {
                                 self.css("border-color", "#FF0000");
                                 $('#submit').attr('disabled', true);
-                                $("#error_email").text("* This email is already in use.");                          
+                                $("#error_email").text("* This email is already in use.");
                             }, function() {
                                 self.css("border-color", "#2eb82e");
                                 $('#submit').attr('disabled', false);
-                                $("#error_email").text("");                          
+                                $("#error_email").text("");
                             });
                         }
-                    });  
-                    
+                    });
+
                     $("#username").focusout(function() {
-                        var username = $(this).val();                        
+                        var username = $(this).val();
                         if (username == '') {
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
@@ -61,22 +61,22 @@ angular.
                             $(this).css("border-color", "#FF0000");
                             $('#submit').attr('disabled', true);
                             $("#error_username").text("* The username can only contain alphanumerical characters.");
-                        }                
-                        else {  
+                        }
+                        else {
                             var self = $(this);
                             var tmpUser = Account.AccountByUsername.get({username: username});
                             tmpUser.$promise.then(function(accountResult) {
                                 self.css("border-color", "#FF0000");
                                 $('#submit').attr('disabled', true);
-                                $("#error_username").text("* This username is already in use.");                          
+                                $("#error_username").text("* This username is already in use.");
                             }, function() {
                                 self.css("border-color", "#2eb82e");
                                 $('#submit').attr('disabled', false);
-                                $("#error_username").text("");                          
+                                $("#error_username").text("");
                             });
                         }
                     });
-                    
+
                     $("#name").focusout(function() {
                         if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
@@ -89,7 +89,7 @@ angular.
                             $("#error_name").text("");
                         }
                     });
-                    
+
                     $("#lastName").focusout(function() {
                         if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
@@ -102,7 +102,7 @@ angular.
                             $("#error_lastName").text("");
                         }
                     });
-                    
+
                     $("#dateOfBirth").focusout(function() {
                         if ($(this).val() == '') {
                             $(this).css("border-color", "#FF0000");
@@ -140,16 +140,16 @@ angular.
                                 $(this).css("border-color", "#FFFF00");
                                 $('#submit').attr('disabled', false);
                                 $("#warning_password").text("* Suggestion: your password should be mixed case with alphanumerical and symbol characters.");
-                            }   
+                            }
                             else {
                                 $(this).css("border-color", "#2eb82e");
                                 $('#submit').attr('disabled', false);
-                                $("#warning_password").text(""); 
-                                $("#error_password").text("");                               
+                                $("#warning_password").text("");
+                                $("#error_password").text("");
                             }
-                        }   
+                        }
                     });
-                    
+
                     $("#passwordRepeat").focusout(function() {
                         var passwordRepeat = $(this).val();
                         if (passwordRepeat == '') {
@@ -169,31 +169,31 @@ angular.
                         }
                     });
 
-                    $("#submit").click(function() {  
+                    $("#submit").click(function() {
 
                         var account = JSON.stringify({
                                     username :    $('#username').val(),
                                     password :    $('#password').val(),
                                     email:        $('#email').val()
                         });
-                        
+
                         var user = JSON.stringify({
                                     username :    $('#username').val(),
                                     name :        $('#name').val(),
                                     surname :     $('#lastName').val(),
-                                    dateOfBirth : $('#dateOfBirth').val(),                                
+                                    dateOfBirth : $('#dateOfBirth').val(),
                                     phoneNo :     $('#phoneNo').val(),
                                     address :     $('#address').val()
                         });
-                        
+
                         var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
-                        
-                        Account.Register.save(dataWrapper, function() {
+
+                        Authorization.Register.save(dataWrapper, function() {
                             console.log("Registration succeeded");
                         }, function() {
                             console.error("Registration failed");
-                        });                             
-                    });             
+                        });
+                    });
             });
         }]
     });

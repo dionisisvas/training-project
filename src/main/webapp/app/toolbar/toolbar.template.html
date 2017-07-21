@@ -5,6 +5,7 @@
 
     <span flex></span>
 
+    <!-- Search button -->
     <md-button class="md-icon-button" ng-click="$ctrl.toggleSearch()">
       <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> search </md-icon>
     </md-button>
@@ -12,21 +13,26 @@
       <input ng-model="text" type="text" id="search" placeholder="Search..." ng-blur="$ctrl.toggleSearch()" focus-on="showSearch">
     </md-input-container>
 
-    <md-menu md-position-mode="target-left bottom">
+    <!-- More button -->
+    <md-menu md-position-mode="target-right bottom">
+
       <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
         <md-icon md-font-set="material-icons" class="md-primary md-hue-2"> more_vert </md-icon>
       </md-button>
       <md-menu-content width="3">
+
         <md-menu-item>
           <md-button class="missing-url">
             <md-icon md-font-set="material-icons"> info_outline </md-icon>About
           </md-button>
         </md-menu-item>
+
         <md-menu-item>
           <md-button ng-href="{{$ctrl.githubUrl}}" target="_blank">
             <md-icon md-font-set="material-icons"> open_in_new </md-icon>Github
           </md-button>
         </md-menu-item>
+
       </md-menu-content>
     </md-menu>
   </div>

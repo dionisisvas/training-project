@@ -51,6 +51,8 @@
     <spring:url value="/app/core/core.module.js" var="coreModuleJs" />
     <spring:url value="/app/core/account/account.module.js" var="accountModuleJs" />
     <spring:url value="/app/core/account/account.service.js" var="accountServiceJs" />
+    <spring:url value="/app/core/authorization/authorization.module.js" var="authorizationModuleJs" />
+    <spring:url value="/app/core/authorization/authorization.service.js" var="authorizationServiceJs" />
     <spring:url value="/app/core/focus-on/focus-on.module.js" var="focusOnModuleJs" />
     <spring:url value="/app/core/focus-on/focus-on.directive.js" var="focusOnDirectiveJs" />
     <spring:url value="/app/core/focus-on/focus-on.service.js" var="focusOnServiceJs" />
@@ -105,6 +107,8 @@
     <script src="${appConfigJs}"></script>
     <script src="${accountModuleJs}"></script>
     <script src="${accountServiceJs}"></script>
+    <script src="${authorizationModuleJs}"></script>
+    <script src="${authorizationServiceJs}"></script>
     <script src="${focusOnModuleJs}"></script>
     <script src="${focusOnDirectiveJs}"></script>
     <script src="${focusOnServiceJs}"></script>

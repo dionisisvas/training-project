@@ -1,35 +1,50 @@
 <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true">
   <div class="my-sidenav-container" flex>
+    <!-- Sidenav header -->
     <md-toolbar class="md-primary md-hue-3 my-sidenav-toolbar">
-      <span flex></span>
       <div layout="row" layout-align="start center">
+
         <img src="resources/img/users/default-user-img.png" class="my-avatar">
+
         <span flex></span>
+
+        <!-- Dropdown button -->
         <md-menu md-position-mode="target-left bottom">
           <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
             <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
           </md-button>
+
           <md-menu-content width="3">
+
             <md-menu-item>
               <md-button class="missing-url">
                 <md-icon md-font-set="material-icons"> settings </md-icon>Settings
               </md-button>
             </md-menu-item>
+
             <md-menu-item>
-              <md-button  class="missing-url">
+              <md-button ng-click="$ctrl.logout()">
                 <md-icon md-font-set="material-icons"> exit_to_app </md-icon>Log out
               </md-button>
             </md-menu-item>
+
           </md-menu-content>
         </md-menu>
+
       </div>
+
       <span flex></span>
+
+      <!-- User Info -->
       <div class="my-user-info">
         <div class="md-body-3">username</div>
         <div class="md-body-2">Firstname Lastname</div>
         <div class="md-body-1">email@domainname.com</div>
       </div>
+
     </md-toolbar>
+
+    <!-- Sidenav nav links -->
     <md-list>
     </md-list>
   </div>

@@ -2,6 +2,5 @@
 
 angular.module('myToolbar', [
     'ngRoute',
-    'core.focusOn',
-    'core.jwtoken'
+    'core.focusOn'
 ]);
