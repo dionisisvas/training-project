@@ -47,43 +47,6 @@ public class UserServiceImpl implements UserService {
 		return userRepository.addUser(user);
 	}
 
-	@Override public boolean verifyNewUser(final User user) {
-
-		if ((user.getUsername() == null) ||
-			(user.getName() == null) ||
-			(user.getSurname() == null) ||
-			(user.getDateOfBirth() == null)) {
-
-			return false;
-		}
-
-		boolean verified = true;
-
-		// Check if the username is alphanumeric in the [3-24] characters range.
-		verified = verified && (user.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
-		// Check if the name and surname are within the [2-64] characters range.
-		verified = verified && ((user.getName().length() >= 2) &&
-			(user.getName().length() <= 64));
-		verified = verified && ((user.getSurname().length() >= 2) &&
-			(user.getSurname().length() <= 64));
-		// Check if the date is within acceptable ranges.
-		verified = verified && ((user.getDateOfBirth().isBefore(LocalDate.of(1999, 1, 1))) &&
-								(user.getDateOfBirth().isAfter(LocalDate.of(1900, 1, 1))));
-
-		// Check if the address and the phone are within the [2-64] characters range, if they were provided.
-		if (user.getAddress() != null) {
-			verified = verified && ((user.getAddress().length() >= 2) &&
-				(user.getAddress().length() <= 64));
-		}
-		if (user.getPhoneNo() != null) {
-			verified = verified && ((user.getPhoneNo().length() >= 2) &&
-				(user.getPhoneNo().length() <= 64));
-		}
-
-		return verified;
-
-	}
-
 	@Override
 	public List<User> getUserList() throws SQLException {
 		List<User> userList = new ArrayList<User>(userRepository.getUserList());
@@ -94,5 +57,53 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return userList;
+	}
+
+	@Override public boolean verifyNewUser(final User user) {
+
+		logger.debug("ENTERED verifyNewUser for " + user);
+
+		boolean verified = true;
+
+		if ((user.getUsername() == null) ||
+			(user.getName() == null) ||
+			(user.getSurname() == null) ||
+			(user.getDateOfBirth() == null)) {
+
+			verified = false;
+
+			logger.debug("Found null fields");
+		}
+
+
+
+		// Check if the username is alphanumeric in the [3-24] characters range.
+		verified = verified && (user.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
+		if (!verified) {
+			logger.debug("Invalid username.");
+		}
+
+		// Check if the name and surname are within the [2-64] characters range.
+		verified = verified && ((user.getName().length() >= 2) &&
+			(user.getName().length() <= 64));
+		if (!verified) {
+			logger.debug("Invalid name.");
+		}
+		verified = verified && ((user.getSurname().length() >= 2) &&
+			(user.getSurname().length() <= 64));
+		if (!verified) {
+			logger.debug("Invalid surname.");
+		}
+
+		// Check if the date is within acceptable ranges.
+		verified = verified && ((user.getDateOfBirth().isBefore(LocalDate.of(1999, 1, 1))) &&
+			(user.getDateOfBirth().isAfter(LocalDate.of(1900, 1, 1))));
+		if (!verified) {
+			logger.debug("Invalid age.");
+		}
+
+		logger.debug("EXITING verifyNewUser for " + user);
+
+		return verified;
 	}
 }

@@ -9,6 +9,21 @@ public class Metrics {
 	private String nationality;
 	private String place_of_birth;
 	private  String education;
+	private Long userId;
+
+
+
+	public void setUserId(final Long userId) {
+
+		this.userId = userId;
+	}
+
+	public Long getUserId() {
+
+
+		return userId;
+	}
+
 
 	public void setHeight(final double height) {
 
@@ -59,19 +74,16 @@ public class Metrics {
 		return education;
 	}
 
-
-
-	@Override public String toString() {
+	@Override
+	public String toString() {
 
 		return "Metrics{" +
 			"height=" + height +
 			", weight=" + weight +
 			", nationality='" + nationality + '\'' +
 			", place_of_birth='" + place_of_birth + '\'' +
-			",education='" + education + '\'' +
+			", education='" + education + '\'' +
+			", userId=" + userId +
 			'}';
 	}
-
-
-
 }

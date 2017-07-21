@@ -16,12 +16,12 @@ angular.
                         });
 
                         Authorization.Login.save(account, function(response) {
-                            console.log("Login succeeded");
+                            console.log("Login succeeded " + response.token);
                             JWToken.setToken(response.token).then(function() {
                                 $location.path('/');
                             });
-                        }, function(data) {
-                            console.error("Login failed: " + data);
+                        }, function(response) {
+                            console.error("Login failed: " + response.data.message);
                         });
                     });
             });

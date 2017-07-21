@@ -86,6 +86,8 @@
     <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />
     <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
     <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
+    <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
+    <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
 
@@ -142,6 +144,8 @@
     <script src="${userInfoComponentJs}"></script>
     <script src="${userRegistrationModuleJs}"></script>
     <script src="${userRegistrationComponentJs}"></script>
+    <script src="${userMapsModuleJs}"></script>
+    <script src="${userMapsComponentJs}"></script>
     <script src="${userStatisticsModuleJs}"></script>
     <script src="${userStatisticComponentJs}"></script>
   </body>

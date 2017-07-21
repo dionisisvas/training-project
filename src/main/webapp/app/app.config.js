@@ -35,6 +35,9 @@ angular.
                 when('/login', {
                     template: '<my-user-login></my-user-login>'
                 }).
+                when('/maps', {
+                    template: '<my-user-maps></my-user-maps>'
+                }).
                 when('/statistic', {
                     template: '<my-user-statistics></my-user-statistics>'
                 }).

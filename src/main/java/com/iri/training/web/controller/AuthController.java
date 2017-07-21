@@ -34,39 +34,40 @@ public class AuthController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
 	public ResponseEntity<String> registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
 		logger.debug("ENTERED registerAccount: " + rw.getAccount() + rw.getUser());
 
 		if ( accountService.verifyNewAccount(rw.getAccount()) &&
-			 userService.verifyNewUser(rw.getUser())) {
+			userService.verifyNewUser(rw.getUser())) {
 
 			accountService.createAccount(rw.getAccount());
 			userService.addUser(rw.getUser());
 
 			logger.debug("EXITING registerAccount: " + rw.getAccount() + rw.getUser());
 
-			return new ResponseEntity("Registration success.", HttpStatus.OK);
+			return new ResponseEntity("{\"message\": \"Registration success.\"}", HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING registerAccount - Registration failed");
 
-			return new ResponseEntity("New registration verification failed.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("{\"message\": \"New registration verification failed.\"}", HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException {
-		logger.debug("ENTERED authAccount" + account);
+		logger.debug("ENTERED authAccount " + account);
 
 		if (account.getUsername() == null || account.getPassword() == null) {
-			return new ResponseEntity("Insufficient log in data.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("{\"message\": \"Insufficient log in data.\"}", HttpStatus.BAD_REQUEST);
 		}
 		else if (accountService.getAccount(account.getUsername()) == null) {
-			return new ResponseEntity("Username does not exist.", HttpStatus.NOT_FOUND);
+			return new ResponseEntity("{\"message\": \"Username does not exist.\"}", HttpStatus.NOT_FOUND);
 		}
 		else if (!accountService.getAccount(account.getUsername()).getPassword().equals(account.getPassword())) {
-			return new ResponseEntity("Invalid log in details.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("{\"message\": \"Invalid log in details.\"}", HttpStatus.BAD_REQUEST);
 		}
 
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
@@ -76,14 +77,14 @@ public class AuthController {
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
 
-		logger.debug("EXITING authAccount" + account);
+		logger.debug("EXITING authAccount" + account + " Token: "+ jwt);
 
 		return new ResponseEntity<String>(new StringBuilder(200)
-												.append("{\"token\": \"")
-												.append(jwt)
-												.append("\"}")
-											.toString(),
-											HttpStatus.OK);
+			.append("{\"token\": \"")
+			.append(jwt)
+			.append("\"}")
+			.toString(),
+			HttpStatus.OK);
 	}
 
 	private static class RegistrationWrapper {

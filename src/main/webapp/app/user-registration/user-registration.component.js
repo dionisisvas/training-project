@@ -2,10 +2,10 @@
 
 angular.
     module('myUserRegistration').
-    component('myUserRegistration', {
+        component('myUserRegistration', {
         templateUrl: 'app/user-registration/user-registration.template.html',
-        controller: ['Account', 'Authorization',
-            function UserRegistrationController(Account, Authorization) {
+        controller: ['$location', 'Account', 'Authorization', 'JWToken',
+            function UserRegistrationController($location, Account, Authorization, JWToken) {
                 function validateEmail(email) {
                     var rgx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     return rgx.test(email);
@@ -181,17 +181,24 @@ angular.
                                     username :    $('#username').val(),
                                     name :        $('#name').val(),
                                     surname :     $('#lastName').val(),
-                                    dateOfBirth : $('#dateOfBirth').val(),
-                                    phoneNo :     $('#phoneNo').val(),
-                                    address :     $('#address').val()
+                                    dateOfBirth : $('#dateOfBirth').val()
                         });
 
                         var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
 
                         Authorization.Register.save(dataWrapper, function() {
                             console.log("Registration succeeded");
-                        }, function() {
-                            console.error("Registration failed");
+
+                            Authorization.Login.save(account, function(response) {
+                                console.log("Login succeeded");
+                                JWToken.setToken(response.token).then(function() {
+                                    $location.path('/');
+                                });
+                            }, function(response) {
+                                console.error("Login failed: " + response.data.message);
+                            });
+                        }, function(response) {
+                            console.error("Registration failed: " + response.data.message);
                         });
                     });
             });

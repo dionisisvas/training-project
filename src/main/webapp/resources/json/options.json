@@ -42,6 +42,12 @@
 	   "isAPI": false
     },
 	{
+	"param": null,
+	"dir": ["maps"],
+	"info": "maps",
+	"isAPI": false
+},
+	{
 		"param": null,
 		"dir": ["user/list"],
 		"info": "get the user list",
