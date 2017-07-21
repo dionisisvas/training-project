@@ -60,6 +60,8 @@ public class AuthController {
 	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException {
 		logger.debug("ENTERED authAccount " + account);
 
+		final User user = userService.getUserByUsername(account.getUsername());
+
 		if (account.getUsername() == null || account.getPassword() == null) {
 			return new ResponseEntity("{\"message\": \"Insufficient log in data.\"}", HttpStatus.BAD_REQUEST);
 		}
@@ -73,7 +75,10 @@ public class AuthController {
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
 			.setIssuedAt(new Date())
-			.claim("name", userService.getUserByUsername(account.getUsername()).getName())
+			.claim("name", user.getName())
+			.claim("surname", user.getSurname())
+			.claim("username", account.getUsername())
+			.claim("email", accountService.getAccount(account.getUsername()).getEmail())
 			.signWith(SignatureAlgorithm.HS256, "secretkey")
 			.compact();
 
