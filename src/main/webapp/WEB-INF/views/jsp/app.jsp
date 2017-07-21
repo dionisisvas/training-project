@@ -7,6 +7,7 @@
     <base href="/home/">
     <meta name="description" content="An intern training application.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="resources/img/iri-favicon.png"/>
     <title>IRI Training Project</title>
 
     <spring:url value="/resources/css/app.css" var="appCss" />
@@ -90,7 +91,8 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
-
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-1.12.4.min.js"
       integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="

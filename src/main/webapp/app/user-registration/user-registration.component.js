@@ -4,8 +4,8 @@ angular.
     module('myUserRegistration').
         component('myUserRegistration', {
         templateUrl: 'app/user-registration/user-registration.template.html',
-        controller: ['$location', 'Account', 'Authorization', 'JWToken',
-            function UserRegistrationController($location, Account, Authorization, JWToken) {
+        controller: ['$location', '$window', 'Account', 'Authorization', 'JWToken',
+            function UserRegistrationController($location, $window, Account, Authorization, JWToken) {
                 function validateEmail(email) {
                     var rgx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                     return rgx.test(email);
@@ -193,6 +193,7 @@ angular.
                                 console.log("Login succeeded");
                                 JWToken.setToken(response.token).then(function() {
                                     $location.path('/');
+                                    $window.location.reload();
                                 });
                             }, function(response) {
                                 console.error("Login failed: " + response.data.message);
