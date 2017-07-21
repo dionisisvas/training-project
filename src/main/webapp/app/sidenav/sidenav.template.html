@@ -4,13 +4,13 @@
     <md-toolbar class="md-primary md-hue-3 my-sidenav-toolbar">
       <div layout="row" layout-align="start center">
 
-        <img src="resources/img/users/default-user-img.png" class="my-avatar">
+        <img ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}" class="my-avatar" alt="{{$ctrl.tokenBody.username}}" />
 
         <span flex></span>
 
         <!-- Dropdown button -->
         <md-menu md-position-mode="target-left bottom">
-          <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
             <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
           </md-button>
 
@@ -37,9 +37,9 @@
 
       <!-- User Info -->
       <div class="my-user-info">
-        <div class="md-body-3">username</div>
-        <div class="md-body-2">Firstname Lastname</div>
-        <div class="md-body-1">email@domainname.com</div>
+        <div class="md-body-3">{{$ctrl.tokenBody.username}}</div>
+        <div class="md-body-2">{{$ctrl.tokenBody.name}} {{$ctrl.tokenBody.surname}}</div>
+        <div class="md-body-1">{{$ctrl.tokenBody.email}}</div>
       </div>
 
     </md-toolbar>
