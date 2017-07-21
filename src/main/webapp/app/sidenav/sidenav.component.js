@@ -44,7 +44,7 @@ angular.
                 self.logout = function() {
                     JWToken.removeToken().then(function() {
                         self.setDefaults();
-                        $location.path('/');
+                        $location.path('/login');
                     });
                 }
         }]

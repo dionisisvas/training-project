@@ -4,8 +4,8 @@ angular.
     module('myUserLogin').
     component('myUserLogin', {
         templateUrl: 'app/user-login/user-login.template.html',
-        controller: ['$location', 'Authorization', 'JWToken',
-            function UserLoginController($location, Authorization, JWToken) {
+        controller: ['$location', '$window', 'Authorization', 'JWToken',
+            function UserLoginController($location, $window, Authorization, JWToken) {
                 $(document).ready(function(){
 
                     $("#submit").click(function() {
@@ -19,6 +19,7 @@ angular.
                             console.log("Login succeeded " + response.token);
                             JWToken.setToken(response.token).then(function() {
                                 $location.path('/');
+                                $window.location.reload();
                             });
                         }, function(response) {
                             console.error("Login failed: " + response.data.message);
