@@ -7,7 +7,8 @@
     <base href="/home/">
     <meta name="description" content="An intern training application.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" type="image/png" href="resources/img/iri-favicon.png"/>
+    <link href="resources/img/favicon.ico" type="image/x-icon" rel="shortcut icon"/> 
+    <link href="resources/img/favicon.ico" type="image/x-icon" rel="icon"/>
     <title>IRI Training Project</title>
 
     <spring:url value="/resources/css/app.css" var="appCss" />
