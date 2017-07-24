@@ -3,5 +3,6 @@
 angular.module('mySidenav', [
     'ngRoute',
     'core.image',
-    'core.jwtoken'
+    'core.jwtoken',
+    'core.navlink'
 ]);

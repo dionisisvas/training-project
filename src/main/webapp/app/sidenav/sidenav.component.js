@@ -4,9 +4,11 @@ angular.
     module('mySidenav').
     component('mySidenav', {
         templateUrl: 'app/sidenav/sidenav.template.html',
-        controller: ['$location', 'Image', 'JWToken',
-            function SidenavController($location, Image, JWToken) {
+        controller: ['$location', 'Image', 'JWToken', 'Navlink',
+            function SidenavController($location, Image, JWToken, Navlink) {
                 var self = this;
+
+                self.navlinks = Navlink.query();
 
                 self.setDefaults = function() {
                     self.tokenBody = {

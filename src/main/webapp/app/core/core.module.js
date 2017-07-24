@@ -7,6 +7,7 @@ angular.module('core', [
     'core.hobby',
     'core.image',
     'core.jwtoken',
+    'core.navlink',
     'core.option',
     'core.user',
     'core.metrics'

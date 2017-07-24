@@ -7,7 +7,7 @@
     <base href="/home/">
     <meta name="description" content="An intern training application.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="resources/img/favicon.ico" type="image/x-icon" rel="shortcut icon"/> 
+    <link href="resources/img/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
     <link href="resources/img/favicon.ico" type="image/x-icon" rel="icon"/>
     <title>IRI Training Project</title>
 
@@ -66,6 +66,8 @@
     <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
     <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
     <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
+    <spring:url value="/app/core/navlink/navlink.module.js" var="navlinkModuleJs" />
+    <spring:url value="/app/core/navlink/navlink.service.js" var="navlinkServiceJs" />
     <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
     <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
     <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
@@ -92,7 +94,7 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
-    
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-1.12.4.min.js"
@@ -125,6 +127,8 @@
     <script src="${jwtokenServiceJs}"></script>
     <script src="${metricsModuleJs}"></script>
     <script src="${metricsServiceJs}"></script>
+    <script src="${navlinkModuleJs}"></script>
+    <script src="${navlinkServiceJs}"></script>
     <script src="${optionModuleJs}"></script>
     <script src="${optionServiceJs}"></script>
     <script src="${userModuleJs}"></script>

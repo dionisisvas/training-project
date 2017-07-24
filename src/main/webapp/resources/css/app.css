@@ -37,4 +37,16 @@ md-sidenav .my-sidenav-toolbar .my-avatar {
 md-sidenav .my-sidenav-toolbar .my-user-info {
   margin-left: 4px;
 }
-/* Sidenav > Content */
+/* Sidenav > Navigation */
+md-sidenav md-list .my-list-header {
+  padding: 5px 0px 0px 5px;
+}
+md-sidenav md-list .my-list-header,
+md-sidenav md-list .my-navlink-icon,
+md-sidenav md-list .md-list-item-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+md-sidenav .missing-navlink .md-list-item-text {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: #E64A19 double line-through;
+}
