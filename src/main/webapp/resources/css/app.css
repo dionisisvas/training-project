@@ -6,6 +6,16 @@ body {
 .missing-url:hover {
   text-decoration: #E64A19 double line-through;
 }
+@media (min-width: 960px) {
+  md-toast.md-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0px;
+  }
+}
 
 /*********************** Toolbar ***********************/
 md-toolbar .md-toolbar-tools{
