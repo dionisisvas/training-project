@@ -33,7 +33,7 @@
           <my-sidenav></my-sidenav>
 
           <md-content md-whiteframe="6" id="content" flex layout-padding>
-            <div ng-view class="view-frame"></div>
+            <div ng-view class="view-frame" layout="column"></div>
           </md-content>
 
         </div>

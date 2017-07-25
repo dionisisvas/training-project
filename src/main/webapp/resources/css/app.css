@@ -50,3 +50,11 @@ md-sidenav .missing-navlink .md-list-item-text {
   color: rgba(255, 255, 255, 0.55);
   text-decoration: #E64A19 double line-through;
 }
+
+/*********************** Content ***********************/
+#login-container {
+  width: 45%
+}
+md-card .md-block {
+  margin: 0px 8% 0px 8%;
+}
