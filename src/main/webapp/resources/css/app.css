@@ -65,6 +65,18 @@ md-sidenav .missing-navlink .md-list-item-text {
 #login-container {
   width: 45%
 }
-md-card .md-block {
+#registration-container {
+  width: 85%
+}
+#login-container md-card .md-block {
   margin: 0px 8% 0px 8%;
+}
+#registration-container md-card .md-block {
+  margin: 0px 0px 0px 8%;
+}
+#login-container .input-hint,
+#registration-container .input-hint {
+  font-size: 10px;
+  line-height: 14px;
+  color: grey;
 }
