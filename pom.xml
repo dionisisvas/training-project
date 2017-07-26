@@ -153,12 +153,6 @@
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-dependency-plugin</artifactId>
-			<version>2.3</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -203,22 +197,23 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.3</version>
+				<version>3.0.1</version>
 				<executions>
-				<execution>
-					<phase>package</phase>
-					<goals><goal>copy</goal></goals>
-					<configuration>
-					<artifactitems>
-					<artifactitem>
-					<groupId>com.github.jsimone</groupId>
-						<artifactId>webapp-runner</artifactId>
-						<version>8.0.30.2</version>
-						<destFileName>webapp-runner.jar</destFileName>
-					</artifactitem>
-					</artifactitems>
-					</configuration>
-				</execution>
+					<execution>
+						<phase>package</phase>
+						<goals><goal>analyze-only</goal></goals>
+						<configuration>
+							<failOnWarning>false</failOnWarning>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.github.jsimone</groupId>
+									<artifactId>webapp-runner</artifactId>
+									<version>8.0.30.2</version>
+									<destFileName>webapp-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 
