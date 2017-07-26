@@ -1,7 +1,7 @@
 package com.iri.training.repository;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,8 +25,9 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
+	InputStream resourceAsStream = MetricsRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public MetricsRepositoryImpl() throws IOException {}
 
