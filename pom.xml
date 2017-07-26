@@ -203,7 +203,7 @@
 						<phase>package</phase>
 						<goals><goal>analyze-only</goal></goals>
 						<configuration>
-							<failOnWarning>false</failOnWarning>
+							
 							<artifactItems>
 								<artifactItem>
 									<groupId>com.github.jsimone</groupId>
