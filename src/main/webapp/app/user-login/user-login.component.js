@@ -11,23 +11,25 @@ angular.
 
                 self.submitForm = function(isValid) {
 
-                    Authorization.Login.save($scope.account, function(response) {
-                        console.log("Login succeeded " + response.token);
-                        JWToken.setToken(response.token).then(function() {
-                            $location.path('/');
-                            $window.location.reload();
+                    if (isValid) {
+                        Authorization.Login.save($scope.account, function(response) {
+                            console.log("Login succeeded " + response.token);
+                            JWToken.setToken(response.token).then(function() {
+                                $location.path('/');
+                                $window.location.reload();
+                            });
+                        }, function(response) {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                  .textContent(response.data.message)
+                                  .action('Dismiss')
+                                  .highlightAction(true)
+                                  .highlightClass('md-primary md-warn')
+                                  .position('bottom center')
+                                  .hideDelay(3000)
+                            );
                         });
-                    }, function(response) {
-                        $mdToast.show(
-                            $mdToast.simple()
-                              .textContent(response.data.message)
-                              .action('Dismiss')
-                              .highlightAction(true)
-                              .highlightClass('md-primary md-warn')
-                              .position('bottom center')
-                              .hideDelay(3000)
-                        );
-                    });
+                    }
                 };
         }]
     });
