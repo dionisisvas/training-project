@@ -62,12 +62,13 @@
         <md-input-container class="md-block">
           <md-icon md-font-set="material-icons"> person </md-icon>
           <input ng-model="account.username" name="username" type="text" placeholder="Username"
-                 ng-required="true" md-minlength="3" md-maxlength="24" ng-pattern="/^\w+$/">
+                 ng-required="true" md-minlength="3" md-maxlength="24" ng-pattern="/^\w+$/" username-unique>
 
           <div class="input-hint">Can consist of alphanumericals & underscores.</div>
 
           <div ng-messages="registrationForm.username.$error" role="alert">
             <div ng-message="required">The username is required.</div>
+            <div ng-message="usernameUnique">This username is already in use.</div>
             <div ng-message="pattern">Only alphanumerical characters and underscores are allowed.</div>
             <div ng-message-exp="['md-minlength', 'md-maxlength']">
             The username must be between 3 and 24 characters.

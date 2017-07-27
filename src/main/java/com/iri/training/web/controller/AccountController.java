@@ -95,4 +95,18 @@ public class AccountController {
 
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
+
+	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> isUsernameUnique(@PathVariable("username") String username) throws SQLException {
+		logger.debug("ENTERED isUsernameUnique for username: " + username);
+
+		if (accountService.getAccount(username) != null) {
+			logger.debug("EXITING isUsernameUnique (false) for username " + username);
+			return new ResponseEntity(false, HttpStatus.NOT_FOUND);
+		}
+		else {
+			logger.debug("EXITING isUsernameUnique (true) for username " + username);
+			return new ResponseEntity(true, HttpStatus.OK);
+		}
+	}
 }

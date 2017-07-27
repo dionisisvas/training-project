@@ -8,7 +8,8 @@ angular.
                 AccountByUsername: $resource('api/account/:username'),
                 AccountById: $resource('api/account/id/:accountId'),
                 AccountByEmail: $resource('api/account/email/:email'),
-                AccountList: $resource('api/account/list')
+                AccountList: $resource('api/account/list'),
+                IsUsernameUnique: $resource('api/account/is-unique/username/:username')
             };
         }
     ]);

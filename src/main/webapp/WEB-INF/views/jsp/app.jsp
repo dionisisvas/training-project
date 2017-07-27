@@ -72,6 +72,8 @@
     <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
     <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
     <spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
+    <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
+    <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
@@ -133,6 +135,8 @@
     <script src="${optionServiceJs}"></script>
     <script src="${userModuleJs}"></script>
     <script src="${userServiceJs}"></script>
+    <script src="${usernameUniqueModuleJs}"></script>
+    <script src="${usernameUniqueDirectiveJs}"></script>
     <script src="${errorPageModuleJs}"></script>
     <script src="${errorPageComponentJs}"></script>
     <script src="${homePageModuleJs}"></script>
