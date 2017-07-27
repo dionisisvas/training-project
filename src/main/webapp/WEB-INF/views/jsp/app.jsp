@@ -1,9 +1,10 @@
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
-		<base href="/">
+		<base href="/home/">
 		<title>IRI Training Project</title>
 
 		<spring:url value="//resources/css/app.css" var="appCss" />
@@ -60,7 +61,7 @@
         <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
 
         <script
-            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            src="//code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
         <script 
