@@ -190,7 +190,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>/home</contextPath>
+
 					</webApp>
 				</configuration>
 			</plugin>
