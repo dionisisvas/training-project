@@ -1,5 +1,5 @@
-<%@ taglib prefix="spring" uri="https://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="https://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en" ng-app="trainingApp">
 	<head>
@@ -15,7 +15,7 @@
 		<link href="${appCss}" rel="stylesheet" />
 		<link href="${appAnimationCss}" rel="stylesheet" />
         <link rel="stylesheet"  href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
         <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
         <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
@@ -61,17 +61,17 @@
         <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
 
         <script
-            src="//code.jquery.com/jquery-1.12.4.min.js"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
         <script 
-            src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
             crossorigin="anonymous"></script>
-            <script src="//www.gstatic.com/charts/loader.js"></script>
+            <script src="http://www.gstatic.com/charts/loader.js"></script>
             <script src="//code.jquery.com/jquery-1.12.4.js" ></script>
-            <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
-            <script src="//cdn.datatables.net/rowreorder/1.0.0/js/dataTables.rowReorder.js"></script>
+            <script src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
+            <script src="http://cdn.datatables.net/rowreorder/1.0.0/js/dataTables.rowReorder.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 
         <script src="${angularJs}"></script>
