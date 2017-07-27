@@ -102,10 +102,24 @@ public class AccountController {
 
 		if (accountService.getAccount(username) != null) {
 			logger.debug("EXITING isUsernameUnique (false) for username " + username);
-			return new ResponseEntity(false, HttpStatus.NOT_FOUND);
+			return new ResponseEntity(false, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING isUsernameUnique (true) for username " + username);
+			return new ResponseEntity(true, HttpStatus.OK);
+		}
+	}
+
+	@RequestMapping(value = "/is-unique/email/{email:.+}", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> isEmailUnique(@PathVariable("email") String email) throws SQLException {
+		logger.debug("ENTERED isEmailUnique for username: " + email);
+
+		if (accountService.getAccountByEmail(email) != null) {
+			logger.debug("EXITING isEmailUnique (false) for e-mail " + email);
+			return new ResponseEntity(false, HttpStatus.OK);
+		}
+		else {
+			logger.debug("EXITING isEmailUnique (true) for e-mail " + email);
 			return new ResponseEntity(true, HttpStatus.OK);
 		}
 	}

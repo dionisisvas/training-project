@@ -47,11 +47,12 @@
       <div layout="row">
         <md-input-container class="md-block">
           <md-icon md-font-set="material-icons"> email </md-icon>
-          <input ng-model="account.email" name="email" type="email" placeholder="E-mail"
-                 ng-required="true" md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/">
+          <input ng-model="account.email" name="email" type="email" placeholder="E-mail" ng-required="true"
+                 md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/" email-unique>
 
           <div ng-messages="registrationForm.email.$error" role="alert">
             <div ng-message="required">The e-mail is required.</div>
+            <div ng-message="emailUnique">This e-mail is already in use.</div>
             <div ng-message="pattern">That doesn't look like a valid e-mail.</div>
             <div ng-message-exp="['md-minlength', 'md-maxlength']">
             The e-mail must be between 8 and 64 characters.

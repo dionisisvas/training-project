@@ -10,6 +10,7 @@ angular.module('core', [
     'core.navlink',
     'core.option',
     'core.user',
+    'core.emailUnique',
     'core.usernameUnique',
     'core.metrics'
 ]);
