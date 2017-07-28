@@ -40,9 +40,7 @@
         </md-input-container>
       </div>
 
-      <div layout="row">
-
-      </div>
+      <br>
 
       <div layout="row">
         <md-input-container class="md-block">
@@ -78,6 +76,8 @@
         </md-input-container>
       </div>
 
+      <br>
+
       <div layout="row">
         <md-input-container class="md-block">
           <md-icon md-font-set="material-icons"> vpn_key </md-icon>
@@ -97,7 +97,11 @@
         <md-input-container class="md-block">
           <md-icon md-font-set="material-icons"> repeat </md-icon>
           <input ng-model="account.passwordRepeat" name="passwordRepeat" type="password" placeholder="Repeat Password"
-                 ng-required="true" md-minlength="8" md-maxlength="64">
+                 ng-required="true" md-minlength="8" md-maxlength="64" password-repeat="account.password">
+
+          <div ng-messages="registrationForm.passwordRepeat.$error" role="alert">
+            <div ng-message="passwordRepeat">Passwords don't match.</div>
+          </div>
         </md-input-container>
       </div>
 
