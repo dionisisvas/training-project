@@ -97,30 +97,30 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET)
-	public ResponseEntity<Boolean> isUsernameUnique(@PathVariable("username") String username) throws SQLException {
+	public ResponseEntity<String> isUsernameUnique(@PathVariable("username") String username) throws SQLException {
 		logger.debug("ENTERED isUsernameUnique for username: " + username);
 
 		if (accountService.getAccount(username) != null) {
 			logger.debug("EXITING isUsernameUnique (false) for username " + username);
-			return new ResponseEntity(false, HttpStatus.OK);
+			return new ResponseEntity("{\"isUnique\": false}", HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING isUsernameUnique (true) for username " + username);
-			return new ResponseEntity(true, HttpStatus.OK);
+			return new ResponseEntity("{\"isUnique\": true}", HttpStatus.OK);
 		}
 	}
 
 	@RequestMapping(value = "/is-unique/email/{email:.+}", method = RequestMethod.GET)
-	public ResponseEntity<Boolean> isEmailUnique(@PathVariable("email") String email) throws SQLException {
+	public ResponseEntity<String> isEmailUnique(@PathVariable("email") String email) throws SQLException {
 		logger.debug("ENTERED isEmailUnique for username: " + email);
 
 		if (accountService.getAccountByEmail(email) != null) {
 			logger.debug("EXITING isEmailUnique (false) for e-mail " + email);
-			return new ResponseEntity(false, HttpStatus.OK);
+			return new ResponseEntity("{\"isUnique\": false}", HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING isEmailUnique (true) for e-mail " + email);
-			return new ResponseEntity(true, HttpStatus.OK);
+			return new ResponseEntity("{\"isUnique\": true}", HttpStatus.OK);
 		}
 	}
 }
