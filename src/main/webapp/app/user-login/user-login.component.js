@@ -13,7 +13,7 @@ angular.
 
                     if (isValid) {
                         Authorization.Login.save($scope.account, function(response) {
-                            console.log("Login succeeded " + response.token);
+                            console.log("Login succeeded.");
                             JWToken.setToken(response.token).then(function() {
                                 $location.path('/');
                                 $window.location.reload();

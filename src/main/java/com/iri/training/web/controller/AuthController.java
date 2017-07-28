@@ -52,7 +52,7 @@ public class AuthController {
 		else {
 			logger.debug("EXITING registerAccount - Registration failed");
 
-			return new ResponseEntity("{\"message\": \"New registration verification failed.\"}", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("{\"message\": \"Registration failed.\"}", HttpStatus.BAD_REQUEST);
 		}
 	}
 

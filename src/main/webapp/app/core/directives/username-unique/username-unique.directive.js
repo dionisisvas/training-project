@@ -2,8 +2,8 @@
 
 angular.
     module('core.usernameUnique').
-    directive('usernameUnique', ['Account',
-        function(Account) {
+    directive('usernameUnique', ['$q', 'Account',
+        function($q, Account) {
             return {
                 require : 'ngModel',
                 link    : function(scope, elem, attr, ngModel) {
@@ -17,7 +17,7 @@ angular.
                                           deferred.reject();
                                       }
                                   });
-                                  
+
                                   return deferred.promise;
                               };
                 }

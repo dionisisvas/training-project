@@ -4,8 +4,8 @@ angular.
     module('myUserRegistration').
         component('myUserRegistration', {
         templateUrl: 'app/user-registration/user-registration.template.html',
-        controller: ['$location', '$scope', '$window', 'Account', 'Authorization', 'JWToken',
-            function UserRegistrationController($location, $scope, $window, Account, Authorization, JWToken) {
+        controller: ['$location', '$mdToast', '$scope', '$timeout', '$window', 'Account', 'Authorization', 'JWToken',
+            function UserRegistrationController($location, $mdToast, $scope, $timeout, $window, Account, Authorization, JWToken) {
                 var self = this;
 
                 self.loginUrl = 'login';
@@ -40,20 +40,35 @@ angular.
 
                         var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
 
-                        Authorization.Register.save(dataWrapper, function() {
-                            console.log("Registration succeeded");
+                        Authorization.Register.save(dataWrapper, function(response) {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                      .textContent(response.message + ' Logging you in...')
+                                      .position('bottom center')
+                                      .hideDelay(600)
+                                );
 
-                            Authorization.Login.save(account, function(response) {
-                                console.log("Login succeeded");
-                                JWToken.setToken(response.token).then(function() {
-                                    $location.path('/');
-                                    $window.location.reload();
+                            $timeout(function() {
+                                Authorization.Login.save(account, function(response) {
+                                    console.log("Login succeeded: " + response.token);
+                                    JWToken.setToken(response.token).then(function() {
+                                        $location.path('/');
+                                        $window.location.reload();
+                                    });
+                                }, function(response) {
+                                    console.log("Login failed: " + response.data.message);
                                 });
-                            }, function(response) {
-                                console.error("Login failed: " + response.data.message);
-                            });
+                            }, 500);
                         }, function(response) {
-                            console.error("Registration failed: " + response.data.message);
+                            $mdToast.show(
+                                $mdToast.simple()
+                                  .textContent(response.data.message)
+                                  .action('Dismiss')
+                                  .highlightAction(true)
+                                  .highlightClass('md-primary md-warn')
+                                  .position('bottom center')
+                                  .hideDelay(3000)
+                            );
                         });
                     }
                 };
