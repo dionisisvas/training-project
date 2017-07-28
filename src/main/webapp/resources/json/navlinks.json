@@ -38,6 +38,13 @@
     "title": "Hobbies",
     "url": null,
     "info": "Find a list of hobbies or add your own.",
+    "icon": "bubble_chart",
+    "working": false
+  },
+  {
+    "title": "Comments",
+    "url": null,
+    "info": "Check user comments.",
     "icon": "forum",
     "working": false
   }
