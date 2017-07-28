@@ -159,8 +159,8 @@ else if((metrics.education).valueOf()==("Professional Degree").valueOf()){self.p
             self.chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
             self.chart1.draw(self.dataAge, self.options1);
            };
-  var d1=$.getJSON('https://iri-training-project.herokuapp.com/api/metrics/list', {}, function (a) {
-  var d2= $.getJSON('https://iri-training-project.herokuapp.com/api/user/list', {}, function (b) {
+  var d1=self.users = User.UserList.query(function(a) {
+  var d2= self.metrics = Metrics.MetricsList.query(function(b) {
   var ret = b.map(x => Object.assign(x, a.find(y => y.userId == x.userId)));
                     $.when(d1,d2,ret).then(function() {
                     $.fn.dataTable.ext.errMode = 'none';
