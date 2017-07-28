@@ -12,6 +12,7 @@ angular.module('core', [
     'core.user',
     'core.emailUnique',
     'core.passwordRepeat',
+    'core.passwordStrength',
     'core.usernameUnique',
     'core.metrics'
 ]);

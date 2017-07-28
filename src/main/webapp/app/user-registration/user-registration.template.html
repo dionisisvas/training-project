@@ -84,12 +84,14 @@
         <md-input-container class="md-block">
           <md-icon md-font-set="material-icons"> vpn_key </md-icon>
           <input ng-model="account.password" name="password" type="password" placeholder="Password"
-                 ng-required="true" md-minlength="8" md-maxlength="64">
+                 ng-required="true" md-minlength="8" md-maxlength="64" password-strength>
 
           <div class="input-hint">Include mixed-case alphanumericals & symbols.</div>
+          <div class="input-hint">Minimum length: 8 characters.</div>
 
           <div ng-messages="registrationForm.password.$error" role="alert">
             <div ng-message="required">The password can't be blank.</div>
+            <div ng-message="passwordStrength">Your password is weak.</div>
             <div ng-message-exp="['md-minlength', 'md-maxlength']">
             The password must be between 8 and 64 characters.
             </div>
@@ -106,6 +108,8 @@
           </div>
         </md-input-container>
       </div>
+
+      <br>
 
       <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
         <md-button class="md-raised md-primary" type="submit" ng-disabled="registrationForm.$invalid">Register</md-button>

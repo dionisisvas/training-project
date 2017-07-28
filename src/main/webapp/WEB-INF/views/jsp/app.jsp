@@ -76,6 +76,8 @@
     <spring:url value="/app/core/directives/focus-on/focus-on.service.js" var="focusOnServiceJs" />
     <spring:url value="/app/core/directives/password-repeat/password-repeat.module.js" var="passwordRepeatModuleJs" />
     <spring:url value="/app/core/directives/password-repeat/password-repeat.directive.js" var="passwordRepeatDirectiveJs" />
+    <spring:url value="/app/core/directives/password-strength/password-strength.module.js" var="passwordStrengthModuleJs" />
+    <spring:url value="/app/core/directives/password-strength/password-strength.directive.js" var="passwordStrengthDirectiveJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
@@ -143,6 +145,8 @@
     <script src="${focusOnServiceJs}"></script>
     <script src="${passwordRepeatModuleJs}"></script>
     <script src="${passwordRepeatDirectiveJs}"></script>
+    <script src="${passwordStrengthModuleJs}"></script>
+    <script src="${passwordStrengthDirectiveJs}"></script>
     <script src="${usernameUniqueModuleJs}"></script>
     <script src="${usernameUniqueDirectiveJs}"></script>
     <script src="${errorPageModuleJs}"></script>
