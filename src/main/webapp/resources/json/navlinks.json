@@ -10,11 +10,11 @@
     "title": "Profile",
     "url": null,
     "info": "Visit your profile page.",
-    "icon": "face",
+    "icon": "person",
     "working": false
   },
   {
-    "title": "Friends",
+    "title": "User list",
     "url": "user/list",
     "info": "View your friends and find new ones.",
     "icon": "people",

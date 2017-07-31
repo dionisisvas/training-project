@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('myUserList', [
-	'core.image',
-	'core.user'
+    'core.image',
+    'core.user'
 ]);

@@ -80,3 +80,10 @@ md-sidenav .missing-navlink .md-list-item-text {
   line-height: 14px;
   color: grey;
 }
+md-radio-group .my-radio-btn {
+  display: inline;
+  margin: 0px 12px 0px 0px;
+}
+md-radio-group .radio-btn-label {
+  margin-left: -8px;
+}
