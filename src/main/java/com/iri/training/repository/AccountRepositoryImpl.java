@@ -1,7 +1,7 @@
 package com.iri.training.repository;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import java.util.PropertyResourceBundle;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
@@ -26,8 +25,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
-	private PropertyResourceBundle property = new PropertyResourceBundle(fis);
+	InputStream resourceAsStream = AccountRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
 
 	public AccountRepositoryImpl() throws IOException {}
 

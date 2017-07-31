@@ -4,7 +4,7 @@
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
-		<base href="/home/">
+		<base href="/">
 		<title>IRI Training Project</title>
 
 		<spring:url value="/resources/css/app.css" var="appCss" />
@@ -65,7 +65,7 @@
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
         <script 
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
             crossorigin="anonymous"></script>
             <script src="https://www.gstatic.com/charts/loader.js"></script>
