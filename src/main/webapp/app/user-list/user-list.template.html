@@ -40,7 +40,7 @@
                     ng-href="user/uid/{{user.userId}}">
         <img ng-src="{{user.profileImage.imgUri}}" onerror="this.src='$ctrl.self.defaultImgUri'"
              alt="{{user.name}}" class="md-avatar"/>
-        <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong><em>&nbsp;({{user.username}})</em>&nbsp;{{user.age}} years old</p>
+        <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong>&nbsp;&nbsp;<span class="userlist-age">{{user.age}} years old</span></p>
         <md-icon md-font-set="material-icons"> mail </md-icon>
         <md-icon md-font-set="material-icons" ng-style="{'margin-left':'1%'}"> add </md-icon>
         <md-divider></md-divider>

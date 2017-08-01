@@ -62,6 +62,7 @@ md-sidenav .missing-navlink .md-list-item-text {
 }
 
 /*********************** Content ***********************/
+/* Login and registration templates */
 #login-container {
   width: 45%
 }
@@ -80,10 +81,15 @@ md-sidenav .missing-navlink .md-list-item-text {
   line-height: 14px;
   color: grey;
 }
+/* Userlist template */
 md-radio-group .my-radio-btn {
   display: inline;
   margin: 0px 12px 0px 0px;
 }
 md-radio-group .radio-btn-label {
   margin-left: -8px;
+}
+.userlist-age {
+  font-size: 13px;
+  color: grey;
 }
