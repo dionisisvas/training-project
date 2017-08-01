@@ -39,18 +39,20 @@
       <md-list-item ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit"
                     ng-href="user/uid/{{user.userId}}">
         <img ng-src="{{user.profileImage.imgUri}}" onerror="this.src='$ctrl.self.defaultImgUri'"
-             alt="{{user.name}}" height="32" width="32" />
-        <strong>{{user.surname}}</strong>, {{user.name}}&nbsp;<p><em> {{user.age}} years old</em></p>
+             alt="{{user.name}}" class="md-avatar"/>
+        <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong><em>&nbsp;({{user.username}})</em>&nbsp;{{user.age}} years old</p>
+        <md-icon md-font-set="material-icons"> mail </md-icon>
+        <md-icon md-font-set="material-icons" ng-style="{'margin-left':'1%'}"> add </md-icon>
         <md-divider></md-divider>
       </md-list-item>
 
       <md-list-item ng-hide="($ctrl.users | filter: $ctrl.query).length < 4">
-        <button ng-click="$ctrl.getLowerLimit()" ng-if="$ctrl.limit > $ctrl.startingLimit">
+        <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-show="$ctrl.limit > $ctrl.startingLimit">
           Less...
-        </button>
-        <button ng-click="$ctrl.getHigherLimit()" ng-if="$ctrl.limit < $ctrl.users.length">
+        </md-button>
+        <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-show="$ctrl.limit < $ctrl.users.length">
           More...
-        </button>
+        </md-button>
       </md-list-item>
 
     </md-list>
