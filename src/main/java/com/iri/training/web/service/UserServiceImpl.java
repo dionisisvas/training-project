@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iri.training.model.User;
-import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
 
 @Service
@@ -59,11 +58,13 @@ public class UserServiceImpl implements UserService {
 		return userList;
 	}
 
-	@Override public boolean verifyNewUser(final User user) {
+	@Override public boolean verifyNewUser(final User user) throws SQLException {
 
 		logger.debug("ENTERED verifyNewUser for " + user);
 
 		boolean verified = true;
+
+		LocalDate ld = LocalDate.now();
 
 		if ((user.getUsername() == null) ||
 			(user.getName() == null) ||
@@ -71,34 +72,41 @@ public class UserServiceImpl implements UserService {
 			(user.getDateOfBirth() == null)) {
 
 			verified = false;
-
-			logger.debug("Found null fields");
+			logger.debug("Found null required fields.");
 		}
 
-
-
-		// Check if the username is alphanumeric in the [3-24] characters range.
-		verified = verified && (user.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
-		if (!verified) {
+		// Username can be alphanumeric with underscores in the [3-24] characters range.
+		if (!(user.getUsername().matches("^[a-zA-Z0-_]{3,24}$"))) {
+			verified = false;
 			logger.debug("Invalid username.");
+		}
+		// Check if the username is unique.
+		if (userRepository.getUserByUsername(user.getUsername()) != null) {
+			verified = false;
+			logger.debug("Username already exists.");
 		}
 
 		// Check if the name and surname are within the [2-64] characters range.
-		verified = verified && ((user.getName().length() >= 2) &&
-			(user.getName().length() <= 64));
-		if (!verified) {
+		if ((user.getName().length() < 2) ||
+			(user.getName().length() > 64)) {
+
+			verified = false;
 			logger.debug("Invalid name.");
 		}
-		verified = verified && ((user.getSurname().length() >= 2) &&
-			(user.getSurname().length() <= 64));
-		if (!verified) {
+		if ((user.getSurname().length() < 2) ||
+			(user.getSurname().length() > 64)) {
+
+			verified = false;
 			logger.debug("Invalid surname.");
 		}
 
-		// Check if the date is within acceptable ranges.
-		verified = verified && ((user.getDateOfBirth().isBefore(LocalDate.of(1999, 1, 1))) &&
-			(user.getDateOfBirth().isAfter(LocalDate.of(1900, 1, 1))));
-		if (!verified) {
+		// Check if the user age is valid (18-125 years old).
+		if ((user.getDateOfBirth().isBefore(LocalDate.of(ld.getYear(), ld.getMonth(), ld.getDayOfMonth())
+				.minusYears(125))) ||
+			(user.getDateOfBirth().isAfter(LocalDate.of(ld.getYear(), ld.getMonth(), ld.getDayOfMonth())
+				.minusYears(18)))) {
+
+			verified = false;
 			logger.debug("Invalid age.");
 		}
 

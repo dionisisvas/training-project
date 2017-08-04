@@ -67,10 +67,10 @@ public  class AccountServiceImpl implements AccountService {
 			(account.getPassword() == null)) {
 
 			verified = false;
-			logger.debug("Found null required fields");
+			logger.debug("Found null required fields.");
 		}
 
-		// Check if the username is alphanumeric in the [3-24] characters range.
+		// Username can be alphanumeric with underscores in the [3-24] characters range.
 		if (!(account.getUsername().matches("^[a-zA-Z0-9_]{3,24}$"))) {
 			verified = false;
 			logger.debug("Invalid username.");
