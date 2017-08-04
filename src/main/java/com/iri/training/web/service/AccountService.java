@@ -17,5 +17,5 @@ public interface AccountService {
 
 	Account createAccount(Account account) throws SQLException;
 
-	boolean verifyNewAccount(Account account);
+	boolean verifyNewAccount(Account account) throws SQLException;
 }
