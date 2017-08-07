@@ -28,8 +28,7 @@ public class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	InputStream resourceAsStream = UserRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private InputStream resourceAsStream = UserRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public UserRepositoryImpl() throws IOException {}

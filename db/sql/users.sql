@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-    username    TEXT        NOT_NULL UNIQUE,
+    username    TEXT        NOT_NULL UNIQUE COLLATE NOCASE,
     userId      INTEGER     PRIMARY KEY AUTOINCREMENT,
     name        TEXT        NOT_NULL,
     surname     TEXT        NOT_NULL,

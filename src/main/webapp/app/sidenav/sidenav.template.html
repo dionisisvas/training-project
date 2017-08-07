@@ -1,0 +1,74 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="true">
+  <div class="my-sidenav-container" flex>
+    <!-- Sidenav header -->
+    <md-toolbar class="md-primary md-hue-3 my-sidenav-toolbar">
+      <div layout="row" layout-align="start center">
+
+        <img ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}" class="my-avatar" alt="{{$ctrl.tokenBody.username}}" />
+
+        <span flex></span>
+
+        <!-- Dropdown button -->
+        <md-menu md-position-mode="target-left bottom">
+          <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
+            <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
+          </md-button>
+
+          <md-menu-content width="3">
+
+            <md-menu-item>
+              <md-button class="missing-url">
+                <md-icon md-font-set="material-icons"> settings </md-icon>Settings
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button ng-click="$ctrl.logout()">
+                <md-icon md-font-set="material-icons"> exit_to_app </md-icon>Log out
+              </md-button>
+            </md-menu-item>
+
+          </md-menu-content>
+        </md-menu>
+
+      </div>
+
+      <span flex></span>
+
+      <!-- User Info -->
+      <div class="my-user-info">
+        <div class="md-body-3">{{$ctrl.tokenBody.username}}</div>
+        <div class="md-body-2">{{$ctrl.tokenBody.name}} {{$ctrl.tokenBody.surname}}</div>
+        <div class="md-body-1">{{$ctrl.tokenBody.email}}</div>
+      </div>
+
+    </md-toolbar>
+
+    <!-- Sidenav nav links -->
+
+    <md-list>
+      <md-list-item class="md-2-line" ng-repeat="navlink in $ctrl.navlinks" role="link" ng-href="{{navlink.url}}" ng-attr-title="{{navlink.info}}" ng-if="navlink.working" md-ink-ripple>
+
+        <md-icon md-font-set="material-icons" class="my-navlink-icon"> {{navlink.icon}} </md-icon>
+        <div class="md-list-item-text">
+          <span flex class="md-body-2">{{navlink.title}}</span>
+        </div>
+
+      </md-list-item>
+
+      <br>
+
+      <md-divider></md-divider>
+
+      <div class="my-list-header"> Missing Functionality </div>
+      <md-list-item class="md-2-line missing-navlink" ng-repeat="navlink in $ctrl.navlinks" role="link" ng-href="{{navlink.url}}" ng-attr-title="{{navlink.info}}" ng-if="!navlink.working" md-ink-ripple>
+
+        <md-icon md-font-set="material-icons" class="my-navlink-icon"> {{navlink.icon}} </md-icon>
+        <div class="md-list-item-text">
+          <span flex class="md-body-2">{{navlink.title}}</span>
+        </div>
+
+      </md-list-item>
+    </md-list>
+  </div>
+</md-sidenav>

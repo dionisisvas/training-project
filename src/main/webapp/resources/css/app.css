@@ -1,143 +1,95 @@
+/*********************** General ***********************/
+html,
 body {
-	padding-left: 1em;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+.missing-url:hover {
+  text-decoration: #E64A19 double line-through;
+}
+@media (min-width: 960px) {
+  md-toast.md-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0px;
+  }
 }
 
-.text-info {
-    color: #686868;
-    padding-left: 0.5em;
+/*********************** Toolbar ***********************/
+md-toolbar .md-toolbar-tools{
+  background: white;
+  color: rgb(255, 87, 34);
+}
+md-toolbar .md-block {
+  height: 66%;
 }
 
-.optional-field {
-    color: #707070;
+/*********************** Sidenav ***********************/
+md-sidenav {
+  height: 100%;
+}
+md-sidenav .my-sidenav-container {
+  background: rgb(255, 87, 34);
+}
+/* Sidenav > Toolbar */
+md-sidenav .my-sidenav-toolbar {
+  padding: 20px 15px 15px 15px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.40);
+}
+md-sidenav .my-sidenav-toolbar .my-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  margin-bottom: 4px;
+}
+md-sidenav .my-sidenav-toolbar .my-user-info {
+  margin-left: 4px;
+}
+/* Sidenav > Navigation */
+md-sidenav md-list .my-list-header {
+  padding: 5px 0px 0px 5px;
+}
+md-sidenav md-list .my-list-header,
+md-sidenav md-list .my-navlink-icon,
+md-sidenav md-list .md-list-item-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+md-sidenav .missing-navlink .md-list-item-text {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: #E64A19 double line-through;
 }
 
-.mt-0 {
-    margin-top: 60px;
+/*********************** Content ***********************/
+/* Login and registration templates */
+#login-container {
+  width: 45%
 }
-
-.pl-1 {
-    padding-left: 0.5em;
+#registration-container {
+  width: 85%
 }
-
-.mt-2 {
-    margin-top: -5px;
+#login-container md-card .md-block {
+  margin: 0px 8% 0px 8%;
 }
-
-.mt-3 {
-    margin-top: -3px;
+#registration-container md-card .md-block {
+  margin: 0px 0px 0px 8%;
 }
-
-.ml-4 {
-    margin-left: 10px;
+#login-container .input-hint,
+#registration-container .input-hint {
+  font-size: 10px;
+  line-height: 14px;
+  color: grey;
 }
-
-.project-info {
-    background-color: #d9edf7;
+/* Userlist template */
+md-radio-group .my-radio-btn {
+  display: inline;
+  margin: 0px 12px 0px 0px;
 }
-
-.options {
-	list-style: none;
+md-radio-group .radio-btn-label {
+  margin-left: -8px;
 }
-
-.options li {
-	clear: both;
-	height: 80px;
-	margin-bottom: -0.5em;	
-	padding-top: 15px;
-}
-.users {
-	list-style: none;
-}
-
-.users img {
-	height: 64px;
-	width: 64px;
-}
-
-.users li {
-	clear: both;
-	height: 80px;
-	margin-bottom: -0.5em;	
-	padding-top: 15px;
-}
-
-.thumb {
-	float: left;
-	height: 64px;
-	margin: -0.5em 1em 1em 0;
-	width: 64px;	
-}
-
-.user-profile-img {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: -1em;
-	padding: 2px;
-}
-
-.user-full-name {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: 0.6em;
-	padding: 2px;
-}
-
-.user-thumbs {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: -1em;
-}
-
-.user-thumbs img {
-	height: 64px;
-	padding: 2px;
-	width: 64px;	
-}
-
-.user-thumbs li {
-	background-color: white;
-	border: 1px solid #428bca;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0.1em;
-}
-
-.about {
-	clear: both;
-	list-style: none;
-	margin-left: 1em;
-	padding: 5px 5px 5px 5px;
-}
-
-.about dt {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.about li {
-	display: inline-block;
-	vertical-align: top;
-	width: 200px;
-}
-
-.about li span {
-	color: #428bca;
-	font-size: 1.2em;
-	font-weight: bold;	
-}
-
-.hobbies {
-	clear: both;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.hobbies li {
-	display: inline-block;
-	vertical-align: top;
-	width: 200px;
+.userlist-age {
+  font-size: 13px;
+  color: grey;
 }

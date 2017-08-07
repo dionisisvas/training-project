@@ -16,5 +16,5 @@ public interface UserService {
 
 	User addUser(User user) throws SQLException;
 
-	boolean verifyNewUser(User user);
+	boolean verifyNewUser(User user) throws SQLException;
 }

@@ -1,3 +1,16 @@
+/* Search input animation */
+md-toolbar .md-block.ng-hide-remove {
+  transition-property: opacity;
+  transition-duration: 0.8s;
+}
+md-toolbar .md-block.ng-hide-add {
+  transition-property: opacity;
+  transition-duration: 0.2s;
+}
+md-toolbar .md-block.ng-hide {
+  opacity: 0;
+}
+
 /* User list animation */
 .user-list-item.ng-enter,
 .user-list-item.ng-leave,

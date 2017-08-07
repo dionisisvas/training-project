@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Home",
+    "url": "/home/",
+    "info": "Back to the home page.",
+    "icon": "home",
+    "working": true
+  },
+  {
+    "title": "Profile",
+    "url": null,
+    "info": "Visit your profile page.",
+    "icon": "person",
+    "working": false
+  },
+  {
+    "title": "User list",
+    "url": "user/list",
+    "info": "View your friends and find new ones.",
+    "icon": "people",
+    "working": true
+  },
+  {
+    "title": "Statistics",
+    "url": "statistic",
+    "info": "Discover various usage statistics.",
+    "icon": "timeline",
+    "working": true
+  },
+  {
+    "title": "Maps",
+    "url": "maps",
+    "info": "Explore the application's world map.",
+    "icon": "map",
+    "working": true
+  },
+  {
+    "title": "Hobbies",
+    "url": null,
+    "info": "Find a list of hobbies or add your own.",
+    "icon": "bubble_chart",
+    "working": false
+  },
+  {
+    "title": "Comments",
+    "url": null,
+    "info": "Check user comments.",
+    "icon": "forum",
+    "working": false
+  }
+]

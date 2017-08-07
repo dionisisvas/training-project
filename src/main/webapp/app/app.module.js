@@ -1,18 +1,22 @@
 'use strict';
 
 angular.module('trainingApp', [
-	'ngAnimate',
+    'ngAnimate',
+    'ngAria',
     'ngCookies',
-	'ngRoute',
-	'core',
-	'myErrorPage',
-	'myHomePage',
-    'myNavBar',
-	'myOptionList',
-	'myUserRegistration',
-	'myUserInfo',	
-	'myUserList',
+    'ngMaterial',
+    'ngMessages',
+    'ngRoute',
+    'core',
+    'myErrorPage',
+    'myHomePage',
+    'mySidenav',
+    'myToolbar',
+    'myOptionList',
+    'myUserRegistration',
+    'myUserInfo',
+    'myUserList',
     'myUserLogin',
-    'myUserStatistics',
-    'myUserMaps'
+    'myUserMaps',
+    'myUserStatistics'
 ]);

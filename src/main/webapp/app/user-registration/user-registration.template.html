@@ -1,51 +1,121 @@
-<div class="container-fluid mt-0">
-	<div class="row">
-		<div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Enter your info to register.</div>
-				<div class="panel-body">
-					<form name="registrationForm">
-						<div class="form-group mt-3">
-							<label for="email">E-mail</label>
-							<input id="email" name="email" class="form-control mt-2" type="email" required>
-							<span id="error_email" class="text-danger"></span>
-						</div>                    
-						<div class="form-group mt-3">
-							<label for="username">Username</label>
-							<input id="username" name="username" class="form-control mt-2" type="text" required>
-							<span id="error_username" class="text-danger"></span>
-						</div>                    
-						<div class="form-group mt-3">
-							<label for="name">First Name</label>
-							<input id="name" name="name" class="form-control mt-2" type="text" required>
-							<span id="error_name" class="text-danger"></span>
-						</div>
-						<div class="form-group mt-3">
-							<label for="lastName">Last Name</label>
-							<input id="lastName" name="lastName" class="form-control mt-2" type="text" required>
-							<span id="error_lastName" class="text-danger"></span>
-						</div>
-						<div class="form-group mt-3">
-							<label for="dateOfBirth">Date of Birth</label>
-							<input id="dateOfBirth" name="dateOfBirth" class="form-control mt-2" type="date" required>
-							<span id="error_dateOfBirth" class="text-danger"></span>
-						</div>    
-						<div class="form-group mt-3">
-							<label for="password">Password</label>
-							<input id="password" name="password" class="form-control mt-2" type="password" required>
-                            <span id="warning_password" class="text-warning"></span>
-							<span id="error_password" class="text-danger"></span>
-						</div>
-						<div class="form-group mt-3">
-							<label for="passwordRepeat">Confirm Password</label>
-							<input id="passwordRepeat" name="passwordRepeat" class="form-control mt-2" type="password" required>
-							<span id="error_passwordRepeat" class="text-danger"></span>
-						</div>                        
-						<button id="submit" type="submit" value="submit" class="btn btn-primary center">Register</button>
-                        <a href="login"><span class="pl-1">Already registered? Sign in instead.</span>&nbsp<span class="glyphicon glyphicon-log-in"></span></a>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="registration-container" layout="column">
+  <h2 class="md-title inset">To register, enter your information below:</h2>
+  <md-card>
+    <form name="registrationForm" ng-submit="$ctrl.submitForm(registrationForm.$valid)" novalidate>
+      <br>
+
+      <div layout="row">
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> face </md-icon>
+          <input ng-model="user.name" name="name" type="text" placeholder="Name"
+                 ng-required="true" md-maxlength="64">
+
+          <div ng-messages="registrationForm.name.$error" role="alert">
+            <div ng-message="required">The name is required.</div>
+            <div ng-message="md-maxlength">The name currently can't exceed 64 characters.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> group </md-icon>
+          <input ng-model="user.surname" name="surname" type="text" placeholder="Surname"
+                 ng-required="true" md-maxlength="64">
+
+          <div ng-messages="registrationForm.surname.$error" role="alert">
+            <div ng-message="required">The surname is required.</div>
+            <div ng-message="md-maxlength">The surname currently can't exceed 64 characters.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-datepicker md-current-view="year" ng-model="user.dateOfBirth" name="dateOfBirth"
+                         md-placeholder="Date of Birth" ng-required="true" md-min-date="$ctrl.minDate"
+                         md-max-date="$ctrl.maxDate"></md-datepicker>
+
+          <div ng-messages="registrationForm.dateOfBirth.$error" role="alert">
+            <div ng-message="required">The date of birth is required.</div>
+            <div ng-message="md-max-date">You need to be at least 18 years old to register.</div>
+            <div ng-message="md-min-date">Are you sure you are that old?</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <br>
+
+      <div layout="row">
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> email </md-icon>
+          <input ng-model="account.email" name="email" type="email" placeholder="E-mail" ng-required="true"
+                 md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/" email-unique
+                 ng-model-options="{updateOn: 'blur'}">
+
+          <div ng-messages="registrationForm.email.$error" role="alert">
+            <div ng-message="required">The e-mail is required.</div>
+            <div ng-message="emailUnique">This e-mail is already in use.</div>
+            <div ng-message="pattern">That doesn't look like a valid e-mail.</div>
+            <div ng-message-exp="['md-minlength', 'md-maxlength']">
+            The e-mail must be between 8 and 64 characters.
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> person </md-icon>
+          <input ng-model="account.username" name="username" type="text" placeholder="Username"
+                 ng-required="true" md-minlength="3" md-maxlength="24" ng-pattern="/^\w+$/" username-unique
+                 ng-model-options="{updateOn: 'blur'}">
+
+          <div class="input-hint">Can consist of alphanumericals & underscores.</div>
+
+          <div ng-messages="registrationForm.username.$error" role="alert">
+            <div ng-message="required">The username is required.</div>
+            <div ng-message="usernameUnique">This username is already in use.</div>
+            <div ng-message="pattern">Only alphanumerical characters and underscores are allowed.</div>
+            <div ng-message-exp="['md-minlength', 'md-maxlength']">
+            The username must be between 3 and 24 characters.
+            </div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <br>
+
+      <div layout="row">
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> vpn_key </md-icon>
+          <input ng-model="account.password" name="password" type="password" placeholder="Password"
+                 ng-required="true" md-minlength="8" md-maxlength="64" password-strength>
+
+          <div class="input-hint">Include mixed-case alphanumericals & symbols.</div>
+          <div class="input-hint">Minimum length: 8 characters.</div>
+
+          <div ng-messages="registrationForm.password.$error" role="alert">
+            <div ng-message="required">The password can't be blank.</div>
+            <div ng-message="passwordStrength">Your password is weak.</div>
+            <div ng-message-exp="['md-minlength', 'md-maxlength']">
+            The password must be between 8 and 64 characters.
+            </div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-icon md-font-set="material-icons"> repeat </md-icon>
+          <input ng-model="account.passwordRepeat" name="passwordRepeat" type="password" placeholder="Repeat Password"
+                 ng-required="true" md-minlength="8" md-maxlength="64" password-repeat="account.password">
+
+          <div ng-messages="registrationForm.passwordRepeat.$error" role="alert">
+            <div ng-message="passwordRepeat">Passwords don't match.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <br>
+
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="registrationForm.$invalid">Register</md-button>
+        <md-button md-no-ink class="md-primary" ng-href="{{$ctrl.loginUrl}}">Already have an account? Log in instead. </md-button>
+      </section>
+      <br>
+    </form>
+  </md-card>
 </div>

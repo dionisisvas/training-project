@@ -25,8 +25,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	InputStream resourceAsStream = AccountRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private InputStream resourceAsStream = AccountRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
 
 	public AccountRepositoryImpl() throws IOException {}

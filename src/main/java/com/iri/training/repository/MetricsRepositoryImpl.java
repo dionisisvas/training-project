@@ -25,8 +25,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	InputStream resourceAsStream = MetricsRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private InputStream resourceAsStream = MetricsRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public MetricsRepositoryImpl() throws IOException {}

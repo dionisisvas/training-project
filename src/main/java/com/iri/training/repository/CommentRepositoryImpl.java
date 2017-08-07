@@ -25,8 +25,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	InputStream resourceAsStream = CommentRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private InputStream resourceAsStream = CommentRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 

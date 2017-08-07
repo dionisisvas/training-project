@@ -2,7 +2,7 @@
 
 angular.module('myUserLogin', [
     'ngRoute',
-    'core.account',
+    'core.authorization',
     'core.jwtoken'
 ]);
 

@@ -2,10 +2,17 @@
 
 angular.module('core', [
     'core.account',
-	'core.hobby',
-	'core.image',
+    'core.authorization',
+    'core.focusOn',
+    'core.hobby',
+    'core.image',
     'core.jwtoken',
-	'core.option',
-	'core.user',
-	'core.metrics'
+    'core.navlink',
+    'core.option',
+    'core.user',
+    'core.emailUnique',
+    'core.passwordRepeat',
+    'core.passwordStrength',
+    'core.usernameUnique',
+    'core.metrics'
 ]);
