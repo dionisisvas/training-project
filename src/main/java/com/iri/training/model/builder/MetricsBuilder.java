@@ -3,7 +3,7 @@ package com.iri.training.model.builder;
 import com.iri.training.model.Metrics;
 
 public class MetricsBuilder extends MetricsBuilderBase<MetricsBuilder> {
-	public static UserBuilder user() { return new UserBuilder(); }
+	public static MetricsBuilder metrics() { return new MetricsBuilder(); }
 
 	public MetricsBuilder() { super(new Metrics()); }
 
@@ -49,6 +49,11 @@ public class MetricsBuilder extends MetricsBuilderBase<MetricsBuilder> {
 		@SuppressWarnings("unchecked")
 		public GeneratorT withEducation(final String aValue) {
 			instance.setEducation(aValue);
+
+			return (GeneratorT) this;
+		}
+		public GeneratorT withUserId(final Long aValue) {
+			instance.setUserId(aValue);
 
 			return (GeneratorT) this;
 		}

@@ -51,4 +51,43 @@ public  class AccountServiceImpl implements AccountService {
 
 		return accountList;
 	}
+
+	@Override public boolean verifyNewAccount(final Account account) {
+
+		logger.debug("ENTERED verifyNewUser for " + account);
+
+		boolean verified = true;
+
+		if ((account.getUsername() == null) ||
+			(account.getEmail() == null) ||
+			(account.getPassword() == null)) {
+
+			verified = false;
+
+			logger.debug("Found null fields");
+		}
+
+		// Check if the username is alphanumeric in the [3-24] characters range.
+		verified = verified && (account.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
+		if (!verified) {
+			logger.debug("Invalid username.");
+		}
+
+		// Check if the email is valid.
+		verified = verified && (account.getEmail().matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$"));
+		if (!verified) {
+			logger.debug("Invalid email.");
+		}
+
+		// Check if the password is within the [8-64] characters range.
+		verified = verified && ((account.getPassword().length() >= 8) &&
+								(account.getPassword().length() <= 64));
+		if (!verified) {
+			logger.debug("Invalid password.");
+		}
+
+		logger.debug("EXITING verifyNewUser for " + account);
+
+		return verified;
+	}
 }

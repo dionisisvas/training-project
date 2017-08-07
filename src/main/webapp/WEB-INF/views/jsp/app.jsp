@@ -4,7 +4,7 @@
 <html lang="en" ng-app="trainingApp">
 	<head>
 		<meta charset="utf-8">
-		<base href="/home/">
+		<base href="/">
 		<title>IRI Training Project</title>
 
 		<spring:url value="/resources/css/app.css" var="appCss" />
@@ -14,6 +14,8 @@
 		<link href="${bootstrapCss}" rel="stylesheet" />
 		<link href="${appCss}" rel="stylesheet" />
 		<link href="${appAnimationCss}" rel="stylesheet" />
+        <link rel="stylesheet"  href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
         <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
         <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
@@ -31,6 +33,8 @@
         <spring:url value="/app/core/image/image.service.js" var="imageServiceJs" />
         <spring:url value="/app/core/jwtoken/jwtoken.module.js" var="jwtokenModuleJs" />
         <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
+        <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
+        <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
         <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
         <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
         <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
@@ -51,15 +55,25 @@
         <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />        
         <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
         <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
+        <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
+        <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
+        <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
+        <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
 
         <script
             src="https://code.jquery.com/jquery-1.12.4.min.js"
             integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
             crossorigin="anonymous"></script>
         <script 
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-            crossorigin="anonymous"></script>        
+            crossorigin="anonymous"></script>
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
+            <script src="//code.jquery.com/jquery-1.12.4.js" ></script>
+            <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" ></script>
+            <script src="https://cdn.datatables.net/rowreorder/1.0.0/js/dataTables.rowReorder.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+
         <script src="${angularJs}"></script>
         <script src="${angularAnimateJs}"></script>
         <script src="${angularCookiesJs}"></script>
@@ -71,11 +85,13 @@
         <script src="${accountModuleJs}"></script>
         <script src="${accountServiceJs}"></script>	        
         <script src="${hobbyModuleJs}"></script>
-        <script src="${hobbyServiceJs}"></script>		
+        <script src="${hobbyServiceJs}"></script>
         <script src="${imageModuleJs}"></script>
         <script src="${imageServiceJs}"></script>	        
         <script src="${jwtokenModuleJs}"></script>
         <script src="${jwtokenServiceJs}"></script>	
+        <script src="${metricsModuleJs}"></script>
+        <script src="${metricsServiceJs}"></script>
         <script src="${optionModuleJs}"></script>
         <script src="${optionServiceJs}"></script>		
         <script src="${userModuleJs}"></script>
@@ -96,11 +112,14 @@
         <script src="${userInfoComponentJs}"></script>
         <script src="${userRegistrationModuleJs}"></script>
         <script src="${userRegistrationComponentJs}"></script>
+        <script src="${userStatisticsModuleJs}"></script>
+        <script src="${userStatisticComponentJs}"></script>
+        <script src="${userMapsModuleJs}"></script>
+        <script src="${userMapsComponentJs}"></script>
 	</head>
 
 	<body>
 		<div class="view-container">
-            <my-nav-bar></my-nav-bar>
 			<div ng-view class="view-frame"></div>
 		</div>
 	</body>

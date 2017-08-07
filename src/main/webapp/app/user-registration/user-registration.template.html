@@ -2,55 +2,45 @@
 	<div class="row">
 		<div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-3">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Enter your info to register. Asterisk (*) denotes a mandatory field.</div>
+				<div class="panel-heading">Enter your info to register.</div>
 				<div class="panel-body">
 					<form name="registrationForm">
 						<div class="form-group mt-3">
-							<label for="email">E-mail *</label>
+							<label for="email">E-mail</label>
 							<input id="email" name="email" class="form-control mt-2" type="email" required>
 							<span id="error_email" class="text-danger"></span>
 						</div>                    
 						<div class="form-group mt-3">
-							<label for="username">Username *</label>
+							<label for="username">Username</label>
 							<input id="username" name="username" class="form-control mt-2" type="text" required>
 							<span id="error_username" class="text-danger"></span>
 						</div>                    
 						<div class="form-group mt-3">
-							<label for="name">First Name *</label>
+							<label for="name">First Name</label>
 							<input id="name" name="name" class="form-control mt-2" type="text" required>
 							<span id="error_name" class="text-danger"></span>
 						</div>
 						<div class="form-group mt-3">
-							<label for="lastName">Last Name *</label>
+							<label for="lastName">Last Name</label>
 							<input id="lastName" name="lastName" class="form-control mt-2" type="text" required>
 							<span id="error_lastName" class="text-danger"></span>
 						</div>
 						<div class="form-group mt-3">
-							<label for="dateOfBirth">Date of Birth *</label>
+							<label for="dateOfBirth">Date of Birth</label>
 							<input id="dateOfBirth" name="dateOfBirth" class="form-control mt-2" type="date" required>
 							<span id="error_dateOfBirth" class="text-danger"></span>
 						</div>    
 						<div class="form-group mt-3">
-							<label for="password">Password *</label>
+							<label for="password">Password</label>
 							<input id="password" name="password" class="form-control mt-2" type="password" required>
                             <span id="warning_password" class="text-warning"></span>
 							<span id="error_password" class="text-danger"></span>
 						</div>
 						<div class="form-group mt-3">
-							<label for="passwordRepeat">Confirm Password *</label>
+							<label for="passwordRepeat">Confirm Password</label>
 							<input id="passwordRepeat" name="passwordRepeat" class="form-control mt-2" type="password" required>
 							<span id="error_passwordRepeat" class="text-danger"></span>
 						</div>                        
-						<div class="form-group mt-3">
-							<label for="address"><span class="optional-field">Address</span></label>
-							<input id="address" name="address"  class="form-control mt-2" type="text">
-							<span id="error_address" class="text-danger"></span>
-						</div>
-						<div class="form-group mt-3">
-							<label for="phoneNo"><span class="optional-field">Phone Number</span></label>
-							<input id="phoneNo" name="phoneNo" class="form-control mt-2" type="text">
-							<span id="error_phoneNo" class="text-danger"></span>
-						</div>
 						<button id="submit" type="submit" value="submit" class="btn btn-primary center">Register</button>
                         <a href="login"><span class="pl-1">Already registered? Sign in instead.</span>&nbsp<span class="glyphicon glyphicon-log-in"></span></a>
 					</form>

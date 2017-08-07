@@ -8,23 +8,30 @@ angular.
 
 		    $routeProvider.
 				when('/', {
-					template: '<my-nav-bar></my-nav-bar><my-home-page></my-home-page>'
+					template: '<my-home-page></my-home-page>'
 				}).
 				when('/error', {
-					template: '<my-nav-bar></my-nav-bar><my-error-page></my-error-page>'
+					template: '<my-error-page></my-error-page>'
 				}).				
 				when('/user/list', {
-					template: '<my-nav-bar></my-nav-bar><my-user-list></my-user-list>'
+					template: '<my-user-list></my-user-list>'
 				}).
 				when('/user/uid/:userId', {
-					template: '<my-nav-bar></my-nav-bar><my-user-info></my-user-info>'
+					template: '<my-user-info></my-user-info>'
 				}).
 				when('/register', {
-                	template: '<my-nav-bar></my-nav-bar><my-user-registration></my-user-registration>'
+                	template: '<my-user-registration></my-user-registration>'
                	}).
 				when('/login', {
-                	template: '<my-nav-bar></my-nav-bar><my-user-login></my-user-login>'
-               	}).                
+                	template: '<my-user-login></my-user-login>'
+               	}).
+               	when('/statistic', {
+                    template: '<my-nav-bar></my-nav-bar><my-user-statistics></my-user-statistics>'
+                }).
+                when('/maps', {
+                template: '<my-nav-bar></my-nav-bar><my-user-maps></my-user-maps>'
+                }).
 				otherwise('/error');
 		}
+
 	]);

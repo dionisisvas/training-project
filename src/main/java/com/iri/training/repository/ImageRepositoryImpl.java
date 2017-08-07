@@ -1,20 +1,18 @@
 package com.iri.training.repository;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
+
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.Image;
@@ -27,8 +25,9 @@ public class ImageRepositoryImpl implements ImageRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
+	InputStream resourceAsStream = ImageRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	//private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
+	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public ImageRepositoryImpl() throws IOException {}
 

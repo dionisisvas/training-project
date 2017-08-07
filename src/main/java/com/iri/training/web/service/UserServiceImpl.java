@@ -58,4 +58,52 @@ public class UserServiceImpl implements UserService {
 
 		return userList;
 	}
+
+	@Override public boolean verifyNewUser(final User user) {
+
+		logger.debug("ENTERED verifyNewUser for " + user);
+
+		boolean verified = true;
+
+		if ((user.getUsername() == null) ||
+			(user.getName() == null) ||
+			(user.getSurname() == null) ||
+			(user.getDateOfBirth() == null)) {
+
+			verified = false;
+
+			logger.debug("Found null fields");
+		}
+
+
+
+		// Check if the username is alphanumeric in the [3-24] characters range.
+		verified = verified && (user.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
+		if (!verified) {
+			logger.debug("Invalid username.");
+		}
+
+		// Check if the name and surname are within the [2-64] characters range.
+		verified = verified && ((user.getName().length() >= 2) &&
+			(user.getName().length() <= 64));
+		if (!verified) {
+			logger.debug("Invalid name.");
+		}
+		verified = verified && ((user.getSurname().length() >= 2) &&
+			(user.getSurname().length() <= 64));
+		if (!verified) {
+			logger.debug("Invalid surname.");
+		}
+
+		// Check if the date is within acceptable ranges.
+		verified = verified && ((user.getDateOfBirth().isBefore(LocalDate.of(1999, 1, 1))) &&
+			(user.getDateOfBirth().isAfter(LocalDate.of(1900, 1, 1))));
+		if (!verified) {
+			logger.debug("Invalid age.");
+		}
+
+		logger.debug("EXITING verifyNewUser for " + user);
+
+		return verified;
+	}
 }
