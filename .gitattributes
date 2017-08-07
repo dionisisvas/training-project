@@ -1,5 +1,18 @@
-*.db 	data
-*.json	data
-*.sql	data
+*.db          data
+*.ico         data
+*.png         data
+*.txt         text
+*.json        text
+*.sql         text
+*.js          text
+*.java        text
+*.jsp         text
+*.bat         text
+*.md          text
+*.xml         text
+*.properties  text
 
+text eol=crlf
+
+# 3rd party libraries
 src/main/webapp/resources/lib/* linguist-vendored

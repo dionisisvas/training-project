@@ -4,7 +4,7 @@
 <html lang="en" ng-app="trainingApp">
   <head>
     <meta charset="utf-8">
-    <base href="/home/">
+    <base href="/">
     <meta name="description" content="An intern training application.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="resources/img/favicon.ico" type="image/x-icon" rel="shortcut icon"/>

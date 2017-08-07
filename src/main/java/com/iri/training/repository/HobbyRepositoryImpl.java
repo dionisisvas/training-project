@@ -1,8 +1,7 @@
 package com.iri.training.repository;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.PropertyResourceBundle;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
@@ -22,13 +20,13 @@ import com.iri.training.model.builder.HobbyBuilder;
 
 @Repository
 public class HobbyRepositoryImpl implements HobbyRepository {
-	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
+	Logger logger = Logger.getLogger(HobbyRepositoryImpl.class);
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private FileInputStream fis = new FileInputStream("src/main/resources/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(fis);
+	private InputStream resourceAsStream = HobbyRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public HobbyRepositoryImpl() throws IOException {}
 
