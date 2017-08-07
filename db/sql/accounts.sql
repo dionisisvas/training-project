@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
     accountId   INTEGER     PRIMARY KEY AUTOINCREMENT,
-    username    TEXT        NOT_NULL UNIQUE,
+    username    TEXT        NOT_NULL UNIQUE COLLATE NOCASE,
     password    TEXT        NOT_NULL,
-    email       TEXT        NOT_NULL UNIQUE
+    email       TEXT        NOT_NULL UNIQUE COLLATE NOCASE
 );
 
 BEGIN TRANSACTION;
