@@ -50,7 +50,7 @@
         <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
           Less...
         </md-button>
-        <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-disabled="$ctrl.limit => $ctrl.users.length">
+        <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-disabled="$ctrl.limit >= $ctrl.users.length">
           More...
         </md-button>
       </md-list-item>
