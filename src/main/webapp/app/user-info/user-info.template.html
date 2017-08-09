@@ -1,63 +1,18 @@
-<div class="container-fluid mt-0">
-	<div class="row">
-		
-		<div class="col-md-1">
-		
-			<div ng-if="$ctrl.profileImageUrl">
-				<img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}} "/>
-			</div>
-			<div ng-if="!$ctrl.profileImageUrl">
-				<img class="user-profile-img" ng-src="resources/img/users/default-user-img.png" alt="{{$ctrl.user.name}}" />
-			</div>
-			
-		</div>
-
-		<div class="col-md-4">
-			
-			<h1 class="user-full-name">{{$ctrl.user.name + " " + $ctrl.user.surname}}</h1>	
-			
-			<ul class="user-thumbs" ng-if="$ctrl.userImages[0]">
-				<li ng-repeat="img in $ctrl.userImages">
-					<img ng-src="{{img.imgUri}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}}" ng-click="$ctrl.setProfileImageUri(img.imgUri)" />
-				</li>
-			</ul>
-		
-		</div>
-		
-	</div>
-
-	<div class="row">
-	
-		<ul class="about">
-			<li>
-				<span>General info</span>
-				<dl>
-					<div ng-if="$ctrl.user.age">
-						<dt>Age</dt>
-						<dd>{{$ctrl.user.age}}</dd>
-					</div>
-				</dl>
-			</li>
-			<li>
-				<span>Contact info</span>
-				<dl>
-					<div ng-if="$ctrl.user.phoneNo">
-						<dt>Phone Number</dt>
-						<dd>{{$ctrl.user.phoneNo}}</dd>
-					</div>
-					<div ng-if="$ctrl.user.address">
-						<dt>Address</dt>
-						<dd>{{$ctrl.user.address}}</dd>
-					</div>
-				</dl>
-			</li>
-			<li>
-				<span>Hobbies</span>
-				<ul class="hobbies" ng-if="$ctrl.userHobbies">
-					<li ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</li>
-				</ul>
-			</li>
-		</ul>
-		
-	</div>
-</div>
+<md-card>
+  <md-card-title>
+    <md-card-title-media>
+      <div class="md-media-lg">
+        <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
+             alt="{{$ctrl.user.name}} "/>
+      </div>
+    </md-card-title-media>
+    <md-card-title-text class="card-user-info">
+      <span class="md-headline">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
+      <span class="md-subhead">@{{$ctrl.user.username}}</span>
+      <md-card-actions layout="row" layout-align="start" class="image-selector">
+        <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
+             ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
+      </md-card-actions>
+    </md-card-title-text>
+  </md-card-title>
+</md-card>
