@@ -42,7 +42,7 @@ public class MetricsController {
 	@RequestMapping(value ="/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Metrics>> getAllMetrics() throws SQLException {
 
-		logger.debug("ENTERED getAllUsers");
+		logger.debug("ENTERED getAllMetrics");
 
 		ArrayList<Metrics> metrics = (ArrayList) metricsService.getMetricsList();
 		if (metrics != null) {
