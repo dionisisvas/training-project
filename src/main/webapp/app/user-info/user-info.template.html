@@ -1,4 +1,4 @@
-<div layout="row">
+<div layout="row" ng-cloak>
   <div flex>
     <md-card md-colors="{background: 'blue-grey'}" class="user-header-card" layout="row" layout-sm="column">
       <md-card-title layout="row" layout-align="start start" layout-sm="column">
@@ -28,25 +28,60 @@
     </md-card>
   </div>
 </div>
-<div layout="row" layout-sm="column">
+<div layout="row" layout-sm="column" ng-cloak>
   <div flex>
     <md-card>
       <md-card-title>
-        <md-card-title-media>
-        </md-card-title-media>
         <md-card-title-text>
+          <span class="md-headline">About {{$ctrl.user.name}}</span>
         </md-card-title-text>
       </md-card-title>
+      <md-card-content>
+        <span class="details-subcategory">General information</span>
+        <p ng-show="$ctrl.user.dateOfBirth">
+           Birthday:
+           <span class="about-user-field">
+             {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
+           </span>
+        </p>
+        <md-divider></md-divider><br>
+        <span class="details-subcategory">Contact details</span>
+        <p ng-show="$ctrl.userEmail">
+           e-mail:
+           <span class="about-user-field">
+             {{$ctrl.userEmail}}
+           </span>
+        </p>
+        <p ng-show="$ctrl.user.phoneNo">
+           Phone No:
+           <span class="about-user-field">
+             {{$ctrl.user.phoneNo}}
+           </span>
+        </p>
+        <p ng-show="$ctrl.user.address">
+           Address:
+           <span class="about-user-field">
+             {{$ctrl.user.address}}
+           </span>
+        </p>
+      </md-card-content>
     </md-card>
   </div>
   <div flex>
     <md-card>
       <md-card-title>
-        <md-card-title-media>
-        </md-card-title-media>
         <md-card-title-text>
+          <span class="md-headline">Hobbies</span>
         </md-card-title-text>
       </md-card-title>
+      <md-card-content>
+        <md-chips ng-show="$ctrl.userHobbies.length > 0">
+          <md-chip ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</md-chip >
+        </md-chips>
+        <p ng-show="$ctrl.userHobbies.length <= 0">
+          {{$ctrl.user.name}} doesn't have any hobbies to show right now.
+        </p>
+      </md-card-content>
     </md-card>
   </div>
 </div>

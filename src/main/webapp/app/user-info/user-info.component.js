@@ -4,11 +4,12 @@ angular.
     module('myUserInfo').
     component('myUserInfo', {
         templateUrl: 'app/user-info/user-info.template.html',
-        controller: ['$routeParams', 'Hobby', 'Image', 'User',
-            function UserInfoController($routeParams, Hobby, Image, User) {
+        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User',
+            function UserInfoController($routeParams, Account, Hobby, Image, User) {
                 var self = this;
                 var userHobbies;
                 var userImages;
+                var userEmail;
                 var profileImageUrl;
 
                 self.setProfileImageUri = function setProfileImageUri(imageUri) {
@@ -36,11 +37,20 @@ angular.
                     });
                 }
 
+                self.getUserEmail = function() {
+                    self.userAccount = Account.AccountById.get({accountId: $routeParams.userId});
+                    self.userAccount.$promise.then(function(accountResult) {
+                        self.userEmail = accountResult.email;
+                    }, function() {
+                        console.log("Failed to retrieve the account for user with uid: " + $routeParams.userId);
+                    });
+                }
+
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
                     self.getUserImages();
                     self.getUserHobbies();
+                    self.getUserEmail();
                 });
-
 
         }]
     });
