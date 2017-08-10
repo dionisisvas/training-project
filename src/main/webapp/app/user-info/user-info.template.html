@@ -1,18 +1,52 @@
-<md-card>
-  <md-card-title>
-    <md-card-title-media>
-      <div class="md-media-lg">
-        <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
-             alt="{{$ctrl.user.name}} "/>
-      </div>
-    </md-card-title-media>
-    <md-card-title-text class="card-user-info">
-      <span class="md-headline">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
-      <span class="md-subhead">@{{$ctrl.user.username}}</span>
-      <md-card-actions layout="row" layout-align="start" class="image-selector">
-        <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
-             ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
-      </md-card-actions>
-    </md-card-title-text>
-  </md-card-title>
-</md-card>
+<div layout="row">
+  <div flex>
+    <md-card md-colors="{background: 'blue-grey'}" class="user-header-card" layout="row" layout-sm="column">
+      <md-card-title layout="row" layout-align="start start" layout-sm="column">
+        <md-card-title-media>
+            <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
+                 alt="{{$ctrl.user.name}} "/>
+        </md-card-title-media>
+        <md-card-title-text class="user-names">
+          <span class="md-headline user-fullname">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
+          <span class="md-subhead user-username">
+            @{{$ctrl.user.username}}
+            <md-card-actions>
+              <md-button class="md-icon-button md-primary" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
+                <md-icon md-font-set="material-icons"> mail </md-icon>
+              </md-button>
+              <md-button class="md-icon-button md-primary" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
+                <md-icon md-font-set="material-icons"> add </md-icon>
+              </md-button>
+            </md-card-actions>
+          </span>
+          <div class="image-selector">
+            <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
+                 ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
+          </div>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </div>
+</div>
+<div layout="row" layout-sm="column">
+  <div flex>
+    <md-card>
+      <md-card-title>
+        <md-card-title-media>
+        </md-card-title-media>
+        <md-card-title-text>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </div>
+  <div flex>
+    <md-card>
+      <md-card-title>
+        <md-card-title-media>
+        </md-card-title-media>
+        <md-card-title-text>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </div>
+</div>

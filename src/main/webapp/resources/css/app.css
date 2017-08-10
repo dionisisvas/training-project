@@ -93,18 +93,36 @@ md-radio-group .radio-btn-label {
   font-size: 13px;
   color: grey;
 }
+
 /* User info template */
-md-card .card-user-info {
+md-card .user-header-card {
+}
+.user-header-card .user-profile-img {
+  width: 152px;
+  height: 152px;
+  border-radius: 76px;
+}
+.user-header-card .user-names {
   margin-left: 12px;
 }
-md-card .image-selector {
-  border: 4px rgba(255, 87, 34, 0.55);
+.user-header-card .user-fullname {
+  color: white;
+}
+.user-header-card .user-username {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.user-header-card .image-selector {
+  border: 4px rgba(255, 87, 34, 0.85);
   border-style: none none none solid;
   padding-left: 2px;
   margin: 18px 0px 0px 1px;
 }
-md-card .user-images {
+.user-header-card .user-images {
   width: 48px;
   height: 48px;
   margin-right: 3px;
+}
+.user-header-card .user-images:hover {
+  border: 2px dotted rgba(255, 87, 34, 0.65);
+  background-color: rgba(255, 87, 34, 0.25);
 }
