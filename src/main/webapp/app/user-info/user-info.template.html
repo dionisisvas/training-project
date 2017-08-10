@@ -1,63 +1,87 @@
-<div class="container-fluid mt-0">
-	<div class="row">
-		
-		<div class="col-md-1">
-		
-			<div ng-if="$ctrl.profileImageUrl">
-				<img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}} "/>
-			</div>
-			<div ng-if="!$ctrl.profileImageUrl">
-				<img class="user-profile-img" ng-src="resources/img/users/default-user-img.png" alt="{{$ctrl.user.name}}" />
-			</div>
-			
-		</div>
-
-		<div class="col-md-4">
-			
-			<h1 class="user-full-name">{{$ctrl.user.name + " " + $ctrl.user.surname}}</h1>	
-			
-			<ul class="user-thumbs" ng-if="$ctrl.userImages[0]">
-				<li ng-repeat="img in $ctrl.userImages">
-					<img ng-src="{{img.imgUri}}" onerror="this.src='resources/img/users/default-user-img.png'" alt="{{$ctrl.user.name}}" ng-click="$ctrl.setProfileImageUri(img.imgUri)" />
-				</li>
-			</ul>
-		
-		</div>
-		
-	</div>
-
-	<div class="row">
-	
-		<ul class="about">
-			<li>
-				<span>General info</span>
-				<dl>
-					<div ng-if="$ctrl.user.age">
-						<dt>Age</dt>
-						<dd>{{$ctrl.user.age}}</dd>
-					</div>
-				</dl>
-			</li>
-			<li>
-				<span>Contact info</span>
-				<dl>
-					<div ng-if="$ctrl.user.phoneNo">
-						<dt>Phone Number</dt>
-						<dd>{{$ctrl.user.phoneNo}}</dd>
-					</div>
-					<div ng-if="$ctrl.user.address">
-						<dt>Address</dt>
-						<dd>{{$ctrl.user.address}}</dd>
-					</div>
-				</dl>
-			</li>
-			<li>
-				<span>Hobbies</span>
-				<ul class="hobbies" ng-if="$ctrl.userHobbies">
-					<li ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</li>
-				</ul>
-			</li>
-		</ul>
-		
-	</div>
+<div layout="row" ng-cloak>
+  <div flex>
+    <md-card md-colors="{background: 'blue-grey'}" class="user-header-card" layout="row" layout-sm="column">
+      <md-card-title layout="row" layout-align="start start" layout-sm="column">
+        <md-card-title-media>
+            <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
+                 alt="{{$ctrl.user.name}} "/>
+        </md-card-title-media>
+        <md-card-title-text class="user-names">
+          <span class="md-headline user-fullname">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
+          <span class="md-subhead user-username">
+            @{{$ctrl.user.username}}
+            <md-card-actions>
+              <md-button class="md-icon-button md-primary" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
+                <md-icon md-font-set="material-icons"> mail </md-icon>
+              </md-button>
+              <md-button class="md-icon-button md-primary" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
+                <md-icon md-font-set="material-icons"> add </md-icon>
+              </md-button>
+            </md-card-actions>
+          </span>
+          <div class="image-selector">
+            <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
+                 ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
+          </div>
+        </md-card-title-text>
+      </md-card-title>
+    </md-card>
+  </div>
+</div>
+<div layout="row" layout-sm="column" ng-cloak>
+  <div flex>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">About {{$ctrl.user.name}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <span class="details-subcategory">General information</span>
+        <p ng-show="$ctrl.user.dateOfBirth">
+           Birthday:
+           <span class="about-user-field">
+             {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
+           </span>
+        </p>
+        <md-divider></md-divider><br>
+        <span class="details-subcategory">Contact details</span>
+        <p ng-show="$ctrl.userEmail">
+           e-mail:
+           <span class="about-user-field">
+             {{$ctrl.userEmail}}
+           </span>
+        </p>
+        <p ng-show="$ctrl.user.phoneNo">
+           Phone No:
+           <span class="about-user-field">
+             {{$ctrl.user.phoneNo}}
+           </span>
+        </p>
+        <p ng-show="$ctrl.user.address">
+           Address:
+           <span class="about-user-field">
+             {{$ctrl.user.address}}
+           </span>
+        </p>
+      </md-card-content>
+    </md-card>
+  </div>
+  <div flex>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Hobbies</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <md-chips ng-show="$ctrl.userHobbies.length > 0">
+          <md-chip ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</md-chip >
+        </md-chips>
+        <p ng-show="$ctrl.userHobbies.length <= 0">
+          {{$ctrl.user.name}} doesn't have any hobbies to show right now.
+        </p>
+      </md-card-content>
+    </md-card>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 [
   {
     "title": "Home",
-    "url": "/home/",
+    "url": "/",
     "info": "Back to the home page.",
     "icon": "home",
     "working": true

@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
 		for (User user : userList) {
 			if (user != null) {
 				user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+				user.setDateOfBirth(null);
 			}
 		}
 
