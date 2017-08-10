@@ -8,7 +8,7 @@ angular.module('core', [
     'core.image',
     'core.jwtoken',
     'core.navlink',
-    'core.option',
+    'core.apiEndpoint',
     'core.user',
     'core.emailUnique',
     'core.passwordRepeat',
