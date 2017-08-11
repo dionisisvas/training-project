@@ -1,115 +1,115 @@
 [
   {
-    "dir": ["account/list"],
-    "params": [null],
-    "type": "GET",
-    "info": "Returns a list of all the accounts."
-  },
-  {
     "dir": ["account"],
-    "params": ["username"],
+    "params": "username",    
     "type": "GET",
     "info": "Search for an account by username."
   },
   {
-    "dir": ["account/id"],
-    "params": ["accountId"],
-    "type": "GET",
-    "info": "Search for an account by account ID."
-  },
-  {
     "dir": ["account/email"],
-    "params": ["email"],
+    "params": "email",    
     "type": "GET",
     "info": "Search for an account by email."
   },
   {
-    "dir": ["account/is-unique/username"],
-    "params": ["username"],
+    "dir": ["account/id"],
+    "params": "accountId",    
     "type": "GET",
-    "info": "Check if a username is already in use by an other account."
+    "info": "Search for an account by account ID."
   },
   {
     "dir": ["account/is-unique/email"],
-    "params": ["email"],
+    "params": "email",    
     "type": "GET",
     "info": "Check if an e-mail is already in use by an other account."
   },
   {
-    "dir": ["auth/register"],
-    "params": [null],
-    "type": "POST",
-    "info": "Register an account/user."
+    "dir": ["account/is-unique/username"],
+    "params": "username",    
+    "type": "GET",
+    "info": "Check if a username is already in use by an other account."
+  },
+  {
+    "dir": ["account/list"],
+    "params": null,    
+    "type": "GET",
+    "info": "Returns a list of all the accounts."
   },
   {
     "dir": ["auth/login"],
-    "params": [null],
+    "params": null,    
     "type": "POST",
     "info": "Authorize an account/user. Returns a JSON Web token."
   },
   {
-    "dir": ["hobby/list"],
-    "params": [null],
-    "type": "GET",
-    "info": "Returns a list of all the hobbies."
+    "dir": ["auth/register"],
+    "params": null,    
+    "type": "POST",
+    "info": "Register an account/user."
   },
   {
     "dir": ["hobby"],
-    "params": ["hobbyId"],
+    "params": "hobbyId",    
     "type": "GET",
     "info": "Search for a hobby by its ID."
   },
   {
+    "dir": ["hobby/list"],
+    "params": null,    
+    "type": "GET",
+    "info": "Returns a list of all the hobbies."
+  },
+  {
     "dir": ["hobby/user"],
-    "params": ["userId"],
+    "params": "userId",    
     "type": "GET",
     "info": "Search for a list of a user's hobbies by user ID."
   },
   {
     "dir": ["image"],
-    "params": ["imgId"],
+    "params": "imgId",    
     "type": "GET",
     "info": "Search for an image by its ID."
   },
   {
     "dir": ["image/user"],
-    "params": ["userId"],
+    "params": "userId",    
     "type": "GET",
     "info": "Search for a list of a user's images by user ID."
   },
   {
     "dir": ["image/user", "profile"],
-    "params": ["userId"],
+    "params": "userId",    
     "type": "GET",
     "info": "Search for a user profile image by user ID."
   },
   {
-    "dir": ["metrics/list"],
-    "params": [null],
-    "type": "GET",
-    "info": "Returns a list of all the metrics."
-  },
-  {
     "dir": ["metrics"],
-    "params": ["userId"],
+    "params": "userId",    
     "type": "GET",
     "info": "Search for user metrics by user ID."
   },
   {
-    "dir": ["user/list"],
-    "params": [null],
+    "dir": ["metrics/list"],
+    "params": null,    
     "type": "GET",
-    "info": "Returns a list of all the  users."
+    "info": "Returns a list of all the metrics."
   },
   {
     "dir": ["user"],
-    "params": ["username"],
+    "params": "username",    
     "type": "GET",
     "info": "Search for a user by username."
   },
   {
+    "dir": ["user/list"],
+    "params": null,    
+    "type": "GET",
+    "info": "Returns a list of all the  users."
+  },
+  {
     "dir": ["user/uid"],
-    "params": ["userId"],
+    "params": "userId",    
     "type": "GET",
     "info": "Search for a user by user ID."
   }
