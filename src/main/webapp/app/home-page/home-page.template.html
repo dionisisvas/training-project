@@ -1,15 +1,35 @@
 <div layout="row" ng-cloak>
   <div flex>
-    <p>This an intern training project we are working on at IRI in order to get acquainted with the tools used by the company, as well as good programming practices.</p>
-    <p>The goal is to learn about the MVC pattern and RESTful APIs; to this end, we use an SQLite database with mock data and build a service around it. Right now you can
-    view a <a href="user">user list</a>, add a <a href="create/user">new one</a>, or view a user's detailed info.</p>
-    <p>We use Java 8 and Spring at the back-end and JavaScript, Bootstrap and AngularJs at the front-end. Various other libraries are used; for an extensive list check the README
-    distributed with the source code.</p>
-    <p>Get the source code on <a href="https://github.com/dionisisvas/training-project"><span class="label label-primary">GitHub</span></a></p>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Hello, {{$ctrl.tokenBody.name}}!</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p>This an intern training project we are working on at IRI in order to get acquainted with the tools used by the company, as well as good programming practices.</p>
+        <p>The goal is to learn about the MVC pattern and RESTful APIs; to this end, we use an SQLite database with mock data and build a service around it. Right now you can
+        view a <a href="user">user list</a>, add a <a href="create/user">new one</a>, or view a user's detailed info.</p>
+        <p>We use Java 8 and Spring at the back-end and JavaScript, Bootstrap and AngularJs at the front-end. Various other libraries are used; for an extensive list check the README
+        distributed with the source code.</p>
+        <p>Get the source code on <a href="https://github.com/dionisisvas/training-project"><span class="label label-primary">GitHub</span></a></p>
+      </md-card-content>
+    </md-card>
   </div>
 </div>
-<div layout="row" ng-cloak>
+<div layout="row" ng-show="!$ctrl.isLoggedIn" ng-cloak>
   <div flex>
-    <my-api-endpoints></my-api-endpoints>
+    <md-card md-colors="{background: 'deep-orange'}" class="user-header-card">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Looks like you are not logged in.</span>
+          <span class="md-subhead">Maybe you would like to register a new account, or log in with an existing one?</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="start center">
+        <md-button ng-href="/login">Log in</md-button>
+        <md-button ng-href="/register">Register</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
 </div>

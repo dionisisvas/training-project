@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('myHomePage', [
-	'ngRoute'
+    'ngRoute',
+    'core.jwtoken',
 ]);
