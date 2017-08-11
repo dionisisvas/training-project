@@ -46,7 +46,7 @@
         <md-divider></md-divider>
       </md-list-item>
 
-      <md-list-item ng-hide="($ctrl.users | filter: $ctrl.query).length < 4">
+      <md-list-item ng-hide="($ctrl.users | filter: $ctrl.query).length <= $ctrl.startingLimit">
         <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
           Less...
         </md-button>
