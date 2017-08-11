@@ -20,17 +20,11 @@ angular.
                 when('/', {
                     template: '<my-home-page></my-home-page><my-login-prompt></my-login-prompt>'
                 }).
-                when('/error', {
+                when('/about', {
                     template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'
                 }).
-                when('/user/list', {
-                    template: '<my-user-list></my-user-list><my-login-prompt></my-login-prompt>'
-                }).
-                when('/user/uid/:userId', {
-                    template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'
-                }).
-                when('/register', {
-                    template: '<my-user-registration></my-user-registration>'
+                when('/error', {
+                    template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'
                 }).
                 when('/login', {
                     template: '<my-user-login></my-user-login>'
@@ -38,8 +32,17 @@ angular.
                 when('/maps', {
                     template: '<my-user-maps></my-user-maps><my-login-prompt></my-login-prompt>'
                 }).
+                when('/register', {
+                    template: '<my-user-registration></my-user-registration>'
+                }).
                 when('/statistic', {
                     template: '<my-user-statistics></my-user-statistics><my-login-prompt></my-login-prompt>'
+                }).
+                when('/user/list', {
+                    template: '<my-user-list></my-user-list><my-login-prompt></my-login-prompt>'
+                }).
+                when('/user/uid/:userId', {
+                    template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'
                 }).
                 otherwise('/error');
         }
