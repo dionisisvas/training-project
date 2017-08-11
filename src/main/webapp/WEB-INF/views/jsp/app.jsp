@@ -84,6 +84,8 @@
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
     <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
+    <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
+    <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/sidenav/sidenav.module.js" var="sidenavModuleJs" />
@@ -153,6 +155,8 @@
     <script src="${errorPageComponentJs}"></script>
     <script src="${homePageModuleJs}"></script>
     <script src="${homePageComponentJs}"></script>
+    <script src="${loginPromptModuleJs}"></script>
+    <script src="${loginPromptComponentJs}"></script>
     <script src="${apiEndpointsListModuleJs}"></script>
     <script src="${apiEndpointsListComponentJs}"></script>
     <script src="${sidenavModuleJs}"></script>

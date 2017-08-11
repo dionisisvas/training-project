@@ -10,6 +10,7 @@ angular.module('trainingApp', [
     'core',
     'myApiEndpoints',
     'myErrorPage',
+    'myLoginPrompt',
     'myHomePage',
     'mySidenav',
     'myToolbar',
