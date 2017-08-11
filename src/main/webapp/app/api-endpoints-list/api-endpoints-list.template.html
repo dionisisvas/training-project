@@ -1,0 +1,29 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">List of RESTful API endpoints</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <md-list>
+      <md-list-item class="md-2-line" ng-repeat="apiEndpoint in $ctrl.apiEndpointsList | limitTo: $ctrl.limit">
+        <div class="md-list-item-text">
+          <h3>
+            */api/{{apiEndpoint.dir[0]}}<span class="api-param" ng-show="apiEndpoint.params">/{{apiEndpoint.params}}</span><span ng-show="apiEndpoint.dir[1]">/{{apiEndpoint.dir[1]}}</span>
+          </h3>
+          <p>{{apiEndpoint.info}}</p>
+        </div>
+        <md-button ng-disabled="true" class="md-primary" ng-style="{'margin-top':'16px', 'margin-bottom':'16px'}">{{apiEndpoint.type}}</md-button>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+      <md-list-item ng-hide="$ctrl.apiEndpointsList.length <= $ctrl.startingLimit">
+        <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
+          Less...
+        </md-button>
+        <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-disabled="$ctrl.limit >= $ctrl.apiEndpointsList.length">
+          More...
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

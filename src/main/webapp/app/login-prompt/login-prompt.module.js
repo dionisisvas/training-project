@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myHomePage', [
+angular.module('myLoginPrompt', [
     'ngRoute',
     'core.jwtoken',
 ]);

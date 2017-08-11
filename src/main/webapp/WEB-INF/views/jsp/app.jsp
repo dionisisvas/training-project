@@ -65,8 +65,8 @@
     <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
     <spring:url value="/app/core/navlink/navlink.module.js" var="navlinkModuleJs" />
     <spring:url value="/app/core/navlink/navlink.service.js" var="navlinkServiceJs" />
-    <spring:url value="/app/core/option/option.module.js" var="optionModuleJs" />
-    <spring:url value="/app/core/option/option.service.js" var="optionServiceJs" />
+    <spring:url value="/app/core/api-endpoint/api-endpoint.module.js" var="apiEndpointModuleJs" />
+    <spring:url value="/app/core/api-endpoint/api-endpoint.service.js" var="apiEndpointServiceJs" />
     <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
     <spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
     <spring:url value="/app/core/directives/email-unique/email-unique.module.js" var="emailUniqueModuleJs" />
@@ -80,12 +80,16 @@
     <spring:url value="/app/core/directives/password-strength/password-strength.directive.js" var="passwordStrengthDirectiveJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
+    <spring:url value="/app/about-page/about-page.module.js" var="aboutPageModuleJs" />
+    <spring:url value="/app/about-page/about-page.component.js" var="aboutPageComponentJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
     <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
-    <spring:url value="/app/option-list/option-list.module.js" var="optionListModuleJs" />
-    <spring:url value="/app/option-list/option-list.component.js" var="optionListComponentJs" />
+    <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
+    <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
+    <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
+    <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/sidenav/sidenav.module.js" var="sidenavModuleJs" />
     <spring:url value="/app/sidenav/sidenav.component.js" var="sidenavComponentJs" />
     <spring:url value="/app/toolbar/toolbar.module.js" var="toolbarModuleJs" />
@@ -134,8 +138,8 @@
     <script src="${metricsServiceJs}"></script>
     <script src="${navlinkModuleJs}"></script>
     <script src="${navlinkServiceJs}"></script>
-    <script src="${optionModuleJs}"></script>
-    <script src="${optionServiceJs}"></script>
+    <script src="${apiEndpointModuleJs}"></script>
+    <script src="${apiEndpointServiceJs}"></script>
     <script src="${userModuleJs}"></script>
     <script src="${userServiceJs}"></script>
     <script src="${emailUniqueModuleJs}"></script>
@@ -149,12 +153,16 @@
     <script src="${passwordStrengthDirectiveJs}"></script>
     <script src="${usernameUniqueModuleJs}"></script>
     <script src="${usernameUniqueDirectiveJs}"></script>
+    <script src="${aboutPageModuleJs}"></script>
+    <script src="${aboutPageComponentJs}"></script>
     <script src="${errorPageModuleJs}"></script>
     <script src="${errorPageComponentJs}"></script>
     <script src="${homePageModuleJs}"></script>
     <script src="${homePageComponentJs}"></script>
-    <script src="${optionListModuleJs}"></script>
-    <script src="${optionListComponentJs}"></script>
+    <script src="${loginPromptModuleJs}"></script>
+    <script src="${loginPromptComponentJs}"></script>
+    <script src="${apiEndpointsListModuleJs}"></script>
+    <script src="${apiEndpointsListComponentJs}"></script>
     <script src="${sidenavModuleJs}"></script>
     <script src="${sidenavComponentJs}"></script>
     <script src="${toolbarModuleJs}"></script>

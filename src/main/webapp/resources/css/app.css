@@ -138,3 +138,9 @@ md-card .user-header-card {
   color: grey;
   font-size: 13px;
 }
+
+/* API endpoints list template */
+.api-param {
+  color: grey;
+  font-weight: bold;
+}

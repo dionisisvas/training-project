@@ -19,7 +19,6 @@ angular.
                                 email:      'email@domainname.com'
                     };
                     self.isLoggedIn = false;
-                    self.tokeBody = null;
                     self.profileImage = null;
                 }
 
