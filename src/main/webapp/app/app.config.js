@@ -21,7 +21,7 @@ angular.
                     template: '<my-home-page></my-home-page><my-login-prompt></my-login-prompt>'
                 }).
                 when('/about', {
-                    template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'
+                    template: '<my-about-page></my-about-page><my-login-prompt></my-login-prompt>'
                 }).
                 when('/error', {
                     template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'

@@ -8,6 +8,7 @@ angular.module('trainingApp', [
     'ngMessages',
     'ngRoute',
     'core',
+    'myAboutPage',
     'myApiEndpoints',
     'myErrorPage',
     'myLoginPrompt',

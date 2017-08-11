@@ -80,6 +80,8 @@
     <spring:url value="/app/core/directives/password-strength/password-strength.directive.js" var="passwordStrengthDirectiveJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
+    <spring:url value="/app/about-page/about-page.module.js" var="aboutPageModuleJs" />
+    <spring:url value="/app/about-page/about-page.component.js" var="aboutPageComponentJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
@@ -151,6 +153,8 @@
     <script src="${passwordStrengthDirectiveJs}"></script>
     <script src="${usernameUniqueModuleJs}"></script>
     <script src="${usernameUniqueDirectiveJs}"></script>
+    <script src="${aboutPageModuleJs}"></script>
+    <script src="${aboutPageComponentJs}"></script>
     <script src="${errorPageModuleJs}"></script>
     <script src="${errorPageComponentJs}"></script>
     <script src="${homePageModuleJs}"></script>
