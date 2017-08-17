@@ -1,4 +1,4 @@
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex>
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
   <div class="my-sidenav-container">
     <!-- Sidenav header -->
     <md-toolbar class="md-primary md-hue-3 my-sidenav-toolbar" ng-show="$ctrl.isLoggedIn">
@@ -69,6 +69,15 @@
         </div>
 
       </md-list-item>
+      
+      <md-list-item class="md-2-line legal-disclaimer-container" role="link" ng-href="#" ng-attr-title="Legal Notice" md-ink-ripple>
+
+        <md-icon md-font-set="material-icons" class="my-navlink-icon"> info_outline </md-icon>
+        <div class="md-list-item-text">
+          <span flex class="md-body-2 legal-disclaimer-text">All logos, trademarks, design rights or similar rights are property of their respective owners.</span>
+        </div>
+
+      </md-list-item> 
     </md-list>
   </div>
 </md-sidenav>
