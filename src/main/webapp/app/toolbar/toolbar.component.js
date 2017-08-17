@@ -10,6 +10,9 @@ angular.
                 self.showSearch = false;
                 self.githubUrl = 'https://github.com/dionisisvas/training-project/';
 
+                self.toggleSidenav = function() {
+                }
+
                 self.toggleSearch = function() {
                     self.showSearch = !self.showSearch;
                     if (self.showSearch) {
