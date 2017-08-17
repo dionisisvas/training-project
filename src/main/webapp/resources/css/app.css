@@ -27,9 +27,6 @@ md-toolbar .md-block {
 }
 
 /*********************** Sidenav ***********************/
-md-sidenav {
-  height: 100%;
-}
 md-sidenav .my-sidenav-container {
   background: rgb(255, 87, 34);
 }
