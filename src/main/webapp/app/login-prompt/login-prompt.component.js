@@ -9,6 +9,7 @@ angular.
                 var self = this;
 
                 self.isLoggedIn = false;
+                self.cardDismissed = false;
 
                 if (JWToken.getToken()) {
                     self.isLoggedIn = true;
