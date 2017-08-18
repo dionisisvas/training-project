@@ -2,7 +2,7 @@
 <input type="radio" name="bedStatus" id="transfer" value="transfer">Grid</input>
 
 <div id="1">
-  <select ng-init="selectedChart.chart = chartOptions[0]; updateChart();" ng-model="selectedChart.chart" ng-change="updateChart();" ng-options="c.name for c in chartOptions track by c.id"></select>
+  <select ng-init="$ctrl.selectedChart = $ctrl.chartOptions[0]; $ctrl.updateChart();" ng-model="$ctrl.selectedChart" ng-change="$ctrl.updateChart();" ng-options="c.title for c in $ctrl.chartOptions track by c.id"></select>
   <div id="piechart_3d" style="width: 900px; height: 400px; "data="dataAge"></div>
   <div id="top_x_div" style="width: 900px; height: 400px;"></div>
 </div>
