@@ -3,6 +3,7 @@
 angular.module('core', [
     'core.account',
     'core.authorization',
+    'core.chartInfo',
     'core.focusOn',
     'core.hobby',
     'core.image',

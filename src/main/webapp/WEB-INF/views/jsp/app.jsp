@@ -55,6 +55,8 @@
     <spring:url value="/app/core/account/account.service.js" var="accountServiceJs" />
     <spring:url value="/app/core/authorization/authorization.module.js" var="authorizationModuleJs" />
     <spring:url value="/app/core/authorization/authorization.service.js" var="authorizationServiceJs" />
+    <spring:url value="/app/core/chart-info/chart-info.module.js" var="chartInfoModuleJs" />
+    <spring:url value="/app/core/chart-info/chart-info.service.js" var="chartInfoServiceJs" />
     <spring:url value="/app/core/hobby/hobby.module.js" var="hobbyModuleJs" />
     <spring:url value="/app/core/hobby/hobby.service.js" var="hobbyServiceJs" />
     <spring:url value="/app/core/image/image.module.js" var="imageModuleJs" />
@@ -128,6 +130,8 @@
     <script src="${accountServiceJs}"></script>
     <script src="${authorizationModuleJs}"></script>
     <script src="${authorizationServiceJs}"></script>
+    <script src="${chartInfoModuleJs}"></script>
+    <script src="${chartInfoServiceJs}"></script>
     <script src="${hobbyModuleJs}"></script>
     <script src="${hobbyServiceJs}"></script>
     <script src="${imageModuleJs}"></script>
