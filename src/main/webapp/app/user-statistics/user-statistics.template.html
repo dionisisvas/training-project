@@ -1,9 +1,25 @@
 <md-card>
-  <div id="piechart_div" style="height: 400px;"></div>
+  <md-card-content layout="row" layout-align="start start">
+    <div id="piechart_div" style="height:400px" flex></div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="center center">
+    <md-select ng-model="pieChartDataId" ng-change="$ctrl.updatePieChart(pieChartDataId)"
+               placeholder="{{$ctrl.chartInfo[0].data}} pie chart" class="md-no-underline">
+      <md-option ng-repeat="chart in $ctrl.chartInfo" ng-value="{{chart.id}}">{{chart.data}} pie chart</md-option>
+    </md-select>
+  </md-card-actions>
 </md-card>
 
 <md-card>
-  <div id="barchart_div" style="height: 400px;"></div>
+  <md-card-content layout="row" layout-align="start start">
+    <div id="barchart_div" style="height:400px" flex></div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="center center">
+    <md-select ng-model="barChartDataId" ng-change="$ctrl.updateBarChart(barChartDataId)"
+               placeholder="{{$ctrl.chartInfo[0].data}} bar chart" class="md-no-underline">
+      <md-option ng-repeat="chart in $ctrl.chartInfo" ng-value="{{chart.id}}">{{chart.data}} bar chart</md-option>
+    </md-select>
+  </md-card-actions>
 </md-card>
 
 <md-card>

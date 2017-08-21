@@ -4,21 +4,12 @@ angular.
     module('myUserStatistics').
     component('myUserStatistics', {
         templateUrl: 'app/user-statistics/user-statistics.template.html',
-        controller: ['Metrics', 'User',
-            function UserStatisticsController(Metrics, User) {
+        controller: ['ChartInfo', 'Metrics', 'User',
+            function UserStatisticsController(ChartInfo, Metrics, User) {
 
                 var self = this;
 
-                self.chartOptions = [{
-                        title: "Age distribution of users"
-                    }, {
-                        title: "Height distribution of users"
-                    },{
-                        title: "Body Mass Index distribution of users"
-                    },{
-                        title: "Education level distribution of users"
-                    }];
-
+                self.chartInfo = ChartInfo.query();
                 self.ageGroups = [
                         0, // Aged under 25 years old
                         0, // Aged between 25 to 34 years old
@@ -54,13 +45,12 @@ angular.
                         google.charts.load('visualization', {'packages':['corechart'], 'callback':
                             function() {
 
-                                self.charts = [
-                                        new google.visualization.PieChart(document.getElementById('piechart_div')),
-                                        new google.visualization.BarChart(document.getElementById('barchart_div'))
-                                    ];
+                                self.pieChart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+                                self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
 
                                 self.fillDataTables();
-                                self.updateCharts(0);
+                                self.updatePieChart(0);
+                                self.updateBarChart(0);
                             }
                         });
                     });
@@ -170,14 +160,14 @@ angular.
                     }
                 }
 
-                self.updateCharts = function(dataId = 0) {
+                self.updatePieChart = function(dataId = 0) {
 
-                    var dataTable = self.getDataTable(dataId);
+                    self.pieChart.draw(self.getDataTable(dataId), self.chartInfo[dataId].pieOptions);
+                }
 
-                    angular.forEach(self.charts, function(chart) {
+                self.updateBarChart = function(dataId = 0) {
 
-                        chart.draw(dataTable, self.chartOptions[dataId]);
-                    });
+                    self.barChart.draw(self.getDataTable(dataId), self.chartInfo[dataId].barOptions);
                 }
         }]
     });
