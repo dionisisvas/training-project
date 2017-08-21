@@ -35,7 +35,7 @@ angular.
                 when('/register', {
                     template: '<my-user-registration></my-user-registration>'
                 }).
-                when('/statistic', {
+                when('/statistics', {
                     template: '<my-user-statistics></my-user-statistics><my-login-prompt></my-login-prompt>'
                 }).
                 when('/user/list', {

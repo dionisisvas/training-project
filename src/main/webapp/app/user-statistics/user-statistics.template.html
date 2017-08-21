@@ -1,13 +1,12 @@
-<input type="radio" name="bedStatus" id="allot" checked="checked" value="allot">Charts</input>
-<input type="radio" name="bedStatus" id="transfer" value="transfer">Grid</input>
+<md-card>
+  <div id="piechart_div" style="height: 400px;"></div>
+</md-card>
 
-<div id="1">
-  <select ng-init="$ctrl.selectedChart = $ctrl.chartOptions[0]; $ctrl.updateChart();" ng-model="$ctrl.selectedChart" ng-change="$ctrl.updateChart();" ng-options="c.title for c in $ctrl.chartOptions track by c.id"></select>
-  <div id="piechart_3d" style="width: 900px; height: 400px; "data="dataAge"></div>
-  <div id="top_x_div" style="width: 900px; height: 400px;"></div>
-</div>
+<md-card>
+  <div id="barchart_div" style="height: 400px;"></div>
+</md-card>
 
-<div id="2" style="display:none;">
+<md-card>
   <table width="100%">
     <thead>
       <tr>
@@ -23,9 +22,9 @@
     </thead>
     <tbody>
       <tr ng-repeat="data in $ctrl.metrics">
-        <th>{{$ctrl.users[data.userId].name}}</th>
-        <th>{{$ctrl.users[data.userId].surname}}</th>
-        <th>{{$ctrl.users[data.userId].age}}</th>
+        <th>{{$ctrl.users[data.userId - 1].name}}</th>
+        <th>{{$ctrl.users[data.userId - 1].surname}}</th>
+        <th>{{$ctrl.users[data.userId - 1].age}}</th>
         <th>{{data.height}}</th>
         <th>{{data.weight}}</th>
         <th>{{data.nationality}}</th>
@@ -46,4 +45,4 @@
       </tr>
     </tfoot>
   </table>
-</div>
+</md-card>
