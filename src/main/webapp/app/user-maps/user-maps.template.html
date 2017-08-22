@@ -1,11 +1,12 @@
 <md-card>
   <md-card-content layout="row" layout-align="start start">
-    <div id="regions_div" style="height:600px" flex></div>
+    <div id="map_div" style="height:600px" flex></div>
   </md-card-content>
-</md-card>
-
-<md-card>
-  <md-card-content layout="row" layout-align="start start">
-    <div id="markers_div" style="height:600px" flex></div>
-  </md-card-content>
+  <md-card-actions layout="row" layout-align="center center">
+    <md-select ng-model="mapChartType" ng-change="$ctrl.updateMapChart(mapChartType)"
+               placeholder="Nationalities region map" class="md-no-underline">
+      <md-option ng-value="'region_chart'">Nationalities region map</md-option>
+      <md-option ng-value="'marker_chart'">Birthplaces marker map</md-option>
+    </md-select>
+  </md-card-actions>
 </md-card>

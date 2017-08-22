@@ -42,17 +42,18 @@ angular.
 
                     self.metrics = Metrics.MetricsList.query(function() {
 
-                        google.charts.load('visualization', {'packages':['corechart'], 'callback':
-                            function() {
+                        google.charts.load('visualization', {
+                                'packages':['corechart'],
+                                'callback': function() {
 
-                                self.pieChart = new google.visualization.PieChart(document.getElementById('piechart_div'));
-                                self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
+                                    self.pieChart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+                                    self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
 
-                                self.fillDataTables();
-                                self.updatePieChart(0);
-                                self.updateBarChart(0);
-                            }
-                        });
+                                    self.fillDataTables();
+                                    self.updatePieChart(0);
+                                    self.updateBarChart(0);
+                                }
+                            });
                     });
                 });
 
@@ -121,19 +122,19 @@ angular.
                             ['55-64 years old',     self.ageGroups[4]],
                             ['65-74 years old',     self.ageGroups[5]],
                             ['Over 74 years old',   self.ageGroups[6]]
-                        ]);
+                        ], false);
                     self.heightDataTable = google.visualization.arrayToDataTable([
                             ['Height bracket',            'Population'],
                             ['Short   (Height <= 1.70)',  self.heightGroups[0]],
                             ['Average (Height <= 1.80)',  self.heightGroups[1]],
                             ['Tall    (Height > 1.80)',   self.heightGroups[2]]
-                        ]);
+                        ], false);
                     self.weightDataTable = google.visualization.arrayToDataTable([
                             ['BMI bracket',                  'Population'],
                             ['Underweight   (BMI <= 18.5)',  self.weightGroups[0]],
                             ['Normal weight (BMI <= 25)',    self.weightGroups[1]],
                             ['Overweight    (BMI > 25)',     self.weightGroups[2]]
-                        ]);
+                        ], false);
                     self.educationDataTable = google.visualization.arrayToDataTable([
                             ['Education',            'Population'],
                             ['No school or data',    self.educationGroups[0]],
@@ -142,7 +143,7 @@ angular.
                             ['Bachelor\'s degree',   self.educationGroups[3]],
                             ['Master\'s degree',     self.educationGroups[4]],
                             ['Doctorate\'s degree',  self.educationGroups[5]]
-                        ]);
+                        ], false);
                 }
 
                 self.getDataTable = function(dataId = 0) {
