@@ -1,17 +1,12 @@
-<div class="container-fluid mt-0">
-	<div class="row">
-		<div class="col-md-6 col-sm-12 col-lg-6 col-md-offset-2">
-			<input type="radio" name="Status" id="allot" checked="checked" value="allot">NATIONALITY
-<br>			<input type="radio" name="Status" id="transfer" value="transfer">PLACE OF BIRTH
-			<div id="1">
-
-				<div id="regions_div" style="width: 900px; height: 500px;"></div>
-			</div>
-			<div id="2" style="display:none;">
-
-				<div id="chart_div" style="width: 900px; height: 500px;"></div>
-
-			</div>
-		</div>
-	</div>
-</div>
+<md-card>
+  <md-card-content layout="row" layout-align="start start">
+    <div id="map_div" style="height:600px" flex></div>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="center center">
+    <md-select ng-model="mapChartType" ng-change="$ctrl.updateMapChart(mapChartType)"
+               placeholder="Nationalities region map" class="md-no-underline">
+      <md-option ng-value="'regionChart'">Nationalities region map</md-option>
+      <md-option ng-value="'markerChart'">Birthplaces marker map</md-option>
+    </md-select>
+  </md-card-actions>
+</md-card>

@@ -1,74 +1,76 @@
 'use strict';
 
 angular.
-   module('myUserMaps').
-   component('myUserMaps', {
-      templateUrl: 'app/user-maps/user-maps.template.html',
-      controller: ['Metrics',
-  function UserMaps(Metrics) {
-var a = {};
-var b=[];
-self.metrics = Metrics.MetricsList.query(function() {
-angular.forEach(self.metrics, function(metrics,key) {
-if (_.has(a,metrics.nationality)){ a[metrics.nationality]++;}
-else{a[metrics.nationality] = 1}
-b.push(metrics.place_of_birth);
-console.log(b);
-google.charts.load('current', {
-        'packages':['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
-      google.charts.setOnLoadCallback(drawRegionsMap);
-     function drawRegionsMap() {
-     var d1=_.keys(a);
-     var d2=_.values(a);
-        var data =new google.visualization.DataTable();
-          data.addColumn('string', 'd1');
-            data.addColumn('number', 'Number Of Users');
-            for(var i = 0; i < d1.length; i++)
-              data.addRow([d1[i], d2[i]]);
+    module('myUserMaps').
+    component('myUserMaps', {
+        templateUrl: 'app/user-maps/user-maps.template.html',
+        controller: ['ChartInfo', 'Metrics',
+            function UserMapsController(ChartInfo, Metrics) {
 
-        var options = {
-        };
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-        chart.draw(data, options);
-      }
+                var self = this;
 
- google.charts.load('current', {
-        'packages': ['geochart'],
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
-   google.charts.setOnLoadCallback(drawMarkersMap);
-         function drawMarkersMap() {
-         var data = new google.visualization.DataTable();
-         data.addColumn('string', 'Address');
-        for(var i = 0; i < b.length; i++)
-            data.addRow([b[i]]);
+                self.chartOptions = ChartInfo.ChartOptions.get();
+                self.nationalityGroups = {};
+                self.birthplaceGroups = {};
 
-         var options = {
-          width:700,
-           height:600,
-           displayMode: 'markers',
-           colorAxis: {colors: ['red', 'blue']},
-   		   showInfoWindow: true
-         };
+                self.metrics = Metrics.MetricsList.query(function() {
 
-         var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-         chart.draw(data, options);
-       };
-        });
-        });
+                    google.charts.load('current', {
+                            'packages': ['geochart'],
+                            'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY',
+                            'callback': function() {
 
+                                self.mapChart = new google.visualization.GeoChart(document.getElementById('map_div'));
 
- $(document).ready(function() {
-                 $('input:radio[name=Status]').change(function() {
-                     if($('#1').css('display')!='none'){
-                         $('#2').html($().html()).show().siblings('div').hide();
-                         }else if($('#2').css('display')!='none'){
-                             $('#1').show().siblings('div').hide();
-                         }
-  });
-});
+                                self.fillDataTables();
+                                self.updateMapChart('regionChart');
+                            }
+                        });
+                });
 
-}]
-})
+                self.fillDataTables = function() {
+
+                    angular.forEach(self.metrics, function(metric, key) {
+
+                        if(self.nationalityGroups[metric.nationality] === undefined ) {
+                            self.nationalityGroups[metric.nationality] = 1;
+                        } else {
+                            self.nationalityGroups[metric.nationality]++;
+                        }
+
+                        if(self.birthplaceGroups[metric.place_of_birth] === undefined ) {
+                            self.birthplaceGroups[metric.place_of_birth] = 1;
+                        } else {
+                            self.birthplaceGroups[metric.place_of_birth]++;
+                        }
+                    });
+
+                    self.nationalityDataTable = new google.visualization.DataTable();
+                    self.nationalityDataTable.addColumn('string', 'Nationality');
+                    self.nationalityDataTable.addColumn('number', 'Population');
+                    for(var key in self.nationalityGroups) {
+                        self.nationalityDataTable.addRow([key, self.nationalityGroups[key]]);
+                    }
+
+                    self.birthplaceDataTable = new google.visualization.DataTable();
+                    self.birthplaceDataTable.addColumn('string', 'Place of birth');
+                    self.birthplaceDataTable.addColumn('number', 'Population');
+                    for(var key in self.birthplaceGroups) {
+                        self.birthplaceDataTable.addRow([key, self.birthplaceGroups[key]]);
+                    }
+                }
+
+                self.updateMapChart = function(chartType = 'regionChart') {
+
+                    switch(chartType) {
+                        case 'markerChart':
+                            self.mapChart.draw(self.birthplaceDataTable, self.chartOptions[chartType]);
+                            break;
+                        case 'regionChart':
+                        default:
+                            console.log(self.chartOptions[chartType]);
+                            self.mapChart.draw(self.nationalityDataTable, self.chartOptions[chartType]);
+                    }
+                }
+        }]
+    })
