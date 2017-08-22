@@ -4,11 +4,12 @@ angular.
     module('myUserMaps').
     component('myUserMaps', {
         templateUrl: 'app/user-maps/user-maps.template.html',
-        controller: ['Metrics',
-            function UserMapsController(Metrics) {
+        controller: ['ChartInfo', 'Metrics',
+            function UserMapsController(ChartInfo, Metrics) {
 
                 var self = this;
 
+                self.chartOptions = ChartInfo.ChartOptions.get();
                 self.nationalityGroups = {};
                 self.birthplaceGroups = {};
 
@@ -22,7 +23,7 @@ angular.
                                 self.mapChart = new google.visualization.GeoChart(document.getElementById('map_div'));
 
                                 self.fillDataTables();
-                                self.updateMapChart('region_chart');
+                                self.updateMapChart('regionChart');
                             }
                         });
                 });
@@ -59,16 +60,16 @@ angular.
                     }
                 }
 
-                self.updateMapChart = function(chartType = 'region_chart') {
+                self.updateMapChart = function(chartType = 'regionChart') {
 
                     switch(chartType) {
-                        case 'marker_chart':
-                            self.mapChart.draw(self.birthplaceDataTable, {displayMode: 'markers'});
+                        case 'markerChart':
+                            self.mapChart.draw(self.birthplaceDataTable, self.chartOptions[chartType]);
                             break;
-                        case 'region_chart':
+                        case 'regionChart':
                         default:
-                            self.mapChart.draw(self.nationalityDataTable);
-
+                            console.log(self.chartOptions[chartType]);
+                            self.mapChart.draw(self.nationalityDataTable, self.chartOptions[chartType]);
                     }
                 }
         }]

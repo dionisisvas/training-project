@@ -9,7 +9,7 @@ angular.
 
                 var self = this;
 
-                self.chartInfo = ChartInfo.query();
+                self.chartInfo = ChartInfo.ChartInfo.query();
                 self.ageGroups = [
                         0, // Aged under 25 years old
                         0, // Aged between 25 to 34 years old
