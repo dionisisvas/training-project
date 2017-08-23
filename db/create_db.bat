@@ -16,6 +16,7 @@ echo Creating USER_COMMENT...
 sqlite3 TrainingApp.db ".read sql/USER_COMMENT.sql"
 echo Creating METRICS...
 sqlite3 TrainingApp.db ".read sql/METRICS.sql"
+
 popd
 
 pause
