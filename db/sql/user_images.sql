@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS user_images;
 CREATE TABLE IF NOT EXISTS user_images(
-    userId          INTEGER    NOT_NULL,
     imgId           INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    userId          INTEGER    NOT_NULL,
     isProfileImg    BOOLEAN    DEFAULT '0',
     imgUri          TEXT       NOT_NULL  UNIQUE,
     FOREIGN KEY (userId) REFERENCES users(userId)
