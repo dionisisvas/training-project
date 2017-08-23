@@ -1,49 +1,50 @@
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
-    accountId    INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    accountId    INTEGER    NOT_NULL  UNIQUE,
     username     TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
     password     TEXT       NOT_NULL,
-    email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE
+    email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
+    FOREIGN KEY (accountID) REFERENCES USERS(userID)
 );
 
-INSERT INTO accounts(username, password, email) VALUES
+INSERT INTO accounts(accountId, username, password, email) VALUES
 -- User 1 --
-("jdoe",  "password1", "testmail1@t-mail.com"),
+(1, "jdoe",  "password1", "testmail1@t-mail.com"),
 -- User 2 --
-("jadoe",  "password2", "testmail2@t-mail.com"),
+(2, "jadoe",  "password2", "testmail2@t-mail.com"),
 -- User 3 --
-("cdjoe",  "password3", "testmail3@t-mail.com"),
+(3, "cdjoe",  "password3", "testmail3@t-mail.com"),
 -- User 4 --
-("jjs",  "password4", "testmail4@t-mail.com"),
+(4, "jjs",  "password4", "testmail4@t-mail.com"),
 -- User 5 --
-("droe",  "password5", "testmail5@t-mail.com"),
+(5, "droe",  "password5", "testmail5@t-mail.com"),
 -- User 6 --
-("jdoep1",  "password6", "testmail6@t-mail.com"),
+(6, "jdoep1",  "password6", "testmail6@t-mail.com"),
 -- User 7 --
-("janedoep",  "password7", "testmail7@t-mail.com"),
+(7, "janedoep",  "password7", "testmail7@t-mail.com"),
 -- User 8 --
-("jj123",  "password8", "testmail8@t-mail.com"),
+(8, "jj123",  "password8", "testmail8@t-mail.com"),
 -- User 9 --
-("ja2",  "password9", "testmail9@t-mail.com"),
+(9, "ja2",  "password9", "testmail9@t-mail.com"),
 -- User 10 --
-("droep2",  "password10", "testmail10@t-mail.com"),
+(10, "droep2",  "password10", "testmail10@t-mail.com"),
 -- User 11 --
-("jdoelog",  "password11", "testmail11@t-mail.com"),
+(11, "jdoelog",  "password11", "testmail11@t-mail.com"),
 -- User 12 --
-("aserj",  "password12", "testmail12@t-mail.com"),
+(12, "aserj",  "password12", "testmail12@t-mail.com"),
 -- User 13 --
-("done",  "password13", "testmail13@t-mail.com"),
+(13, "done",  "password13", "testmail13@t-mail.com"),
 -- User 14 --
-("j2kis",  "password14", "testmail14@t-mail.com"),
+(14, "j2kis",  "password14", "testmail14@t-mail.com"),
 -- User 15 --
-("doeroe",  "password15", "testmail15@t-mail.com"),
+(15, "doeroe",  "password15", "testmail15@t-mail.com"),
 -- User 16 --
-("jdkis",  "password16", "testmail16@t-mail.com"),
+(16, "jdkis",  "password16", "testmail16@t-mail.com"),
 -- User 17 --
-("jd78",  "password17", "testmail17@t-mail.com"),
+(17, "jd78",  "password17", "testmail17@t-mail.com"),
 -- User 18 --
-("cdoe66",  "password18", "testmail18@t-mail.com"),
+(18, "cdoe66",  "password18", "testmail18@t-mail.com"),
 -- User 19 --
-("jjsndis",  "password19", "testmail19@t-mail.com"),
+(19, "jjsndis",  "password19", "testmail19@t-mail.com"),
 -- User 20 --
-("doe123",  "password20", "testmail20@t-mail.com");
+(20, "doe123",  "password20", "testmail20@t-mail.com");
