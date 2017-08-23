@@ -1,9 +1,10 @@
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
-    accountId    INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    accountId    INTEGER    NOT_NULL  UNIQUE,
     username     TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
     password     TEXT       NOT_NULL,
-    email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE
+    email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
+    FOREIGN KEY (accountID) REFERENCES USERS(userID)
 );
 
 INSERT INTO accounts(accountId, username, password, email) VALUES
