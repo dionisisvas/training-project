@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Age",
+    "type": "grouped",
+    "title": "Users grouped by age"
+  },
+  {
+    "name": "Height",
+    "type": "grouped",
+    "title": "Users grouped by height"
+  },
+  {
+    "name": "BMI",
+    "type": "grouped",
+    "title": "Users grouped by BMI"
+  },
+  {
+    "name": "Education",
+    "type": "grouped",
+    "title": "Users grouped by education level"
+  },
+  {
+    "name": "Nationality",
+    "type": "map",
+    "title": "Nationalities"
+  },
+  {
+    "name": "Birthplace",
+    "type": "map",
+    "title": "Place of birth"
+  }
+]

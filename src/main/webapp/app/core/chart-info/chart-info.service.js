@@ -5,7 +5,7 @@ angular.
     factory('ChartInfo', ['$resource',
         function($resource) {
             return {
-              ChartInfo: $resource('resources/json/chart-info.json'),
+              ChartData: $resource('resources/json/chart-data.json'),
               ChartOptions: $resource('resources/json/chart-options.json')
             }
         }
