@@ -7,7 +7,9 @@ import com.iri.training.model.Metrics;
 
 public interface MetricsRepository {
 
-	 Metrics getMetricsByUserId(Long userId) throws SQLException;
+	Metrics getMetricsByUserId(Long userId) throws SQLException;
 
 	List <Metrics> getMetricsList() throws SQLException;
+
+	void initializeUserMetrics(long userId);
 }
