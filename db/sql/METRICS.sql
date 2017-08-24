@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS METRICS(
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 
-INSERT INTO METRICS(height, weight, nationality, placeOfBirth,userId,  education) VALUES
+INSERT INTO METRICS(height, weight, nationality, placeOfBirth, userId, education) VALUES
 -- User 1 metrics --
 (1.85, 80, "ITALY", "Biblioteca del Dipartimento di studi politici, Piazzale A. Moro, 5, 00185 Roma RM, Italy", 1, "University Education"),
 -- User 2 metrics --

@@ -79,7 +79,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withHeight(resultSet.getDouble("height"))
 					.withWeight(resultSet.getDouble("weight"))
 					.withNationality(resultSet.getString("nationality"))
-					.withPlace_of_birth(resultSet.getString("place_of_birth"))
+					.withPlaceOfBirth(resultSet.getString("placeOfBirth"))
 					.withEducation(resultSet.getString("education"))
 					.withUserId(resultSet.getLong("userId"))
 					.build();
@@ -104,7 +104,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withHeight(resultSet.getDouble("height"))
 					.withWeight(resultSet.getDouble("weight"))
 					.withNationality(resultSet.getString("nationality"))
-					.withPlace_of_birth(resultSet.getString("place_of_birth"))
+					.withPlaceOfBirth(resultSet.getString("placeOfBirth"))
 					.withEducation(resultSet.getString("education"))
 					.withUserId(resultSet.getLong("userId"))
 					.build());
