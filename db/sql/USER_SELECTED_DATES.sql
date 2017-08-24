@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS USER_SELECTED_DATES(
 
 INSERT INTO USER_SELECTED_DATES(userId, dateOfEvent, Title, Description) VALUES
 -- User 1 selected dates --
-(1, "1945-06-12", "Graduation","Graduated from university"),
+(1, "1940-06-12", "Graduation","Graduated from university"),
 (1, "1945-06-12", "Marriage","I married to Sonia"),
 (1, "1950-02-02", "Father","My first child was born"),
 -- User 2 selected dates --
