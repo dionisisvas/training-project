@@ -20,7 +20,7 @@
     "datalessRegionColor": "#FAFAFA",
     "colorAxis": {
       "minValue": 0,
-      "colors": ["#FFAB91", "#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#E64A19", "#D84315"]
+      "colors": ["#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#E64A19"]
     }
   }
 }

@@ -10,6 +10,7 @@ angular.
                 var self = this;
 
                 self.chartOptions = ChartInfo.ChartOptions.get();
+
                 self.nationalityGroups = {};
                 self.birthplaceGroups = {};
 
@@ -17,7 +18,7 @@ angular.
 
                     google.charts.load('current', {
                             'packages': ['geochart'],
-                            'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY',
+                            'mapsApiKey': 'AIzaSyAnuubBPo0ChOf3oe2UaZG25dPG_QJQ-BE',
                             'callback': function() {
 
                                 self.mapChart = new google.visualization.GeoChart(document.getElementById('map_div'));
