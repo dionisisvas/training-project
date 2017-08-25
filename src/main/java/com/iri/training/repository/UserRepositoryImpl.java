@@ -2,11 +2,8 @@ package com.iri.training.repository;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,10 +15,7 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.User;
@@ -38,6 +32,20 @@ public class UserRepositoryImpl implements UserRepository {
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public UserRepositoryImpl() throws IOException {}
+
+	@Override
+	public User getUserByUsername(final String username) throws SQLException {
+		logger.debug("ENTERED getUserByUsername for username: " + username);
+
+		final User user;
+		String sql = property.getString("RETRIEVE_USER_BY_USERNAME");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		user = jdbcTemplate.query(sql, new Object[]{username}, new UserResultSetExtractor());
+
+		logger.debug("EXITING getUserByUsername: " + user);
+
+		return user;
+	}
 
 	@Override
 	@Cacheable(value="findUser", key="#userId")
@@ -68,32 +76,20 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public long addUserAndGetGeneratedId(final User user) throws SQLException {
+	public User addUser(final User user) throws SQLException {
 
-		logger.debug("ENTERED addUserAndGetGeneratedId for user: " + user);
+		logger.debug("ENTERED addUser for user: " + user);
 
-		final KeyHolder kh = new GeneratedKeyHolder();
-		final long userId;
-		String sql = property.getString("ADD_USER");
+		String sql = property.getString("CREATE_USER");
 		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql, user.getUsername(),
+								 user.getName(),
+								 user.getSurname(),
+								 user.getDateOfBirth());
 
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			@Override public PreparedStatement createPreparedStatement(final Connection connection)
-					throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-				ps.setString(1, user.getName());
-				ps.setString(2, user.getSurname());
-				ps.setString(3, user.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
+		logger.debug("EXITING addUser: " + user);
 
-				return ps;
-			}
-		}, kh);
-
-		userId = kh.getKey().longValue();
-
-		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user + " with generated userId: " + userId);
-
-		return userId;
+		return user;
 	}
 
 	private static final class UserResultSetExtractor implements ResultSetExtractor<User> {
@@ -105,6 +101,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 			if (resultSet.next()) {
 				user = new UserBuilder()
+					.withUsername(resultSet.getString("username"))
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
@@ -132,6 +129,7 @@ public class UserRepositoryImpl implements UserRepository {
 			final List<User> userList = new ArrayList<>();
 			while (resultSet.next()) {
 				userList.add(new UserBuilder()
+					.withUsername(resultSet.getString("username"))
 					.withUserId(resultSet.getLong("userId"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))

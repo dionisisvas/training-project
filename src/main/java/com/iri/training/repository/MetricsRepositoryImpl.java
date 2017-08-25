@@ -57,17 +57,6 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 		return metricsList;
 	}
 
-	@Override
-	public void initializeUserMetrics(final long userId) {
-		logger.debug("ENTERED initializeUserMetrics");
-
-		String sql = property.getString("INITIALIZE_USER_METRICS");
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql);
-
-		logger.debug("EXITING initializeUserMetrics");
-	}
-
 	private static final class UserMetricsMapper implements ResultSetExtractor<Metrics> {
 
 		@Override
@@ -79,7 +68,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withHeight(resultSet.getDouble("height"))
 					.withWeight(resultSet.getDouble("weight"))
 					.withNationality(resultSet.getString("nationality"))
-					.withPlaceOfBirth(resultSet.getString("placeOfBirth"))
+					.withPlace_of_birth(resultSet.getString("place_of_birth"))
 					.withEducation(resultSet.getString("education"))
 					.withUserId(resultSet.getLong("userId"))
 					.build();
@@ -104,7 +93,7 @@ private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
 					.withHeight(resultSet.getDouble("height"))
 					.withWeight(resultSet.getDouble("weight"))
 					.withNationality(resultSet.getString("nationality"))
-					.withPlaceOfBirth(resultSet.getString("placeOfBirth"))
+					.withPlace_of_birth(resultSet.getString("place_of_birth"))
 					.withEducation(resultSet.getString("education"))
 					.withUserId(resultSet.getLong("userId"))
 					.build());

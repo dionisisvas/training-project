@@ -1,52 +1,80 @@
 DROP TABLE IF EXISTS user_hobbies;
 CREATE TABLE IF NOT EXISTS user_hobbies(
-    userId     INTEGER    NOT_NULL,
-    hobbyId    INTEGER    NOT_NULL,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    userId      INTEGER   NOT_NULL,
+    hobbyId     INTEGER   NOT_NULL,
+ 	FOREIGN KEY (userId) REFERENCES users(userId)   
 );
 
-INSERT INTO user_hobbies(userId, hobbyId) VALUES
+BEGIN TRANSACTION;
 -- User 1 --
-(1, 1),  -- skiing
-(1, 2),  -- knitting
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (1, 1); -- skiing
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (1, 2); -- knitting
 -- User 2 --
-(2, 3),  -- chess
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (2, 3); -- chess
 -- User 3 --
-(3, 4),  -- biking
-(3, 5),  -- travelling
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (3, 4); -- biking
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (3, 5); -- travelling
 -- User 4 --
-(4, 5),  -- travelling
-(4, 2),  -- knitting
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (4, 5); -- travelling
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (4, 2); -- knitting
 -- User 5 --
-(5, 2),  -- knitting
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (5, 2); -- knitting
 -- User 6 --
-(6, 6),  -- jogging
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (6, 6); -- jogging
 -- User 7 --
-(7, 6),  -- jogging
-(7, 7),  -- martial arts
-(7, 8),  -- tennis
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (7, 6); -- jogging
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (7, 7); -- martial arts
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (7, 8); -- tennis
 -- User 8 --
-(8, 8),  -- tennis
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (8, 8); -- tennis
 -- User 9 --
-(9, 2),  -- knitting
-(9, 7),  -- martial arts
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (9, 2); -- knitting
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (9, 7); -- martial arts
 -- User 12 --
-(12, 1),  -- skiing
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (12, 1); -- skiing
 -- User 13 --
-(13, 9),  -- football
-(13, 10),  -- basketball
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (13, 9); -- football
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (13, 10); -- basketball
 -- User 14 --
-(14, 11),  -- cooking
-(14, 12),  -- gardenning
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (14, 11); -- cooking
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (14, 12); -- gardenning
 -- User 16 --
-(16, 9),  -- football
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (16, 9); -- football
 -- User 17 --
-(17, 13),  -- gaming
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (17, 13); -- gaming
 -- User 18 --
-(18, 9),  -- football
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (18, 9); -- football
 -- User 19 --
-(19, 4),  -- biking
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (19, 4); -- biking
 -- User 20 --
-(20, 13),  -- gaming
-(20, 9),  -- football
-(20, 14);  -- swimming
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (20, 13); -- gaming
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (20, 9); -- football
+INSERT INTO user_hobbies(userId, hobbyId)
+VALUES (20, 14); -- swimming
+COMMIT;

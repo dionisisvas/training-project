@@ -31,9 +31,4 @@ public class MetricsServiceImpl implements MetricsService{
 		List<Metrics> metricsList = new ArrayList<Metrics>(metricsRepository.getMetricsList());
 		return metricsList;
 	}
-
-	@Override
-	public void initializeUserMetrics(long userId) throws SQLException {
-		metricsRepository.initializeUserMetrics(userId);
-	}
 }

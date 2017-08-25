@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iri.training.model.Account;
 import com.iri.training.model.User;
 import com.iri.training.web.service.AccountService;
-import com.iri.training.web.service.MetricsService;
 import com.iri.training.web.service.UserService;
 
 import io.jsonwebtoken.Jwts;
@@ -33,27 +32,20 @@ public class AuthController {
 	@Autowired
 	AccountService accountService;
 	@Autowired
-	MetricsService metricsService;
-	@Autowired
 	UserService userService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = "application/json")
 	public ResponseEntity<String> registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
-		Account account = rw.getAccount();
-		User user = rw.getUser();
-		logger.debug("ENTERED registerAccount: " + account + user);
+		logger.debug("ENTERED registerAccount: " + rw.getAccount() + rw.getUser());
 
-		if ( accountService.verifyNewAccount(account) &&
-				userService.verifyNewUser(user)) {
+		if ( accountService.verifyNewAccount(rw.getAccount()) &&
+			userService.verifyNewUser(rw.getUser())) {
 
-			final long userId = userService.addUserAndGetGeneratedId(user);
+			accountService.createAccount(rw.getAccount());
+			userService.addUser(rw.getUser());
 
-			account.setAccountId(userId);
-			accountService.createAccount(account);
-			metricsService.initializeUserMetrics(userId);
-
-			logger.debug("EXITING registerAccount for id: " + userId);
+			logger.debug("EXITING registerAccount: " + rw.getAccount() + rw.getUser());
 
 			return new ResponseEntity("{\"message\": \"Registration success.\"}", HttpStatus.OK);
 		}

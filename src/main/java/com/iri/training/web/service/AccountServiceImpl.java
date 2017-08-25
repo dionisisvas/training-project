@@ -45,8 +45,8 @@ public  class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void createAccount(Account account) throws SQLException {
-		accountRepository.createAccount(account);
+	public Account createAccount(Account account) throws SQLException {
+		return accountRepository.createAccount(account);
 	}
 
 	@Override
