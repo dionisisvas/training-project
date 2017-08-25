@@ -15,10 +15,11 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
 
 import com.iri.training.model.Events;
 import com.iri.training.model.builder.EventBuilder;
-
+@Repository
 public class EventRepositoryImpl implements EventRepository {
 	Logger logger = Logger.getLogger(this.getClass());
 
@@ -55,7 +56,7 @@ public class EventRepositoryImpl implements EventRepository {
 					.withUserId(resultSet.getLong("userId"))
 					.withTitle(resultSet.getString("Title"))
 					.withDateOfEvent(LocalDate.parse(
-						resultSet.getString("dateOfEvent "),
+						resultSet.getString("dateOfEvent"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
 					.build());
 
