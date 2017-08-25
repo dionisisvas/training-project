@@ -52,8 +52,8 @@ angular.
                                     self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
 
                                     self.fillDataTables();
-                                    self.updatePieChart(0);
-                                    self.updateBarChart(0);
+                                    self.updatePieChart('age-grouped');
+                                    self.updateBarChart('age-grouped');
                                 }
                             });
                     });
@@ -148,27 +148,27 @@ angular.
                         ], false);
                 }
 
-                self.getDataTable = function(data = 'Age') {
+                self.getDataTable = function(data = 'age-grouped') {
 
                     switch(data) {
-                        case 'Height':
+                        case 'height-grouped':
                             return self.heightDataTable;
-                        case 'BMI':
+                        case 'bmi-grouped':
                             return self.bmiDataTable;
-                        case 'Education':
+                        case 'education-grouped':
                             return self.educationDataTable;
-                        case 'Age':
+                        case 'age-grouped':
                         default:
                             return self.ageDataTable;
                     }
                 }
 
-                self.updatePieChart = function(data = 'Age') {
+                self.updatePieChart = function(data = 'age-grouped') {
 
                     self.pieChart.draw(self.getDataTable(data), self.chartOptions.pieChart);
                 }
 
-                self.updateBarChart = function(data = 'Age') {
+                self.updateBarChart = function(data = 'age-grouped') {
 
                     self.barChart.draw(self.getDataTable(data), self.chartOptions.barChart);
                 }

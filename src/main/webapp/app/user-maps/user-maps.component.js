@@ -9,6 +9,7 @@ angular.
 
                 var self = this;
 
+                self.chartData = ChartInfo.ChartData.query();
                 self.chartOptions = ChartInfo.ChartOptions.get();
 
                 self.nationalityGroups = {};
@@ -24,7 +25,7 @@ angular.
                                 self.mapChart = new google.visualization.GeoChart(document.getElementById('map_div'));
 
                                 self.fillDataTables();
-                                self.updateMapChart('regionChart');
+                                self.updateMapChart('nationality-regions');
                             }
                         });
                 });
@@ -39,10 +40,10 @@ angular.
                             self.nationalityGroups[metric.nationality]++;
                         }
 
-                        if(self.birthplaceGroups[metric.place_of_birth] === undefined ) {
-                            self.birthplaceGroups[metric.place_of_birth] = 1;
+                        if(self.birthplaceGroups[metric.placeOfBirth] === undefined ) {
+                            self.birthplaceGroups[metric.placeOfBirth] = 1;
                         } else {
-                            self.birthplaceGroups[metric.place_of_birth]++;
+                            self.birthplaceGroups[metric.placeOfBirth]++;
                         }
                     });
 
@@ -61,16 +62,15 @@ angular.
                     }
                 }
 
-                self.updateMapChart = function(chartType = 'regionChart') {
+                self.updateMapChart = function(chartType = 'nationality-regions') {
 
                     switch(chartType) {
-                        case 'markerChart':
-                            self.mapChart.draw(self.birthplaceDataTable, self.chartOptions[chartType]);
+                        case 'birthplace-markers':
+                            self.mapChart.draw(self.birthplaceDataTable, self.chartOptions.markerChart);
                             break;
-                        case 'regionChart':
+                        case 'nationality-regions':
                         default:
-                            console.log(self.chartOptions[chartType]);
-                            self.mapChart.draw(self.nationalityDataTable, self.chartOptions[chartType]);
+                            self.mapChart.draw(self.nationalityDataTable, self.chartOptions.regionChart);
                     }
                 }
         }]

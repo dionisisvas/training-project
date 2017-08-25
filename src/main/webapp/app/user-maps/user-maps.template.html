@@ -3,10 +3,9 @@
     <div id="map_div" style="height:600px" flex></div>
   </md-card-content>
   <md-card-actions layout="row" layout-align="center center">
-    <md-select ng-model="mapChartType" ng-change="$ctrl.updateMapChart(mapChartType)"
-               placeholder="Nationalities region map" class="md-no-underline">
-      <md-option ng-value="'regionChart'">Nationalities region map</md-option>
-      <md-option ng-value="'markerChart'">Birthplaces marker map</md-option>
+    <md-select ng-model="mapChartData" ng-change="$ctrl.updateMapChart(mapChartData)"
+               placeholder="Choose data type" class="md-no-underline">
+      <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'map'">{{chart.description}} chart</md-option>
     </md-select>
   </md-card-actions>
 </md-card>

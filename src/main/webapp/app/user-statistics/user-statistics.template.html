@@ -9,7 +9,7 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="pieChartData" ng-change="$ctrl.updatePieChart(pieChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.name}} pie chart</md-option>
+          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Pie chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
@@ -25,7 +25,7 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="barChartData" ng-change="$ctrl.updateBarChart(barChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.name}} bar chart</md-option>
+          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Bar chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
