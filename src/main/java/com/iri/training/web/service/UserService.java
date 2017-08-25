@@ -14,7 +14,7 @@ public interface UserService {
 
 	List<User> getUserList() throws SQLException;
 
-	User addUser(User user) throws SQLException;
+	long addUserAndGetGeneratedId(User user) throws SQLException;
 
 	boolean verifyNewUser(User user) throws SQLException;
 }

@@ -10,7 +10,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iri.training.model.Account;
 import com.iri.training.model.User;
+import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
 
 @Service
@@ -18,17 +20,16 @@ public class UserServiceImpl implements UserService {
 	Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
+	AccountRepository accountRepository;
+	@Autowired
 	UserRepository userRepository;
 
 	@Override
 	public User getUserByUsername(String username) throws SQLException {
-		User user = userRepository.getUserByUsername(username);
 
-		if (user != null) {
-			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
-		}
+		Account account = accountRepository.getAccount(username);
 
-		return user;
+		return getUserById(account.getAccountId());
 	}
 
 	@Override
@@ -42,8 +43,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addUser(User user) throws SQLException {
-		return userRepository.addUser(user);
+	public long addUserAndGetGeneratedId(User user) throws SQLException {
+		return userRepository.addUserAndGetGeneratedId(user);
 	}
 
 	@Override
@@ -67,24 +68,12 @@ public class UserServiceImpl implements UserService {
 
 		LocalDate ld = LocalDate.now();
 
-		if ((user.getUsername() == null) ||
-			(user.getName() == null) ||
+		if ((user.getName() == null) ||
 			(user.getSurname() == null) ||
 			(user.getDateOfBirth() == null)) {
 
 			verified = false;
 			logger.debug("Found null required fields.");
-		}
-
-		// Username can be alphanumeric with underscores in the [3-24] characters range.
-		if (!(user.getUsername().matches("^[a-zA-Z0-_]{3,24}$"))) {
-			verified = false;
-			logger.debug("Invalid username.");
-		}
-		// Check if the username is unique.
-		if (userRepository.getUserByUsername(user.getUsername()) != null) {
-			verified = false;
-			logger.debug("Username already exists.");
 		}
 
 		// Check if the name and surname are within the [2-64] characters range.
