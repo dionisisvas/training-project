@@ -9,7 +9,9 @@ angular.
 
                 var self = this;
 
-                self.chartInfo = ChartInfo.ChartInfo.query();
+                self.chartData = ChartInfo.ChartData.query();
+                self.chartOptions = ChartInfo.ChartOptions.get();
+
                 self.ageGroups = [
                         0, // Aged under 25 years old
                         0, // Aged between 25 to 34 years old
@@ -50,8 +52,8 @@ angular.
                                     self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
 
                                     self.fillDataTables();
-                                    self.updatePieChart(0);
-                                    self.updateBarChart(0);
+                                    self.updatePieChart('age-grouped');
+                                    self.updateBarChart('age-grouped');
                                 }
                             });
                     });
@@ -59,26 +61,28 @@ angular.
 
                 self.fillDataTables = function() {
 
-                    angular.forEach(self.users, function(user) {
+                    angular.forEach(self.metrics, function(metric, key) {
 
-                        if (user.age < 25) {
+                        metric.name = self.users[key].name;
+                        metric.surname = self.users[key].surname;
+                        metric.age = self.users[key].age;
+                        metric.bmi = metric.weight / (metric.height * metric.height);
+
+                        if (metric.age < 25) {
                             self.ageGroups[0]++;
-                        } else if (user.age < 35) {
+                        } else if (metric.age < 35) {
                             self.ageGroups[1]++;
-                        } else if (user.age < 45) {
+                        } else if (metric.age < 45) {
                             self.ageGroups[2]++;
-                        } else if (user.age < 55) {
+                        } else if (metric.age < 55) {
                             self.ageGroups[3]++;
-                        } else if (user.age < 65) {
+                        } else if (metric.age < 65) {
                             self.ageGroups[4]++;
-                        } else if (user.age < 75) {
+                        } else if (metric.age < 75) {
                             self.ageGroups[5]++;
                         } else {
                             self.ageGroups[6]++;
                         }
-                    });
-
-                    angular.forEach(self.metrics, function(metric) {
 
                         if (metric.height <= 1.70) {
                             self.heightGroups[0]++;
@@ -87,8 +91,6 @@ angular.
                         } else {
                             self.heightGroups[2]++;
                         }
-
-                        metric.bmi = metric.weight / (metric.height * metric.height);
 
                         if (metric.bmi <= 18.5) {
                             self.weightGroups[0]++;
@@ -129,7 +131,7 @@ angular.
                             ['Average (Height <= 1.80)',  self.heightGroups[1]],
                             ['Tall    (Height > 1.80)',   self.heightGroups[2]]
                         ], false);
-                    self.weightDataTable = google.visualization.arrayToDataTable([
+                    self.bmiDataTable = google.visualization.arrayToDataTable([
                             ['BMI bracket',                  'Population'],
                             ['Underweight   (BMI <= 18.5)',  self.weightGroups[0]],
                             ['Normal weight (BMI <= 25)',    self.weightGroups[1]],
@@ -146,29 +148,29 @@ angular.
                         ], false);
                 }
 
-                self.getDataTable = function(dataId = 0) {
+                self.getDataTable = function(data = 'age-grouped') {
 
-                    switch(dataId) {
-                        case 1:
+                    switch(data) {
+                        case 'height-grouped':
                             return self.heightDataTable;
-                        case 2:
-                            return self.weightDataTable;
-                        case 3:
+                        case 'bmi-grouped':
+                            return self.bmiDataTable;
+                        case 'education-grouped':
                             return self.educationDataTable;
-                        case 0:
+                        case 'age-grouped':
                         default:
                             return self.ageDataTable;
                     }
                 }
 
-                self.updatePieChart = function(dataId = 0) {
+                self.updatePieChart = function(data = 'age-grouped') {
 
-                    self.pieChart.draw(self.getDataTable(dataId), self.chartInfo[dataId].pieOptions);
+                    self.pieChart.draw(self.getDataTable(data), self.chartOptions.pieChart);
                 }
 
-                self.updateBarChart = function(dataId = 0) {
+                self.updateBarChart = function(data = 'age-grouped') {
 
-                    self.barChart.draw(self.getDataTable(dataId), self.chartInfo[dataId].barOptions);
+                    self.barChart.draw(self.getDataTable(data), self.chartOptions.barChart);
                 }
         }]
     });

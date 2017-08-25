@@ -9,7 +9,7 @@
         <md-card-title-text class="user-names">
           <span class="md-headline user-fullname">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
           <span class="md-subhead user-username">
-            @{{$ctrl.user.username}}
+            @{{$ctrl.userAccount.username}}
             <md-card-actions>
               <md-button class="md-icon-button md-primary" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
                 <md-icon md-font-set="material-icons"> mail </md-icon>
@@ -49,7 +49,7 @@
         <p ng-show="$ctrl.userEmail">
            e-mail:
            <span class="about-user-field">
-             {{$ctrl.userEmail}}
+             {{$ctrl.userAccount.email}}
            </span>
         </p>
         <p ng-show="$ctrl.user.phoneNo">
