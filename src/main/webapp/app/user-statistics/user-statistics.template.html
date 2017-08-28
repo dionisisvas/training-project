@@ -1,7 +1,8 @@
-<section layout="row" layout-sm="column">
+<section layout="row" layout-sm="column" ng-cloak>
   <div flex>
-    <md-card>
+    <md-card class="md-padding">
       <md-card-title>
+        <span class="md-headline">{{$ctrl.pieChartCardTitle}}</span>
       </md-card-title>
       <md-card-content>
         <div id="piechart_div" style="height:400px" flex></div>
@@ -9,15 +10,16 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="pieChartData" ng-change="$ctrl.updatePieChart(pieChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Pie chart</md-option>
+          <md-option ng-repeat="(key, chart) in $ctrl.chartData" ng-value="key" ng-if="chart.type == 'grouped'">{{chart.name}} pie chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
   </div>
 
   <div flex>
-    <md-card>
+    <md-card class="md-padding">
       <md-card-title>
+        <span class="md-headline">{{$ctrl.barChartCardTitle}}</span>
       </md-card-title>
       <md-card-content>
         <div id="barchart_div" style="height:400px" flex></div>
@@ -25,7 +27,7 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="barChartData" ng-change="$ctrl.updateBarChart(barChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Bar chart</md-option>
+          <md-option ng-repeat="(key, chart) in $ctrl.chartData" ng-value="key" ng-if="chart.type == 'grouped'">{{chart.name}} bar chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
@@ -34,7 +36,7 @@
 
 <section layout="row">
   <div flex>
-    <md-card>
+    <md-card class="md-padding">
       <table width="100%">
         <thead>
           <tr>

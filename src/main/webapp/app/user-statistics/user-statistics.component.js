@@ -9,8 +9,11 @@ angular.
 
                 var self = this;
 
-                self.chartData = ChartInfo.ChartData.query();
                 self.chartOptions = ChartInfo.ChartOptions.get();
+                self.chartData = ChartInfo.ChartData.get(function() {
+                    self.pieChartCardTitle = self.chartData['ageGrouped'].title;
+                    self.barChartCardTitle = self.chartData['ageGrouped'].title;
+                });
 
                 self.ageGroups = [
                         0, // Aged under 25 years old
@@ -52,8 +55,8 @@ angular.
                                     self.barChart =  new google.visualization.BarChart(document.getElementById('barchart_div'));
 
                                     self.fillDataTables();
-                                    self.updatePieChart('age-grouped');
-                                    self.updateBarChart('age-grouped');
+                                    self.updatePieChart('ageGrouped');
+                                    self.updateBarChart('ageGrouped');
                                 }
                             });
                     });
@@ -148,28 +151,28 @@ angular.
                         ], false);
                 }
 
-                self.getDataTable = function(data = 'age-grouped') {
+                self.getDataTable = function(data = 'ageGrouped') {
 
                     switch(data) {
-                        case 'height-grouped':
+                        case 'heightGrouped':
                             return self.heightDataTable;
-                        case 'bmi-grouped':
+                        case 'bmiGrouped':
                             return self.bmiDataTable;
-                        case 'education-grouped':
+                        case 'educationGrouped':
                             return self.educationDataTable;
-                        case 'age-grouped':
+                        case 'ageGrouped':
                         default:
                             return self.ageDataTable;
                     }
                 }
 
-                self.updatePieChart = function(data = 'age-grouped') {
-
+                self.updatePieChart = function(data = 'ageGrouped') {
+                    self.pieChartCardTitle = self.chartData[data].title;
                     self.pieChart.draw(self.getDataTable(data), self.chartOptions.pieChart);
                 }
 
-                self.updateBarChart = function(data = 'age-grouped') {
-
+                self.updateBarChart = function(data = 'ageGrouped') {
+                    self.barChartCardTitle = self.chartData[data].title;
                     self.barChart.draw(self.getDataTable(data), self.chartOptions.barChart);
                 }
         }]
