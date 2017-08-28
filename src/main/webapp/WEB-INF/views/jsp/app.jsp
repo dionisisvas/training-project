@@ -65,6 +65,8 @@
     <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
     <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
     <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
+    <spring:url value="/app/core/timeline/timeline.module.js" var="timelineModuleJs" />
+    <spring:url value="/app/core/timeline/timeline.service.js" var="timelineServiceJs" />
     <spring:url value="/app/core/navlink/navlink.module.js" var="navlinkModuleJs" />
     <spring:url value="/app/core/navlink/navlink.service.js" var="navlinkServiceJs" />
     <spring:url value="/app/core/api-endpoint/api-endpoint.module.js" var="apiEndpointModuleJs" />
@@ -108,6 +110,8 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
+    <spring:url value="/app/user-dates/user-dates.module.js" var="userDatesModuleJs" />
+    <spring:url value="/app/user-dates/user-dates.component.js" var="userDatesComponentJs" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
@@ -140,6 +144,8 @@
     <script src="${jwtokenServiceJs}"></script>
     <script src="${metricsModuleJs}"></script>
     <script src="${metricsServiceJs}"></script>
+    <script src="${timelineModuleJs}"></script>
+    <script src="${timelineServiceJs}"></script>
     <script src="${navlinkModuleJs}"></script>
     <script src="${navlinkServiceJs}"></script>
     <script src="${apiEndpointModuleJs}"></script>
@@ -183,5 +189,7 @@
     <script src="${userMapsComponentJs}"></script>
     <script src="${userStatisticsModuleJs}"></script>
     <script src="${userStatisticComponentJs}"></script>
+    <script src="${userDatesModuleJs}"></script>
+    <script src="${userDatesComponentJs}"></script>
   </body>
 </html>

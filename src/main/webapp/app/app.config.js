@@ -44,6 +44,9 @@ angular.
                 when('/user/uid/:userId', {
                     template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'
                 }).
+                when('/timeline', {
+                    template: '<my-user-dates></my-user-dates><my-login-prompt></my-login-prompt>'
+                }).
                 otherwise('/error');
         }
     ]);

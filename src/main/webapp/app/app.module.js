@@ -20,5 +20,6 @@ angular.module('trainingApp', [
     'myUserList',
     'myUserLogin',
     'myUserMaps',
-    'myUserStatistics'
+    'myUserStatistics',
+    'myUserDates',
 ]);
