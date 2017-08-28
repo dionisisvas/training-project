@@ -11,6 +11,8 @@
     <jdk.version>1.8</jdk.version>
     <spring.version>4.2.9.RELEASE</spring.version>
     <spring-boot.version>1.4.7.RELEASE</spring-boot.version>
+    <jetty-maven-plugin.version>9.4.6.v20170531</jetty-maven-plugin.version>
+    <jetty-runner.version>9.4.6.v20170531</jetty-runner.version>
     <jackson.version>2.8.9</jackson.version>
     <jjwt.version>0.7.0</jjwt.version>
     <jstl.version>1.2</jstl.version>
@@ -185,7 +187,7 @@
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.2.11.v20150529</version>
+        <version>${jetty-maven-plugin.version}</version>
         <configuration>
           <scanIntervalSeconds>10</scanIntervalSeconds>
           <webApp>
@@ -207,7 +209,7 @@
                 <artifactItem>
                   <groupId>org.eclipse.jetty</groupId>
                   <artifactId>jetty-runner</artifactId>
-                  <version>9.2.7.v20150116</version>
+                  <version>${jetty-runner.version}</version>
                   <destFileName>jetty-runner.jar</destFileName>
                 </artifactItem>
               </artifactItems>
@@ -229,5 +231,40 @@
       </plugin>
 
     </plugins>
+    
+    <resources>
+        <resource>
+		  <directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+		</resource>
+	</resources>
   </build>
+  
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
+			</properties>
+		</profile>
+	
+		<profile>
+			<id>qa</id>
+			<properties>
+				<env>qa</env>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env>prod</env>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>
