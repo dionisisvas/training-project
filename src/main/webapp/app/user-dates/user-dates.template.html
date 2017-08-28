@@ -1,0 +1,17 @@
+
+<div class="timeline">
+	<li class="timeline-item" ng-repeat="item in itemList" ng-click="onItemClick(item)" ng-class="{false: '', true: 'active'}[item.active]">
+		<div class="timeline-item-connector">
+			<i class="fa"></i>
+		</div>
+		<div class="timeline-item-content">
+
+			<div class="timeline-item-header">
+				<div class="timeline-date">{{item.date}}</div>
+				<div class="timeline-time">{{item.time}}</div>
+			</div>
+			{{item.activeContent}}
+		</div>
+	</li>
+</div>
+<s-timeline></s-timeline>

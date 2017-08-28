@@ -13,12 +13,14 @@
 
     <spring:url value="/resources/css/app.css" var="appCss" />
     <spring:url value="/resources/css/app.animation.css" var="appAnimationCss" />
-
+    <spring:url value="/resources/css/timeline.css" var="timelineCss" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link href="${appCss}" rel="stylesheet" />
     <link href="${appAnimationCss}" rel="stylesheet" />
+    <link href="${timelineCss}" rel="stylesheet" />
   </head>
 
   <body ng-cloak>
@@ -127,6 +129,7 @@
     <script src="${angularResourceJs}"></script>
     <script src="${angularRouteJs}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+
     <script src="${coreModuleJs}"></script>
     <script src="${appModuleJs}"></script>
     <script src="${appConfigJs}"></script>
