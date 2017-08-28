@@ -67,16 +67,18 @@
     <spring:url value="/app/core/directives/password-strength/password-strength.directive.js" var="passwordStrengthDirectiveJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
-    <spring:url value="/app/about-page/about-page.module.js" var="aboutPageModuleJs" />
-    <spring:url value="/app/about-page/about-page.component.js" var="aboutPageComponentJs" />
+    <spring:url value="/app/about-card/about-card.module.js" var="aboutCardModuleJs" />
+    <spring:url value="/app/about-card/about-card.component.js" var="aboutCardComponentJs" />
+    <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
+    <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
     <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
     <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />
+    <spring:url value="/app/legal-card/legal-card.module.js" var="legalCardModuleJs" />
+    <spring:url value="/app/legal-card/legal-card.component.js" var="legalCardComponentJs" />
     <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
     <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
-    <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
-    <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/sidenav/sidenav.module.js" var="sidenavModuleJs" />
     <spring:url value="/app/sidenav/sidenav.component.js" var="sidenavComponentJs" />
     <spring:url value="/app/toolbar/toolbar.module.js" var="toolbarModuleJs" />
@@ -142,12 +144,14 @@
     <script src="${passwordStrengthDirectiveJs}"></script>
     <script src="${usernameUniqueModuleJs}"></script>
     <script src="${usernameUniqueDirectiveJs}"></script>
-    <script src="${aboutPageModuleJs}"></script>
-    <script src="${aboutPageComponentJs}"></script>
+    <script src="${aboutCardModuleJs}"></script>
+    <script src="${aboutCardComponentJs}"></script>
     <script src="${errorPageModuleJs}"></script>
     <script src="${errorPageComponentJs}"></script>
     <script src="${greetCardModuleJs}"></script>
     <script src="${greetCardComponentJs}"></script>
+    <script src="${legalCardModuleJs}"></script>
+    <script src="${legalCardComponentJs}"></script>
     <script src="${loginPromptModuleJs}"></script>
     <script src="${loginPromptComponentJs}"></script>
     <script src="${apiEndpointsListModuleJs}"></script>

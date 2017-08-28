@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApiEndpoints', [
+angular.module('myApiEndpointsList', [
     'ngRoute',
     'core.apiEndpoint'
 ]);
