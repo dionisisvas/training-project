@@ -1,11 +1,11 @@
 'use strict';
 
 angular.
-    module('myHomePage').
-    component('myHomePage', {
-        templateUrl: 'app/home-page/home-page.template.html',
+    module('myGreetCard').
+    component('myGreetCard', {
+        templateUrl: 'app/greet-card/greet-card.template.html',
         controller: ['JWToken',
-            function HomePageController(JWToken) {
+            function GreetCardController(JWToken) {
                 var self = this;
 
                 self.tokenBody;

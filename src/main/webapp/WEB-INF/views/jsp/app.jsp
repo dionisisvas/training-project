@@ -22,23 +22,8 @@
   </head>
 
   <body ng-cloak>
-
-    <div layout="column" class="view-container" flex>
-      <div md-theme="myTheme" flex>
-
-        <my-toolbar></my-toolbar>
-
-        <div layout="row" flex>
-
-          <my-sidenav></my-sidenav>
-
-          <md-content md-whiteframe="6" id="content" flex layout-padding>
-            <div ng-view class="view-frame" layout="column"></div>
-          </md-content>
-
-        </div>
-
-      </div>
+    <div class="view-container" layout-fill>
+      <div ng-view class="view-frame" layout="column" md-theme="myTheme" layout-fill></div>
     </div>
 
     <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
@@ -86,8 +71,8 @@
     <spring:url value="/app/about-page/about-page.component.js" var="aboutPageComponentJs" />
     <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
     <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
-    <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
-    <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
+    <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
+    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />
     <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
     <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
@@ -161,8 +146,8 @@
     <script src="${aboutPageComponentJs}"></script>
     <script src="${errorPageModuleJs}"></script>
     <script src="${errorPageComponentJs}"></script>
-    <script src="${homePageModuleJs}"></script>
-    <script src="${homePageComponentJs}"></script>
+    <script src="${greetCardModuleJs}"></script>
+    <script src="${greetCardComponentJs}"></script>
     <script src="${loginPromptModuleJs}"></script>
     <script src="${loginPromptComponentJs}"></script>
     <script src="${apiEndpointsListModuleJs}"></script>

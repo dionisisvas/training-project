@@ -11,14 +11,14 @@ angular.module('trainingApp', [
     'myAboutPage',
     'myApiEndpoints',
     'myErrorPage',
+    'myGreetCard',
     'myLoginPrompt',
-    'myHomePage',
     'mySidenav',
     'myToolbar',
-    'myUserRegistration',
     'myUserInfo',
     'myUserList',
     'myUserLogin',
     'myUserMaps',
+    'myUserRegistration',
     'myUserStatistics'
 ]);

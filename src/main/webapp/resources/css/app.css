@@ -1,7 +1,11 @@
 /*********************** General ***********************/
 html,
 body {
+  overflow: hidden;
   font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+.view-frame {
+  margin: 0 !important;
 }
 .missing-url:hover {
   text-decoration: #E64A19 double line-through;
@@ -18,11 +22,11 @@ body {
 }
 
 /*********************** Toolbar ***********************/
-md-toolbar .md-toolbar-tools{
+md-toolbar#main-toolbar {
   background: white;
   color: rgb(255, 87, 34);
 }
-md-toolbar .md-block {
+md-toolbar#main-toolbar .md-block {
   height: 66%;
 }
 
@@ -30,9 +34,7 @@ md-toolbar .md-block {
 md-sidenav {
   display: flex;
   height: 100%;
-}
-md-sidenav .my-sidenav-container {
-  background: rgb(255, 87, 34);
+  background: rgb(255, 87, 34) !important;
 }
 /* Sidenav > Toolbar */
 md-sidenav .my-sidenav-toolbar {
@@ -73,10 +75,10 @@ md-sidenav .legal-disclaimer-text {
 /*********************** Content ***********************/
 /* Login and registration templates */
 #login-container {
-  width: 45%
+  width: 45%;
 }
 #registration-container {
-  width: 85%
+  width: 85%;
 }
 #login-container md-card .md-block {
   margin: 0px 8% 0px 8%;

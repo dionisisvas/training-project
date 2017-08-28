@@ -18,7 +18,7 @@ angular.
 
             $routeProvider.
                 when('/', {
-                    template: '<my-home-page></my-home-page><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/home.template.html'
                 }).
                 when('/about', {
                     template: '<my-about-page></my-about-page><my-login-prompt></my-login-prompt>'
