@@ -30,7 +30,7 @@ angular.
                     template: '<my-user-login></my-user-login>'
                 }).
                 when('/maps', {
-                    template: '<my-user-maps></my-user-maps><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/maps.template.html'
                 }).
                 when('/register', {
                     template: '<my-user-registration></my-user-registration>'
