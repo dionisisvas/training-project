@@ -42,7 +42,7 @@ angular.
                     templateUrl: 'app/views/users.template.html'
                 }).
                 when('/user/uid/:userId', {
-                    template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/profile.template.html'
                 }).
                 otherwise('/error');
         }

@@ -16,10 +16,10 @@ angular.module('trainingApp', [
     'myLoginPrompt',
     'mySidenav',
     'myToolbar',
-    'myUserInfo',
     'myUserList',
     'myUserLogin',
     'myUserMaps',
+    'myUserProfile',
     'myUserRegistration',
     'myUserStatistics'
 ]);
