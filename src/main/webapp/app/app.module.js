@@ -10,7 +10,7 @@ angular.module('trainingApp', [
     'core',
     'myAboutCard',
     'myApiEndpointsList',
-    'myErrorPage',
+    'myErrorCard',
     'myGreetCard',
     'myLegalCard',
     'myLoginPrompt',

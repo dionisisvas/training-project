@@ -71,8 +71,8 @@
     <spring:url value="/app/about-card/about-card.component.js" var="aboutCardComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
-    <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
-    <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
+    <spring:url value="/app/error-card/error-card.module.js" var="errorCardModuleJs" />
+    <spring:url value="/app/error-card/error-card.component.js" var="errorCardComponentJs" />
     <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
     <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />
     <spring:url value="/app/legal-card/legal-card.module.js" var="legalCardModuleJs" />
@@ -146,8 +146,8 @@
     <script src="${usernameUniqueDirectiveJs}"></script>
     <script src="${aboutCardModuleJs}"></script>
     <script src="${aboutCardComponentJs}"></script>
-    <script src="${errorPageModuleJs}"></script>
-    <script src="${errorPageComponentJs}"></script>
+    <script src="${errorCardModuleJs}"></script>
+    <script src="${errorCardComponentJs}"></script>
     <script src="${greetCardModuleJs}"></script>
     <script src="${greetCardComponentJs}"></script>
     <script src="${legalCardModuleJs}"></script>

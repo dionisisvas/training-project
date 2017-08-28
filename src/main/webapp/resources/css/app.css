@@ -73,6 +73,14 @@ md-sidenav .legal-disclaimer-text {
 }
 
 /*********************** Content ***********************/
+/* General */
+md-input-container .grey-parent-card {
+  color: white !important;
+}
+/* When the input is focused */
+md-input-container.md-input-focused .grey-parent-card {
+  color: rgb(243, 203, 74) !important;
+}
 /* Login and registration templates */
 #login-container {
   width: 45%;
@@ -93,13 +101,6 @@ md-sidenav .legal-disclaimer-text {
   color: grey;
 }
 /* Userlist template */
-md-radio-group .my-radio-btn {
-  display: inline;
-  margin: 0px 12px 0px 0px;
-}
-md-radio-group .radio-btn-label {
-  margin-left: -8px;
-}
 .userlist-age {
   font-size: 13px;
   color: grey;

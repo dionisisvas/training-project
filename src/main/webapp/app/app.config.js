@@ -24,7 +24,7 @@ angular.
                     templateUrl: 'app/views/about.template.html'
                 }).
                 when('/error', {
-                    template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/error.template.html'
                 }).
                 when('/login', {
                     template: '<my-user-login></my-user-login>'
