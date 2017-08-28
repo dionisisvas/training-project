@@ -1,60 +1,62 @@
-<div layout="column" flex>
-  <md-card>
-    <md-card-content layout-gt-sm="row">
+<md-card class="md-padding important-card">
+  <md-card-content>
 
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>
-          <md-icon md-font-set="material-icons"> search </md-icon>
-          Find a specific user...
-        </label>
+    <div layout="row">
+      Sort by:
+    </div>
 
-        <input ng-model="$ctrl.query">
-      </md-input-container>
+    <md-radio-group ng-style="{'margin': '3px 0 5px 0'}" ng-model="$ctrl.orderProp" layout="row" layout-fill>
 
-      <span ng-style="{'width':'4%'}"></span>
+      <md-radio-button value="surname" class="md-primary my-radio-btn">
+        <span class="radio-btn-label">Alphabetical</span>
+      </md-radio-button>
 
-      <md-radio-group ng-style="{'margin-top':'1%'}" ng-model="$ctrl.orderProp" flex-gt-sm>
-        <strong>Sort by:</strong><br>
+      <md-radio-button value="age" class="md-primary my-radio-btn">
+        <span class="radio-btn-label">Age</span>
+      </md-radio-button>
 
-        <md-radio-button value="surname" class="md-primary my-radio-btn">
-          <span class="radio-btn-label">Alphabetical</span>
-        </md-radio-button>
+      <md-radio-button value="userId" class="md-primary my-radio-btn">
+        <span class="radio-btn-label">User ID</span>
+      </md-radio-button>
+    </md-radio-group>
 
-        <md-radio-button value="age" class="md-primary my-radio-btn">
-          <span class="radio-btn-label">Age</span>
-        </md-radio-button>
+    <br>
 
-        <md-radio-button value="userId" class="md-primary my-radio-btn">
-          <span class="radio-btn-label">User ID</span>
-        </md-radio-button>
-      </md-radio-group>
+    <md-input-container layout="row" layout-fill>
+      <label>
+        <md-icon md-font-set="material-icons"> search </md-icon>
+        Find a specific user...
+      </label>
 
-    </md-card-content>
-  </md-card>
+      <input ng-model="$ctrl.query">
+    </md-input-container>
 
-  <md-card>
-    <md-list>
-      <md-subheader>Users matching your criteria:</md-subheader><br>
+  </md-card-content>
+</md-card>
 
-      <md-list-item ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit"
-                    ng-href="user/uid/{{user.userId}}">
-        <img ng-src="{{user.profileImage.imgUri}}" onerror="this.src='$ctrl.self.defaultImgUri'"
-             alt="{{user.name}}" class="md-avatar"/>
-        <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong>&nbsp;&nbsp;<span class="userlist-age">{{user.age}} years old</span></p>
-        <md-icon md-font-set="material-icons"> mail </md-icon>
-        <md-icon md-font-set="material-icons" ng-style="{'margin-left':'1%'}"> add </md-icon>
-        <md-divider></md-divider>
-      </md-list-item>
+<md-card>
+  <md-list>
 
-      <md-list-item ng-hide="($ctrl.users | filter: $ctrl.query).length <= $ctrl.startingLimit">
-        <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
-          Less...
-        </md-button>
-        <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-disabled="$ctrl.limit >= $ctrl.users.length">
-          More...
-        </md-button>
-      </md-list-item>
+    <md-subheader>Users matching your criteria:</md-subheader>
 
-    </md-list>
-  </md-card>
-</div>
+    <md-list-item ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit"
+                  ng-href="user/uid/{{user.userId}}">
+      <img ng-src="{{user.profileImage.imgUri}}" onerror="this.src='$ctrl.defaultImgUri'"
+           alt="{{user.name}}" class="md-avatar"/>
+      <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong>&nbsp;&nbsp;<span class="userlist-age">{{user.age}} years old</span></p>
+      <md-icon md-font-set="material-icons"> mail </md-icon>
+      <md-icon md-font-set="material-icons" ng-style="{'margin-left': '1%'}"> add </md-icon>
+      <md-divider></md-divider>
+    </md-list-item>
+
+    <md-list-item ng-hide="($ctrl.users | filter: $ctrl.query).length <= $ctrl.startingLimit" ng-cloak>
+      <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
+        Less...
+      </md-button>
+      <md-button class="md-primary" ng-click="$ctrl.getHigherLimit()" ng-disabled="$ctrl.limit >= $ctrl.users.length">
+        More...
+      </md-button>
+    </md-list-item>
+
+  </md-list>
+</md-card>

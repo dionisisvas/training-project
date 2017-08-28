@@ -38,8 +38,8 @@ angular.
                 when('/statistics', {
                     template: '<my-user-statistics></my-user-statistics><my-login-prompt></my-login-prompt>'
                 }).
-                when('/user/list', {
-                    template: '<my-user-list></my-user-list><my-login-prompt></my-login-prompt>'
+                when('/users', {
+                    templateUrl: 'app/views/users.template.html'
                 }).
                 when('/user/uid/:userId', {
                     template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'

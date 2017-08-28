@@ -14,8 +14,8 @@
     "working": false
   },
   {
-    "title": "User list",
-    "url": "user/list",
+    "title": "Users",
+    "url": "users",
     "info": "View your friends and find new ones.",
     "icon": "people",
     "working": true
