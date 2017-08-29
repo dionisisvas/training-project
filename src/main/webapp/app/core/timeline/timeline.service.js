@@ -5,7 +5,7 @@ angular.
 	factory('Timeline', ['$resource',
 		function($resource) {
 			return {
-				EventByUserId: $resource('api/dates/{userId}')
+				EventByUserId: $resource('api/dates/:userId')
 
 			};
 		}

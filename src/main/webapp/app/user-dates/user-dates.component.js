@@ -17,7 +17,7 @@ angular.
             item.activeContent = item.shortContent;
         }
     }
-// dataSet
+
     function setTestData() {
         var testItemList = [
             { date: '8/1/2014', time: '10:27 am', content: 'Macaroon ' },
@@ -29,7 +29,7 @@ angular.
             { date: '9/2/2014', time: '5:54 pm', content: 'Sweet ' },
             { date: '9/5/2014', time: 'Marriage', content: 't-bone ' }
         ];
-// regular or short content
+
         for( var i = 0; i < testItemList.length; i++ ) {
             var item = testItemList[i];
             item.shortContent = item.content.substring(0, 235);

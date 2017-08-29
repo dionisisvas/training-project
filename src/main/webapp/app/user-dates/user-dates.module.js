@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('myUserDates', [
-    'ngRoute'
+    'ngRoute',
+    'core.timeline'
 ]);
