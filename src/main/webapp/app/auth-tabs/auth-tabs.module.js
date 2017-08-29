@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('myAboutPage', [
+angular.module('myAuthTabs', [
     'ngRoute'
 ]);

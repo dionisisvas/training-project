@@ -1,13 +1,13 @@
 'use strict';
 
 angular.
-    module('myUserLogin').
-    component('myUserLogin', {
-        templateUrl: 'app/user-login/user-login.template.html',
+    module('myLoginCard').
+    component('myLoginCard', {
+        templateUrl: 'app/login-card/login-card.template.html',
         controller: ['$location', '$mdToast', '$scope', '$window', 'Authorization', 'JWToken',
-            function UserLoginController($location, $mdToast, $scope, $window, Authorization, JWToken) {
+            function LoginCardController($location, $mdToast, $scope, $window, Authorization, JWToken) {
                 var self = this;
-                self.registrationUrl = 'register';
+                self.registrationUrl = 'auth/0';
 
                 self.submitForm = function(isValid) {
 

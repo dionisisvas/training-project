@@ -14,24 +14,17 @@
     "working": false
   },
   {
-    "title": "User list",
-    "url": "user/list",
+    "title": "Users",
+    "url": "users",
     "info": "View your friends and find new ones.",
     "icon": "people",
     "working": true
   },
   {
-    "title": "Statistics",
-    "url": "statistics",
+    "title": "Charts",
+    "url": "charts",
     "info": "Discover various usage statistics.",
     "icon": "timeline",
-    "working": true
-  },
-  {
-    "title": "Maps",
-    "url": "maps",
-    "info": "Explore the application's world map.",
-    "icon": "map",
     "working": true
   },
   {

@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('myUserLogin', [
+angular.module('myLoginCard', [
+    'ngMaterial',
     'ngRoute',
     'core.authorization',
     'core.jwtoken'

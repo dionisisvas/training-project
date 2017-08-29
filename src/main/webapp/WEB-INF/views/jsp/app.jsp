@@ -22,23 +22,8 @@
   </head>
 
   <body ng-cloak>
-
-    <div layout="column" class="view-container" flex>
-      <div md-theme="myTheme" flex>
-
-        <my-toolbar></my-toolbar>
-
-        <div layout="row" flex>
-
-          <my-sidenav></my-sidenav>
-
-          <md-content md-whiteframe="6" id="content" flex layout-padding>
-            <div ng-view class="view-frame" layout="column"></div>
-          </md-content>
-
-        </div>
-
-      </div>
+    <div class="view-container" layout-fill>
+      <div ng-view class="view-frame" layout="column" md-theme="myTheme" layout-fill></div>
     </div>
 
     <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
@@ -82,26 +67,32 @@
     <spring:url value="/app/core/directives/password-strength/password-strength.directive.js" var="passwordStrengthDirectiveJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.module.js" var="usernameUniqueModuleJs" />
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
-    <spring:url value="/app/about-page/about-page.module.js" var="aboutPageModuleJs" />
-    <spring:url value="/app/about-page/about-page.component.js" var="aboutPageComponentJs" />
-    <spring:url value="/app/error-page/error-page.module.js" var="errorPageModuleJs" />
-    <spring:url value="/app/error-page/error-page.component.js" var="errorPageComponentJs" />
-    <spring:url value="/app/home-page/home-page.module.js" var="homePageModuleJs" />
-    <spring:url value="/app/home-page/home-page.component.js" var="homePageComponentJs" />
-    <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
-    <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
+    <spring:url value="/app/about-card/about-card.module.js" var="aboutCardModuleJs" />
+    <spring:url value="/app/about-card/about-card.component.js" var="aboutCardComponentJs" />
+    <spring:url value="/app/auth-tabs/auth-tabs.module.js" var="authTabsModuleJs" />
+    <spring:url value="/app/auth-tabs/auth-tabs.component.js" var="authTabsComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
+    <spring:url value="/app/error-card/error-card.module.js" var="errorCardModuleJs" />
+    <spring:url value="/app/error-card/error-card.component.js" var="errorCardComponentJs" />
+    <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
+    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />    
+    <spring:url value="/app/tables/tables.module.js" var="tablesModuleJs" />
+    <spring:url value="/app/tables/tables.component.js" var="tablesComponentJs" />
+    <spring:url value="/app/legal-card/legal-card.module.js" var="legalCardModuleJs" />
+    <spring:url value="/app/legal-card/legal-card.component.js" var="legalCardComponentJs" />
+    <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
+    <spring:url value="/app/login-prompt/login-prompt.component.js" var="loginPromptComponentJs" />
     <spring:url value="/app/sidenav/sidenav.module.js" var="sidenavModuleJs" />
     <spring:url value="/app/sidenav/sidenav.component.js" var="sidenavComponentJs" />
     <spring:url value="/app/toolbar/toolbar.module.js" var="toolbarModuleJs" />
     <spring:url value="/app/toolbar/toolbar.component.js" var="toolbarComponentJs" />
     <spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
     <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
-    <spring:url value="/app/user-login/user-login.module.js" var="userLoginModuleJs" />
-    <spring:url value="/app/user-login/user-login.component.js" var="userLoginComponentJs" />
-    <spring:url value="/app/user-info/user-info.module.js" var="userInfoModuleJs" />
-    <spring:url value="/app/user-info/user-info.component.js" var="userInfoComponentJs" />
+    <spring:url value="/app/login-card/login-card.module.js" var="loginCardModuleJs" />
+    <spring:url value="/app/login-card/login-card.component.js" var="loginCardComponentJs" />
+    <spring:url value="/app/user-profile/user-profile.module.js" var="userProfileModuleJs" />
+    <spring:url value="/app/user-profile/user-profile.component.js" var="userProfileComponentJs" />
     <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
     <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
     <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
@@ -157,12 +148,18 @@
     <script src="${passwordStrengthDirectiveJs}"></script>
     <script src="${usernameUniqueModuleJs}"></script>
     <script src="${usernameUniqueDirectiveJs}"></script>
-    <script src="${aboutPageModuleJs}"></script>
-    <script src="${aboutPageComponentJs}"></script>
-    <script src="${errorPageModuleJs}"></script>
-    <script src="${errorPageComponentJs}"></script>
-    <script src="${homePageModuleJs}"></script>
-    <script src="${homePageComponentJs}"></script>
+    <script src="${aboutCardModuleJs}"></script>
+    <script src="${aboutCardComponentJs}"></script>
+    <script src="${authTabsModuleJs}"></script>
+    <script src="${authTabsComponentJs}"></script>
+    <script src="${errorCardModuleJs}"></script>
+    <script src="${errorCardComponentJs}"></script>
+    <script src="${greetCardModuleJs}"></script>
+    <script src="${greetCardComponentJs}"></script>    
+    <script src="${tablesModuleJs}"></script>
+    <script src="${tablesComponentJs}"></script>
+    <script src="${legalCardModuleJs}"></script>
+    <script src="${legalCardComponentJs}"></script>
     <script src="${loginPromptModuleJs}"></script>
     <script src="${loginPromptComponentJs}"></script>
     <script src="${apiEndpointsListModuleJs}"></script>
@@ -173,10 +170,10 @@
     <script src="${toolbarComponentJs}"></script>
     <script src="${userListModuleJs}"></script>
     <script src="${userListComponentJs}"></script>
-    <script src="${userLoginModuleJs}"></script>
-    <script src="${userLoginComponentJs}"></script>
-    <script src="${userInfoModuleJs}"></script>
-    <script src="${userInfoComponentJs}"></script>
+    <script src="${loginCardModuleJs}"></script>
+    <script src="${loginCardComponentJs}"></script>
+    <script src="${userProfileModuleJs}"></script>
+    <script src="${userProfileComponentJs}"></script>
     <script src="${userRegistrationModuleJs}"></script>
     <script src="${userRegistrationComponentJs}"></script>
     <script src="${userMapsModuleJs}"></script>

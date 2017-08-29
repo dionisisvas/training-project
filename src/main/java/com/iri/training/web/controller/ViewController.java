@@ -20,6 +20,12 @@ public class ViewController {
 	@RequestMapping(value = "/error")
 	public String errorPage() { return "app"; }
 
+	@RequestMapping(value = "/auth/**")
+	public String authPage() { return "app"; }
+
+	@RequestMapping(value = "/charts/**")
+	public String chartsPage() { return "app"; }
+
 	@RequestMapping(value = "/user/**")
 	public String userInfo() { return "app"; }
 

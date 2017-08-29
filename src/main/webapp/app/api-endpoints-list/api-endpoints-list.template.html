@@ -6,6 +6,7 @@
   </md-card-title>
   <md-card-content>
     <md-list>
+
       <md-list-item class="md-2-line" ng-repeat="apiEndpoint in $ctrl.apiEndpointsList | limitTo: $ctrl.limit">
         <div class="md-list-item-text">
           <h3>
@@ -16,6 +17,7 @@
         <md-button ng-disabled="true" class="md-primary" ng-style="{'margin-top':'16px', 'margin-bottom':'16px'}">{{apiEndpoint.type}}</md-button>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
+
       <md-list-item ng-hide="$ctrl.apiEndpointsList.length <= $ctrl.startingLimit">
         <md-button class="md-primary" ng-click="$ctrl.getLowerLimit()" ng-disabled="$ctrl.limit <= $ctrl.startingLimit">
           Less...
@@ -24,6 +26,7 @@
           More...
         </md-button>
       </md-list-item>
+
     </md-list>
   </md-card-content>
 </md-card>

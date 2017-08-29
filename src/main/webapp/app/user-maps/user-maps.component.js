@@ -9,8 +9,10 @@ angular.
 
                 var self = this;
 
-                self.chartData = ChartInfo.ChartData.query();
                 self.chartOptions = ChartInfo.ChartOptions.get();
+                self.chartData = ChartInfo.ChartData.get(function () {
+                    self.mapChartCardTitle = self.chartData['nationalityRegions'].title;
+                });
 
                 self.nationalityGroups = {};
                 self.birthplaceGroups = {};
@@ -25,7 +27,7 @@ angular.
                                 self.mapChart = new google.visualization.GeoChart(document.getElementById('map_div'));
 
                                 self.fillDataTables();
-                                self.updateMapChart('nationality-regions');
+                                self.updateMapChart('nationalityRegions');
                             }
                         });
                 });
@@ -62,14 +64,17 @@ angular.
                     }
                 }
 
-                self.updateMapChart = function(chartType = 'nationality-regions') {
+                self.updateMapChart = function(chartType = 'nationalityRegions') {
+
+                    self.mapChartCardTitle = self.chartData[chartType].title;
 
                     switch(chartType) {
-                        case 'birthplace-markers':
+                        case 'birthplaceMarkers':
                             self.mapChart.draw(self.birthplaceDataTable, self.chartOptions.markerChart);
                             break;
-                        case 'nationality-regions':
+                        case 'nationalityRegions':
                         default:
+                            self.mapChartCardTitle = self.chartData['nationalityRegions'].title;
                             self.mapChart.draw(self.nationalityDataTable, self.chartOptions.regionChart);
                     }
                 }
