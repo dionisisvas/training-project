@@ -1,9 +1,9 @@
 'use strict';
 
 angular.
-    module('myGrids').
-    component('myGrids', {
-        templateUrl: 'app/grids/grids.template.html',
+    module('myTables').
+    component('myTables', {
+        templateUrl: 'app/tables/tables.template.html',
         controller: ['Metrics', 'User',
             function UserStatisticsController(Metrics, User) {
 

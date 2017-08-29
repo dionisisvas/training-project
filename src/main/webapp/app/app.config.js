@@ -26,7 +26,7 @@ angular.
                 when('/auth/:tabId?', {
                     templateUrl: 'app/views/auth.template.html'
                 }).
-                when('/charts/:tabId?', {
+                when('/charts', {
                     templateUrl: 'app/views/charts.template.html'
                 }).
                 when('/error', {

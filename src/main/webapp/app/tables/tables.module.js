@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('myChartTabs', [
+angular.module('myTables', [
     'ngRoute'
 ]);

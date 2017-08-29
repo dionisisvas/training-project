@@ -21,17 +21,10 @@
     "working": true
   },
   {
-    "title": "Statistics",
-    "url": "charts/0",
+    "title": "Charts",
+    "url": "charts",
     "info": "Discover various usage statistics.",
     "icon": "timeline",
-    "working": true
-  },
-  {
-    "title": "Maps",
-    "url": "charts/2",
-    "info": "Explore the application's world map.",
-    "icon": "map",
     "working": true
   },
   {
