@@ -26,14 +26,11 @@ angular.
                 when('/error', {
                     templateUrl: 'app/views/error.template.html'
                 }).
-                when('/login', {
-                    template: '<my-user-login></my-user-login>'
+                when('/auth/:tabId?', {
+                    templateUrl: 'app/views/auth.template.html'
                 }).
                 when('/maps', {
                     templateUrl: 'app/views/maps.template.html'
-                }).
-                when('/register', {
-                    template: '<my-user-registration></my-user-registration>'
                 }).
                 when('/statistics', {
                     templateUrl: 'app/views/statistics.template.html'

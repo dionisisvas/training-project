@@ -69,6 +69,8 @@
     <spring:url value="/app/core/directives/username-unique/username-unique.directive.js" var="usernameUniqueDirectiveJs" />
     <spring:url value="/app/about-card/about-card.module.js" var="aboutCardModuleJs" />
     <spring:url value="/app/about-card/about-card.component.js" var="aboutCardComponentJs" />
+    <spring:url value="/app/auth-tabs/auth-tabs.module.js" var="authTabsModuleJs" />
+    <spring:url value="/app/auth-tabs/auth-tabs.component.js" var="authTabsComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/error-card/error-card.module.js" var="errorCardModuleJs" />
@@ -85,8 +87,8 @@
     <spring:url value="/app/toolbar/toolbar.component.js" var="toolbarComponentJs" />
     <spring:url value="/app/user-list/user-list.module.js" var="userListModuleJs" />
     <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
-    <spring:url value="/app/user-login/user-login.module.js" var="userLoginModuleJs" />
-    <spring:url value="/app/user-login/user-login.component.js" var="userLoginComponentJs" />
+    <spring:url value="/app/login-card/login-card.module.js" var="loginCardModuleJs" />
+    <spring:url value="/app/login-card/login-card.component.js" var="loginCardComponentJs" />
     <spring:url value="/app/user-profile/user-profile.module.js" var="userProfileModuleJs" />
     <spring:url value="/app/user-profile/user-profile.component.js" var="userProfileComponentJs" />
     <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
@@ -146,6 +148,8 @@
     <script src="${usernameUniqueDirectiveJs}"></script>
     <script src="${aboutCardModuleJs}"></script>
     <script src="${aboutCardComponentJs}"></script>
+    <script src="${authTabsModuleJs}"></script>
+    <script src="${authTabsComponentJs}"></script>
     <script src="${errorCardModuleJs}"></script>
     <script src="${errorCardComponentJs}"></script>
     <script src="${greetCardModuleJs}"></script>
@@ -162,8 +166,8 @@
     <script src="${toolbarComponentJs}"></script>
     <script src="${userListModuleJs}"></script>
     <script src="${userListComponentJs}"></script>
-    <script src="${userLoginModuleJs}"></script>
-    <script src="${userLoginComponentJs}"></script>
+    <script src="${loginCardModuleJs}"></script>
+    <script src="${loginCardComponentJs}"></script>
     <script src="${userProfileModuleJs}"></script>
     <script src="${userProfileComponentJs}"></script>
     <script src="${userRegistrationModuleJs}"></script>
