@@ -13,18 +13,49 @@ angular.
 
                     self.metrics = Metrics.MetricsList.query(function() {
 
-                        self.fillDataTables();
+                        google.charts.load('visualization', {
+                                'packages':['table'],
+                                'callback': function() {
+
+                                    self.tableChart = new google.visualization.Table(document.getElementById('table_div'));
+
+                                    self.fillDataTables();
+                                    self.updateTable();
+                                }
+                            });
                     });
                 });
 
                 self.fillDataTables = function() {
 
-                    angular.forEach(self.metrics, function(metric, key) {
+                    self.data = new google.visualization.DataTable();
 
-                        metric.name = self.users[key].name;
-                        metric.surname = self.users[key].surname;
-                        metric.age = self.users[key].age;
+                    self.data.addColumn('string', 'Name');
+                    self.data.addColumn('string', 'Surname');
+                    self.data.addColumn('number', 'Age');
+                    self.data.addColumn('number', 'Height');
+                    self.data.addColumn('number', 'Weight');
+                    self.data.addColumn('string', 'Nationality');
+                    self.data.addColumn('string', 'Birthplace');
+                    self.data.addColumn('string', 'Education');
+
+                    angular.forEach(self.metrics, function(metric, key) {
+                        self.data.addRow([
+                                self.users[key].name,
+                                self.users[key].surname,
+                                self.users[key].age,
+                                metric.height,
+                                metric.weight,
+                                metric.nationality,
+                                metric.placeOfBirth,
+                                metric.education
+                            ]);
                     });
+                }
+
+                self.updateTable = function() {
+
+                    self.tableChart.draw(self.data);
                 }
         }]
     });

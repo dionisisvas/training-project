@@ -1,44 +1,8 @@
-<section layout="row">
-  <div flex>
-    <md-card class="md-padding">
-      <table width="100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Height </th>
-            <th>Weight</th>
-            <th>Nationality</th>
-            <th>Place Of Birth</th>
-            <th>Education</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="data in $ctrl.metrics">
-            <th>{{data.name}}</th>
-            <th>{{data.surname}}</th>
-            <th>{{data.age}}</th>
-            <th>{{data.height}}</th>
-            <th>{{data.weight}}</th>
-            <th>{{data.nationality}}</th>
-            <th>{{data.placeOfBirth}}</th>
-            <th>{{data.education}}</th>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Height </th>
-            <th>Weight</th>
-            <th>Nationality</th>
-            <th>Place Of Birth</th>
-            <th>Education</th>
-          </tr>
-        </tfoot>
-      </table>
-    </md-card>
-  </div>
-</section>
+<md-card class="md-padding">
+  <md-card-title>
+    <span class="md-headline">Users grid</span>
+  </md-card-title>
+  <md-card-content>
+    <div id="table_div" flex></div>
+  </md-card-content>
+</md-card>
