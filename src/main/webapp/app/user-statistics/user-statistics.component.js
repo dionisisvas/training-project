@@ -66,8 +66,6 @@ angular.
 
                     angular.forEach(self.metrics, function(metric, key) {
 
-                        metric.name = self.users[key].name;
-                        metric.surname = self.users[key].surname;
                         metric.age = self.users[key].age;
                         metric.bmi = metric.weight / (metric.height * metric.height);
 

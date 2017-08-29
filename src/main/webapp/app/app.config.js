@@ -23,17 +23,14 @@ angular.
                 when('/about', {
                     templateUrl: 'app/views/about.template.html'
                 }).
-                when('/error', {
-                    templateUrl: 'app/views/error.template.html'
-                }).
                 when('/auth/:tabId?', {
                     templateUrl: 'app/views/auth.template.html'
                 }).
-                when('/maps', {
-                    templateUrl: 'app/views/maps.template.html'
+                when('/charts/:tabId?', {
+                    templateUrl: 'app/views/charts.template.html'
                 }).
-                when('/statistics', {
-                    templateUrl: 'app/views/statistics.template.html'
+                when('/error', {
+                    templateUrl: 'app/views/error.template.html'
                 }).
                 when('/users', {
                     templateUrl: 'app/views/users.template.html'

@@ -71,12 +71,16 @@
     <spring:url value="/app/about-card/about-card.component.js" var="aboutCardComponentJs" />
     <spring:url value="/app/auth-tabs/auth-tabs.module.js" var="authTabsModuleJs" />
     <spring:url value="/app/auth-tabs/auth-tabs.component.js" var="authTabsComponentJs" />
+    <spring:url value="/app/chart-tabs/chart-tabs.module.js" var="chartTabsModuleJs" />
+    <spring:url value="/app/chart-tabs/chart-tabs.component.js" var="chartTabsComponentJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.module.js" var="apiEndpointsListModuleJs" />
     <spring:url value="/app/api-endpoints-list/api-endpoints-list.component.js" var="apiEndpointsListComponentJs" />
     <spring:url value="/app/error-card/error-card.module.js" var="errorCardModuleJs" />
     <spring:url value="/app/error-card/error-card.component.js" var="errorCardComponentJs" />
     <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
-    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />
+    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />    
+    <spring:url value="/app/grids/grids.module.js" var="gridsModuleJs" />
+    <spring:url value="/app/grids/grids.component.js" var="gridsComponentJs" />
     <spring:url value="/app/legal-card/legal-card.module.js" var="legalCardModuleJs" />
     <spring:url value="/app/legal-card/legal-card.component.js" var="legalCardComponentJs" />
     <spring:url value="/app/login-prompt/login-prompt.module.js" var="loginPromptModuleJs" />
@@ -150,10 +154,14 @@
     <script src="${aboutCardComponentJs}"></script>
     <script src="${authTabsModuleJs}"></script>
     <script src="${authTabsComponentJs}"></script>
+    <script src="${chartTabsModuleJs}"></script>
+    <script src="${chartTabsComponentJs}"></script>
     <script src="${errorCardModuleJs}"></script>
     <script src="${errorCardComponentJs}"></script>
     <script src="${greetCardModuleJs}"></script>
-    <script src="${greetCardComponentJs}"></script>
+    <script src="${greetCardComponentJs}"></script>    
+    <script src="${gridsModuleJs}"></script>
+    <script src="${gridsComponentJs}"></script>
     <script src="${legalCardModuleJs}"></script>
     <script src="${legalCardComponentJs}"></script>
     <script src="${loginPromptModuleJs}"></script>

@@ -23,6 +23,9 @@ public class ViewController {
 	@RequestMapping(value = "/auth/**")
 	public String authPage() { return "app"; }
 
+	@RequestMapping(value = "/charts/**")
+	public String chartsPage() { return "app"; }
+
 	@RequestMapping(value = "/user/**")
 	public String userInfo() { return "app"; }
 

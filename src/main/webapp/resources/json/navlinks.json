@@ -22,14 +22,14 @@
   },
   {
     "title": "Statistics",
-    "url": "statistics",
+    "url": "charts/0",
     "info": "Discover various usage statistics.",
     "icon": "timeline",
     "working": true
   },
   {
     "title": "Maps",
-    "url": "maps",
+    "url": "charts/2",
     "info": "Explore the application's world map.",
     "icon": "map",
     "working": true
