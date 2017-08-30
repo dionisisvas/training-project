@@ -25,9 +25,9 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepository.getCommentById(commentId);
 	}
 
-	@Override public Comment getCommentBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
+	@Override public List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
-		return commentRepository.getCommentBySubject(subjectType, subjectId);
+		return new ArrayList<Comment>(commentRepository.getCommentsBySubject(subjectType, subjectId));
 	}
 
 	@Override public List<Comment> getCommentsByPoster(final long posterId) throws SQLException {

@@ -44,23 +44,23 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "/subject/{subjectType}#{subjectId}", method = RequestMethod.GET)
-	public ResponseEntity<Comment> getCommentBySubject(
+	public ResponseEntity<List<Comment>>  getCommentsBySubject(
 			@PathVariable("subjectType")SubjectType subjectType,
 			@PathVariable("subjectId") long subjectId) throws SQLException {
 
-		logger.debug("ENTERED getCommentBySubject for subjectType: " + subjectType +
+		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
 				"with subjectId: " + subjectId);
 
-		final Comment comment = commentService.getCommentBySubject(subjectType, subjectId);
+		final List<Comment> comments = new ArrayList<Comment>(commentService.getCommentsBySubject(subjectType, subjectId));
 
-		logger.debug("EXITING getCommentBySubject for subjectType: " + subjectType +
+		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
 			"with subjectId: " + subjectId);
 
-		if (comment != null) {
-			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		if (comments != null) {
+			return new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/poster/{posterId}", method = RequestMethod.GET)
