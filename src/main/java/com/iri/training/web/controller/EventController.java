@@ -39,4 +39,20 @@ public class EventController {
 
 		return new ResponseEntity<ArrayList<Events>>(HttpStatus.NOT_FOUND);
 	}
+
+
+	@RequestMapping(value ="/dates/list", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Events>> getAllDates() throws SQLException {
+
+		logger.debug("ENTERED getAllDates");
+
+		ArrayList<Events> metrics = (ArrayList) eventService.getDatesList();
+		if (metrics != null) {
+			return new ResponseEntity<ArrayList<Events>>(metrics, HttpStatus.OK);
+		}
+
+		logger.debug("EXITING getAllDates");
+
+		return new ResponseEntity<ArrayList<Events>>(HttpStatus.NOT_FOUND);
+	}
 }
