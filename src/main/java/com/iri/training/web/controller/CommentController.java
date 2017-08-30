@@ -1,6 +1,8 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class CommentController {
 
 		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
-		Comment comment = commentService.getCommentById(commentId);
+		final Comment comment = commentService.getCommentById(commentId);
 
 		logger.debug("EXITING getCommentById for commentId: " + commentId);
 
@@ -49,7 +51,7 @@ public class CommentController {
 		logger.debug("ENTERED getCommentBySubject for subjectType: " + subjectType +
 				"with subjectId: " + subjectId);
 
-		Comment comment = commentService.getCommentBySubject(subjectType, subjectId);
+		final Comment comment = commentService.getCommentBySubject(subjectType, subjectId);
 
 		logger.debug("EXITING getCommentBySubject for subjectType: " + subjectType +
 			"with subjectId: " + subjectId);
@@ -62,18 +64,18 @@ public class CommentController {
 	}
 
 	@RequestMapping(value = "/poster/{posterId}", method = RequestMethod.GET)
-	public ResponseEntity<Comment> getCommentByPoster(@PathVariable("posterId") long posterId) throws SQLException {
+	public ResponseEntity<List<Comment>> getCommentsByPoster(@PathVariable("posterId") long posterId) throws SQLException {
 
-		logger.debug("ENTERED getCommentByPoster for posterId: " + posterID);
+		logger.debug("ENTERED getCommentsByPoster for posterId: " + posterId);
 
-		Comment comment = commentService.getCommentByPoster(posterId);
+		final List<Comment> comments = new ArrayList<Comment>(commentService.getCommentsByPoster(posterId));
 
-		logger.debug("EXITING getCommentByPoster for posterId: " + posterID);
+		logger.debug("EXITING getCommentsByPoster for posterId: " + posterId);
 
-		if (comment != null) {
-			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		if (comments != null) {
+			return new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Comment>>(HttpStatus.NOT_FOUND);
 	}
 }

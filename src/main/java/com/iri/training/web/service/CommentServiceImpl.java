@@ -1,39 +1,37 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iri.training.model.UserComment;
+import com.iri.training.enums.SubjectType;
+import com.iri.training.model.Comment;
 import com.iri.training.repository.CommentRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-	Logger logger = Logger.getLogger(CommentServiceImpl.class);
+
+	Logger logger = Logger.getLogger(this.getClass());
+
 	@Autowired
-	CommentRepository userCommentRepository;
+	CommentRepository commentRepository;
 
-	@Override
+	@Override public Comment getCommentById(final long commentId) throws SQLException {
 
-	public List<UserComment> getCommentsByUserId(Long userId) throws SQLException {
-		logger.debug("ENTERED getCommentsByUserId: " + userId);
-		List<UserComment> userComment=userCommentRepository.getCommentsByUserId(userId);
-		logger.debug("EXITING getCommentsByUserId " + userComment);
-		return userComment;
-
-
-
+		return commentRepository.getCommentById(commentId);
 	}
 
-	@Override
-	public UserComment createUserComment(UserComment userComment) throws SQLException {
-		logger.debug("ENTERED createUserComment: " + userComment);
-		userCommentRepository.createUserComment(userComment);
-		logger.debug("EXITING createUserComment: " + userComment);
-		return userComment;
+	@Override public Comment getCommentBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
+		return commentRepository.getCommentBySubject(subjectType, subjectId);
+	}
+
+	@Override public List<Comment> getCommentsByPoster(final long posterId) throws SQLException {
+
+		return new ArrayList<Comment>(commentRepository.getCommentsByPoster(posterId));
 	}
 }
