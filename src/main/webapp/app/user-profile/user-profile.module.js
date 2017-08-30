@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myUserInfo', [
+angular.module('myUserProfile', [
     'ngRoute',
     'core.account',
     'core.hobby',

@@ -1,11 +1,11 @@
 'use strict';
 
 angular.
-    module('myUserInfo').
-    component('myUserInfo', {
-        templateUrl: 'app/user-info/user-info.template.html',
+    module('myUserProfile').
+    component('myUserProfile', {
+        templateUrl: 'app/user-profile/user-profile.template.html',
         controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User', '$scope', 'Timeline',
-            function UserInfoController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
+            function UserProfileController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
                 var self = this;
                 var userHobbies;
                 var userImages;

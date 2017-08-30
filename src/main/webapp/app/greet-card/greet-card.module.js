@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myLoginPrompt', [
+angular.module('myGreetCard', [
     'ngRoute',
     'core.jwtoken'
 ]);

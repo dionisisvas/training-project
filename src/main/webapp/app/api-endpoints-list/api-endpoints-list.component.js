@@ -1,8 +1,8 @@
 'use strict';
 
 angular.
-    module('myApiEndpoints').
-    component('myApiEndpoints', {
+    module('myApiEndpointsList').
+    component('myApiEndpointsList', {
         templateUrl: 'app/api-endpoints-list/api-endpoints-list.template.html',
         controller: ['ApiEndpoint',
             function ApiEndpointsListController(ApiEndpoint) {

@@ -8,7 +8,7 @@ angular.
             function UserRegistrationController($location, $mdToast, $scope, $timeout, $window, Account, Authorization, JWToken) {
                 var self = this;
 
-                self.loginUrl = 'login';
+                self.loginUrl = 'auth/1';
 
                 self.myDate = new Date();
                 self.minDate = new Date(

@@ -18,31 +18,25 @@ angular.
 
             $routeProvider.
                 when('/', {
-                    template: '<my-home-page></my-home-page><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/home.template.html'
                 }).
                 when('/about', {
-                    template: '<my-about-page></my-about-page><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/about.template.html'
+                }).
+                when('/auth/:tabId?', {
+                    templateUrl: 'app/views/auth.template.html'
+                }).
+                when('/charts', {
+                    templateUrl: 'app/views/charts.template.html'
                 }).
                 when('/error', {
-                    template: '<my-error-page></my-error-page><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/error.template.html'
                 }).
-                when('/login', {
-                    template: '<my-user-login></my-user-login>'
-                }).
-                when('/maps', {
-                    template: '<my-user-maps></my-user-maps><my-login-prompt></my-login-prompt>'
-                }).
-                when('/register', {
-                    template: '<my-user-registration></my-user-registration>'
-                }).
-                when('/statistics', {
-                    template: '<my-user-statistics></my-user-statistics><my-login-prompt></my-login-prompt>'
-                }).
-                when('/user/list', {
-                    template: '<my-user-list></my-user-list><my-login-prompt></my-login-prompt>'
+                when('/users', {
+                    templateUrl: 'app/views/users.template.html'
                 }).
                 when('/user/uid/:userId', {
-                    template: '<my-user-info></my-user-info><my-login-prompt></my-login-prompt>'
+                    templateUrl: 'app/views/profile.template.html'
                 }).
                 when('/timeline', {
                     template: '<my-user-dates></my-user-dates><my-login-prompt></my-login-prompt>'

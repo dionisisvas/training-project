@@ -1,7 +1,7 @@
-<div layout="row" ng-cloak>
+<section layout="row">
   <div flex>
-    <md-card md-colors="{background: 'blue-grey'}" class="user-header-card" layout="row" layout-sm="column">
-      <md-card-title layout="row" layout-align="start start" layout-sm="column">
+    <md-card md-colors="{background: 'blue-grey'}" class="md-padding" id="user-header-card">
+      <md-card-title>
         <md-card-title-media>
             <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
                  alt="{{$ctrl.user.name}} "/>
@@ -11,10 +11,10 @@
           <span class="md-subhead user-username">
             @{{$ctrl.userAccount.username}}
             <md-card-actions>
-              <md-button class="md-icon-button md-primary" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
+              <md-button class="md-icon-button md-accent" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
                 <md-icon md-font-set="material-icons"> mail </md-icon>
               </md-button>
-              <md-button class="md-icon-button md-primary" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
+              <md-button class="md-icon-button md-accent" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
                 <md-icon md-font-set="material-icons"> add </md-icon>
               </md-button>
             </md-card-actions>
@@ -27,8 +27,9 @@
       </md-card-title>
     </md-card>
   </div>
-</div>
-<div layout="row" layout-sm="column" ng-cloak>
+</section>
+
+<section layout="row" layout-sm="column">
   <div flex>
     <md-card>
       <md-card-title>
@@ -66,7 +67,6 @@
         </p>
       </md-card-content>
     </md-card>
-
   <div flex>
     <md-card>
       <md-card-title>
@@ -113,3 +113,5 @@
 
 </div>
 </div>
+
+</section>

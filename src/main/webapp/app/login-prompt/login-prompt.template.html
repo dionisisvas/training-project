@@ -1,23 +1,19 @@
-<div layout="row" ng-show="!$ctrl.isLoggedIn && !$ctrl.cardDismissed" ng-cloak>
-  <div flex>
-    <md-card md-colors="{background: 'deep-orange'}">
-      <div layout="row">
-        <md-card-title layout="column" layout-align="start start">
-          <md-card-title-text>
-            <span class="md-headline">Looks like you are not logged in.</span>
-            <span class="md-subhead">Maybe you would like to register a new account, or log in with an existing one.</span>
-          </md-card-title-text>
-        </md-card-title>
-        <md-card-actions layout="column" layout-align="start end">
-          <md-button class="md-icon-button" ng-click="$ctrl.cardDismissed = true;">
-            <md-icon md-font-set="material-icons" ng-style="{color: 'white'}"> close </md-icon>
-          </md-button>
-        </md-card-actions>
-      </div>
-      <md-card-actions layout="row" layout-align="start center">
-        <md-button ng-href="/login">Log in</md-button>
-        <md-button ng-href="/register">Register</md-button>
-      </md-card-actions>
-    </md-card>
+<md-card class="md-padding" md-colors="{background: 'deep-orange'}" ng-show="!$ctrl.isLoggedIn && !$ctrl.cardDismissed">
+  <div layout="row">
+    <md-card-title layout="column" layout-align="start start">
+      <md-card-title-text>
+        <span class="md-headline">Looks like you are not logged in.</span>
+        <span class="md-subhead">Would you like to register a new account, or log in with an existing one?</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="column" layout-align="start end">
+      <md-button class="md-icon-button" ng-click="$ctrl.cardDismissed = true;">
+        <md-icon md-font-set="material-icons" ng-style="{color: 'white'}"> close </md-icon>
+      </md-button>
+    </md-card-actions>
   </div>
-</div>
+  <md-card-actions layout="row" layout-align="start">
+    <md-button ng-href="/auth/1">Log in</md-button>
+    <md-button ng-href="/auth/0">Register</md-button>
+  </md-card-actions>
+</md-card>

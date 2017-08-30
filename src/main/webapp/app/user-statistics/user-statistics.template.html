@@ -1,7 +1,8 @@
-<div layout="row" layout-sm="column" ng-cloak>
+<section layout="row" layout-sm="column" ng-cloak>
   <div flex>
-    <md-card>
+    <md-card class="md-padding">
       <md-card-title>
+        <span class="md-headline">{{$ctrl.pieChartCardTitle}}</span>
       </md-card-title>
       <md-card-content>
         <div id="piechart_div" style="height:400px" flex></div>
@@ -9,15 +10,16 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="pieChartData" ng-change="$ctrl.updatePieChart(pieChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Pie chart</md-option>
+          <md-option ng-repeat="(key, chart) in $ctrl.chartData" ng-value="key" ng-if="chart.type == 'grouped'">{{chart.name}} pie chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
   </div>
 
   <div flex>
-    <md-card>
+    <md-card class="md-padding">
       <md-card-title>
+        <span class="md-headline">{{$ctrl.barChartCardTitle}}</span>
       </md-card-title>
       <md-card-content>
         <div id="barchart_div" style="height:400px" flex></div>
@@ -25,50 +27,9 @@
       <md-card-actions layout="row" layout-align="center center">
         <md-select ng-model="barChartData" ng-change="$ctrl.updateBarChart(barChartData)"
                    placeholder="Choose data type" class="md-no-underline">
-          <md-option ng-repeat="chart in $ctrl.chartData" ng-value="chart.name" ng-if="chart.type == 'grouped'">{{chart.description}} Bar chart</md-option>
+          <md-option ng-repeat="(key, chart) in $ctrl.chartData" ng-value="key" ng-if="chart.type == 'grouped'">{{chart.name}} bar chart</md-option>
         </md-select>
       </md-card-actions>
     </md-card>
   </div>
-</div>
-
-<md-card>
-  <table width="100%">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Height </th>
-        <th>Weight</th>
-        <th>Nationality</th>
-        <th>Place Of Birth</th>
-        <th>Education</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="data in $ctrl.metrics">
-        <th>{{data.name}}</th>
-        <th>{{data.surname}}</th>
-        <th>{{data.age}}</th>
-        <th>{{data.height}}</th>
-        <th>{{data.weight}}</th>
-        <th>{{data.nationality}}</th>
-        <th>{{data.placeOfBirth}}</th>
-        <th>{{data.education}}</th>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Height </th>
-        <th>Weight</th>
-        <th>Nationality</th>
-        <th>Place Of Birth</th>
-        <th>Education</th>
-      </tr>
-    </tfoot>
-  </table>
-</md-card>
+</section>

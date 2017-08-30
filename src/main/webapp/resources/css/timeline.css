@@ -1,16 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-*:focus {outline:none}
+
 *, *::before, *::after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-body {
-  background-color: #c6c0c0;
-  font-family: 'Roboto', Arial;
-  padding: 0;
-  margin: 0;
 }
 
 .timeline {
@@ -32,7 +24,6 @@ body {
   left: 50%;
   width: 5px;
   background-color: white;
-
 }
 .timeline::after {
   content: "";
@@ -44,6 +35,8 @@ body {
   margin-bottom: 20px;
   transition: 0.2s;
   cursor: pointer;
+  outline: none;
+
 }
 .timeline li.timeline-item.active .timeline-item-header {
   width: 25% !important;
@@ -79,6 +72,7 @@ body {
   border: 3px solid #ff6411;
   float: left;
   z-index: 10;
+  outline: none;
 }
 .timeline li.timeline-item:nth-child(even) .timeline-item-connector i::before {
   content: "\f138";
@@ -103,6 +97,7 @@ body {
   background-color: white;
   border: 3px solid #ff6411;
   float: right;
+  outline: none;
 }
 .timeline li.timeline-item .timeline-item-connector {
   position: absolute;
@@ -121,6 +116,7 @@ body {
   border: 2px solid white;
   text-align: center;
   line-height: 30px;
+  outline: none;
 
 }
 .timeline li.timeline-item .timeline-item-connector i {
@@ -135,7 +131,7 @@ body {
 }
 .timeline li.timeline-item .timeline-item-header {
   background-color: #ff6411;
-
+outline: none;
   min-width: 200px;
 }
 .timeline li.timeline-item .timeline-item-content {
