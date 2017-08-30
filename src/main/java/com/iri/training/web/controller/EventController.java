@@ -46,9 +46,9 @@ public class EventController {
 
 		logger.debug("ENTERED getAllDates");
 
-		ArrayList<Events> metrics = (ArrayList) eventService.getDatesList();
-		if (metrics != null) {
-			return new ResponseEntity<ArrayList<Events>>(metrics, HttpStatus.OK);
+		ArrayList<Events> dates = (ArrayList) eventService.getDatesList();
+		if (dates != null) {
+			return new ResponseEntity<ArrayList<Events>>(dates, HttpStatus.OK);
 		}
 
 		logger.debug("EXITING getAllDates");

@@ -20,7 +20,7 @@ public class EventServiceImpl implements EventService {
 	}
 	@Override
 	public List<Events> getDatesList() throws SQLException {
-		List<Events> datessList = new ArrayList<Events>(eventRepository.getDatesList());
-		return datessList;
+		List<Events> datesList = new ArrayList<Events>(eventRepository.getDatesList());
+		return datesList;
 	}
 }
