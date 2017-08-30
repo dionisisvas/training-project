@@ -77,9 +77,9 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withBody(final String aValue) {
+	public GeneratorT withContent(final String aValue) {
 
-		instance.setBody(aValue);
+		instance.setContent(aValue);
 
 		return (GeneratorT) this;
 	}

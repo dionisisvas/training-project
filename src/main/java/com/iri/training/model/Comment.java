@@ -11,7 +11,7 @@ public class Comment {
 	private SubjectType subjectType;
 	private long subjectId;
 	private String title;
-	private String body;
+	private String content;
 	private LocalDate creationDate;
 	private LocalDate lastEditDate;
 
@@ -65,14 +65,14 @@ public class Comment {
 		this.title = title;
 	}
 
-	public String getBody() {
+	public String getContent() {
 
-		return body;
+		return content;
 	}
 
-	public void setBody(final String body) {
+	public void setContent(final String content) {
 
-		this.body = body;
+		this.content = content;
 	}
 
 	public LocalDate getCreationDate() {
@@ -103,7 +103,7 @@ public class Comment {
 			", subjectType=" + subjectType +
 			", subjectId=" + subjectId +
 			", title='" + title + '\'' +
-			", body='" + body + '\'' +
+			", content='" + content + '\'' +
 			", creationDate=" + creationDate +
 			", lastEditDate=" + lastEditDate +
 			'}';

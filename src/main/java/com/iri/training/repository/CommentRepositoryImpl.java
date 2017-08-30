@@ -73,7 +73,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 		logger.debug("ENTERED getCommentsByPoster for posterId: " + posterId);
 
 		final List<Comment> comments;
-		final String sql = property.getString("GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID");
+		final String sql = property.getString("GET_COMMENTS_BY_POSTER_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		comments = new ArrayList<Comment>(
 			jdbcTemplate.query(sql,
@@ -100,7 +100,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 						resultSet.getString("subject_type")))
 					.withSubjectId(resultSet.getLong("subject_id"))
 					.withTitle(resultSet.getString("title"))
-					.withBody(resultSet.getString("body"))
+					.withContent(resultSet.getString("body"))
 					.withCreationDate(LocalDate.parse(
 						resultSet.getString("creation_date"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
@@ -129,7 +129,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 					.withCommentId(resultSet.getLong("comment_id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withTitle(resultSet.getString("title"))
-					.withBody(resultSet.getString("body"))
+					.withContent(resultSet.getString("body"))
 					.withCreationDate(LocalDate.parse(
 						resultSet.getString("creation_date"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
