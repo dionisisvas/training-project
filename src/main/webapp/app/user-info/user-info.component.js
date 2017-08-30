@@ -11,8 +11,7 @@ angular.
                 var userImages;
                 var profileImageUrl;
                 var userDates;
-
-
+var testItemList = [];
 
  $scope.itemList = [];
 
@@ -24,18 +23,15 @@ angular.
             item.activeContent = item.shortContent;
         }
     }
-      var testItemList = [];
-	testItemList.push({ date: '8/1/2014', time: '10:27 am', content: 'Macaroonbcvb ' });
-    self.setTestData=function () {
 
-
+        self.setTestData=function () {
         self.userDates = Timeline.EventByUserId.query({userId: $routeParams.userId});
         self.userDates.$promise.then(function(datesResult) {
         self.userDates = datesResult;
 
         angular.forEach(datesResult, function(dates, key) {
-        var gg=dates.dateOfEvent.join("-");
-        testItemList.push({ date: gg, time: dates.title, content: dates.description });
+        var transDate=dates.dateOfEvent.join("-");
+        testItemList.push({ date: transDate, time: dates.title, content: dates.description });
 
         for( var i = 0; i < testItemList.length; i++ ) {
             var item = testItemList[i];
@@ -47,7 +43,7 @@ angular.
             testItemList[i].active = false;
         }
 
-        $scope.itemList = testItemList;
+
         }, function() {
          console.log("User " + $routeParams.userId + " has no selected dates.");
          });
@@ -90,11 +86,23 @@ angular.
                 }
 
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
+                 var transDateOb=user.dateOfBirth.join("-");
+                 testItemList.push({ date: transDateOb, time: 'Birthday', content: 'Birthday' });
+
+        for( var i = 0; i < testItemList.length; i++ ) {
+            var item = testItemList[i];
+            item.shortContent = item.content.substring(0, 235);
+            if (item.content.length > 235) {
+                item.shortContent = [item.shortContent, '...'].join('');
+            }
+            testItemList[i].activeContent = testItemList[i].shortContent;
+            testItemList[i].active = false;
+        }
                     self.getUserImages();
                     self.getUserHobbies();
                     self.getUserAccount();
                     self.setTestData();
                 });
-
+$scope.itemList = testItemList;
         }]
     });
