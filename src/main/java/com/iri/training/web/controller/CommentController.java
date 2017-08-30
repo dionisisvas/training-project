@@ -1,51 +1,79 @@
-
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iri.training.model.UserComment;
+import com.iri.training.enums.SubjectType;
+import com.iri.training.model.Comment;
 import com.iri.training.web.service.CommentService;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/userComment")
+@RequestMapping("/api/comment/")
 public class CommentController {
-	Logger logger = Logger.getLogger(CommentController.class);
+
+	Logger logger = Logger.getLogger(this.getClass());
+
 	@Autowired
-	CommentService userCommentService;
-	@RequestMapping(value = "create/{userComment}", method = RequestMethod.GET)
-	public void createUserComment(final HttpServletRequest request, @PathVariable("userComment") UserComment userComment)throws SQLException{
+	CommentService commentService;
 
-		logger.debug("ENTERED createUserComment for commentId: " + userComment.getCommentID());
+	@RequestMapping(value = "/{commentId}", method = RequestMethod.GET)
+	public ResponseEntity<Comment> getCommentById(@PathVariable("commentId") long commentId) throws SQLException {
 
-		userCommentService.createUserComment(userComment);
+		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
-		logger.debug("EXITING createUserComment for commentId: " + userComment.getCommentID());
+		Comment comment = commentService.getCommentById(commentId);
+
+		logger.debug("EXITING getCommentById for commentId: " + commentId);
+
+		if (comment != null) {
+			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
 	}
 
+	@RequestMapping(value = "/subject/{subjectType}#{subjectId}", method = RequestMethod.GET)
+	public ResponseEntity<Comment> getCommentBySubject(
+			@PathVariable("subjectType")SubjectType subjectType,
+			@PathVariable("subjectId") long subjectId) throws SQLException {
 
+		logger.debug("ENTERED getCommentBySubject for subjectType: " + subjectType +
+				"with subjectId: " + subjectId);
 
-	@RequestMapping(value = "id/{userId}", method = RequestMethod.GET)
-	public List<UserComment> getCommentsByUserId(final HttpServletRequest request, @PathVariable final Long userId) throws SQLException {
+		Comment comment = commentService.getCommentBySubject(subjectType, subjectId);
 
+		logger.debug("EXITING getCommentBySubject for subjectType: " + subjectType +
+			"with subjectId: " + subjectId);
 
-		logger.debug("ENTERED getCommentsByUserId for userId: " + userId);
+		if (comment != null) {
+			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		}
 
-		List<UserComment> userComment = userCommentService.getCommentsByUserId(userId);
+		return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
+	}
 
-		logger.debug("EXITING getCommentsByUserId for userId: " + userId);
+	@RequestMapping(value = "/poster/{posterId}", method = RequestMethod.GET)
+	public ResponseEntity<Comment> getCommentByPoster(@PathVariable("posterId") long posterId) throws SQLException {
 
+		logger.debug("ENTERED getCommentByPoster for posterId: " + posterID);
 
-		return userComment;
+		Comment comment = commentService.getCommentByPoster(posterId);
+
+		logger.debug("EXITING getCommentByPoster for posterId: " + posterID);
+
+		if (comment != null) {
+			return new ResponseEntity<Comment>(comment, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<Comment>(HttpStatus.NOT_FOUND);
 	}
 }
