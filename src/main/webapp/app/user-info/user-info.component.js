@@ -4,8 +4,8 @@ angular.
     module('myUserInfo').
     component('myUserInfo', {
         templateUrl: 'app/user-info/user-info.template.html',
-        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User','$scope','Timeline',
-            function UserInfoController($routeParams, Account, Hobby, Image, User,$scope,Timeline) {
+        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User', '$scope', 'Timeline',
+            function UserInfoController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
                 var self = this;
                 var userHobbies;
                 var userImages;
@@ -24,24 +24,18 @@ angular.
             item.activeContent = item.shortContent;
         }
     }
-
-    function setTestData() {
-
-
-    self.getUserDates = function() {
-                        self.userDates = Timeline.EventByUserId.query({userId: $routeParams.userId});
-                        self.userDates.$promise.then(function(datesResult) {
-                            self.userDates = datesResult;
-                            console.log(datesResult);
+      var testItemList = [];
+	testItemList.push({ date: '8/1/2014', time: '10:27 am', content: 'Macaroonbcvb ' });
+    self.setTestData=function () {
 
 
-        var testItemList = [
-            { date: '8/1/2014', time: '10:27 am', content: 'Graduated from university ' },
-            { date: '8/1/2014', time: '11:45 am', content: 'Graduated from university ' },
-            { date: '8/3/2014', time: '8:31 am', content: 'Graduated from university ' },
-            { date: '8/16/2014', time: '1:15 pm', content: 'Graduated from university ' },
-            { date: '9/2/2014', time: '1:27 pm', content: 'Graduated from university ' }
-        ];
+        self.userDates = Timeline.EventByUserId.query({userId: $routeParams.userId});
+        self.userDates.$promise.then(function(datesResult) {
+        self.userDates = datesResult;
+
+        angular.forEach(datesResult, function(dates, key) {
+        var gg=dates.dateOfEvent.join("-");
+        testItemList.push({ date: gg, time: dates.title, content: dates.description });
 
         for( var i = 0; i < testItemList.length; i++ ) {
             var item = testItemList[i];
@@ -57,10 +51,9 @@ angular.
         }, function() {
          console.log("User " + $routeParams.userId + " has no selected dates.");
          });
-        }
-    }
+         });
 
-    setTestData();
+    }
 
                 self.setProfileImageUri = function setProfileImageUri(imageUri) {
                     self.profileImageUrl = imageUri;
@@ -100,7 +93,7 @@ angular.
                     self.getUserImages();
                     self.getUserHobbies();
                     self.getUserAccount();
-                    self.getUserDates();
+                    self.setTestData();
                 });
 
         }]
