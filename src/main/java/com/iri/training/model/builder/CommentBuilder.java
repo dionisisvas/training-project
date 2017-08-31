@@ -1,6 +1,6 @@
 package com.iri.training.model.builder;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
@@ -69,14 +69,6 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withTitle(final String aValue) {
-
-		instance.setTitle(aValue);
-
-		return (GeneratorT) this;
-	}
-
-	@SuppressWarnings("unchecked")
 	public GeneratorT withContent(final String aValue) {
 
 		instance.setContent(aValue);
@@ -85,7 +77,7 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withCreationDate(final LocalDate aValue) {
+	public GeneratorT withCreationDate(final LocalDateTime aValue) {
 
 		instance.setCreationDate(aValue);
 
@@ -93,7 +85,7 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withLastEditDate(final LocalDate aValue) {
+	public GeneratorT withLastEditDate(final LocalDateTime aValue) {
 
 		instance.setLastEditDate(aValue);
 

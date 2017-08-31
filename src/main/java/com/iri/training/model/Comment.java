@@ -1,6 +1,6 @@
 package com.iri.training.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.iri.training.enums.SubjectType;
 
@@ -10,10 +10,9 @@ public class Comment {
 	private long posterId;
 	private SubjectType subjectType;
 	private long subjectId;
-	private String title;
 	private String content;
-	private LocalDate creationDate;
-	private LocalDate lastEditDate;
+	private LocalDateTime creationDate;
+	private LocalDateTime lastEditDate;
 
 	public long getCommentId() {
 
@@ -55,16 +54,6 @@ public class Comment {
 		this.subjectId = subjectId;
 	}
 
-	public String getTitle() {
-
-		return title;
-	}
-
-	public void setTitle(final String title) {
-
-		this.title = title;
-	}
-
 	public String getContent() {
 
 		return content;
@@ -75,22 +64,22 @@ public class Comment {
 		this.content = content;
 	}
 
-	public LocalDate getCreationDate() {
+	public LocalDateTime getCreationDate() {
 
 		return creationDate;
 	}
 
-	public void setCreationDate(final LocalDate creationDate) {
+	public void setCreationDate(final LocalDateTime creationDate) {
 
 		this.creationDate = creationDate;
 	}
 
-	public LocalDate getLastEditDate() {
+	public LocalDateTime getLastEditDate() {
 
 		return lastEditDate;
 	}
 
-	public void setLastEditDate(final LocalDate lastEditDate) {
+	public void setLastEditDate(final LocalDateTime lastEditDate) {
 
 		this.lastEditDate = lastEditDate;
 	}
@@ -102,7 +91,6 @@ public class Comment {
 			", posterId=" + posterId +
 			", subjectType=" + subjectType +
 			", subjectId=" + subjectId +
-			", title='" + title + '\'' +
 			", content='" + content + '\'' +
 			", creationDate=" + creationDate +
 			", lastEditDate=" + lastEditDate +

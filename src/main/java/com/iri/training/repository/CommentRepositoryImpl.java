@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,19 +95,18 @@ public class CommentRepositoryImpl implements CommentRepository {
 
 			if (resultSet.next()) {
 				comment = new CommentBuilder()
-					.withCommentId(resultSet.getLong("comment_id"))
+					.withCommentId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withSubjectType(SubjectType.valueOf(
 						resultSet.getString("subject_type")))
 					.withSubjectId(resultSet.getLong("subject_id"))
-					.withTitle(resultSet.getString("title"))
-					.withContent(resultSet.getString("body"))
-					.withCreationDate(LocalDate.parse(
-						resultSet.getString("creation_date"),
-						DateTimeFormatter.ISO_LOCAL_DATE))
-					.withLastEditDate(LocalDate.parse(
-						resultSet.getString("last_edit_date"),
-						DateTimeFormatter.ISO_LOCAL_DATE))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.withLastEditDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("last_edit_date"),
+						0, ZoneOffset.UTC))
 					.build();
 			}
 			else
@@ -126,16 +126,15 @@ public class CommentRepositoryImpl implements CommentRepository {
 			final List<Comment> comments = new ArrayList<>();
 			while (resultSet.next()) {
 				comments.add(new CommentBuilder()
-					.withCommentId(resultSet.getLong("comment_id"))
+					.withCommentId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
-					.withTitle(resultSet.getString("title"))
-					.withContent(resultSet.getString("body"))
-					.withCreationDate(LocalDate.parse(
-						resultSet.getString("creation_date"),
-						DateTimeFormatter.ISO_LOCAL_DATE))
-					.withLastEditDate(LocalDate.parse(
-						resultSet.getString("last_edit_date"),
-						DateTimeFormatter.ISO_LOCAL_DATE))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.withLastEditDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("last_edit_date"),
+						0, ZoneOffset.UTC))
 					.build());
 			}
 
@@ -151,15 +150,15 @@ public class CommentRepositoryImpl implements CommentRepository {
 			final List<Comment> comments = new ArrayList<>();
 			while (resultSet.next()) {
 				comments.add(new CommentBuilder()
-					.withCommentId(resultSet.getLong("comment_id"))
+					.withCommentId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withSubjectType(SubjectType.valueOf(
 						resultSet.getString("subject_type")))
 					.withSubjectId(resultSet.getLong("subject_id"))
-					.withTitle(resultSet.getString("title"))
-					.withCreationDate(LocalDate.parse(
-						resultSet.getString("creation_date"),
-						DateTimeFormatter.ISO_LOCAL_DATE))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
 					.build());
 			}
 
