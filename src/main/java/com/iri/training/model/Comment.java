@@ -3,10 +3,11 @@ package com.iri.training.model;
 import java.time.LocalDateTime;
 
 import com.iri.training.enums.SubjectType;
+import com.iri.training.model.interfaces.IPostable;
 
-public class Comment {
+public class Comment implements IPostable{
 
-	private long commentId;
+	private long id;
 	private long posterId;
 	private SubjectType subjectType;
 	private long subjectId;
@@ -14,14 +15,14 @@ public class Comment {
 	private LocalDateTime creationDate;
 	private LocalDateTime lastEditDate;
 
-	public long getCommentId() {
+	public long getId() {
 
-		return commentId;
+		return id;
 	}
 
-	public void setCommentId(final long commentId) {
+	public void setId(final long id) {
 
-		this.commentId = commentId;
+		this.id = id;
 	}
 
 	public long getPosterId() {
@@ -87,7 +88,7 @@ public class Comment {
 	@Override public String toString() {
 
 		return "Comment{" +
-			"commentId=" + commentId +
+			"id=" + id +
 			", posterId=" + posterId +
 			", subjectType=" + subjectType +
 			", subjectId=" + subjectId +

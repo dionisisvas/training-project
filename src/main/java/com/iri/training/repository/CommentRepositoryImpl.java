@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
@@ -95,7 +94,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 
 			if (resultSet.next()) {
 				comment = new CommentBuilder()
-					.withCommentId(resultSet.getLong("id"))
+					.withId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withSubjectType(SubjectType.valueOf(
 						resultSet.getString("subject_type")))
@@ -126,7 +125,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 			final List<Comment> comments = new ArrayList<>();
 			while (resultSet.next()) {
 				comments.add(new CommentBuilder()
-					.withCommentId(resultSet.getLong("id"))
+					.withId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withContent(resultSet.getString("content"))
 					.withCreationDate(LocalDateTime.ofEpochSecond(
@@ -150,7 +149,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 			final List<Comment> comments = new ArrayList<>();
 			while (resultSet.next()) {
 				comments.add(new CommentBuilder()
-					.withCommentId(resultSet.getLong("id"))
+					.withId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
 					.withSubjectType(SubjectType.valueOf(
 						resultSet.getString("subject_type")))
