@@ -42,7 +42,7 @@
         <p ng-show="$ctrl.user.dateOfBirth">
            Birthday:
            <span class="about-user-field">
-             {{$ctrl.user.dateOfBirth[0]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[2]}} ({{$ctrl.user.age}} years old)
+             {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
            </span>
         </p>
         <md-divider></md-divider><br>
@@ -102,7 +102,7 @@
 
           <div class="timeline-item-header">
             <div class="timeline-date">{{item.date}}</div>
-            <div class="timeline-time">{{item.time}}</div>
+            <div class="timeline-time"> '{{item.time}}'</div>
           </div>
           {{item.activeContent}}
         </div>
