@@ -27,10 +27,9 @@ var testItemList = [];
         self.userDates = Timeline.EventByUserId.query({userId: $routeParams.userId});
         self.userDates.$promise.then(function(datesResult) {
         self.userDates = datesResult;
-
         angular.forEach(datesResult, function(dates, key) {
-        var DateFormat=dates.dateOfEvent.reverse();
-        var transDate=DateFormat.join("-");
+        var DateFormat=new Date(dates.dateOfEvent);
+        var transDate=DateFormat.toDateString();
         testItemList.push({ date: transDate, time: dates.title, content: dates.description });
 
         for( var i = 0; i < testItemList.length; i++ ) {
@@ -86,8 +85,8 @@ var testItemList = [];
                 }
 
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
-                var DateFormat=user.dateOfBirth.reverse();
-                 var transDateOb=user.dateOfBirth.join("-");
+                 var DateFormat=new Date(user.dateOfBirth);
+                 var transDateOb=DateFormat.toDateString();
                  testItemList.push({ date: transDateOb, time: 'Birthday', content: 'Birthday' });
 
         for( var i = 0; i < testItemList.length; i++ ) {
