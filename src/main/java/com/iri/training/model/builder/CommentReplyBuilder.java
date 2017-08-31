@@ -2,37 +2,36 @@ package com.iri.training.model.builder;
 
 import java.time.LocalDateTime;
 
-import com.iri.training.enums.SubjectType;
-import com.iri.training.model.Comment;
+import com.iri.training.model.CommentReply;
 
-public class CommentBuilder extends CommentBuilderBase<CommentBuilder> {
+public class CommentReplyBuilder extends CommentReplyBuilderBase<CommentReplyBuilder> {
 
-	public static CommentBuilder comment() {
+	public static CommentReplyBuilder comment() {
 
-		return new CommentBuilder();
+		return new CommentReplyBuilder();
 	}
 
-	public  CommentBuilder() {
+	public  CommentReplyBuilder() {
 
-		super(new Comment());
+		super(new CommentReply());
 	}
 
-	public Comment build() {
+	public CommentReply build() {
 
 		return getInstance();
 	}
 }
 
-class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
+class CommentReplyBuilderBase<GeneratorT extends CommentReplyBuilderBase<GeneratorT>> {
 
-	private final Comment instance;
+	private final CommentReply instance;
 
-	protected CommentBuilderBase(final Comment aInstance) {
+	protected CommentReplyBuilderBase(final CommentReply aInstance) {
 
 		instance = aInstance;
 	}
 
-	protected Comment getInstance() {
+	protected CommentReply getInstance() {
 
 		return instance;
 	}
@@ -54,17 +53,9 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withSubjectType(final SubjectType aValue) {
+	public GeneratorT withParentId(final long aValue) {
 
-		instance.setSubjectType(aValue);
-
-		return (GeneratorT) this;
-	}
-
-	@SuppressWarnings("unchecked")
-	public GeneratorT withSubjectId(final long aValue) {
-
-		instance.setSubjectId(aValue);
+		instance.setParentId(aValue);
 
 		return (GeneratorT) this;
 	}
