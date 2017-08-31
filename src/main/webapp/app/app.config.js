@@ -38,9 +38,6 @@ angular.
                 when('/user/uid/:userId', {
                     templateUrl: 'app/views/profile.template.html'
                 }).
-                when('/timeline', {
-                    template: '<my-user-dates></my-user-dates><my-login-prompt></my-login-prompt>'
-                }).
                 otherwise('/error');
         }
     ]);

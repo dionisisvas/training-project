@@ -12,7 +12,6 @@ angular.
                 var profileImageUrl;
                 var userDates;
 var testItemList = [];
-
  $scope.itemList = [];
 
     $scope.onItemClick = function( item ) {

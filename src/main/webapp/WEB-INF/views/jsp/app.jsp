@@ -103,8 +103,6 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
-    <spring:url value="/app/user-dates/user-dates.module.js" var="userDatesModuleJs" />
-    <spring:url value="/app/user-dates/user-dates.component.js" var="userDatesComponentJs" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
