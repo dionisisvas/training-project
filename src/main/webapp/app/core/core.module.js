@@ -15,5 +15,6 @@ angular.module('core', [
     'core.passwordRepeat',
     'core.passwordStrength',
     'core.usernameUnique',
-    'core.metrics'
+    'core.metrics',
+    'core.timeline'
 ]);

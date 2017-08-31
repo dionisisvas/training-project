@@ -13,12 +13,14 @@
 
     <spring:url value="/resources/css/app.css" var="appCss" />
     <spring:url value="/resources/css/app.animation.css" var="appAnimationCss" />
-
+    <spring:url value="/resources/css/timeline.css" var="timelineCss" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link href="${appCss}" rel="stylesheet" />
     <link href="${appAnimationCss}" rel="stylesheet" />
+    <link href="${timelineCss}" rel="stylesheet" />
   </head>
 
   <body ng-cloak>
@@ -50,6 +52,8 @@
     <spring:url value="/app/core/jwtoken/jwtoken.service.js" var="jwtokenServiceJs" />
     <spring:url value="/app/core/metrics/metrics.module.js" var="metricsModuleJs" />
     <spring:url value="/app/core/metrics/metrics.service.js" var="metricsServiceJs" />
+    <spring:url value="/app/core/timeline/timeline.module.js" var="timelineModuleJs" />
+    <spring:url value="/app/core/timeline/timeline.service.js" var="timelineServiceJs" />
     <spring:url value="/app/core/navlink/navlink.module.js" var="navlinkModuleJs" />
     <spring:url value="/app/core/navlink/navlink.service.js" var="navlinkServiceJs" />
     <spring:url value="/app/core/api-endpoint/api-endpoint.module.js" var="apiEndpointModuleJs" />
@@ -114,6 +118,7 @@
     <script src="${angularResourceJs}"></script>
     <script src="${angularRouteJs}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+
     <script src="${coreModuleJs}"></script>
     <script src="${appModuleJs}"></script>
     <script src="${appConfigJs}"></script>
@@ -131,6 +136,8 @@
     <script src="${jwtokenServiceJs}"></script>
     <script src="${metricsModuleJs}"></script>
     <script src="${metricsServiceJs}"></script>
+    <script src="${timelineModuleJs}"></script>
+    <script src="${timelineServiceJs}"></script>
     <script src="${navlinkModuleJs}"></script>
     <script src="${navlinkServiceJs}"></script>
     <script src="${apiEndpointModuleJs}"></script>
@@ -180,5 +187,7 @@
     <script src="${userMapsComponentJs}"></script>
     <script src="${userStatisticsModuleJs}"></script>
     <script src="${userStatisticComponentJs}"></script>
+    <script src="${userDatesModuleJs}"></script>
+    <script src="${userDatesComponentJs}"></script>
   </body>
 </html>

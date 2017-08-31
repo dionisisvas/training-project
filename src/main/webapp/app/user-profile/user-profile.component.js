@@ -4,12 +4,52 @@ angular.
     module('myUserProfile').
     component('myUserProfile', {
         templateUrl: 'app/user-profile/user-profile.template.html',
-        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User',
-            function UserProfileController($routeParams, Account, Hobby, Image, User) {
+        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User', '$scope', 'Timeline',
+            function UserProfileController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
                 var self = this;
                 var userHobbies;
                 var userImages;
                 var profileImageUrl;
+                var userDates;
+var testItemList = [];
+ $scope.itemList = [];
+
+    $scope.onItemClick = function( item ) {
+        item.active = !item.active;
+        if (item.active) {
+            item.activeContent = item.content;
+        } else {
+            item.activeContent = item.shortContent;
+        }
+    }
+
+        self.setTestData=function () {
+        self.userDates = Timeline.EventByUserId.query({userId: $routeParams.userId});
+        self.userDates.$promise.then(function(datesResult) {
+        self.userDates = datesResult;
+
+        angular.forEach(datesResult, function(dates, key) {
+        var DateFormat=dates.dateOfEvent.reverse();
+        var transDate=DateFormat.join("-");
+        testItemList.push({ date: transDate, time: dates.title, content: dates.description });
+
+        for( var i = 0; i < testItemList.length; i++ ) {
+            var item = testItemList[i];
+            item.shortContent = item.content.substring(0, 235);
+            if (item.content.length > 235) {
+                item.shortContent = [item.shortContent, '...'].join('');
+            }
+            testItemList[i].activeContent = testItemList[i].shortContent;
+            testItemList[i].active = false;
+        }
+
+
+        }, function() {
+         console.log("User " + $routeParams.userId + " has no selected dates.");
+         });
+         });
+
+    }
 
                 self.setProfileImageUri = function setProfileImageUri(imageUri) {
                     self.profileImageUrl = imageUri;
@@ -46,10 +86,24 @@ angular.
                 }
 
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
+                var DateFormat=user.dateOfBirth.reverse();
+                 var transDateOb=user.dateOfBirth.join("-");
+                 testItemList.push({ date: transDateOb, time: 'Birthday', content: 'Birthday' });
+
+        for( var i = 0; i < testItemList.length; i++ ) {
+            var item = testItemList[i];
+            item.shortContent = item.content.substring(0, 235);
+            if (item.content.length > 235) {
+                item.shortContent = [item.shortContent, '...'].join('');
+            }
+            testItemList[i].activeContent = testItemList[i].shortContent;
+            testItemList[i].active = false;
+        }
                     self.getUserImages();
                     self.getUserHobbies();
                     self.getUserAccount();
+                    self.setTestData();
                 });
-
+       $scope.itemList = testItemList;
         }]
     });

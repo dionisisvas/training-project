@@ -23,7 +23,7 @@ INSERT INTO USER_SELECTED_DATES(userId, dateOfEvent, Title, Description) VALUES
 -- User 5 selected dates --
 (5, "2009-09-28", "Friend","I became friend with Json"),
 -- User 6 selected dates --
-(6, "1990-06-12", "Graduation","I got my master's degree in the University of ST.Thomas"),
+(6, "1990-06-12", "Graduation","I got my master's degree from the University of ST.Thomas"),
 (6, "1996-09-18", "Marriage","I married to Lenna"),
 -- User 7 selected dates --
 (7, "1985-03-18", "Marriage","I married to John"),

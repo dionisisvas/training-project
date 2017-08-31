@@ -42,7 +42,7 @@
         <p ng-show="$ctrl.user.dateOfBirth">
            Birthday:
            <span class="about-user-field">
-             {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
+             {{$ctrl.user.dateOfBirth[0]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[2]}} ({{$ctrl.user.age}} years old)
            </span>
         </p>
         <md-divider></md-divider><br>
@@ -67,8 +67,6 @@
         </p>
       </md-card-content>
     </md-card>
-  </div>
-  
   <div flex>
     <md-card>
       <md-card-title>
@@ -86,4 +84,31 @@
       </md-card-content>
     </md-card>
   </div>
+  </div>
+<div flex >
+  <md-card-content>
+    <md-card style="background-color:#BDCFDE;" >
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Important Events Of {{$ctrl.user.name}}</span>
+        </md-card-title-text>
+      </md-card-title>
+    <div class="timeline">
+      <li class="timeline-item" ng-repeat="item in itemList" ng-click="onItemClick(item)" ng-class="{false: '', true: 'active'}[item.active]">
+        <div class="timeline-item-connector">
+          <i class="fa"></i>
+        </div>
+        <div class="timeline-item-content">
+
+          <div class="timeline-item-header">
+            <div class="timeline-date">{{item.date}}</div>
+            <div class="timeline-time">{{item.time}}</div>
+          </div>
+          {{item.activeContent}}
+        </div>
+      </li>
+    </div>
+    </md-card>
+  </md-card-content>
+</div>
 </section>

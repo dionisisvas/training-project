@@ -5,5 +5,6 @@ angular.module('myUserProfile', [
     'core.account',
     'core.hobby',
     'core.image',
-    'core.user'
+    'core.user',
+    'core.timeline'
 ]);
