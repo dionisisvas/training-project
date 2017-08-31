@@ -35,7 +35,8 @@ public class CommentRepositoryImpl implements CommentRepository {
 
 	public CommentRepositoryImpl() throws IOException {}
 
-	@Override public Comment getCommentById(final long commentId) throws SQLException {
+	@Override
+	public Comment getCommentById(final long commentId) throws SQLException {
 
 		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
@@ -49,7 +50,8 @@ public class CommentRepositoryImpl implements CommentRepository {
 		return comment;
 	}
 
-	@Override public List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
+	@Override
+	public List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
 		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
 			"with subjectId: " + subjectId);
@@ -68,7 +70,8 @@ public class CommentRepositoryImpl implements CommentRepository {
 		return comments;
 	}
 
-	@Override public List<Comment> getCommentsByPoster(final long posterId) throws SQLException {
+	@Override
+	public List<Comment> getCommentsByPoster(final long posterId) throws SQLException {
 
 		logger.debug("ENTERED getCommentsByPoster for posterId: " + posterId);
 

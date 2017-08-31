@@ -34,7 +34,8 @@ public class CommentReplyRepositoryImpl implements CommentReplyRepository {
 
 	public CommentReplyRepositoryImpl() throws IOException {}
 
-	@Override public CommentReply getReplyById(final long replyId) throws SQLException {
+	@Override
+	public CommentReply getReplyById(final long replyId) throws SQLException {
 
 		logger.debug("ENTERED getReplyById for replyId: " + replyId);
 
@@ -48,6 +49,7 @@ public class CommentReplyRepositoryImpl implements CommentReplyRepository {
 		return reply;
 	}
 
+	@Override
 	public List<CommentReply> getCommentReplies(final long parentId) throws SQLException {
 
 		logger.debug("ENTERED getCommentReplies for parentId: " + parentId);
