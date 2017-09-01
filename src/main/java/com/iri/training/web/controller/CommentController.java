@@ -67,7 +67,7 @@ public class CommentController {
 													getReplies.orElse(false)));
 
 		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId);
 
 		if (comments != null) {
 			return new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
