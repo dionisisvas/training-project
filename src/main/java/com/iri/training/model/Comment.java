@@ -1,6 +1,7 @@
 package com.iri.training.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.interfaces.IPostable;
@@ -14,6 +15,7 @@ public class Comment implements IPostable{
 	private String content;
 	private LocalDateTime creationDate;
 	private LocalDateTime lastEditDate;
+	private List<CommentReply> replies;
 
 	public long getId() {
 
@@ -83,6 +85,16 @@ public class Comment implements IPostable{
 	public void setLastEditDate(final LocalDateTime lastEditDate) {
 
 		this.lastEditDate = lastEditDate;
+	}
+
+	public List<CommentReply> getReplies() {
+
+		return replies;
+	}
+
+	public void setReplies(final List<CommentReply> replies) {
+
+		this.replies = replies;
 	}
 
 	@Override public String toString() {
