@@ -43,6 +43,18 @@ public class EventRepositoryImpl implements EventRepository {
 
 		return userDates;
 	}
+	@Override
+	public List<Events> getDatesList() throws SQLException {
+		logger.debug("ENTERED getDatesList");
+
+		String sql = property.getString("RETRIEVE_EVENT_LIST");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		final List<Events> dates = jdbcTemplate.query(sql, new UserDateListResultSetExtractor());
+
+		logger.debug("EXITING getDatesList: " + dates);
+
+		return dates;
+	}
 
 	private static final class UserDateListResultSetExtractor implements ResultSetExtractor<List<Events>> {
 

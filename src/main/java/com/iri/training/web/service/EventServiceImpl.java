@@ -1,6 +1,7 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,10 @@ public class EventServiceImpl implements EventService {
 	@Override public List<Events> getUserDates(final Long userId) throws SQLException {
 
 		return eventRepository.getUserDates(userId);
+	}
+	@Override
+	public List<Events> getDatesList() throws SQLException {
+		List<Events> datesList = new ArrayList<Events>(eventRepository.getDatesList());
+		return datesList;
 	}
 }

@@ -21,6 +21,7 @@ angular.module('trainingApp', [
     'myToolbar',
     'myUserList',
     'myUserMaps',
+    'myUserStatistics',
     'myUserProfile',
     'myUserRegistration',
     'myUserStatistics'
