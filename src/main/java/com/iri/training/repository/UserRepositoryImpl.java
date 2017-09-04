@@ -1,7 +1,5 @@
 package com.iri.training.repository;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PropertyResourceBundle;
 
 import javax.sql.DataSource;
 
@@ -24,30 +21,31 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.User;
 import com.iri.training.model.builder.UserBuilder;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
+
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = UserRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
-
-	public UserRepositoryImpl() throws IOException {}
 
 	@Override
 	@Cacheable(value="findUser", key="#userId")
 	public User getUserById(Long userId ) throws SQLException {
+
 		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user;
-		String sql = property.getString("RETRIEVE_USER_BY_ID");
+
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		user = jdbcTemplate.query(sql, new Object[]{userId}, new UserResultSetExtractor());
+		user = jdbcTemplate.query(PropertiesConfig.GET_USER_BY_ID,
+			new Object[]{userId},
+			new UserResultSetExtractor());
 
 		logger.debug("EXITING getUserById: " + user);
 
@@ -56,11 +54,12 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public List<User> getUserList() throws SQLException {
+
 		logger.debug("ENTERED getUserList");
 
-		String sql = property.getString("RETRIEVE_USER_LIST");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<User> usersList = jdbcTemplate.query(sql, new UserListResultSetExtractor());
+		final List<User> usersList = jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
+			new UserListResultSetExtractor());
 
 		logger.debug("EXITING getUserList: " + usersList);
 
@@ -74,13 +73,14 @@ public class UserRepositoryImpl implements UserRepository {
 
 		final KeyHolder kh = new GeneratedKeyHolder();
 		final long userId;
-		String sql = property.getString("ADD_USER");
+
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override public PreparedStatement createPreparedStatement(final Connection connection)
 					throws SQLException {
-				PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = connection.prepareStatement(PropertiesConfig.ADD_USER,
+					Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, user.getName());
 				ps.setString(2, user.getSurname());
 				ps.setString(3, user.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
