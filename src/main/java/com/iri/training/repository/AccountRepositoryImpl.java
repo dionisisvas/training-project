@@ -20,12 +20,12 @@ import com.iri.training.model.builder.AccountBuilder;
 
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
-	Logger logger = Logger.getLogger(AccountRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = AccountRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
 
 	public AccountRepositoryImpl() throws IOException {}

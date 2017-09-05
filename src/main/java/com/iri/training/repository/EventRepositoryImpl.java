@@ -26,7 +26,7 @@ public class EventRepositoryImpl implements EventRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = UserRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public EventRepositoryImpl() throws IOException {}

@@ -20,12 +20,12 @@ import com.iri.training.model.builder.HobbyBuilder;
 
 @Repository
 public class HobbyRepositoryImpl implements HobbyRepository {
-	Logger logger = Logger.getLogger(HobbyRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = HobbyRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public HobbyRepositoryImpl() throws IOException {}
