@@ -20,12 +20,12 @@ import com.iri.training.model.builder.MetricsBuilder;
 
 @Repository
 public class MetricsRepositoryImpl implements MetricsRepository {
-private	Logger logger = Logger.getLogger(MetricsRepositoryImpl.class);
+private	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = MetricsRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public MetricsRepositoryImpl() throws IOException {}

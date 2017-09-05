@@ -20,12 +20,12 @@ import com.iri.training.model.builder.ImageBuilder;
 
 @Repository
 public class ImageRepositoryImpl implements ImageRepository {
-	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = ImageRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public ImageRepositoryImpl() throws IOException {}

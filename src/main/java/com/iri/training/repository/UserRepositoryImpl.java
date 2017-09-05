@@ -29,12 +29,12 @@ import com.iri.training.model.builder.UserBuilder;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-	Logger logger = Logger.getLogger(UserRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = UserRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
 	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
 
 	public UserRepositoryImpl() throws IOException {}
