@@ -48,5 +48,9 @@ angular.
                         $location.path('/auth/1');
                     });
                 }
+
+                self.chart = function() {
+                return $location.path('/settings');
+                }
         }]
     });
