@@ -1,8 +1,6 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +45,11 @@ public  class AccountServiceImpl implements AccountService {
 	@Override
 	public void createAccount(Account account) throws SQLException {
 		accountRepository.createAccount(account);
+	}
+
+	@Override
+	public void updateAccount(Account account) throws SQLException {
+		accountRepository.updateAccount(account);
 	}
 
 	@Override

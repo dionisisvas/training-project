@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,22 @@ public class AccountController {
 
 	@Autowired
 	AccountService accountService;
+
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public ResponseEntity<String> editAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
+		Account account = rw.getAccount();
+
+		logger.debug("ENTERED editAccount: " + account );
+
+			accountService.updateAccount(account);
+
+			logger.debug("EXITING editAccount: " + account);
+
+			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
+
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Account>> getAllAccounts() throws SQLException {
@@ -122,5 +140,12 @@ public class AccountController {
 			logger.debug("EXITING isEmailUnique (true) for e-mail " + email);
 			return new ResponseEntity("{\"isUnique\": true}", HttpStatus.OK);
 		}
+	}
+
+	private static class RegistrationWrapper {
+
+		private Account account;
+
+		public Account getAccount() { return account; }
 	}
 }

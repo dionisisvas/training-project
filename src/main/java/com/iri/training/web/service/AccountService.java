@@ -13,6 +13,7 @@ public interface AccountService {
 
 	Account getAccountByEmail(String email) throws SQLException;
 
+	void updateAccount(Account account) throws SQLException;
 	List<Account> getAccountList() throws SQLException;
 
 	void createAccount(Account account) throws SQLException;

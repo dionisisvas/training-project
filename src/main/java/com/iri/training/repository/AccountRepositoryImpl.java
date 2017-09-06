@@ -99,6 +99,22 @@ public class AccountRepositoryImpl implements AccountRepository {
 		logger.debug("EXITING createAccount: " + account);
 	}
 
+
+	@Override
+	public void updateAccount(final Account account) throws SQLException {
+
+		logger.debug("ENTERED updateAccount for account: " + account);
+
+		String sql = property.getString("UPDATE_ACCOUNT");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql,account.getUsername(),
+			account.getPassword(),
+			account.getEmail(),
+		    account.getAccountId());
+
+		logger.debug("EXITING updateAccount: " + account);
+	}
+
 	private static final class AccountResultSetExtractor implements ResultSetExtractor<Account> {
 
 		@Override
