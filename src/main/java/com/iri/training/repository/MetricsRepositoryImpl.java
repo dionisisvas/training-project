@@ -63,7 +63,7 @@ private	Logger logger = Logger.getLogger(this.getClass());
 
 		String sql = property.getString("INITIALIZE_USER_METRICS");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql);
+		jdbcTemplate.update(sql,new Object[]{userId});
 
 		logger.debug("EXITING initializeUserMetrics");
 	}
