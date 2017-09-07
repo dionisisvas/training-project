@@ -96,6 +96,22 @@ public class UserRepositoryImpl implements UserRepository {
 		return userId;
 	}
 
+	@Override
+	public void updateUser(final User user) throws SQLException {
+
+		logger.debug("ENTERED updateUser for user: " + user);
+
+		String sql = property.getString("UPDATE_USER");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql,user.getName(),
+			user.getSurname(),
+			user.getAddress(),
+			user.getPhoneNo(),
+			user.getUserId());
+
+		logger.debug("EXITING updateUser: " + user);
+	}
+
 	private static final class UserResultSetExtractor implements ResultSetExtractor<User> {
 
 		@Override

@@ -104,4 +104,8 @@ public class UserServiceImpl implements UserService {
 
 		return verified;
 	}
+
+	@Override public void updateUser(final User user) throws SQLException {
+		userRepository.updateUser(user);
+	}
 }
