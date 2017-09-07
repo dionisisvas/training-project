@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
@@ -15,68 +17,154 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
-import com.iri.training.model.UserComment;
-import com.iri.training.model.builder.UserCommentBuilder;
+import com.iri.training.enums.SubjectType;
+import com.iri.training.model.Comment;
+import com.iri.training.model.builder.CommentBuilder;
 
 @Repository
 public class CommentRepositoryImpl implements CommentRepository {
 
-	Logger logger = Logger.getLogger(CommentRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
+
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = CommentRepositoryImpl.class.getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
+	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
+	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
 
 
 	public CommentRepositoryImpl() throws IOException {}
 
-
 	@Override
-	public List<UserComment> getCommentsByUserId(final Long userId) throws SQLException {
+	public Comment getCommentById(final long commentId) throws SQLException {
 
-		logger.debug("ENTERED getUserCommentById for userId: " + userId);
+		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
-		String sql=property.getString("SELECT_COMMENT");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		final List<UserComment> userComment=jdbcTemplate.query(sql,new Object[]{userId},new UserCommentMapper());
+		final Comment comment;
+		final String sql = property.getString("GET_COMMENT_BY_ID");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		comment = jdbcTemplate.query(sql, new Object[]{commentId}, new CommentResultSetExtractor());
 
-		logger.debug("EXITING getCommentsByUserId: " + userComment);
-		return userComment;
+		logger.debug("EXITING getCommentById for commentId: " + commentId);
 
+		return comment;
 	}
 
 	@Override
-	public UserComment createUserComment(final UserComment userComment) throws SQLException {
+	public List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
-		logger.debug("ENTERED createUserComment for comment: " + userComment);
+		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
+			"with subjectId: " + subjectId);
 
-		String sql=property.getString("CREATE_COMMENT");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql,userComment.getCommentID(),userComment.getDescription(),userComment.getDate(),userComment.getUserID());
+		final List<Comment> comments;
+		final String sql = property.getString("GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		comments = new ArrayList<Comment>(
+						jdbcTemplate.query(sql,
+								new Object[]{subjectType.name(), subjectId},
+								new SubjectCommentsResultSetExtractor()));
 
-		logger.debug("EXITING createUserComment: " + userComment);
+		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
+			"with subjectId: " + subjectId);
 
-		return userComment;
+		return comments;
 	}
-	private static final class UserCommentMapper implements ResultSetExtractor<List<UserComment>> {
+
+	@Override
+	public List<Comment> getCommentsByPoster(final long posterId) throws SQLException {
+
+		logger.debug("ENTERED getCommentsByPoster for posterId: " + posterId);
+
+		final List<Comment> comments;
+		final String sql = property.getString("GET_COMMENTS_BY_POSTER_ID");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		comments = new ArrayList<Comment>(
+			jdbcTemplate.query(sql,
+				new Object[]{posterId},
+				new UserCommentsResultSetExtractor()));
+
+		logger.debug("EXITING getCommentsByPoster for posterId: " + posterId);
+
+		return comments;
+	}
+
+	private static final class CommentResultSetExtractor implements ResultSetExtractor<Comment> {
 
 		@Override
-		public List<UserComment> extractData(final ResultSet resultSet) throws SQLException {
+		public Comment extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<UserComment> userComment = new ArrayList<>();
+			final Comment comment;
 
-			while(resultSet.next()) {
-				userComment.add(new UserCommentBuilder()
-					.withDescription(resultSet.getString("description"))
-					.withDate(resultSet.getString("commentDate"))
-					.withCommID(resultSet.getInt("commentID"))
-					.withUserID(resultSet.getInt("userID"))
+			if (resultSet.next()) {
+				comment = new CommentBuilder()
+					.withId(resultSet.getLong("id"))
+					.withPosterId(resultSet.getLong("poster_id"))
+					.withSubjectType(SubjectType.valueOf(
+						resultSet.getString("subject_type")))
+					.withSubjectId(resultSet.getLong("subject_id"))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.withLastEditDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("last_edit_date"),
+						0, ZoneOffset.UTC))
+					.build();
+			}
+			else
+			{
+				return null;
+			}
+
+			return comment;
+		}
+	}
+
+	private static final class SubjectCommentsResultSetExtractor implements ResultSetExtractor<List<Comment>> {
+
+		@Override
+		public List<Comment> extractData(final ResultSet resultSet) throws SQLException {
+
+			final List<Comment> comments = new ArrayList<>();
+			while (resultSet.next()) {
+				comments.add(new CommentBuilder()
+					.withId(resultSet.getLong("id"))
+					.withPosterId(resultSet.getLong("poster_id"))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.withLastEditDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("last_edit_date"),
+						0, ZoneOffset.UTC))
 					.build());
 			}
 
+			return comments;
+		}
+	}
 
-			return userComment;
+	private static final class UserCommentsResultSetExtractor implements ResultSetExtractor<List<Comment>> {
+
+		@Override
+		public List<Comment> extractData(final ResultSet resultSet) throws SQLException {
+
+			final List<Comment> comments = new ArrayList<>();
+			while (resultSet.next()) {
+				comments.add(new CommentBuilder()
+					.withId(resultSet.getLong("id"))
+					.withPosterId(resultSet.getLong("poster_id"))
+					.withSubjectType(SubjectType.valueOf(
+						resultSet.getString("subject_type")))
+					.withSubjectId(resultSet.getLong("subject_id"))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.build());
+			}
+
+			return comments;
 		}
 	}
 }

@@ -19,9 +19,9 @@ import com.iri.training.model.builder.HobbyBuilder;
 @Repository
 public class HobbyRepositoryImpl implements HobbyRepository {
 
-	Logger logger = Logger.getLogger(HobbyRepositoryImpl.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
-	private JdbcTemplate jdbcTemplate;
+ 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
 

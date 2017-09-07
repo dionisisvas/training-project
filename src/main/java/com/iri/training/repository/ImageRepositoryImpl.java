@@ -18,7 +18,8 @@ import com.iri.training.model.builder.ImageBuilder;
 
 @Repository
 public class ImageRepositoryImpl implements ImageRepository {
-	Logger logger = Logger.getLogger(ImageRepositoryImpl.class);
+
+	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
