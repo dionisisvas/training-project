@@ -31,16 +31,18 @@ public class AccountController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = "application/json")
-	public ResponseEntity<String> editAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
-		Account account = rw.getAccount();
+	public ResponseEntity<String> editAccount(@RequestBody Account account) throws SQLException {
 
 		logger.debug("ENTERED editAccount: " + account );
-
+		if ( accountService.verifyNewAccount(account)) {
 			accountService.updateAccount(account);
 
 			logger.debug("EXITING editAccount: " + account);
 
 			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
+		}else{
+			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
+		}
 
 	}
 
@@ -142,10 +144,5 @@ public class AccountController {
 		}
 	}
 
-	private static class RegistrationWrapper {
 
-		private Account account;
-
-		public Account getAccount() { return account; }
-	}
 }
