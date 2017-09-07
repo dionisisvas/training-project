@@ -1,26 +1,20 @@
 package com.iri.training.config;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Base64;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class PropertiesConfig {
 
 	static Logger logger = Logger.getLogger(PropertiesConfig.class);
@@ -154,34 +148,10 @@ public class PropertiesConfig {
 			is.close();
 
 			KEY_LIFETIME_IN_HOURS = Integer.parseInt(jwtProperties.getProperty("KeyLifetimeInHours", "720"));
-			KEY_EXPIRY_DATE = LocalDateTime.ofEpochSecond(
-				Long.parseLong(jwtProperties.getProperty("KeyExpiryDate", "0")),
-				0, ZoneOffset.UTC);
-			final String encodedKey = jwtProperties.getProperty("EncodedKey");
-
-			if (encodedKey != null && KEY_EXPIRY_DATE.isAfter(LocalDateTime.now())) {
-				final byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
-				JWT_KEY = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
-			}
-			else {
-				generateKey();
-
-				FileOutputStream fos = new FileOutputStream(
-					new File(PropertiesConfig.class.getResource(JWT_FILE).toURI()));
-
-				jwtProperties.setProperty("EncodedKey",
-					Base64.getEncoder().encodeToString(JWT_KEY.getEncoded()));
-				jwtProperties.setProperty("KeyExpiryDate",
-					Long.toString(KEY_EXPIRY_DATE.toEpochSecond(ZoneOffset.UTC)));
-
-				jwtProperties.store(fos, null);
-				fos.close();
-			}
+			generateKey();
 
 			logger.info("JWT properties loaded...");
-		} catch (IOException
-			| NullPointerException
-			| URISyntaxException e) {
+		} catch (IOException | NullPointerException e) {
 			logger.warn("Loading the jwt_key.properties failed! " + e);
 			System.exit(0);
 		}
@@ -189,7 +159,7 @@ public class PropertiesConfig {
 		logger.info("Application properties loading finished.");
 	}
 
-	private static void generateKey() throws NoSuchAlgorithmException  {
+	public static void generateKey() throws NoSuchAlgorithmException  {
 
 		logger.info("Generating a new secure JWT signing key...");
 
@@ -198,7 +168,7 @@ public class PropertiesConfig {
 		keygen.init(256, rand);
 
 		JWT_KEY = keygen.generateKey();
-		KEY_EXPIRY_DATE = LocalDateTime.now();
+		KEY_EXPIRY_DATE = LocalDateTime.now().plusHours(KEY_LIFETIME_IN_HOURS);
 	}
 }
 
