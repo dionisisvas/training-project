@@ -72,65 +72,65 @@ public class PropertiesConfig {
 			IRIProperties sqlProperties = new IRIProperties(SQL_QUERIES_FILE);
 
 			// User queries
-			GET_USER_BY_ID = sqlProperties.getProperty("GetUserById",
+			GET_USER_BY_ID = sqlProperties.getString("GetUserById",
 				"SELECT * FROM users WHERE userId = ?;");
-			GET_USER_LIST = sqlProperties.getProperty("GetUserList",
+			GET_USER_LIST = sqlProperties.getString("GetUserList",
 				"SELECT userId, name, surname, dob FROM users;");
-			ADD_USER = sqlProperties.getProperty("AddUser",
+			ADD_USER = sqlProperties.getString("AddUser",
 				"INSERT INTO users(name, surname, dob) VALUES(?, ?, ?);");
 
 			// Account queries
-			GET_ACCOUNT_BY_ID = sqlProperties.getProperty("GetAccountById",
+			GET_ACCOUNT_BY_ID = sqlProperties.getString("GetAccountById",
 				"SELECT * FROM accounts WHERE accountId = ?;");
-			GET_ACCOUNT_BY_USERNAME = sqlProperties.getProperty("GetAccountByUsername",
+			GET_ACCOUNT_BY_USERNAME = sqlProperties.getString("GetAccountByUsername",
 				"SELECT * FROM accounts WHERE username = ?;");
-			GET_ACCOUNT_BY_EMAIL = sqlProperties.getProperty("GetAccountByEmail",
+			GET_ACCOUNT_BY_EMAIL = sqlProperties.getString("GetAccountByEmail",
 				"SELECT * FROM accounts WHERE email = ?;");
-			GET_ACCOUNT_LIST = sqlProperties.getProperty("GetAccountList",
+			GET_ACCOUNT_LIST = sqlProperties.getString("GetAccountList",
 				"SELECT accountId, username, email FROM accounts;");
-			ADD_ACCOUNT = sqlProperties.getProperty("AddAccount",
+			ADD_ACCOUNT = sqlProperties.getString("AddAccount",
 				"INSERT INTO accounts(accountId, username, password, email) VALUES(?, ?, ?, ?);");
 
 			// Image queries
-			GET_IMAGE_BY_ID = sqlProperties.getProperty("GetImageById",
+			GET_IMAGE_BY_ID = sqlProperties.getString("GetImageById",
 				"SELECT * FROM user_images WHERE imgId = ?;");
-			GET_PROFILE_IMAGE_BY_USER_ID = sqlProperties.getProperty("GetProfileImageByUserId",
+			GET_PROFILE_IMAGE_BY_USER_ID = sqlProperties.getString("GetProfileImageByUserId",
 				"SELECT * FROM user_images WHERE userId = ? AND isProfileImg = 1;");
-			GET_IMAGES_BY_USER_ID = sqlProperties.getProperty("GetImagesByUserId",
+			GET_IMAGES_BY_USER_ID = sqlProperties.getString("GetImagesByUserId",
 				"SELECT imgId, userId, isProfileImg, imgUri FROM user_images WHERE userId = ?;");
 
 			// Hobby queries
-			GET_HOBBY_BY_ID = sqlProperties.getProperty("GetHobbyById",
+			GET_HOBBY_BY_ID = sqlProperties.getString("GetHobbyById",
 				"SELECT * FROM hobbies WHERE hobbyId = ?;");
-			GET_HOBBY_LIST = sqlProperties.getProperty("GetHobbyList",
+			GET_HOBBY_LIST = sqlProperties.getString("GetHobbyList",
 				"SELECT * FROM hobbies;");
-			GET_HOBBIES_BY_USER_ID = sqlProperties.getProperty("GetHobbiesByUserId",
+			GET_HOBBIES_BY_USER_ID = sqlProperties.getString("GetHobbiesByUserId",
 				"SELECT * FROM user_hobbies WHERE userId = ?;");
 
 			// Comment queries
-			GET_COMMENT_BY_ID = sqlProperties.getProperty("GetCommentById",
+			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",
 				"SELECT * FROM comments WHERE id = ?;");
-			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getProperty("GetCommentsBySubjectTypeAndId",
+			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetCommentsBySubjectTypeAndId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
-			GET_COMMENTS_BY_POSTER_ID = sqlProperties.getProperty("GetCommentsByPosterId",
+			GET_COMMENTS_BY_POSTER_ID = sqlProperties.getString("GetCommentsByPosterId",
 				"SELECT id, poster_id, subject_type, subject_id, content, creation_date FROM comments WHERE poster_id = ?;");
-			GET_COMMENT_REPLY_BY_ID = sqlProperties.getProperty("GetCommentReplyById",
+			GET_COMMENT_REPLY_BY_ID = sqlProperties.getString("GetCommentReplyById",
 				"SELECT * FROM comment_replies WHERE id = ?;");
-			GET_COMMENT_REPLIES_BY_PARENT_ID = sqlProperties.getProperty("GetCommentRepliesByParentId",
+			GET_COMMENT_REPLIES_BY_PARENT_ID = sqlProperties.getString("GetCommentRepliesByParentId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comment_replies WHERE parent_id = ?;");
 
 			// Metrics queries
-			GET_METRICS_BY_USER_ID = sqlProperties.getProperty("GetMetricsByUserId",
+			GET_METRICS_BY_USER_ID = sqlProperties.getString("GetMetricsByUserId",
 				"SELECT * FROM METRICS WHERE userID = ?;");
-			GET_METRICS_LIST = sqlProperties.getProperty("GetMetricsList",
+			GET_METRICS_LIST = sqlProperties.getString("GetMetricsList",
 				"SELECT * FROM METRICS;");
-			INIT_USER_METRICS = sqlProperties.getProperty("InitUserMetrics",
+			INIT_USER_METRICS = sqlProperties.getString("InitUserMetrics",
 				"INSERT INTO METRICS DEFAULT VALUES;");
 
 			// Event queries
-			GET_EVENTS_BY_USER_ID = sqlProperties.getProperty("GetEventsByUserId",
+			GET_EVENTS_BY_USER_ID = sqlProperties.getString("GetEventsByUserId",
 				"SELECT * FROM USER_SELECTED_DATES WHERE userID = ?");
-			GET_EVENT_LIST = sqlProperties.getProperty("GetEventList",
+			GET_EVENT_LIST = sqlProperties.getString("GetEventList",
 				"SELECT * FROM USER_SELECTED_DATES;");
 			logger.info("sql_queries properties loaded...");
 		} catch (NullPointerException e) {
@@ -141,9 +141,8 @@ public class PropertiesConfig {
 		try {
 			IRIProperties jwtProperties = new IRIProperties(JWT_FILE);
 
-			KEY_LIFETIME_IN_HOURS = Integer.parseInt(jwtProperties.getProperty("KeyLifetimeInHours", "720"));
+			KEY_LIFETIME_IN_HOURS = jwtProperties.getInt("KeyLifetimeInHours", 720);
 			generateJWTSigningKey();
-
 			logger.info("JWT properties loaded...");
 		} catch (NullPointerException e) {
 			logger.warn("Loading the jwt_key.properties failed! " + e);
