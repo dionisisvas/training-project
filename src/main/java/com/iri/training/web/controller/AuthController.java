@@ -1,6 +1,7 @@
 package com.iri.training.web.controller;
 
 import java.sql.SQLException;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.Account;
 import com.iri.training.model.User;
 import com.iri.training.web.service.AccountService;
@@ -83,11 +85,12 @@ public class AuthController {
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
 			.setIssuedAt(new Date())
+			.setExpiration(Date.from((PropertiesConfig.KEY_EXPIRY_DATE).toInstant(ZoneOffset.UTC)))
 			.claim("name", user.getName())
 			.claim("surname", user.getSurname())
 			.claim("username", account.getUsername())
 			.claim("email", accountService.getAccount(account.getUsername()).getEmail())
-			.signWith(SignatureAlgorithm.HS256, "secretkey")
+			.signWith(SignatureAlgorithm.HS256, PropertiesConfig.JWT_KEY)
 			.compact();
 
 		logger.debug("EXITING authAccount" + account + " Token: "+ jwt);

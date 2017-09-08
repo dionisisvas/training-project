@@ -1,12 +1,9 @@
 package com.iri.training.repository;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PropertyResourceBundle;
 
 import javax.sql.DataSource;
 
@@ -15,29 +12,30 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.Account;
 import com.iri.training.model.builder.AccountBuilder;
 
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
+
 	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
-
-	public AccountRepositoryImpl() throws IOException {}
 
 	@Override
 	public Account getAccount(final String username) throws SQLException {
+
 		logger.debug("ENTERED getAccount for username: " + username);
 
 		final Account account;
-		String sql = property.getString("RETRIEVE_ACCOUNT_BY_USERNAME");
+
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		account = jdbcTemplate.query(sql, new Object[]{username}, new AccountResultSetExtractor());
+		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_USERNAME,
+			new Object[]{username},
+			new AccountResultSetExtractor());
 
 		logger.debug("EXITING getAccount: " + account);
 
@@ -46,12 +44,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	@Override
 	public Account getAccountById(Long accountId ) throws SQLException {
+
 		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 
 		final Account account;
-		String sql = property.getString("RETRIEVE_ACCOUNT_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		account = jdbcTemplate.query(sql, new Object[]{accountId}, new AccountResultSetExtractor());
+		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_ID,
+			new Object[]{accountId},
+			new AccountResultSetExtractor());
 
 		logger.debug("EXITING getAccountById: " + account);
 
@@ -59,12 +59,14 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override public Account getAccountByEmail(final String email) throws SQLException {
+
 		logger.debug("ENTERED getAccountByEmail for email: " + email);
 
 		final Account account;
-		String sql = property.getString("RETRIEVE_ACCOUNT_BY_EMAIL");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		account = jdbcTemplate.query(sql, new Object[]{email}, new AccountResultSetExtractor());
+		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_EMAIL,
+			new Object[]{email},
+			new AccountResultSetExtractor());
 
 		logger.debug("EXITING getAccountByEmail: " + account);
 
@@ -73,11 +75,13 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	@Override
 	public List<Account> getAccountList() throws SQLException {
+
 		logger.debug("ENTERED getAccountList");
 
-		String sql = property.getString("RETRIEVE_ACCOUNT_LIST");
+		final List<Account> accountsList;
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Account> accountsList = jdbcTemplate.query(sql, new AccountListResultSetExtractor());
+		accountsList = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
+			new AccountListResultSetExtractor());
 
 		logger.debug("EXITING getAccountList: " + accountsList);
 
@@ -89,12 +93,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 		logger.debug("ENTERED createAccount for account: " + account);
 
-		String sql = property.getString("CREATE_ACCOUNT");
 		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql, account.getAccountId(),
-								 account.getUsername(),
-								 account.getPassword(),
-								 account.getEmail());
+		jdbcTemplate.update(PropertiesConfig.ADD_ACCOUNT,
+			account.getAccountId(),
+			account.getUsername(),
+			account.getPassword(),
+			account.getEmail());
 
 		logger.debug("EXITING createAccount: " + account);
 	}
