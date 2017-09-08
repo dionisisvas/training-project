@@ -36,4 +36,8 @@ public class MetricsServiceImpl implements MetricsService{
 	public void initializeUserMetrics(long userId) throws SQLException {
 		metricsRepository.initializeUserMetrics(userId);
 	}
+
+	@Override public void updateMetrics(final Metrics metrics) throws SQLException {
+		metricsRepository.updateMetrics(metrics);
+	}
 }

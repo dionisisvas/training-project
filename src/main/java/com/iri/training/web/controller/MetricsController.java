@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,23 @@ public class MetricsController {
 
 	@Autowired
 	MetricsService metricsService;
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public ResponseEntity<String> editMetrics(@RequestBody Metrics metrics) throws SQLException {
+
+		logger.debug("ENTERED editMetrics: " + metrics );
+		if ( metrics !=null) {
+			metricsService.updateMetrics(metrics);
+
+			logger.debug("EXITING editMetrics: " + metrics);
+
+			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
+		}else{
+			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
+		}
+
+	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public Metrics getMetricsByUserId(final HttpServletRequest request,@PathVariable final Long userId) throws SQLException {

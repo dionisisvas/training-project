@@ -68,6 +68,23 @@ private	Logger logger = Logger.getLogger(this.getClass());
 		logger.debug("EXITING initializeUserMetrics");
 	}
 
+	@Override
+	public void updateMetrics(final Metrics metrics) throws SQLException {
+
+		logger.debug("ENTERED updateMetrics : " + metrics);
+
+		String sql = property.getString("UPDATE_METRICS");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql,metrics.getWeight(),
+			metrics.getHeight(),
+			metrics.getEducation(),
+			metrics.getNationality(),
+			metrics.getPlaceOfBirth(),
+			metrics.getUserId());
+
+		logger.debug("EXITING updateMetrics: " + metrics);
+	}
+
 	private static final class UserMetricsMapper implements ResultSetExtractor<Metrics> {
 
 		@Override
