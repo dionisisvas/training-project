@@ -3,6 +3,6 @@
 angular.module('myUserRegistration', [
     'ngRoute',
     'core.account',
-    'core.user'
+    'core.authorization'
 ]);
 

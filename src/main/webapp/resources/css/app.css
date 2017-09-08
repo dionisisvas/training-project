@@ -1,143 +1,154 @@
+/*********************** General ***********************/
+html,
 body {
-	padding-left: 1em;
+  overflow: hidden;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+.view-frame {
+  margin: 0 !important;
+}
+.missing-url:hover {
+  text-decoration: #E64A19 double line-through;
+}
+@media (min-width: 960px) {
+  md-toast.md-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0px;
+  }
 }
 
-.text-info {
-    color: #686868;
-    padding-left: 0.5em;
+/*********************** Toolbar ***********************/
+md-toolbar#main-toolbar {
+  background: white;
+  color: rgb(255, 87, 34);
+}
+md-toolbar#main-toolbar .md-block {
+  height: 66%;
 }
 
-.optional-field {
-    color: #707070;
+/*********************** Sidenav ***********************/
+md-sidenav {
+  display: flex;
+  height: 100%;
+  background: rgb(255, 87, 34) !important;
+}
+/* Sidenav > Toolbar */
+md-sidenav .my-sidenav-toolbar {
+  padding: 20px 15px 15px 15px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.40);
+}
+md-sidenav .my-sidenav-toolbar .my-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin-bottom: 4px;
+}
+md-sidenav .my-sidenav-toolbar .my-user-info {
+  margin-left: 4px;
+}
+/* Sidenav > Navigation */
+md-sidenav md-list .my-list-header {
+  padding: 5px 0px 0px 5px;
+}
+md-sidenav md-list .my-list-header,
+md-sidenav md-list .my-navlink-icon,
+md-sidenav md-list .md-list-item-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+md-sidenav .missing-navlink .md-list-item-text {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: #E64A19 double line-through;
+}
+md-sidenav .legal-disclaimer-container {
+  display: inline-block;
+  align-self: flex-end;
+}
+md-sidenav .legal-disclaimer-text {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
 }
 
-.mt-0 {
-    margin-top: 60px;
+/*********************** Content ***********************/
+/* General */
+md-input-container .grey-parent-card {
+  color: white !important;
 }
-
-.pl-1 {
-    padding-left: 0.5em;
+/* When the input is focused */
+md-input-container.md-input-focused .grey-parent-card {
+  color: rgb(243, 203, 74) !important;
 }
-
-.mt-2 {
-    margin-top: -5px;
+/* Login and registration templates */
+#login-container {
+  width: 45%;
 }
-
-.mt-3 {
-    margin-top: -3px;
+#registration-container {
+  width: 85%;
 }
-
-.ml-4 {
-    margin-left: 10px;
+#login-container md-card .md-block {
+  margin: 0px 8% 0px 8%;
 }
-
-.project-info {
-    background-color: #d9edf7;
+#registration-container md-card .md-block {
+  margin: 0px 0px 0px 8%;
 }
-
-.options {
-	list-style: none;
+#login-container .input-hint,
+#registration-container .input-hint {
+  font-size: 10px;
+  line-height: 14px;
+  color: grey;
 }
-
-.options li {
-	clear: both;
-	height: 80px;
-	margin-bottom: -0.5em;	
-	padding-top: 15px;
+/* Userlist template */
+.userlist-age {
+  font-size: 13px;
+  color: grey;
 }
-.users {
-	list-style: none;
+/* User info template */
+#user-header-card .user-profile-img {
+  width: 152px;
+  height: 152px;
+  border-radius: 76px;
 }
-
-.users img {
-	height: 64px;
-	width: 64px;
+#user-header-card .user-names {
+  margin-left: 12px;
 }
-
-.users li {
-	clear: both;
-	height: 80px;
-	margin-bottom: -0.5em;	
-	padding-top: 15px;
+#user-header-card .user-fullname {
+  color: white;
 }
-
-.thumb {
-	float: left;
-	height: 64px;
-	margin: -0.5em 1em 1em 0;
-	width: 64px;	
+#user-header-card .user-username {
+  color: rgba(255, 255, 255, 0.85) !important;
 }
-
-.user-profile-img {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: -1em;
-	padding: 2px;
+#user-header-card .image-selector {
+  border: 4px rgb(243, 203, 74);
+  border-style: none none none solid;
+  padding-left: 2px;
+  margin: 18px 0px 0px 1px;
 }
-
-.user-full-name {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: 0.6em;
-	padding: 2px;
+#user-header-card .user-images {
+  width: 48px;
+  height: 48px;
+  margin-right: 3px;
 }
-
-.user-thumbs {
-	clear: both;
-	list-style: none;
-	margin-top: 0.2em;
-	margin-left: -1em;
+#user-header-card .user-images:hover {
+  border: 2px solid rgba(243, 203, 74, 0.65);
+  background-color: rgba(243, 203, 74, 0.25);
 }
-
-.user-thumbs img {
-	height: 64px;
-	padding: 2px;
-	width: 64px;	
+#user-header-card .user-images:focus {
+  outline-color: rgb(243, 203, 74);
 }
-
-.user-thumbs li {
-	background-color: white;
-	border: 1px solid #428bca;
-	cursor: pointer;
-	display: inline-block;
-	margin: 0.1em;
+.about-user-field {
+  color: grey;
+  margin-left: 2px;
+  font-size: 17px;
 }
-
-.about {
-	clear: both;
-	list-style: none;
-	margin-left: 1em;
-	padding: 5px 5px 5px 5px;
+.details-subcategory {
+  color: grey;
+  font-size: 13px;
 }
-
-.about dt {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.about li {
-	display: inline-block;
-	vertical-align: top;
-	width: 200px;
-}
-
-.about li span {
-	color: #428bca;
-	font-size: 1.2em;
-	font-weight: bold;	
-}
-
-.hobbies {
-	clear: both;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.hobbies li {
-	display: inline-block;
-	vertical-align: top;
-	width: 200px;
+/* API endpoints list template */
+.api-param {
+  color: grey;
+  font-weight: bold;
 }

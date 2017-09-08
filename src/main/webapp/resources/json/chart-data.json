@@ -1,0 +1,32 @@
+{
+  "ageGrouped": {
+    "name": "Age groups",
+    "type": "grouped",
+    "title": "Users grouped by age"
+  },
+  "heightGrouped": {
+    "name": "Height groups",
+    "type": "grouped",
+    "title": "Users grouped by height"
+  },
+  "bmiGrouped": {
+    "name": "BMI groups",
+    "type": "grouped",
+    "title": "Users grouped by BMI"
+  },
+  "educationGrouped": {
+    "name": "Education groups",
+    "type": "grouped",
+    "title": "Users grouped by education level"
+  },
+  "nationalityRegions": {
+    "name": "Nationality regions",
+    "type": "map",
+    "title": "Nationalities"
+  },
+  "birthplaceMarkers": {
+    "name": "Birthplace markers",
+    "type": "map",
+    "title": "Place of birth"
+  }
+}

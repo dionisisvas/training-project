@@ -1,0 +1,178 @@
+
+*, *::before, *::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.timeline {
+  position: relative;
+  padding: 20px;
+  list-style: none;
+  width: 80%;
+  margin-left: 10%;
+}
+.timeline::before {
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 5px;
+  background-color: white;
+}
+.timeline::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.timeline li.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  transition: 0.2s;
+  cursor: pointer;
+  outline: none;
+
+}
+.timeline li.timeline-item.active .timeline-item-header {
+  width: 25% !important;
+}
+.timeline li.timeline-item.active .timeline-item-content {
+  width: 95%;
+  margin: 30px;
+}
+.timeline li.timeline-item::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.timeline li.timeline-item:nth-child(odd) .timeline-item-connector i::before {
+  content: "\f137";
+}
+.timeline li.timeline-item:nth-child(odd) .timeline-item-header {
+  position: absolute;
+  top: -20px;
+  left: -3px;
+  width: 50%;
+  padding-left: 5px;
+}
+.timeline li.timeline-item:nth-child(odd) .timeline-item-header .timeline-date {
+  display: inline-block;
+  font-size: 10pt;
+}
+.timeline li.timeline-item:nth-child(odd) .timeline-item-header .timeline-time {
+  display: inline-block;
+}
+.timeline li.timeline-item:nth-child(odd) .timeline-item-content {
+  background-color: white;
+  border: 3px solid #ff6411;
+  float: left;
+  z-index: 10;
+  outline: none;
+}
+.timeline li.timeline-item:nth-child(even) .timeline-item-connector i::before {
+  content: "\f138";
+}
+.timeline li.timeline-item:nth-child(even) .timeline-item-header {
+  position: absolute;
+  top: -20px;
+  right: -3px;
+  width: 50%;
+  text-align: right;
+  padding-right: 5px;
+}
+.timeline li.timeline-item:nth-child(even) .timeline-item-header .timeline-date {
+  display: inline-block;
+  font-size: 10pt;
+}
+.timeline li.timeline-item:nth-child(even) .timeline-item-header .timeline-time {
+  display: inline-block;
+
+}
+.timeline li.timeline-item:nth-child(even) .timeline-item-content {
+  background-color: white;
+  border: 3px solid #ff6411;
+  float: right;
+  outline: none;
+}
+.timeline li.timeline-item .timeline-item-connector {
+  position: absolute;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 10px;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: #d84117;
+  border: 2px solid white;
+  text-align: center;
+  line-height: 30px;
+  outline: none;
+
+}
+.timeline li.timeline-item .timeline-item-connector i {
+  font-size: 14pt;
+  color: white;
+}
+.timeline li.timeline-item .timeline-item-connector::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  border: 10px solid transparent;
+}
+.timeline li.timeline-item .timeline-item-header {
+  background-color: #ff6411;
+outline: none;
+  min-width: 200px;
+}
+.timeline li.timeline-item .timeline-item-content {
+  position: relative;
+  transition: all 0.3s;
+  width: 48%;
+  padding: 20px;
+
+  cursor: pointer;
+  min-width: 200px;
+  max-height: 150px;
+}
+.timeline li.timeline-item .timeline-item-content:hover {
+
+  transform: scale(1.02);
+}
+
+@media (max-width: 800px) {
+  .timeline-item.active .timeline-item-content {
+    width: 95% !important;
+  }
+  .timeline-item.active .timeline-item-header {
+    width: 100% !important;
+  }
+  .timeline-item .timeline-item-content {
+    max-height: none !important;
+    height: auto;
+  }
+  .timeline-item .timeline-item-header {
+    width: 100% !important;
+  }
+
+  .timeline-item-content {
+    max-height: none !important;
+    height: auto;
+  }
+  .timeline-item-content.active {
+    width: 48%;
+    margin: 30px;
+  }
+  .timeline-item-content.active .timeline-item-header {
+    width: 25% !important;
+  }
+}

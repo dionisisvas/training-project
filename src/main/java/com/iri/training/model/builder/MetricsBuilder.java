@@ -41,8 +41,8 @@ public class MetricsBuilder extends MetricsBuilderBase<MetricsBuilder> {
 		}
 
 		@SuppressWarnings("unchecked")
-		public GeneratorT withPlace_of_birth(final String aValue) {
-			instance.setPlace_of_birth(aValue);
+		public GeneratorT withPlaceOfBirth(final String aValue) {
+			instance.setPlaceOfBirth(aValue);
 
 			return (GeneratorT) this;
 		}

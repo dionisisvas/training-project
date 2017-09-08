@@ -7,7 +7,7 @@ public class Metrics {
 	private double height;
 	private double weight;
 	private String nationality;
-	private String place_of_birth;
+	private String placeOfBirth;
 	private  String education;
 	private Long userId;
 
@@ -40,9 +40,9 @@ public class Metrics {
 		this.nationality = nationality;
 	}
 
-	public void setPlace_of_birth(final String place_of_birth) {
+	public void setPlaceOfBirth(final String placeOfBirth) {
 
-		this.place_of_birth = place_of_birth;
+		this.placeOfBirth = placeOfBirth;
 	}
 	public void setEducation(final String education) {
 
@@ -65,9 +65,9 @@ public class Metrics {
 		return nationality;
 	}
 
-	public String getPlace_of_birth() {
+	public String getPlaceOfBirth() {
 
-		return place_of_birth;
+		return placeOfBirth;
 	}
 	public String getEducation() {
 
@@ -81,7 +81,7 @@ public class Metrics {
 			"height=" + height +
 			", weight=" + weight +
 			", nationality='" + nationality + '\'' +
-			", place_of_birth='" + place_of_birth + '\'' +
+			", placeOfBirth='" + placeOfBirth + '\'' +
 			", education='" + education + '\'' +
 			", userId=" + userId +
 			'}';

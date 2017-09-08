@@ -1,0 +1,26 @@
+{
+  "pieChart": {
+    "colors": ["#FFCCBC", "#FFAB91", "#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#E64A19", "#D84315", "#BF360C"],
+    "is3D": false
+  },
+  "barChart": {
+    "colors": ["#FF5722", "#E64A19", "#BF360C", "#FFCCBC", "#FF8A65"]
+  },
+  "scatterChart": {
+  },
+  "regionChart": {
+    "datalessRegionColor": "#FAFAFA",
+    "colorAxis": {
+      "minValue": 0,
+      "colors": ["#FFAB91", "#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#E64A19", "#D84315"]
+    }
+  },
+  "markerChart": {
+    "displayMode": "markers",
+    "datalessRegionColor": "#FAFAFA",
+    "colorAxis": {
+      "minValue": 0,
+      "colors": ["#FF8A65", "#FF7043", "#FF5722", "#F4511E", "#E64A19"]
+    }
+  }
+}

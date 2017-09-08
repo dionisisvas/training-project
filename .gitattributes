@@ -12,5 +12,7 @@
 *.xml         text
 *.properties  text
 
+text eol=crlf
+
 # 3rd party libraries
 src/main/webapp/resources/lib/* linguist-vendored

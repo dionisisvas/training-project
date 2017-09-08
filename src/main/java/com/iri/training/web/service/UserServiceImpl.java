@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iri.training.model.Account;
 import com.iri.training.model.User;
 import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
@@ -19,17 +20,16 @@ public class UserServiceImpl implements UserService {
 	Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
+	AccountRepository accountRepository;
+	@Autowired
 	UserRepository userRepository;
 
 	@Override
 	public User getUserByUsername(String username) throws SQLException {
-		User user = userRepository.getUserByUsername(username);
 
-		if (user != null) {
-			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
-		}
+		Account account = accountRepository.getAccount(username);
 
-		return user;
+		return getUserById(account.getAccountId());
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addUser(User user) throws SQLException {
-		return userRepository.addUser(user);
+	public long addUserAndGetGeneratedId(User user) throws SQLException {
+		return userRepository.addUserAndGetGeneratedId(user);
 	}
 
 	@Override
@@ -53,52 +53,50 @@ public class UserServiceImpl implements UserService {
 		for (User user : userList) {
 			if (user != null) {
 				user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
+				user.setDateOfBirth(null);
 			}
 		}
 
 		return userList;
 	}
 
-	@Override public boolean verifyNewUser(final User user) {
+	@Override public boolean verifyNewUser(final User user) throws SQLException {
 
 		logger.debug("ENTERED verifyNewUser for " + user);
 
 		boolean verified = true;
 
-		if ((user.getUsername() == null) ||
-			(user.getName() == null) ||
+		LocalDate ld = LocalDate.now();
+
+		if ((user.getName() == null) ||
 			(user.getSurname() == null) ||
 			(user.getDateOfBirth() == null)) {
 
 			verified = false;
-
-			logger.debug("Found null fields");
-		}
-
-
-
-		// Check if the username is alphanumeric in the [3-24] characters range.
-		verified = verified && (user.getUsername().matches("^[a-zA-Z0-9]{3,24}$"));
-		if (!verified) {
-			logger.debug("Invalid username.");
+			logger.debug("Found null required fields.");
 		}
 
 		// Check if the name and surname are within the [2-64] characters range.
-		verified = verified && ((user.getName().length() >= 2) &&
-			(user.getName().length() <= 64));
-		if (!verified) {
+		if ((user.getName().length() < 2) ||
+			(user.getName().length() > 64)) {
+
+			verified = false;
 			logger.debug("Invalid name.");
 		}
-		verified = verified && ((user.getSurname().length() >= 2) &&
-			(user.getSurname().length() <= 64));
-		if (!verified) {
+		if ((user.getSurname().length() < 2) ||
+			(user.getSurname().length() > 64)) {
+
+			verified = false;
 			logger.debug("Invalid surname.");
 		}
 
-		// Check if the date is within acceptable ranges.
-		verified = verified && ((user.getDateOfBirth().isBefore(LocalDate.of(1999, 1, 1))) &&
-			(user.getDateOfBirth().isAfter(LocalDate.of(1900, 1, 1))));
-		if (!verified) {
+		// Check if the user age is valid (18-125 years old).
+		if ((user.getDateOfBirth().isBefore(LocalDate.of(ld.getYear(), ld.getMonth(), ld.getDayOfMonth())
+				.minusYears(125))) ||
+			(user.getDateOfBirth().isAfter(LocalDate.of(ld.getYear(), ld.getMonth(), ld.getDayOfMonth())
+				.minusYears(18)))) {
+
+			verified = false;
 			logger.debug("Invalid age.");
 		}
 

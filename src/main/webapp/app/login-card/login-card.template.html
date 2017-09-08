@@ -1,0 +1,32 @@
+<div id="login-container" layout="column">
+  <h2 class="md-title inset">Welcome back! Log in below:</h2>
+  <md-card>
+    <form name="loginForm" ng-submit="$ctrl.submitForm(loginForm.$valid)" novalidate>
+      <br>
+
+      <md-input-container class="md-block">
+        <md-icon md-font-set="material-icons"> person </md-icon>
+        <input ng-model="account.username" name="username" type="text" placeholder="Username"
+               ng-required="true" minlength="3" maxlength="24" ng-pattern="/^\w+$/">
+
+        <div ng-messages="loginForm.username.$error" role="alert">
+          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+            That's not a valid username.
+          </div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block">
+        <md-icon md-font-set="material-icons"> vpn_key </md-icon>
+        <input ng-model="account.password" name="password "type="password" placeholder="Password"
+               ng-required="true" minlength="8" maxlength="64">
+      </md-input-container>
+
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="loginForm.$invalid">Log in</md-button>
+        <md-button md-no-ink class="md-primary" ng-href="{{$ctrl.registrationUrl}}">Don't have an account? Register instead. </md-button>
+      </section>
+      <br>
+    </form>
+  </md-card>
+</div>
