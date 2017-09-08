@@ -71,6 +71,18 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		return hobbies;
 	}
 
+	@Override
+	public void addHobbies(final Hobby hobby) throws SQLException {
+
+		logger.debug("ENTERED addHobbies : " + hobby);
+
+		String sql = property.getString("ADD_HOBBIES");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql,hobby.getHobbyId());
+
+		logger.debug("EXITING addHobbies : ");
+	}
+
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
 
 		@Override
