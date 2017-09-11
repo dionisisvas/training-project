@@ -1,8 +1,10 @@
 package com.iri.training.util;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -10,22 +12,18 @@ import org.apache.log4j.Logger;
 public class IRIProperties extends Properties {
 
 	private static final Logger logger = Logger.getLogger(IRIProperties.class);
+	private HashMap<String, String> propsMap = new HashMap<String, String>();
 
-	public IRIProperties(File file) {
+	public IRIProperties(String propertiesFile) {
 
-		this(file.getName());
-	}
-
-	public IRIProperties(String fileName) {
-
-		try (final InputStream is = IRIProperties.class.getResourceAsStream(fileName)) {
+		try (final InputStream is = IRIProperties.class.getResourceAsStream(propertiesFile)) {
 			super.load(is);
 			is.close();
 
-			logger.info(fileName + " file loaded.");
+			logger.info(propertiesFile + " properties list loaded.");
 		}
 		catch (Exception e) {
-			logger.warn("Failed to load " + fileName + ": " + e);
+			logger.warn("Failed to load " + propertiesFile + ": " + e);
 		}
 	}
 
@@ -179,5 +177,27 @@ public class IRIProperties extends Properties {
 		catch(NumberFormatException e) {
 			return defaultValue;
 		}
+	}
+
+	@Override
+	public Object setProperty(String key, String value) {
+
+		if (!this.contains(key)) {
+			logger.info("Adding new property " + key + " with value: " + value);
+		}
+		propsMap.put(key, value);
+		
+		return super.setProperty(key, value);
+	}
+
+	public void store(OutputStream os, String comments) throws IOException {
+
+		super.store(os, comments);
+	}
+
+	@Override
+	public void store(Writer writer, String comments) throws IOException {
+
+		super.store(writer, comments);
 	}
 }
