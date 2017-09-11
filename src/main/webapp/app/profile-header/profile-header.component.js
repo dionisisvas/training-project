@@ -4,10 +4,9 @@ angular.
     module('myProfileHeader').
     component('myProfileHeader', {
         templateUrl: 'app/profile-header/profile-header.template.html',
-        controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User',
-            function ProfileHeaderController($routeParams, Account, Hobby, Image, User) {
+        controller: ['$routeParams', 'Account', 'Image', 'User',
+            function ProfileHeaderController($routeParams, Account, Image, User) {
                 var self = this;
-                self.userHobbies;
                 self.userImages;
                 self.profileImageUrl;
 
@@ -26,14 +25,6 @@ angular.
                     });
                 }
 
-                self.getUserHobbies = function() {
-                    self.userHobbies = Hobby.UserHobbies.query({userId: $routeParams.userId}, function(hobbiesResult) {
-                        self.userHobbies = hobbiesResult;
-                    }, function() {
-                        console.log("User " + $routeParams.userId + " has no hobbies.");
-                    });
-                }
-
                 self.getUserAccount = function() {
                     self.userAccount = Account.AccountById.get({accountId: $routeParams.userId}, function(accountResult) {
                         self.userAccount = accountResult;
@@ -44,7 +35,6 @@ angular.
 
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
                     self.getUserImages();
-                    self.getUserHobbies();
                     self.getUserAccount();
                 });
         }]

@@ -68,22 +68,4 @@
       </md-card-content>
     </md-card>
   </div>
-
-  <div flex>
-    <md-card>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">Hobbies</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-content>
-        <md-chips ng-show="$ctrl.userHobbies.length > 0">
-          <md-chip ng-repeat="hobby in $ctrl.userHobbies">{{hobby.hobbyName}}</md-chip >
-        </md-chips>
-        <p ng-show="$ctrl.userHobbies.length <= 0">
-          {{$ctrl.user.name}} doesn't have any hobbies to show right now.
-        </p>
-      </md-card-content>
-    </md-card>
-  </div>
 </section>
