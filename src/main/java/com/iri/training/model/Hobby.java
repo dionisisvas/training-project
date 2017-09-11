@@ -5,6 +5,20 @@ public class Hobby {
 	private Long hobbyId;
 	private String hobbyName;
 	private String description;
+	private Long userId;
+
+
+	public Long getUserId() {
+
+		return userId;
+	}
+
+	public void setUserId(final Long userId) {
+
+		this.userId = userId;
+	}
+
+
 
 	public Long getHobbyId() { return hobbyId; }
 
@@ -19,17 +33,13 @@ public class Hobby {
 	public void setDescription(final String description) { this.description = description; }
 
 	@Override public String toString() {
-		StringBuilder sb = new StringBuilder();
 
-		sb.append("Hobby{");
-		sb.append("hobbyId=");
-		sb.append(hobbyId);
-		sb.append('\'');
-		sb.append(", hobbyName='");
-		sb.append(hobbyName);
-		sb.append('\'');
-		sb.append('}');
-
-		return sb.toString();
+		return "Hobby{" +
+			"hobbyId=" + hobbyId +
+			", hobbyName='" + hobbyName + '\'' +
+			", description='" + description + '\'' +
+			", userId=" + userId +
+			'}';
 	}
+
 }
