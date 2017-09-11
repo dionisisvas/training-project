@@ -3,15 +3,17 @@
   <my-sidenav></my-sidenav>
   <md-content class="md-padding" layout-fill>
     <div layout="row">
-      <my-profile-header flex></my-profile-header> 
-      <my-profile-details flex></my-profile-details>        
+      <my-login-prompt flex></my-login-prompt>
     </div>
     <div layout="row">
-      <my-profile-timeline flex></my-profile-timeline>  
-      <my-profile-hobbies flex></my-profile-hobbies>  
-    </div>   
-    <div layout="row">
-      <my-login-prompt flex></my-login-prompt>
+      <div layout="column" layout-fill>
+        <my-profile-header flex></my-profile-header>
+        <my-profile-timeline flex></my-profile-timeline>
+      </div>
+      <div layout="column" layout-fill>
+        <my-profile-details flex></my-profile-details>
+        <my-profile-hobbies flex></my-profile-hobbies>
+      </div>
     </div>
   </md-content>
 </section>
