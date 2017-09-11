@@ -37,12 +37,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Byte.parseByte(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse byte value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -57,12 +61,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Short.parseShort(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse short value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -77,12 +85,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Integer.parseInt(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse int value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -97,12 +109,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Long.parseLong(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse long value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -117,12 +133,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Float.parseFloat(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse float value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -137,12 +157,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Double.parseDouble(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse double value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
@@ -169,12 +193,16 @@ public class IRIProperties extends Properties {
 		String value = super.getProperty(key);
 
 		if (value == null) {
+			logger.info(key + " value was null, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 		else try {
 			return Boolean.parseBoolean(value);
 		}
 		catch(NumberFormatException e) {
+			logger.warn(key + ": couldn't parse boolean value, returning default value: " + defaultValue);
+
 			return defaultValue;
 		}
 	}
