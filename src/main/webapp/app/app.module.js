@@ -17,6 +17,7 @@ angular.module('trainingApp', [
     'myLoginCard',
     'myLoginPrompt',
     'myProfileHeader',
+    'myProfileTimeline',
     'mySidenav',
     'myTables',
     'myToolbar',

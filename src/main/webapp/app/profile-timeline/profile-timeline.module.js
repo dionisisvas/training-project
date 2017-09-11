@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('myProfileHeader', [
+angular.module('myProfileTimeline', [
     'ngRoute',
     'core.account',
     'core.hobby',
     'core.image',
-    'core.user'
+    'core.user',
+    'core.timeline'
 ]);
