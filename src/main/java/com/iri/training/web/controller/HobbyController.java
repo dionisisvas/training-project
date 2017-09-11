@@ -2,12 +2,15 @@ package com.iri.training.web.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +23,28 @@ import com.iri.training.web.service.HobbyService;
 @RequestMapping(value = "/api/hobby")
 public class HobbyController {
 
-	Logger logger = Logger.getLogger(HobbyController.class);
+	Logger logger = Logger.getLogger(this.getClass());
 
 	@Autowired
 	HobbyService hobbyService;
+
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public ResponseEntity<String> editHobbies(@RequestBody List<Hobby> hobbyList) throws SQLException {
+
+		logger.debug("ENTERED editHobbies: ");
+
+		if (hobbyList != null) {
+			hobbyService.removeHobbies(hobbyList.get(0).getUserId());
+
+			hobbyService.addHobbies(hobbyList);
+			return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
+		} else {
+
+			return new ResponseEntity("{\"message\": \"Edit failed.\"}", HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {

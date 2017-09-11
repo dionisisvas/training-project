@@ -72,19 +72,20 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 	}
 
 	@Override
-	public void addHobbies(final Hobby hobby) throws SQLException {
+	public void addHobbies(final List<Hobby> hobbyList) throws SQLException {
 
-		logger.debug("ENTERED addHobbies : " + hobby);
+		logger.debug("ENTERED addHobbies : " + hobbyList);
+		for (Hobby hobby : hobbyList) {
+			String sql = property.getString("ADD_HOBBIES");
+			jdbcTemplate = new JdbcTemplate(dataSource);
+			jdbcTemplate.update(sql, hobby.getUserId(),
+				                     hobby.getHobbyId());
 
-		String sql = property.getString("ADD_HOBBIES");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql,hobby.getHobbyId());
-
-		logger.debug("EXITING addHobbies : ");
+			logger.debug("EXITING addHobbies : ");
+		}
 	}
-
 	@Override
-	public void removeHobbies(Long userId) throws SQLException {
+	public Hobby removeHobbies(Long userId) throws SQLException {
 
 		logger.debug("ENTERED removeHobbies for user: " + userId);
 
@@ -93,6 +94,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate.update(sql, new Object[]{userId});
 
 		logger.debug("EXITING removeHobbies : ");
+		return null;
 	}
 
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
