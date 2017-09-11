@@ -4,63 +4,53 @@ angular.
     module('myProfileTimeline').
     component('myProfileTimeline', {
         templateUrl: 'app/profile-timeline/profile-timeline.template.html',
-        controller: ['$routeParams', 'Account', 'User', 'Timeline',
-            function ProfileTimelineController($routeParams, Account, User, Timeline) {
+        controller: ['$routeParams', 'User', 'Timeline',
+            function ProfileTimelineController($routeParams, User, Timeline) {
                 var self = this;
-                var userDates;
-                
-                var testItemList = [];
-                $scope.itemList = [];
+                self.rawEventList;
+                self.formattedEventList = [];
 
-                $scope.onItemClick = function( item ) {
-                    item.active = !item.active;
-                    if (item.active) {
-                        item.activeContent = item.content;
+                self.onEventClick = function(lifeEvent) {
+                    lifeEvent.active = !lifeEvent.active;
+                    if (lifeEvent.active) {
+                        lifeEvent.activeContent = lifeEvent.content;
                     } else {
-                        item.activeContent = item.shortContent;
+                        lifeEvent.activeContent = lifeEvent.shortContent;
                     }
                 }
 
                 self.getLifeEvents = function () {
-                    self.lifeEvents = Timeline.EventByUserId.query({userId: $routeParams.userId}, function(datesResult) {
-                        self.userDates = datesResult;
-                        angular.forEach(datesResult, function(dates, key) {
-                            var DateFormat=new Date(dates.dateOfEvent);
-                            var transDate=DateFormat.toDateString();
-                            testItemList.push({ date: transDate, time: dates.title, content: dates.description });
+                    self.rawEventList = Timeline.EventByUserId.query({userId: $routeParams.userId}, function(eventsResult) {
+                        self.rawEventList = eventsResult;
+                        self.formatEventList();
+                    }, function() {
+                            console.log("User " + $routeParams.userId + " has no life events.");
+                    });
+                }
 
-                            for( var i = 0; i < testItemList.length; i++ ) {
-                                var item = testItemList[i];
-                                item.shortContent = item.content.substring(0, 235);
-                                if (item.content.length > 235) {
-                                    item.shortContent = [item.shortContent, '...'].join('');
-                                }
-                                testItemList[i].activeContent = testItemList[i].shortContent;
-                                testItemList[i].active = false;
-                            }
-                        }, function() {
-                            console.log("User " + $routeParams.userId + " has no selected dates.");
-                        });
+                self.formatEventList = function() {
+                    angular.forEach(self.rawEventList, function(rawEvent, key) {
+                        var formattedDate = new Date(rawEvent.dateOfEvent);
+                        self.formattedEventList.push({ date: formattedDate.toDateString(), time: rawEvent.title, content: rawEvent.description });
+                    });
+
+                    angular.forEach(self.formattedEventList, function(formattedEvent, key) {
+                        formattedEvent.shortContent = formattedEvent.content;
+                        if (formattedEvent.content.length > 235) {
+                            formattedEvent.shortContent = formattedEvent.content.substring(0, 235);
+                            formattedEvent.shortContent += '...';
+                        }
+
+                        formattedEvent.activeContent = formattedEvent.shortContent;
+                        formattedEvent.active = false;
                     });
                 }
 
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
-                    var DateFormat=new Date(user.dateOfBirth);
-                    var transDateOb=DateFormat.toDateString();
-                    testItemList.push({ date: transDateOb, time: 'Birthday', content: 'Birthday' });
+                    var formattedDate = new Date(user.dateOfBirth);
+                    self.formattedEventList.push({ date: formattedDate.toDateString(), time: 'Birthday', content: 'Birthday' });
 
-                    for( var i = 0; i < testItemList.length; i++ ) {
-                        var item = testItemList[i];
-                        item.shortContent = item.content.substring(0, 235);
-                        if (item.content.length > 235) {
-                            item.shortContent = [item.shortContent, '...'].join('');
-                        }
-                        testItemList[i].activeContent = testItemList[i].shortContent;
-                        testItemList[i].active = false;
-                    }
-                    self.setTestData();
+                    self.getLifeEvents();
                 });
-                
-                $scope.itemList = testItemList;
         }]
     });
