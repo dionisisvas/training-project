@@ -13,16 +13,16 @@ angular.module('trainingApp', [
     'myAuthTabs',
     'myErrorCard',
     'myGreetCard',
-    'myTables',
     'myLegalCard',
     'myLoginCard',
     'myLoginPrompt',
+    'myProfileHeader',
     'mySidenav',
+    'myTables',
     'myToolbar',
     'myUserList',
     'myUserMaps',
     'myUserStatistics',
-    'myUserProfile',
     'myUserRegistration',
     'myUserStatistics'
 ]);

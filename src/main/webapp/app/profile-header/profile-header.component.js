@@ -1,11 +1,11 @@
 'use strict';
 
 angular.
-    module('myUserProfile').
-    component('myUserProfile', {
-        templateUrl: 'app/user-profile/user-profile.template.html',
+    module('myProfileHeader').
+    component('myProfileHeader', {
+        templateUrl: 'app/profile-header/profile-header.template.html',
         controller: ['$routeParams', 'Account', 'Hobby', 'Image', 'User', '$scope', 'Timeline',
-            function UserProfileController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
+            function ProfileHeaderController($routeParams, Account, Hobby, Image, User, $scope, Timeline) {
                 var self = this;
                 var userHobbies;
                 var userImages;
