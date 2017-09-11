@@ -1,4 +1,4 @@
-package com.iri.training.config.converters;
+package com.iri.training.util.converters;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
