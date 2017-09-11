@@ -36,4 +36,14 @@ public class HobbyServiceImpl implements HobbyService{
 
 		return userHobbies;
 	}
+
+	@Override
+	public void addHobbies(final Hobby hobby) throws SQLException {
+
+	}
+
+	@Override
+	public void removeHobbies(final Long userId) throws SQLException {
+
+	}
 }

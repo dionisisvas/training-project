@@ -83,6 +83,18 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		logger.debug("EXITING addHobbies : ");
 	}
 
+	@Override
+	public void removeHobbies(Long userId) throws SQLException {
+
+		logger.debug("ENTERED removeHobbies for user: " + userId);
+
+		String sql = property.getString("REMOVE_HOBBIES");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql, new Object[]{userId});
+
+		logger.debug("EXITING removeHobbies : ");
+	}
+
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
 
 		@Override

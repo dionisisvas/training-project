@@ -13,4 +13,5 @@ public interface HobbyRepository {
 
 	List<Hobby> getHobbyList() throws SQLException;
 	void addHobbies(Hobby hobby) throws SQLException;
+	void removeHobbies(Long userId) throws SQLException;
 }
