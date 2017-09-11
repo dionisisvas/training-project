@@ -95,6 +95,8 @@
     <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
     <spring:url value="/app/login-card/login-card.module.js" var="loginCardModuleJs" />
     <spring:url value="/app/login-card/login-card.component.js" var="loginCardComponentJs" />
+    <spring:url value="/app/profile-details/profile-details.module.js" var="profileDetailsModuleJs" />
+    <spring:url value="/app/profile-details/profile-details.component.js" var="profileDetailsComponentJs" />
     <spring:url value="/app/profile-header/profile-header.module.js" var="profileHeaderModuleJs" />
     <spring:url value="/app/profile-header/profile-header.component.js" var="profileHeaderComponentJs" />
     <spring:url value="/app/profile-hobbies/profile-hobbies.module.js" var="profileHobbiesModuleJs" />
@@ -183,6 +185,8 @@
     <script src="${userListComponentJs}"></script>
     <script src="${loginCardModuleJs}"></script>
     <script src="${loginCardComponentJs}"></script>
+    <script src="${profileDetailsModuleJs}"></script>
+    <script src="${profileDetailsComponentJs}"></script>
     <script src="${profileHeaderModuleJs}"></script>
     <script src="${profileHeaderComponentJs}"></script>
     <script src="${profileHobbiesModuleJs}"></script>

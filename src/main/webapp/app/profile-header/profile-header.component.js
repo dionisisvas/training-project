@@ -7,6 +7,7 @@ angular.
         controller: ['$routeParams', 'Account', 'Image', 'User',
             function ProfileHeaderController($routeParams, Account, Image, User) {
                 var self = this;
+                self.userAccount;
                 self.userImages;
                 self.profileImageUrl;
 

@@ -1,71 +1,26 @@
-<section layout="row">
-  <div flex>
-    <md-card md-colors="{background: 'blue-grey'}" class="md-padding" id="user-header-card">
-      <md-card-title>
-        <md-card-title-media>
-            <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
-                 alt="{{$ctrl.user.name}} "/>
-        </md-card-title-media>
-        <md-card-title-text class="user-names">
-          <span class="md-headline user-fullname">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
-          <span class="md-subhead user-username">
-            @{{$ctrl.userAccount.username}}
-            <md-card-actions>
-              <md-button class="md-icon-button md-accent" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
-                <md-icon md-font-set="material-icons"> mail </md-icon>
-              </md-button>
-              <md-button class="md-icon-button md-accent" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
-                <md-icon md-font-set="material-icons"> add </md-icon>
-              </md-button>
-            </md-card-actions>
-          </span>
-          <div class="image-selector">
-            <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
-                 ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
-          </div>
-        </md-card-title-text>
-      </md-card-title>
-    </md-card>
-  </div>
-</section>
-
-<section layout="row" layout-sm="column">
-  <div flex>
-    <md-card>
-      <md-card-title>
-        <md-card-title-text>
-          <span class="md-headline">About {{$ctrl.user.name}}</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-content>
-        <span class="details-subcategory">General information</span>
-        <p ng-show="$ctrl.user.dateOfBirth">
-           Birthday:
-           <span class="about-user-field">
-             {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
-           </span>
-        </p>
-        <md-divider></md-divider><br>
-        <span class="details-subcategory">Contact details</span>
-        <p ng-show="$ctrl.userEmail">
-           e-mail:
-           <span class="about-user-field">
-             {{$ctrl.userAccount.email}}
-           </span>
-        </p>
-        <p ng-show="$ctrl.user.phoneNo">
-           Phone No:
-           <span class="about-user-field">
-             {{$ctrl.user.phoneNo}}
-           </span>
-        </p>
-        <p ng-show="$ctrl.user.address">
-           Address:
-           <span class="about-user-field">
-             {{$ctrl.user.address}}
-           </span>
-        </p>
-      </md-card-content>
-    </md-card>
-  </div>
-</section>
+<md-card md-colors="{background: 'blue-grey'}" class="md-padding" id="user-header-card">
+  <md-card-title>
+    <md-card-title-media>
+        <img class="user-profile-img" ng-src="{{$ctrl.profileImageUrl || 'resources/img/users/default-user-img.png'}}"
+             alt="{{$ctrl.user.name}} "/>
+    </md-card-title-media>
+    <md-card-title-text class="user-names">
+      <span class="md-headline user-fullname">{{$ctrl.user.name}}&nbsp;{{$ctrl.user.surname}}</span>
+      <span class="md-subhead user-username">
+        @{{$ctrl.userAccount.username}}
+        <md-card-actions>
+          <md-button class="md-icon-button md-accent" ng-attr-title="Message {{$ctrl.user.name}}" aria-label="Message user">
+            <md-icon md-font-set="material-icons"> mail </md-icon>
+          </md-button>
+          <md-button class="md-icon-button md-accent" ng-attr-title="Add {{$ctrl.user.name}}" aria-label="Add user">
+            <md-icon md-font-set="material-icons"> add </md-icon>
+          </md-button>
+        </md-card-actions>
+      </span>
+      <div class="image-selector">
+        <img ng-repeat="img in $ctrl.userImages" ng-src="{{img.imgUri}}" alt="{{$ctrl.user.name}}"
+             ng-click="$ctrl.setProfileImageUri(img.imgUri)" class="user-images"/>
+      </div>
+    </md-card-title-text>
+  </md-card-title>
+</md-card>
