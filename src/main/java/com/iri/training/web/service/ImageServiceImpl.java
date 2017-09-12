@@ -29,5 +29,16 @@ public  class ImageServiceImpl implements ImageService {
 	public List<Image> getUserImages(Long userId) throws SQLException {
 		return 	imgRepository.getUserImages(userId);
 	}
+
+	@Override
+	public void addHobbies(final Image image) throws SQLException {
+		imgRepository.addImage(image);
+
+	}
+
+	@Override
+	public void removeHobbies(final Image image) throws SQLException {
+		imgRepository.removeImage(image);
+	}
 }
 

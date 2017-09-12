@@ -31,6 +31,31 @@ public class ImageRepositoryImpl implements ImageRepository {
 	public ImageRepositoryImpl() throws IOException {}
 
 	@Override
+	public void addImage(final Image image) throws SQLException {
+
+		logger.debug("ENTERED addImage : " + image);
+			String sql = property.getString("ADD_IMG");
+			jdbcTemplate = new JdbcTemplate(dataSource);
+			jdbcTemplate.update(sql, image.getUserId(),
+				                     image.isProfileImg(),
+				 					 image.getImgUri());
+
+			logger.debug("EXITING addImage : ");
+	}
+
+	@Override
+	public void removeImage(Image image) throws SQLException {
+
+		logger.debug("ENTERED removeImage for image: " + image);
+
+		String sql = property.getString("REMOVE_IMG");
+		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql,image.getImgUri());
+
+		logger.debug("EXITING removeImage : ");
+	}
+
+	@Override
 	public Image getImageById(Long imgId) throws SQLException {
 		logger.debug("ENTERED getImageById for imgId: " + imgId);
 

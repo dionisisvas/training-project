@@ -12,4 +12,6 @@ public interface ImageService {
 	Image getProfileImage(Long userId) throws SQLException;
 
 	List<Image> getUserImages(Long userId) throws SQLException;
+	void addHobbies(Image image) throws SQLException;
+	void removeHobbies(Image image) throws SQLException;
 }
