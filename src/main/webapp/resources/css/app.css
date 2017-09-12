@@ -41,6 +41,10 @@ md-sidenav .my-sidenav-toolbar {
   padding: 20px 15px 15px 15px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.40);
 }
+md-sidenav .my-sidenav-toolbar a {
+  text-decoration: inherit;
+  color: inherit;
+}
 md-sidenav .my-sidenav-toolbar .my-avatar {
   width: 64px;
   height: 64px;

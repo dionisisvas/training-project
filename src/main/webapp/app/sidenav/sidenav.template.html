@@ -3,7 +3,9 @@
   <md-toolbar class="md-primary md-hue-3 my-sidenav-toolbar" ng-show="$ctrl.isLoggedIn">
     <div layout="row" layout-align="start center">
 
-      <img ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}" class="my-avatar" alt="{{$ctrl.tokenBody.username}}" />
+      <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" title="Visit your profile...">
+        <img ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}" class="my-avatar" alt="{{$ctrl.tokenBody.username}}"/>
+      </a>
 
       <span flex></span>
 
@@ -35,11 +37,14 @@
     <span flex></span>
 
     <!-- User Info -->
-    <div class="my-user-info">
-      <div class="md-body-3">{{$ctrl.tokenBody.name}}&nbsp;{{$ctrl.tokenBody.surname}}</div>
-      <div class="md-body-2">@{{$ctrl.tokenBody.username}}</div>
-      <div class="md-body-1">{{$ctrl.tokenBody.email}}</div>
-    </div>
+
+    <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" title="Visit your profile...">
+      <div class="my-user-info">
+        <div class="md-body-3">{{$ctrl.tokenBody.name}}&nbsp;{{$ctrl.tokenBody.surname}}</div>
+        <div class="md-body-2">@{{$ctrl.tokenBody.username}}</div>
+        <div class="md-body-1">{{$ctrl.tokenBody.email}}</div>
+      </div>
+    </a>
 
   </md-toolbar>
 
