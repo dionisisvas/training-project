@@ -31,13 +31,13 @@ public  class ImageServiceImpl implements ImageService {
 	}
 
 	@Override
-	public void addHobbies(final Image image) throws SQLException {
+	public void addImage(final Image image) throws SQLException {
 		imgRepository.addImage(image);
 
 	}
 
 	@Override
-	public void removeHobbies(final Image image) throws SQLException {
+	public void removeImage(final Image image) throws SQLException {
 		imgRepository.removeImage(image);
 	}
 }
