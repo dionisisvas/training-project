@@ -2,5 +2,6 @@
 
 angular.module('myProfileHobbies', [
     'ngRoute',
-    'core.hobby'
+    'core.hobby',
+    'core.user'
 ]);

@@ -4,8 +4,8 @@ angular.
     module('myProfileHobbies').
     component('myProfileHobbies', {
         templateUrl: 'app/profile-hobbies/profile-hobbies.template.html',
-        controller: ['$routeParams', 'Hobby',
-            function ProfileHobbiesController($routeParams, Hobby) {
+        controller: ['$routeParams', 'Hobby', 'User',
+            function ProfileHobbiesController($routeParams, Hobby, User) {
                 var self = this;
                 self.userHobbies;
 
@@ -18,5 +18,6 @@ angular.
                 }
 
                 self.getUserHobbies();
+                self.user = User.UserById.get({userId: $routeParams.userId});                
         }]
     });
