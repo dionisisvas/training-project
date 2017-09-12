@@ -80,7 +80,7 @@
     <spring:url value="/app/error-card/error-card.module.js" var="errorCardModuleJs" />
     <spring:url value="/app/error-card/error-card.component.js" var="errorCardComponentJs" />
     <spring:url value="/app/greet-card/greet-card.module.js" var="greetCardModuleJs" />
-    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />    
+    <spring:url value="/app/greet-card/greet-card.component.js" var="greetCardComponentJs" />
     <spring:url value="/app/tables/tables.module.js" var="tablesModuleJs" />
     <spring:url value="/app/tables/tables.component.js" var="tablesComponentJs" />
     <spring:url value="/app/legal-card/legal-card.module.js" var="legalCardModuleJs" />
@@ -95,8 +95,14 @@
     <spring:url value="/app/user-list/user-list.component.js" var="userListComponentJs" />
     <spring:url value="/app/login-card/login-card.module.js" var="loginCardModuleJs" />
     <spring:url value="/app/login-card/login-card.component.js" var="loginCardComponentJs" />
-    <spring:url value="/app/user-profile/user-profile.module.js" var="userProfileModuleJs" />
-    <spring:url value="/app/user-profile/user-profile.component.js" var="userProfileComponentJs" />
+    <spring:url value="/app/profile-details/profile-details.module.js" var="profileDetailsModuleJs" />
+    <spring:url value="/app/profile-details/profile-details.component.js" var="profileDetailsComponentJs" />
+    <spring:url value="/app/profile-header/profile-header.module.js" var="profileHeaderModuleJs" />
+    <spring:url value="/app/profile-header/profile-header.component.js" var="profileHeaderComponentJs" />
+    <spring:url value="/app/profile-hobbies/profile-hobbies.module.js" var="profileHobbiesModuleJs" />
+    <spring:url value="/app/profile-hobbies/profile-hobbies.component.js" var="profileHobbiesComponentJs" />
+    <spring:url value="/app/profile-timeline/profile-timeline.module.js" var="profileTimelineModuleJs" />
+    <spring:url value="/app/profile-timeline/profile-timeline.component.js" var="profileTimelineComponentJs" />
     <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
     <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
     <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
@@ -162,7 +168,7 @@
     <script src="${errorCardModuleJs}"></script>
     <script src="${errorCardComponentJs}"></script>
     <script src="${greetCardModuleJs}"></script>
-    <script src="${greetCardComponentJs}"></script>    
+    <script src="${greetCardComponentJs}"></script>
     <script src="${tablesModuleJs}"></script>
     <script src="${tablesComponentJs}"></script>
     <script src="${legalCardModuleJs}"></script>
@@ -179,8 +185,14 @@
     <script src="${userListComponentJs}"></script>
     <script src="${loginCardModuleJs}"></script>
     <script src="${loginCardComponentJs}"></script>
-    <script src="${userProfileModuleJs}"></script>
-    <script src="${userProfileComponentJs}"></script>
+    <script src="${profileDetailsModuleJs}"></script>
+    <script src="${profileDetailsComponentJs}"></script>
+    <script src="${profileHeaderModuleJs}"></script>
+    <script src="${profileHeaderComponentJs}"></script>
+    <script src="${profileHobbiesModuleJs}"></script>
+    <script src="${profileHobbiesComponentJs}"></script>
+    <script src="${profileTimelineModuleJs}"></script>
+    <script src="${profileTimelineComponentJs}"></script>
     <script src="${userRegistrationModuleJs}"></script>
     <script src="${userRegistrationComponentJs}"></script>
     <script src="${userMapsModuleJs}"></script>

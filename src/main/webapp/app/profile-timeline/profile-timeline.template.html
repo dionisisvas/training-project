@@ -1,0 +1,23 @@
+<md-card ng-style="{'background-color': '#BDCFDE'}" class="md-padding">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{$ctrl.user.name}}'s Timeline</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <div class="timeline">
+      <li class="timeline-item" ng-repeat="lifeEvent in $ctrl.formattedEventList" ng-click="$ctrl.onEventClick(lifeEvent)" ng-class="{false: '', true: 'active'}[lifeEvent.active]">
+        <div class="timeline-item-connector">
+          <i class="fa"></i>
+        </div>
+        <div class="timeline-item-content">
+          <div class="timeline-item-header">
+            <div class="timeline-date">{{lifeEvent.date}}</div>
+            <div class="timeline-time"> '{{lifeEvent.time}}'</div>
+          </div>
+          {{lifeEvent.activeContent}}
+        </div>
+      </li>
+    </div>
+  </md-card-content>
+</md-card>
