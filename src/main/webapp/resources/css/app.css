@@ -32,7 +32,6 @@ md-toolbar#main-toolbar .md-block {
 
 /*********************** Sidenav ***********************/
 md-sidenav {
-  display: flex;
   height: 100%;
   background: rgb(255, 87, 34) !important;
 }
@@ -68,8 +67,8 @@ md-sidenav .missing-navlink .md-list-item-text {
   text-decoration: #E64A19 double line-through;
 }
 md-sidenav .legal-disclaimer-container {
-  display: inline-block;
-  align-self: flex-end;
+  bottom: 1rem;
+  position: fixed;
 }
 md-sidenav .legal-disclaimer-text {
   color: rgba(255, 255, 255, 0.55);
