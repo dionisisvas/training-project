@@ -35,10 +35,10 @@ public class HobbyController {
 
 		logger.debug("ENTERED editHobbies: ");
 
-		if (hobbyList != null) {
-			hobbyService.removeHobbies(hobbyList.get(0).getUserId());
+		if (hobbyList.get(0).getUserId() != null) {
 
-			hobbyService.addHobbies(hobbyList);
+			hobbyService.editHobby(hobbyList);
+
 			return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
 		} else {
 

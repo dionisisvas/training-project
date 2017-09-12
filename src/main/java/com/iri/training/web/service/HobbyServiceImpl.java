@@ -53,16 +53,16 @@ public class HobbyServiceImpl implements HobbyService {
 		return hobby;
 	}
 
-	/*@Override
-	public void editHobbies(final Hobby hobby) throws SQLException {
+	@Override
+	public void editHobby(final List<Hobby> hobbyList) throws SQLException {
 
-		logger.debug("ENTERED editHobbies for " + hobby);
-    if (hobbyRepository.getUserHobbies(hobby.getUserId()) !=null){
-		hobbyRepository.removeHobbies(hobby.getUserId());
+		logger.debug("ENTERED editHobby for " + hobbyList);
+			hobbyRepository.removeHobbies(hobbyList.get(0).getUserId());
+
+			hobbyRepository.addHobbies(hobbyList);
+
+			 logger.debug("Edit Success");
+
+		logger.debug("EXITING editHobby ");
 	}
-	if (hobbyRepository.getUserHobbies(hobby.getUserId()) ==null){
-		hobbyRepository.addHobbies(hobby);
-	}
-		logger.debug("EXITING editHobbies ");
-	}*/
 }
