@@ -23,4 +23,9 @@ public class EventServiceImpl implements EventService {
 		List<Events> datesList = new ArrayList<Events>(eventRepository.getDatesList());
 		return datesList;
 	}
+	@Override
+	public void addEvent(final Events events) throws SQLException {
+		eventRepository.addEvent(events);
+
+	}
 }

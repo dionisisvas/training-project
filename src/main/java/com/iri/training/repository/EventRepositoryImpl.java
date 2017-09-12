@@ -32,6 +32,20 @@ public class EventRepositoryImpl implements EventRepository {
 	public EventRepositoryImpl() throws IOException {}
 
 	@Override
+	public void addEvent(final Events events) throws SQLException {
+
+		logger.debug("ENTERED addEvent : " + events);
+		String sql = property.getString("ADD_EVENT");
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sql, events.getUserId(),
+								 events.getDateOfEvent(),
+								 events.getTitle(),
+								 events.getDescription());
+
+		logger.debug("EXITING addEvent: ");
+	}
+
+	@Override
 	public List<Events> getUserDates(Long userId) throws SQLException {
 		logger.debug("ENTERED getUserDates for userId: " + userId);
 
