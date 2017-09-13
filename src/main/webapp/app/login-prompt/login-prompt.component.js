@@ -13,10 +13,6 @@ angular.
                 self.cardDismissed = false;
                 self.dayInMillis = 86400000;
 
-                if (JWToken.getToken()) {
-                    self.isLoggedIn = true;
-                }
-
                 self.checkIfDismissed = function() {
                     self.loginPromptCardDismissedEpoch = $window.localStorage.getItem('loginPromptCardDismissedEpoch');
                     if (self.loginPromptCardDismissedEpoch !== null) {
@@ -32,6 +28,10 @@ angular.
                 }
 
                 self.cardDismissed = self.checkIfDismissed();
+
+                JWToken.isLoggedIn().then(function(authResult) {
+                    self.isLoggedIn = authResult;
+                });
 
                 self.dismissPrompt = function() {
                     $window.localStorage.setItem('loginPromptCardDismissedEpoch', new Date().getTime());
