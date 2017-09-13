@@ -4,7 +4,7 @@
     <div ng-show="$ctrl.isLoggedIn">
       <div layout="row" layout-align="start center">
 
-        <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" title="Visit your profile...">
+        <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" ng-attr-title="Visit your profile...">
           <img ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}" class="my-avatar" alt="{{$ctrl.tokenBody.username}}"/>
         </a>
 
@@ -39,7 +39,7 @@
 
       <!-- User Info -->
 
-      <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" title="Visit your profile...">
+      <a ng-href="/user/uid/{{$ctrl.tokenBody.sub}}" ng-attr-title="Visit your profile...">
         <div class="my-user-info">
           <div class="md-body-3">{{$ctrl.tokenBody.name}}&nbsp;{{$ctrl.tokenBody.surname}}</div>
           <div class="md-body-2">@{{$ctrl.tokenBody.username}}</div>
@@ -47,7 +47,7 @@
         </div>
       </a>
     </div>
-    
+
     <div ng-show="!$ctrl.isLoggedIn">
       <md-list>
         <md-list-item class="md-2-line" role="link" ng-href="/auth/0" ng-attr-title="Register a new account..." md-ink-ripple>
@@ -58,9 +58,9 @@
           </div>
 
         </md-list-item>
-        
+
         <md-divider></md-divider>
-    
+
         <md-list-item class="md-2-line" role="link" ng-href="/auth/1" ng-attr-title="Log into your account..." md-ink-ripple>
 
           <md-icon md-font-set="material-icons" class="my-navlink-icon"> account_circle </md-icon>
@@ -70,7 +70,7 @@
 
         </md-list-item>
       </md-list>
-      
+
     </div>
 
   </md-toolbar>

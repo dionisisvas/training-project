@@ -20,12 +20,12 @@ angular.module('trainingApp', [
     'myProfileHeader',
     'myProfileHobbies',
     'myProfileTimeline',
+    'myRegistrationCard',
     'mySidenav',
     'myTables',
     'myToolbar',
     'myUserList',
     'myUserMaps',
     'myUserStatistics',
-    'myUserRegistration',
     'myUserStatistics'
 ]);

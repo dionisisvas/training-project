@@ -103,8 +103,8 @@
     <spring:url value="/app/profile-hobbies/profile-hobbies.component.js" var="profileHobbiesComponentJs" />
     <spring:url value="/app/profile-timeline/profile-timeline.module.js" var="profileTimelineModuleJs" />
     <spring:url value="/app/profile-timeline/profile-timeline.component.js" var="profileTimelineComponentJs" />
-    <spring:url value="/app/user-registration/user-registration.module.js" var="userRegistrationModuleJs" />
-    <spring:url value="/app/user-registration/user-registration.component.js" var="userRegistrationComponentJs" />
+    <spring:url value="/app/registration-card/registration-card.module.js" var="registrationCardModuleJs" />
+    <spring:url value="/app/registration-card/registration-card.component.js" var="registrationCardComponentJs" />
     <spring:url value="/app/user-maps/user-maps.module.js" var="userMapsModuleJs" />
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
@@ -193,8 +193,8 @@
     <script src="${profileHobbiesComponentJs}"></script>
     <script src="${profileTimelineModuleJs}"></script>
     <script src="${profileTimelineComponentJs}"></script>
-    <script src="${userRegistrationModuleJs}"></script>
-    <script src="${userRegistrationComponentJs}"></script>
+    <script src="${registrationCardModuleJs}"></script>
+    <script src="${registrationCardComponentJs}"></script>
     <script src="${userMapsModuleJs}"></script>
     <script src="${userMapsComponentJs}"></script>
     <script src="${userStatisticsModuleJs}"></script>
