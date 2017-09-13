@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myUserRegistration', [
+angular.module('myRegistrationCard', [
     'ngRoute',
     'core.account',
     'core.authorization'

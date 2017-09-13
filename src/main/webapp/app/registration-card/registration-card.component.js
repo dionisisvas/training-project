@@ -1,11 +1,11 @@
 'use strict';
 
 angular.
-    module('myUserRegistration').
-        component('myUserRegistration', {
-        templateUrl: 'app/user-registration/user-registration.template.html',
+    module('myRegistrationCard').
+        component('myRegistrationCard', {
+        templateUrl: 'app/registration-card/registration-card.template.html',
         controller: ['$location', '$mdToast', '$scope', '$timeout', '$window', 'Account', 'Authorization', 'JWToken',
-            function UserRegistrationController($location, $mdToast, $scope, $timeout, $window, Account, Authorization, JWToken) {
+            function RegistrationCardController($location, $mdToast, $scope, $timeout, $window, Account, Authorization, JWToken) {
                 var self = this;
 
                 self.loginUrl = 'auth/1';
@@ -72,5 +72,9 @@ angular.
                         });
                     }
                 };
+
+                self.switchTab = function() {
+                    $location.path(self.loginUrl);
+                }
         }]
     });

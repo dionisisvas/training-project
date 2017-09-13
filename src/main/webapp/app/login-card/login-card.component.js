@@ -31,5 +31,9 @@ angular.
                         });
                     }
                 };
+
+                self.switchTab = function() {
+                    $location.path(self.registrationUrl);
+                }
         }]
     });

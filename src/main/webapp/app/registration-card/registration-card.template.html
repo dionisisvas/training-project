@@ -111,9 +111,9 @@
 
       <br>
 
-      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <section layout="row" layout-sm="column" layout-xs="column" layout-align="center center" layout-wrap>
         <md-button class="md-raised md-primary" type="submit" ng-disabled="registrationForm.$invalid">Register</md-button>
-        <md-button md-no-ink class="md-primary" ng-href="{{$ctrl.loginUrl}}">Already have an account? Log in instead. </md-button>
+        <md-button md-no-ink class="md-primary" ng-click="$ctrl.switchTab()">Already have an account? Log in instead. </md-button>
       </section>
       <br>
     </form>
