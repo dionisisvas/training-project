@@ -116,13 +116,13 @@
       integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
       crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="${angularJs}"></script>
-    <script src="${angularAnimateJs}"></script>
-    <script src="${angularAriaJs}"></script>
-    <script src="${angularCookiesJs}"></script>
-    <script src="${angularMessagesJs}"></script>
-    <script src="${angularResourceJs}"></script>
-    <script src="${angularRouteJs}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
 
     <script src="${coreModuleJs}"></script>

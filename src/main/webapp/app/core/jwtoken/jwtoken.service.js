@@ -66,18 +66,12 @@ angular.
                         var tknBody = JSON.parse(tknResult);
                         // Check if the token is expired
                         if ((tknBody.exp - (new Date().getTime() / 1000)) > 0 ) {
-                            console.log('hey');
                             deferred.resolve(true);
                         } else {
-                            console.log(tknBody.exp);
-                            console.log(new Date().getTime());
-                            console.log(tknBody.exp - new Date().getTime());
-                            console.log("t1");
                             deferred.resolve(false)
                         }
                     });
                 } else {
-                                              console.log("t2");
                     deferred.resolve(false);
                 }
 
