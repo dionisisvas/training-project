@@ -14,6 +14,9 @@
     </p>
     <md-divider></md-divider><br>
     <span class="details-subcategory">Contact details</span>
+    <p ng-show="!$ctrl.userEmail && !$ctrl.user.phoneNo && !$ctrl.user.address">
+      {{$ctrl.user.name}} has no contact information available.
+    </p>
     <p ng-show="$ctrl.userEmail">
        e-mail:
        <span class="about-user-field">
