@@ -4,8 +4,8 @@ angular.
     module('myProfileHeader').
     component('myProfileHeader', {
         templateUrl: 'app/profile-header/profile-header.template.html',
-        controller: ['$routeParams', 'Account', 'Image', 'User',
-            function ProfileHeaderController($routeParams, Account, Image, User) {
+        controller: ['$location', '$routeParams', 'Account', 'Image', 'User',
+            function ProfileHeaderController($location, $routeParams, Account, Image, User) {
                 var self = this;
                 self.userAccount;
                 self.userImages;
@@ -37,6 +37,9 @@ angular.
                 self.user = User.UserById.get({userId: $routeParams.userId}, function(user) {
                     self.getUserImages();
                     self.getUserAccount();
+                }, function() {
+                    $location.path('error');
+                    console.log("User " + $routeParams.userId + " does not exist.");
                 });
         }]
     });
