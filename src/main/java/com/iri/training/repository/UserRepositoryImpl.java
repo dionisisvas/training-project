@@ -35,7 +35,7 @@ public final class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	@Cacheable(value="findUser", key="#id")
+	@Cacheable(value="findUser", key="#userId")
 	public final User getUserById(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserById for ID: " + userId);
