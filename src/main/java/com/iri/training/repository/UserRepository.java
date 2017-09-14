@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.iri.training.model.User;
 
-
 public interface UserRepository {
 
 	User getUserById(long userId) throws SQLException;

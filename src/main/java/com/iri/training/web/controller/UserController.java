@@ -31,7 +31,7 @@ public final class UserController {
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<User> getUserById(@PathVariable("userId") final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for user ID: " + userId);
+		logger.debug("ENTERED getUserById for ID: " + userId);
 
 		final User user = userService.getUserById(userId);
 

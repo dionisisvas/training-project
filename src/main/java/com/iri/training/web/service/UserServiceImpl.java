@@ -29,7 +29,7 @@ public final class UserServiceImpl implements UserService {
 	@Override
 	public final User getUserById(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for user ID: " + userId);
+		logger.debug("ENTERED getUserById for ID: " + userId);
 
 		final User user = userRepository.getUserById(userId);
 		if (user != null) {
@@ -100,7 +100,8 @@ public final class UserServiceImpl implements UserService {
 			return null;
 		}
 
-		logger.debug("EXITING addUserAndGetGeneratedId for user with id: " + userId);
+		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user +
+			" with generated user ID: " + userId);
 
 		return userId;
 	}
