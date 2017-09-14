@@ -8,7 +8,7 @@ import com.iri.training.model.User;
 
 public interface UserRepository {
 
-	User getUserById(Long userId) throws SQLException;
+	User getUserById(long userId) throws SQLException;
 
 	List<User> getUserList() throws SQLException;
 

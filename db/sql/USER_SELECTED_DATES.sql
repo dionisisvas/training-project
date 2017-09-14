@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS USER_SELECTED_DATES(
     dateOfEvent     TEXT,
     Title           TEXT,
     Description     TEXT,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 INSERT INTO USER_SELECTED_DATES(userId, dateOfEvent, Title, Description) VALUES

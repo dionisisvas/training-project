@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
-    userId      INTEGER    PRIMARY KEY  AUTOINCREMENT,
-    name        TEXT       NOT_NULL,
-    surname     TEXT       NOT_NULL,
-    dob         TEXT       NOT_NULL,
-    phoneNo     TEXT,
-    address     TEXT
+    id               INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    name             TEXT       NOT_NULL,
+    surname          TEXT       NOT_NULL,
+    date_of_birth    TEXT       NOT_NULL,
+    phone_no         TEXT,
+    address          TEXT
 );
 
-INSERT INTO users(name, surname, dob, phoneNo, address) VALUES
+INSERT INTO users(name, surname, date_of_birth, phone_no, address) VALUES
 -- User 1 --
 ("John", "Doe", "1925-03-12", "693 5001 982", "10, Doe Street"),
 -- User 2 --

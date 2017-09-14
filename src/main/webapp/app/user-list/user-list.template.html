@@ -11,7 +11,7 @@
 
       <md-radio-button value="age"">Age</md-radio-button>
 
-      <md-radio-button value="userId">User ID</md-radio-button>
+      <md-radio-button value="id">User ID</md-radio-button>
     </md-radio-group>
 
     <br>
@@ -34,7 +34,7 @@
     <md-subheader>Users matching your criteria:</md-subheader>
 
     <md-list-item ng-repeat="user in $ctrl.users | filter:$ctrl.query | orderBy:$ctrl.orderProp | limitTo: $ctrl.limit"
-                  ng-href="user/uid/{{user.userId}}">
+                  ng-href="user/uid/{{user.id}}">
       <img ng-src="{{user.profileImage.imgUri}}" onerror="this.src='$ctrl.defaultImgUri'"
            alt="{{user.name}}" class="md-avatar"/>
       <p><strong>{{user.name}}&nbsp;{{user.surname}}</strong>&nbsp;&nbsp;<span class="userlist-age">{{user.age}} years old</span></p>

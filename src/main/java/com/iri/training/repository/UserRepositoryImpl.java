@@ -36,9 +36,9 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	@Cacheable(value="findUser", key="#userId")
-	public User getUserById(Long userId ) throws SQLException {
+	public User getUserById(long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for userId: " + userId);
+		logger.debug("ENTERED getUserById for ID: " + userId);
 
 		final User user;
 
@@ -47,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
 			new Object[]{userId},
 			new UserResultSetExtractor());
 
-		logger.debug("EXITING getUserById: " + user);
+		logger.debug("EXITING getUserById for user: " + user);
 
 		return user;
 	}
@@ -91,7 +91,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 		userId = kh.getKey().longValue();
 
-		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user + " with generated userId: " + userId);
+		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user + " with generated user ID: " + userId);
 
 		return userId;
 	}
@@ -105,13 +105,13 @@ public class UserRepositoryImpl implements UserRepository {
 
 			if (resultSet.next()) {
 				user = new UserBuilder()
-					.withUserId(resultSet.getLong("userId"))
+					.withId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
 					.withDateOfBirth(LocalDate.parse(
-						resultSet.getString("dob"),
+						resultSet.getString("date_of_birth"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
-					.withPhoneNo(resultSet.getString("phoneNo"))
+					.withPhoneNo(resultSet.getString("phone_no"))
 					.withAddress(resultSet.getString("address"))
 					.build();
 			}
@@ -132,11 +132,11 @@ public class UserRepositoryImpl implements UserRepository {
 			final List<User> userList = new ArrayList<>();
 			while (resultSet.next()) {
 				userList.add(new UserBuilder()
-					.withUserId(resultSet.getLong("userId"))
+					.withId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
 					.withDateOfBirth(LocalDate.parse(
-						resultSet.getString("dob"),
+						resultSet.getString("date_of_birth"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
 					.build());
 			}

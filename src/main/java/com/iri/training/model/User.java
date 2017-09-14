@@ -1,10 +1,11 @@
 package com.iri.training.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class User  {
+public class User {
 
-	private Long userId;
+	private long id;
 	private String name;
 	private String surname;
 	private short age;
@@ -12,40 +13,82 @@ public class User  {
 	private String phoneNo;
 	private String address;
 
-	public Long getUserId() { return userId; }
+	public long getId() {
 
-	public void setUserId(final Long userId) { this.userId = userId; }
+		return id;
+	}
 
-	public String getName() { return name; }
+	public void setId(final long id) {
 
-	public void setName(final String name) { this.name = name; }
+		this.id = id;
+	}
 
-	public String getSurname() { return surname; }
+	public String getName() {
 
-	public void setSurname(final String surname) { this.surname = surname; }
+		return name;
+	}
 
-	public short getAge() { return age; }
+	public void setName(final String name) {
 
-	public void setAge(final short age) { this.age = age; }
+		this.name = name;
+	}
 
-	public LocalDate getDateOfBirth() { return dateOfBirth; }
+	public String getSurname() {
 
-	public void setDateOfBirth(final LocalDate dateOfBirth) {this.dateOfBirth = dateOfBirth; }
+		return surname;
+	}
 
-	public String getPhoneNo() { return phoneNo; }
+	public void setSurname(final String surname) {
 
-	public void setPhoneNo(final String phoneNo) { this.phoneNo = phoneNo; }
+		this.surname = surname;
+	}
 
-	public String getAddress() { return address; }
+	public short getAge() {
 
-	public void setAddress(final String address) { this.address = address; }
+		return age;
+	}
+
+	public void setAge(final short age) {
+
+		this.age = age;
+	}
+
+	public LocalDate getDateOfBirth() {
+
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(final LocalDate dateOfBirth) {
+
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getPhoneNo() {
+
+		return phoneNo;
+	}
+
+	public void setPhoneNo(final String phoneNo) {
+
+		this.phoneNo = phoneNo;
+	}
+
+	public String getAddress() {
+
+		return address;
+	}
+
+	public void setAddress(final String address) {
+
+		this.address = address;
+	}
 
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("User{");
-		sb.append("userId='");
-		sb.append(userId);
+		sb.append("id='");
+		sb.append(id);
 		sb.append('\'');
 		sb.append(", name='");
 		sb.append(name);
@@ -53,9 +96,20 @@ public class User  {
 		sb.append(", surname='");
 		sb.append(surname);
 		sb.append('\'');
+		sb.append(", age='");
+		sb.append(age);
+		sb.append('\'');
+		sb.append(", dateOfBirth='");
+		sb.append(dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		sb.append('\'');
+		sb.append(", phoneNo='");
+		sb.append(phoneNo);
+		sb.append('\'');
+		sb.append(", address='");
+		sb.append(address);
+		sb.append('\'');
 		sb.append('}');
 
 		return sb.toString();
 	}
-
 }

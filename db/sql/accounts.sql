@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS accounts(
     username     TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
     password     TEXT       NOT_NULL,
     email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
-    FOREIGN KEY (accountId) REFERENCES users(userId)
+    FOREIGN KEY (accountId) REFERENCES users(id)
 );
 
 INSERT INTO accounts(accountId, username, password, email) VALUES
