@@ -2,6 +2,7 @@ package com.iri.training.model.builder;
 
 import java.time.LocalDate;
 
+import com.iri.training.enums.EducationLevel;
 import com.iri.training.model.User;
 
 public class UserBuilder extends UserBuilderBase<UserBuilder> {
@@ -57,17 +58,33 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withAge(final short aValue) {
+	public GeneratorT withDateOfBirth(final LocalDate aValue) {
 
-		instance.setAge(aValue);
+		instance.setDateOfBirth(aValue);
 
 		return (GeneratorT) this;
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withDateOfBirth(final LocalDate aValue) {
+	public GeneratorT withPlaceOfBirth(final String aValue) {
 
-		instance.setDateOfBirth(aValue);
+		instance.setPlaceOfBirth(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withNationality(final String aValue) {
+
+		instance.setNationality(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withEducation(final EducationLevel aValue) {
+
+		instance.setEducation(aValue);
 
 		return (GeneratorT) this;
 	}
@@ -84,6 +101,30 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	public GeneratorT withAddress(final String aValue) {
 
 		instance.setAddress(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withAge(final short aValue) {
+
+		instance.setAge(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withHeight(final float aValue) {
+
+		instance.setHeight(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withWeight(final float aValue) {
+
+		instance.setWeight(aValue);
 
 		return (GeneratorT) this;
 	}
