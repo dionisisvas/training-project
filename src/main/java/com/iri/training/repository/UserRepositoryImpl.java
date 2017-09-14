@@ -113,8 +113,12 @@ public final class UserRepositoryImpl implements UserRepository {
 					.withDateOfBirth(LocalDate.parse(
 						resultSet.getString("date_of_birth"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
+					.withPlaceOfBirth(resultSet.getString("place_of_birth"))
+					.withNationality(resultSet.getString("nationality"))
 					.withPhoneNo(resultSet.getString("phone_no"))
 					.withAddress(resultSet.getString("address"))
+					.withHeight(resultSet.getFloat("height"))
+					.withWeight(resultSet.getFloat("weight"))
 					.build();
 			}
 			else
