@@ -103,6 +103,9 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
+    <spring:url value="/app/Edit/Edit-Account/edit-account.module.js" var="editAccountsModuleJs" />
+    <spring:url value="/app/Edit/Edit-Account/edit-account.component.js" var="editAccountsComponentJs" />
+
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
@@ -118,7 +121,6 @@
     <script src="${angularResourceJs}"></script>
     <script src="${angularRouteJs}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
-
     <script src="${coreModuleJs}"></script>
     <script src="${appModuleJs}"></script>
     <script src="${appConfigJs}"></script>
@@ -134,6 +136,8 @@
     <script src="${imageServiceJs}"></script>
     <script src="${jwtokenModuleJs}"></script>
     <script src="${jwtokenServiceJs}"></script>
+    <script src="${editAccountsModuleJs}"></script>
+    <script src="${editAccountsComponentJs}"></script>
     <script src="${metricsModuleJs}"></script>
     <script src="${metricsServiceJs}"></script>
     <script src="${timelineModuleJs}"></script>

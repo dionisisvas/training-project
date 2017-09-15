@@ -24,5 +24,6 @@ angular.module('trainingApp', [
     'myUserStatistics',
     'myUserProfile',
     'myUserRegistration',
-    'myUserStatistics'
+    'myUserStatistics',
+    'editAccount'
 ]);

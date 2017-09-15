@@ -4,10 +4,14 @@ angular.
     module('editAccount').
         component('editAccount', {
         templateUrl: 'app/Edit/Edit-Account/edit-account.template.html',
-        controller: ['Account', 'Authorization', 'JWToken',
-            function EditAccountController(Account, User, JWToken) {
+        controller: ['Account', 'Authorization', 'JWToken','$scope',
+            function EditAccountController(Account, User, JWToken,$scope) {
                 var self = this;
-
+var account = JSON.stringify({
+                                    username :    $scope.account.username,
+                                    password :    $scope.account.password,
+                                    email:        $scope.account.email
+                        });
 
                 if (JWToken.getToken()) {
                     JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
