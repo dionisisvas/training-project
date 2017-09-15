@@ -14,7 +14,7 @@ public class User {
 	private String placeOfBirth;
 	private String nationality;
 	private EducationLevel education;
-	private String phoneNo;
+	private int phoneNo;
 	private String address;
 	private short age;
 	private float height;
@@ -90,12 +90,12 @@ public class User {
 		this.education = education;
 	}
 
-	public String getPhoneNo() {
+	public int getPhoneNo() {
 
 		return phoneNo;
 	}
 
-	public void setPhoneNo(final String phoneNo) {
+	public void setPhoneNo(final int phoneNo) {
 
 		this.phoneNo = phoneNo;
 	}

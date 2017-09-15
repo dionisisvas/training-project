@@ -90,7 +90,7 @@ class UserBuilderBase<GeneratorT extends UserBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withPhoneNo(final String aValue) {
+	public GeneratorT withPhoneNo(final int aValue) {
 
 		instance.setPhoneNo(aValue);
 
