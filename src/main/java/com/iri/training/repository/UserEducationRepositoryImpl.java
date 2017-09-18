@@ -25,7 +25,7 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public UserEducation getUserEducationByUserId(long userId) throws SQLException {
+	public final UserEducation getUserEducationByUserId(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserEducationByUserId for userId: " + userId);
 
@@ -42,7 +42,7 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 	}
 
 	@Override
-	public List<Long> getUsersByEducationLevel(EducationLevel educationLevel) throws SQLException {
+	public final List<Long> getUsersByEducationLevel(final EducationLevel educationLevel) throws SQLException {
 
 		logger.debug("ENTERED getUsersByEducationLevel for educationLevel: " + educationLevel);
 
