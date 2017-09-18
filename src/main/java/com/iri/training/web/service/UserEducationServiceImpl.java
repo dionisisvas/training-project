@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.iri.training.enums.EducationLevel;
 import com.iri.training.model.UserEducation;
 import com.iri.training.repository.UserEducationRepository;
 
+@Service
 public final class UserEducationServiceImpl implements  UserEducationService {
 
 	private static final Logger logger = Logger.getLogger(UserEducationServiceImpl.class);
@@ -19,15 +21,56 @@ public final class UserEducationServiceImpl implements  UserEducationService {
 	UserEducationRepository userEducationRepository;
 
 	@Override
-	public final UserEducation getUserEducationByUserId(final long userId) throws SQLException {
+	public final List<UserEducation> getUserEducationByUserId(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserEducationByUserId for userId: " + userId);
 
-		final UserEducation userEducation = userEducationRepository.getUserEducationByUserId(userId);
+		final List<UserEducation> userEducation = new ArrayList<>(userEducationRepository.getUserEducationByUserId(userId));
 
-		logger.debug("EXITING getUserEducationByUserId for userEducation" + userEducation);
+		logger.debug("EXITING getUserEducationByUserId for userEducation: " + userEducation);
 
 		return userEducation;
+	}
+
+	@Override
+	public final EducationLevel getUserEducationLevel(long userId) throws SQLException {
+
+		logger.debug("ENTERED getUserEducationLevel for userId: " + userId);
+
+		final List<UserEducation> userEducation = new ArrayList<>(this.getUserEducationByUserId(userId));
+
+		EducationLevel highestEducationLevel = EducationLevel.NO_SCHOOL;
+
+		// Iterate over the user's education items and find the highest attained education level
+		for (UserEducation educationItem : userEducation ) {
+			final EducationLevel educationLevel;
+
+			// There was no school data found in the DB.
+			if (educationItem.getEducationLevel() == EducationLevel.NO_SCHOOL) {
+				break;
+			}
+
+			// If graduated, the level is attained. If not decrement by one.
+			if (educationItem.isGraduated()) {
+				educationLevel = educationItem.getEducationLevel();
+			}
+			else {
+				educationLevel = EducationLevel.values()[educationItem.getEducationLevel().ordinal() - 1];
+			}
+
+			if (highestEducationLevel == EducationLevel.NO_SCHOOL) {
+				highestEducationLevel = educationLevel;
+			}
+			else {
+				if (educationLevel.ordinal() > highestEducationLevel.ordinal()) {
+					highestEducationLevel = educationLevel;
+				}
+			}
+		}
+
+		logger.debug("EXITING getUserEducationLevel for userId: " + userId + " with education level: " + highestEducationLevel);
+
+		return highestEducationLevel;
 	}
 
 	@Override

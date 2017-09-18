@@ -10,12 +10,14 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
 
 import com.iri.training.config.PropertiesConfig;
 import com.iri.training.enums.EducationLevel;
 import com.iri.training.model.UserEducation;
 import com.iri.training.model.builder.UserEducationBuilder;
 
+@Repository
 public final class UserEducationRepositoryImpl implements  UserEducationRepository {
 
 	private static final Logger logger = Logger.getLogger(UserEducationRepository.class);
@@ -25,18 +27,18 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public final UserEducation getUserEducationByUserId(final long userId) throws SQLException {
+	public final List<UserEducation> getUserEducationByUserId(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserEducationByUserId for userId: " + userId);
 
-		final UserEducation userEducation;
+		final List<UserEducation> userEducation;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		userEducation = jdbcTemplate.query(PropertiesConfig.GET_USER_EDUCATION_BY_USER_ID,
 			new Object[]{userId},
 			new UserEducationResultSetExtractor());
 
-		logger.debug("EXITING getUserEducationByUserId for userEducation" + userEducation);
+		logger.debug("EXITING getUserEducationByUserId for userEducation: " + userEducation);
 
 		return userEducation;
 	}
@@ -57,15 +59,15 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 		return userIdList;
 	}
 
-	private static final class UserEducationResultSetExtractor implements ResultSetExtractor<UserEducation> {
+	private static final class UserEducationResultSetExtractor implements ResultSetExtractor<List<UserEducation>> {
 
 		@Override
-		public UserEducation extractData(final ResultSet resultSet) throws SQLException {
+		public List<UserEducation> extractData(final ResultSet resultSet) throws SQLException {
 
-			final UserEducation userEducation;
+			final List<UserEducation> userEducation = new ArrayList<>();;
 
-			if (resultSet.next()) {
-				userEducation = new UserEducationBuilder()
+			while (resultSet.next()) {
+				userEducation.add(new UserEducationBuilder()
 					.withUserId(resultSet.getLong("user_id"))
 					.withSchoolName(resultSet.getString("school_name"))
 					.withEducationLevel(EducationLevel.valueOf(resultSet.getString("education_level")))
@@ -73,11 +75,7 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 					.withDroppedOut(resultSet.getBoolean("dropped_out"))
 					.withStartYear(resultSet.getInt("start_year"))
 					.withEndYear(resultSet.getInt("end_year"))
-					.build();
-			}
-			else
-			{
-				return null;
+					.build());
 			}
 
 			return userEducation;

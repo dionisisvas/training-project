@@ -8,7 +8,7 @@ import com.iri.training.model.UserEducation;
 
 public interface UserEducationRepository {
 
-	UserEducation getUserEducationByUserId(long userId) throws SQLException;
+	List<UserEducation> getUserEducationByUserId(long userId) throws SQLException;
 
 	List<Long> getUsersByEducationLevel(EducationLevel educationLevel) throws SQLException;
 }
