@@ -7,7 +7,7 @@ angular.
         controller: ['Account', 'Authorization', 'JWToken','$scope',
             function EditAccountController(Account, User, JWToken,$scope) {
                 var self = this;
-var account = JSON.stringify({
+              var account = JSON.stringify({
                                     username :    $scope.account.username,
                                     password :    $scope.account.password,
                                     email:        $scope.account.email

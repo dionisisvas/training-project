@@ -1,5 +1,4 @@
 <div id="registration-container" layout="column">
-	<h2 class="md-title inset">To register, enter your information below:</h2>
 	<md-card>
 		<form name="registrationForm" ng-submit="$ctrl.submitForm(registrationForm.$valid)" novalidate>
 			<br>
@@ -78,42 +77,11 @@
 				</md-input-container>
 			</div>
 
-			<br>
-
-			<div layout="row">
-				<md-input-container class="md-block">
-					<md-icon md-font-set="material-icons"> vpn_key </md-icon>
-					<input ng-model="account.password" name="password" type="password" placeholder="Password"
-						   ng-required="true" md-minlength="8" md-maxlength="64" password-strength>
-
-					<div class="input-hint">Include mixed-case alphanumericals & symbols.</div>
-					<div class="input-hint">Minimum length: 8 characters.</div>
-
-					<div ng-messages="registrationForm.password.$error" role="alert">
-						<div ng-message="required">The password can't be blank.</div>
-						<div ng-message="passwordStrength">Your password is weak.</div>
-						<div ng-message-exp="['md-minlength', 'md-maxlength']">
-							The password must be between 8 and 64 characters.
-						</div>
-					</div>
-				</md-input-container>
-
-				<md-input-container class="md-block">
-					<md-icon md-font-set="material-icons"> repeat </md-icon>
-					<input ng-model="account.passwordRepeat" name="passwordRepeat" type="password" placeholder="Repeat Password"
-						   ng-required="true" md-minlength="8" md-maxlength="64" password-repeat="account.password">
-
-					<div ng-messages="registrationForm.passwordRepeat.$error" role="alert">
-						<div ng-message="passwordRepeat">Passwords don't match.</div>
-					</div>
-				</md-input-container>
-			</div>
 
 			<br>
 
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
 				<md-button class="md-raised md-primary" type="submit" ng-disabled="registrationForm.$invalid">Register</md-button>
-				<md-button md-no-ink class="md-primary" ng-href="{{$ctrl.loginUrl}}">Already have an account? Log in instead. </md-button>
 			</section>
 			<br>
 		</form>
