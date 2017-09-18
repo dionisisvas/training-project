@@ -39,10 +39,10 @@ public final class EducationController {
 		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
 
 		if (!userEducation.isEmpty()) {
-			return new ResponseEntity<>(userEducation, HttpStatus.OK);
+			return new ResponseEntity<List<Education>>(userEducation, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Education>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/level/uid/{userId}", method = RequestMethod.GET,
@@ -57,10 +57,10 @@ public final class EducationController {
 			+ educationLevel);
 
 		if (educationLevel != null) {
-			return new ResponseEntity<>(educationLevel, HttpStatus.OK);
+			return new ResponseEntity<EducationLevel>(educationLevel, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<EducationLevel>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/level/{educationLevel}/users", method = RequestMethod.GET,
@@ -74,10 +74,10 @@ public final class EducationController {
 		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel);
 
 		if (!userIdList.isEmpty()) {
-			return new ResponseEntity<>(userIdList, HttpStatus.OK);
+			return new ResponseEntity<List<Long>>(userIdList, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Long>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/level/{educationLevel}/population", method = RequestMethod.GET,
@@ -91,6 +91,6 @@ public final class EducationController {
 		logger.debug("EXITING getUserPopulationByEducationLevel for educationLevel: " + educationLevel + ", with population: "
 			+ population);
 
-		return new ResponseEntity<>(population, HttpStatus.OK);
+		return new ResponseEntity<Integer>(population, HttpStatus.OK);
 	}
 }
