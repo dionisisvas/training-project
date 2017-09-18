@@ -12,15 +12,32 @@ CREATE TABLE IF NOT EXISTS user_education(
 
 INSERT INTO user_education(user_id, school_name, education_level, graduated, dropped_out, start_year, end_year) VALUES
 -- User 1 --
-(1, "7o ΓΕΛ Αθηνών", "SCHOOL", 1, NULL, 2011, 2014),
-(1, "University of Leeds", "BACHELOR", 0, NULL, 2014, NULL),
+(1, "7o ΓΕΛ Αθηνών", "SCHOOL", 1, 0, 2000, 2003),
+(1, "University of Leeds", "BACHELOR", 0, 0, 2004, NULL),
 -- User 2 --
-(2, "University of Birmingham", "BACHELOR", 0, NULL, 2015, NULL),
--- User 5 --
-(5, "TEI Αθηνών", "BACHELOR", 1, NULL, 2012, 2016),
-(5, "TEI Αθηνών", "MASTER", 0, NULL, 2016, NULL),
+(2, "University of Birmingham", "BACHELOR", 0, 0, 2010, NULL),
+-- User 4 --
+(4, "University of Texas at Austin", "BACHELOR", 1, 0, 1989, 1992),
+-- User 7 --
+(7, "Toronto High School", "SCHOOL", 1, 0, 1972, 1975),
+(7, "Automative Training Centre", "TRADE_SCHOOL", 1, 0, 1976, 1977),
+-- User 8 --
+(8, "TEI Αθηνών", "BACHELOR", 1, 0, 2009, 2015),
+(8, "TEI Αθηνών", "MASTER", 0, 0, 2016, NULL),
+-- User 10 --
+(10, "TEI Kαβάλας", "BACHELOR", 0, 1, 2011, NULL),
 -- User 12 --
-(12, "2o EΠΑΛ Λαμίας", "SCHOOL", 1, NULL, 2007, 2012),
+(12, "2o ΓΕΛ Αιγάλεω", "SCHOOL", 1, 0, 1994, 1997),
+(12, "Πανεπιστήμιο Αθηνών", "BACHELOR", 1, 0, 1997, 2001),
+(12, "Πανεπιστήμιο Αθηνών", "MASTER", 1, 0, 2001, 2003),
+(12, "Πανεπιστήμιο Αθηνών", "DOCTORAL", 1, 0, 2003, 2008),
+-- User 14 --
+(14, "University of Bologna", "BACHELOR", 0, 0, 2013, NULL),
+-- User 16 --
+(16, "1o EΠΑΛ Βόλου", "SCHOOL", 1, 0, 1985, 1988),
+-- User 17 --
+(17, "Πανεπιστήμιο Ιωαννίνων", "BACHELOR", 0, 1, 2006, NULL),
 -- User 18 --
-(18, "3o Γυμνάσιο Καλαμάτας", "SCHOOL", 1, NULL, 2003, 2006),
-(18, "1o EΠΑΛ Καλαμάτας", "SCHOOL", 0, 1, 2006, NULL);
+(18, "University of Edinburgh", "BACHELOR", 0, 0, NULL, NULL),
+-- User 20 --
+(20, "Helene Lange Gymnasium", "SCHOOL", 1, 0, NULL, NULl);
