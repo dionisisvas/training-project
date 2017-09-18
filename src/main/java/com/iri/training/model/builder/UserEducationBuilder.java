@@ -1,7 +1,5 @@
 package com.iri.training.model.builder;
 
-import java.time.LocalDate;
-
 import com.iri.training.enums.EducationLevel;
 import com.iri.training.model.UserEducation;
 
