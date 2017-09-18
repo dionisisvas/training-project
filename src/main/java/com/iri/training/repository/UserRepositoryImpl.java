@@ -26,54 +26,55 @@ import com.iri.training.model.User;
 import com.iri.training.model.builder.UserBuilder;
 
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public final class UserRepositoryImpl implements UserRepository {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = Logger.getLogger(UserRepository.class);
 
+	private final DatabaseConnection dbConnection = new DatabaseConnection();
+	private final DataSource dataSource = dbConnection.getDataSource();
 	private JdbcTemplate jdbcTemplate;
-	private DatabaseConnection dbConnection = new DatabaseConnection();
-	private DataSource dataSource = dbConnection .getDataSource();
 
 	@Override
 	@Cacheable(value="findUser", key="#userId")
-	public User getUserById(Long userId ) throws SQLException {
+	public final User getUserById(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for userId: " + userId);
+		logger.debug("ENTERED getUserById for ID: " + userId);
 
 		final User user;
-
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 		user = jdbcTemplate.query(PropertiesConfig.GET_USER_BY_ID,
 			new Object[]{userId},
 			new UserResultSetExtractor());
 
-		logger.debug("EXITING getUserById: " + user);
+		logger.debug("EXITING getUserById for user: " + user);
 
 		return user;
 	}
 
 	@Override
-	public List<User> getUserList() throws SQLException {
+	public final List<User> getUserList() throws SQLException {
 
 		logger.debug("ENTERED getUserList");
 
+		final List<User> userList;
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<User> usersList = jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
-			new UserListResultSetExtractor());
 
-		logger.debug("EXITING getUserList: " + usersList);
+		userList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
+			new UserListResultSetExtractor()));
 
-		return usersList;
+		logger.debug("EXITING getUserList");
+
+		return userList;
 	}
 
 	@Override
-	public long addUserAndGetGeneratedId(final User user) throws SQLException {
+	public final long addUserAndGetGeneratedId(final User user) throws SQLException {
 
 		logger.debug("ENTERED addUserAndGetGeneratedId for user: " + user);
 
 		final KeyHolder kh = new GeneratedKeyHolder();
 		final long userId;
-
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -91,7 +92,8 @@ public class UserRepositoryImpl implements UserRepository {
 
 		userId = kh.getKey().longValue();
 
-		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user + " with generated userId: " + userId);
+		logger.debug("EXITING addUserAndGetGeneratedId for user: " + user +
+			" with generated user ID: " + userId);
 
 		return userId;
 	}
@@ -105,14 +107,18 @@ public class UserRepositoryImpl implements UserRepository {
 
 			if (resultSet.next()) {
 				user = new UserBuilder()
-					.withUserId(resultSet.getLong("userId"))
+					.withId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
 					.withDateOfBirth(LocalDate.parse(
-						resultSet.getString("dob"),
+						resultSet.getString("date_of_birth"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
-					.withPhoneNo(resultSet.getString("phoneNo"))
+					.withPlaceOfBirth(resultSet.getString("place_of_birth"))
+					.withNationality(resultSet.getString("nationality"))
+					.withPhoneNo(resultSet.getInt("phone_no"))
 					.withAddress(resultSet.getString("address"))
+					.withHeight(resultSet.getFloat("height"))
+					.withWeight(resultSet.getFloat("weight"))
 					.build();
 			}
 			else
@@ -130,13 +136,14 @@ public class UserRepositoryImpl implements UserRepository {
 		public List<User> extractData(final ResultSet resultSet) throws SQLException {
 
 			final List<User> userList = new ArrayList<>();
+
 			while (resultSet.next()) {
 				userList.add(new UserBuilder()
-					.withUserId(resultSet.getLong("userId"))
+					.withId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
 					.withDateOfBirth(LocalDate.parse(
-						resultSet.getString("dob"),
+						resultSet.getString("date_of_birth"),
 						DateTimeFormatter.ISO_LOCAL_DATE))
 					.build());
 			}

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS user_images(
     userId          INTEGER    NOT_NULL,
     isProfileImg    BOOLEAN    DEFAULT '0',
     imgUri          TEXT       NOT_NULL  UNIQUE,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 INSERT INTO user_images(userId, isProfileImg, imgUri) VALUES

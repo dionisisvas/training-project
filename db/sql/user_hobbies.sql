@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user_hobbies;
 CREATE TABLE IF NOT EXISTS user_hobbies(
     userId     INTEGER    NOT_NULL,
     hobbyId    INTEGER    NOT_NULL,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 INSERT INTO user_hobbies(userId, hobbyId) VALUES

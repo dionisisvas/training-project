@@ -1,0 +1,15 @@
+package com.iri.training.enums;
+
+public enum EducationLevel {
+	NO_SCHOOL,
+	SOME_SCHOOL,
+	SCHOOL,
+	SOME_TRADE_SCHOOL,
+	TRADE_SCHOOL,
+	SOME_BACHERLOR,
+	BACHELOR,
+	SOME_MASTER,
+	MASTER,
+	SOME_DOCTORAL,
+	DOCTORAL
+}

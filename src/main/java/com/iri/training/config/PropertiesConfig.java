@@ -1,6 +1,5 @@
 package com.iri.training.config;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -55,6 +54,9 @@ public class PropertiesConfig {
 	public static String GET_EVENTS_BY_USER_ID;
 	public static String GET_EVENT_LIST;
 	public static int KEY_LIFETIME_IN_HOURS;
+	// User education queries
+	public static String GET_USER_EDUCATION_BY_USER_ID;
+	public static String GET_USERS_BY_EDUCATION_LEVEL;
 
 	/*
 	 * JWT STATIC FIELDS
@@ -132,6 +134,13 @@ public class PropertiesConfig {
 				"SELECT * FROM USER_SELECTED_DATES WHERE userID = ?");
 			GET_EVENT_LIST = sqlProperties.getString("GetEventList",
 				"SELECT * FROM USER_SELECTED_DATES;");
+
+			// User education queries
+			GET_USER_EDUCATION_BY_USER_ID = sqlProperties.getString("GetUserEducationByUserId",
+				"SELECT * FROM user_education WHERE user_id = ?;");
+			GET_USERS_BY_EDUCATION_LEVEL = sqlProperties.getString("GetUsersByEducationLevel",
+				"SELECT user_id FROM user_education WHERE education_level = ?;");
+
 			logger.info("sql_queries properties loaded...");
 		} catch (NullPointerException e) {
 			logger.warn("Loading the sql_queries.properties file failed! " + e);
