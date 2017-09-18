@@ -68,7 +68,8 @@ public final class EducationServiceImpl implements EducationService {
 			}
 		}
 
-		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId + " with education level: " + highestEducationLevel);
+		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId + " with education level: "
+			+ highestEducationLevel);
 
 		return highestEducationLevel;
 	}
