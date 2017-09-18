@@ -2,7 +2,7 @@ package com.iri.training.model;
 
 import com.iri.training.enums.EducationLevel;
 
-public class UserEducation {
+public class Education {
 
 	private long userId;
 	private String schoolName;
@@ -85,7 +85,7 @@ public class UserEducation {
 	@Override public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("UserEducation{");
+		sb.append("Education{");
 		sb.append("userId='");
 		sb.append(userId);
 		sb.append('\'');

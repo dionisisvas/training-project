@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.iri.training.enums.EducationLevel;
-import com.iri.training.model.UserEducation;
+import com.iri.training.model.Education;
 
-public interface UserEducationService {
+public interface EducationService {
 
-	List<UserEducation> getUserEducationByUserId(long userId) throws SQLException;
+	List<Education> getEducationByUserId(long userId) throws SQLException;
 
-	EducationLevel getUserEducationLevel(long userId) throws SQLException;
+	EducationLevel getEducationLevelByUserId(long userId) throws SQLException;
 
 	List<Long> getUsersByEducationLevel(EducationLevel educationLevel) throws SQLException;
 

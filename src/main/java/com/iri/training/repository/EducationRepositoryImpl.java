@@ -14,31 +14,31 @@ import org.springframework.stereotype.Repository;
 
 import com.iri.training.config.PropertiesConfig;
 import com.iri.training.enums.EducationLevel;
-import com.iri.training.model.UserEducation;
-import com.iri.training.model.builder.UserEducationBuilder;
+import com.iri.training.model.Education;
+import com.iri.training.model.builder.EducationBuilder;
 
 @Repository
-public final class UserEducationRepositoryImpl implements  UserEducationRepository {
+public final class EducationRepositoryImpl implements EducationRepository {
 
-	private static final Logger logger = Logger.getLogger(UserEducationRepository.class);
+	private static final Logger logger = Logger.getLogger(EducationRepository.class);
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
 	private final DataSource dataSource = dbConnection.getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public final List<UserEducation> getUserEducationByUserId(final long userId) throws SQLException {
+	public final List<Education> getEducationByUserId(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserEducationByUserId for userId: " + userId);
+		logger.debug("ENTERED getEducationByUserId for userId: " + userId);
 
-		final List<UserEducation> userEducation;
+		final List<Education> userEducation;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		userEducation = jdbcTemplate.query(PropertiesConfig.GET_USER_EDUCATION_BY_USER_ID,
 			new Object[]{userId},
 			new UserEducationResultSetExtractor());
 
-		logger.debug("EXITING getUserEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
 
 		return userEducation;
 	}
@@ -59,15 +59,15 @@ public final class UserEducationRepositoryImpl implements  UserEducationReposito
 		return userIdList;
 	}
 
-	private static final class UserEducationResultSetExtractor implements ResultSetExtractor<List<UserEducation>> {
+	private static final class UserEducationResultSetExtractor implements ResultSetExtractor<List<Education>> {
 
 		@Override
-		public List<UserEducation> extractData(final ResultSet resultSet) throws SQLException {
+		public List<Education> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<UserEducation> userEducation = new ArrayList<>();;
+			final List<Education> userEducation = new ArrayList<>();;
 
 			while (resultSet.next()) {
-				userEducation.add(new UserEducationBuilder()
+				userEducation.add(new EducationBuilder()
 					.withUserId(resultSet.getLong("user_id"))
 					.withSchoolName(resultSet.getString("school_name"))
 					.withEducationLevel(EducationLevel.valueOf(resultSet.getString("education_level")))

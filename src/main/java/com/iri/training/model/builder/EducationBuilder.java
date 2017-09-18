@@ -1,33 +1,33 @@
 package com.iri.training.model.builder;
 
 import com.iri.training.enums.EducationLevel;
-import com.iri.training.model.UserEducation;
+import com.iri.training.model.Education;
 
-public class UserEducationBuilder extends UserEducationBuilderBase<UserEducationBuilder> {
+public class EducationBuilder extends EducationBuilderBase<EducationBuilder> {
 
-	public static UserEducationBuilder user() {
+	public static EducationBuilder user() {
 
-		return new UserEducationBuilder();
+		return new EducationBuilder();
 	}
 
-	public UserEducationBuilder() {
+	public EducationBuilder() {
 
-		super(new UserEducation());
+		super(new Education());
 	}
 
-	public UserEducation build() {
+	public Education build() {
 
 		return getInstance();
 	}
 }
 
-class UserEducationBuilderBase<GeneratorT extends UserEducationBuilderBase<GeneratorT>> {
+class EducationBuilderBase<GeneratorT extends EducationBuilderBase<GeneratorT>> {
 
-	private final UserEducation instance;
+	private final Education instance;
 
-	protected UserEducationBuilderBase(final UserEducation aInstance) { instance = aInstance; }
+	protected EducationBuilderBase(final Education aInstance) { instance = aInstance; }
 
-	protected UserEducation getInstance() {
+	protected Education getInstance() {
 		return instance;
 	}
 

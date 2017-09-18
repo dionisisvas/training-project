@@ -9,41 +9,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iri.training.enums.EducationLevel;
-import com.iri.training.model.UserEducation;
-import com.iri.training.repository.UserEducationRepository;
+import com.iri.training.model.Education;
+import com.iri.training.repository.EducationRepository;
 
 @Service
-public final class UserEducationServiceImpl implements  UserEducationService {
+public final class EducationServiceImpl implements EducationService {
 
-	private static final Logger logger = Logger.getLogger(UserEducationServiceImpl.class);
+	private static final Logger logger = Logger.getLogger(EducationServiceImpl.class);
 
 	@Autowired
-	UserEducationRepository userEducationRepository;
+	EducationRepository educationRepository;
 
 	@Override
-	public final List<UserEducation> getUserEducationByUserId(final long userId) throws SQLException {
+	public final List<Education> getEducationByUserId(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserEducationByUserId for userId: " + userId);
+		logger.debug("ENTERED getEducationByUserId for userId: " + userId);
 
-		final List<UserEducation> userEducation = new ArrayList<>(userEducationRepository.getUserEducationByUserId(userId));
+		final List<Education> userEducation = new ArrayList<>(educationRepository.getEducationByUserId(userId));
 
-		logger.debug("EXITING getUserEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
 
 		return userEducation;
 	}
 
 	@Override
-	public final EducationLevel getUserEducationLevel(long userId) throws SQLException {
+	public final EducationLevel getEducationLevelByUserId(long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserEducationLevel for userId: " + userId);
+		logger.debug("ENTERED getEducationLevelByUserId for userId: " + userId);
 
-		final List<UserEducation> userEducation = new ArrayList<>(this.getUserEducationByUserId(userId));
+		final List<Education> userEducation = new ArrayList<>(this.getEducationByUserId(userId));
 
 		EducationLevel highestEducationLevel = EducationLevel.NO_SCHOOL;
 
 		// Iterate over the user's education items and find the highest attained education level
-		for (UserEducation educationItem : userEducation ) {
-			final EducationLevel educationLevel;
+		for (Education educationItem : userEducation ) {
+			final EducationLevel educationItemLevel;
 
 			// There was no school data found in the DB.
 			if (educationItem.getEducationLevel() == EducationLevel.NO_SCHOOL) {
@@ -52,23 +52,23 @@ public final class UserEducationServiceImpl implements  UserEducationService {
 
 			// If graduated, the level is attained. If not decrement by one.
 			if (educationItem.isGraduated()) {
-				educationLevel = educationItem.getEducationLevel();
+				educationItemLevel = educationItem.getEducationLevel();
 			}
 			else {
-				educationLevel = EducationLevel.values()[educationItem.getEducationLevel().ordinal() - 1];
+				educationItemLevel = EducationLevel.values()[educationItem.getEducationLevel().ordinal() - 1];
 			}
 
 			if (highestEducationLevel == EducationLevel.NO_SCHOOL) {
-				highestEducationLevel = educationLevel;
+				highestEducationLevel = educationItemLevel;
 			}
 			else {
-				if (educationLevel.ordinal() > highestEducationLevel.ordinal()) {
-					highestEducationLevel = educationLevel;
+				if (educationItemLevel.ordinal() > highestEducationLevel.ordinal()) {
+					highestEducationLevel = educationItemLevel;
 				}
 			}
 		}
 
-		logger.debug("EXITING getUserEducationLevel for userId: " + userId + " with education level: " + highestEducationLevel);
+		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId + " with education level: " + highestEducationLevel);
 
 		return highestEducationLevel;
 	}
@@ -78,7 +78,7 @@ public final class UserEducationServiceImpl implements  UserEducationService {
 
 		logger.debug("ENTERED getUsersByEducationLevel for educationLevel: " + educationLevel);
 
-		final List<Long> userIdList = new ArrayList<>(userEducationRepository.getUsersByEducationLevel(educationLevel));
+		final List<Long> userIdList = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
 
 		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel);
 
@@ -90,7 +90,7 @@ public final class UserEducationServiceImpl implements  UserEducationService {
 		logger.debug("ENTERED getUserPopulationByEducationLevel for educationLevel: " + educationLevel);
 
 		final int population;
-		final List<Long> userIdList = new ArrayList<>(userEducationRepository.getUsersByEducationLevel(educationLevel));
+		final List<Long> userIdList = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
 
 		population = userIdList.size();
 
