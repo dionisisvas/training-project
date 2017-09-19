@@ -38,7 +38,7 @@ public final class UserRepositoryImpl implements UserRepository {
 	@Cacheable(value="findUser", key="#userId")
 	public final User getUserById(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for ID: " + userId);
+		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user;
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -47,7 +47,7 @@ public final class UserRepositoryImpl implements UserRepository {
 			new Object[]{userId},
 			new UserResultSetExtractor());
 
-		logger.debug("EXITING getUserById for user: " + user);
+		logger.debug("EXITING getUserById with user: " + user);
 
 		return user;
 	}

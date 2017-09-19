@@ -2,6 +2,9 @@ package com.iri.training.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,88 +22,93 @@ import com.iri.training.model.builder.AccountBuilder;
 @Repository
 public class AccountRepositoryImpl implements AccountRepository {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = Logger.getLogger(UserRepository.class);
 
-	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public Account getAccount(final String username) throws SQLException {
-
-		logger.debug("ENTERED getAccount for username: " + username);
-
-		final Account account;
-
-		jdbcTemplate = new JdbcTemplate(dataSource);
-		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_USERNAME,
-			new Object[]{username},
-			new AccountResultSetExtractor());
-
-		logger.debug("EXITING getAccount: " + account);
-
-		return account;
-	}
-
-	@Override
-	public Account getAccountById(Long accountId ) throws SQLException {
+	public final Account getAccountById(final long accountId) throws SQLException {
 
 		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 
 		final Account account;
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_ID,
 			new Object[]{accountId},
 			new AccountResultSetExtractor());
 
-		logger.debug("EXITING getAccountById: " + account);
+		logger.debug("EXITING getAccountById with account: " + account);
 
 		return account;
 	}
 
-	@Override public Account getAccountByEmail(final String email) throws SQLException {
+	@Override
+	public final Account getAccountByUsername(final String username) throws SQLException {
+
+		logger.debug("ENTERED getAccountByUsername for username: " + username);
+
+		final Account account;
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_USERNAME,
+			new Object[]{username},
+			new AccountResultSetExtractor());
+
+		logger.debug("EXITING getAccountByUsername with account: " + account);
+
+		return account;
+	}
+
+	@Override
+	public final Account getAccountByEmail(final String email) throws SQLException {
 
 		logger.debug("ENTERED getAccountByEmail for email: " + email);
 
 		final Account account;
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 		account = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_BY_EMAIL,
 			new Object[]{email},
 			new AccountResultSetExtractor());
 
-		logger.debug("EXITING getAccountByEmail: " + account);
+		logger.debug("EXITING getAccountByEmail with account: " + account);
 
 		return account;
 	}
 
 	@Override
-	public List<Account> getAccountList() throws SQLException {
+	public final List<Account> getAccountList() throws SQLException {
 
 		logger.debug("ENTERED getAccountList");
 
 		final List<Account> accountsList;
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		accountsList = jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
-			new AccountListResultSetExtractor());
 
-		logger.debug("EXITING getAccountList: " + accountsList);
+		accountsList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
+			new AccountListResultSetExtractor()));
+
+		logger.debug("EXITING getAccountList");
 
 		return accountsList;
 	}
 
 	@Override
-	public void createAccount(final Account account) throws SQLException {
+	public void addAccount(final Account account) throws SQLException {
 
-		logger.debug("ENTERED createAccount for account: " + account);
+		logger.debug("ENTERED addAccount for account: " + account);
 
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(PropertiesConfig.ADD_ACCOUNT,
 			account.getId(),
 			account.getUsername(),
 			account.getPassword(),
-			account.getEmail());
+			account.getEmail(),
+			Instant.now().getEpochSecond()); // Set current timestamp as join date
 
-		logger.debug("EXITING createAccount: " + account);
+		logger.debug("EXITING addAccount for account: " + account);
 	}
 
 	private static final class AccountResultSetExtractor implements ResultSetExtractor<Account> {
@@ -112,10 +120,13 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 			if (resultSet.next()) {
 				account = new AccountBuilder()
-					.withId(resultSet.getLong("accountId"))
+					.withId(resultSet.getLong("id"))
 					.withUsername(resultSet.getString("username"))
 					.withPassword(resultSet.getString("password"))
 					.withEmail(resultSet.getString("email"))
+					.withJoinDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("join_date"),
+						0, ZoneOffset.UTC))
 					.build();
 			}
 			else
@@ -133,11 +144,15 @@ public class AccountRepositoryImpl implements AccountRepository {
 		public List<Account> extractData(final ResultSet resultSet) throws SQLException {
 
 			final List<Account> accountList = new ArrayList<>();
+
 			while (resultSet.next()) {
 				accountList.add(new AccountBuilder()
 					.withUsername(resultSet.getString("username"))
 					.withId(resultSet.getLong("accountId"))
 					.withEmail(resultSet.getString("email"))
+					.withJoinDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("join_date"),
+						0, ZoneOffset.UTC))
 					.build());
 			}
 

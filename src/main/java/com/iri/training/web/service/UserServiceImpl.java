@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.iri.training.model.Account;
 import com.iri.training.model.User;
-import com.iri.training.repository.AccountRepository;
 import com.iri.training.repository.UserRepository;
 
 @Service
@@ -21,7 +20,7 @@ public final class UserServiceImpl implements UserService {
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	AccountRepository accountRepository;
+	AccountService accountService;
 
 	@Autowired
 	UserRepository userRepository;
@@ -29,7 +28,7 @@ public final class UserServiceImpl implements UserService {
 	@Override
 	public final User getUserById(final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for ID: " + userId);
+		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user = userRepository.getUserById(userId);
 		if (user != null) {
@@ -37,7 +36,7 @@ public final class UserServiceImpl implements UserService {
 			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
 		}
 
-		logger.debug("EXITING getUserById for user: " + user);
+		logger.debug("EXITING getUserById with user: " + user);
 
 		return user;
 	}
@@ -47,14 +46,14 @@ public final class UserServiceImpl implements UserService {
 
 		logger.debug("ENTERED getUserByUsername for username: " + username);
 
-		final Account account = accountRepository.getAccount(username);
+		final Account account = accountService.getAccountByUsername(username);
 		final User user = getUserById(account.getId());
 		if (user != null) {
 			// Age is not stored in the db.
 			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));
 		}
 
-		logger.debug("EXITING getUserByUsername for user: " + user);
+		logger.debug("EXITING getUserByUsername with user: " + user);
 
 		return user;
 	}

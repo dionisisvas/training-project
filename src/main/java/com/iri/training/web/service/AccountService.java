@@ -7,15 +7,15 @@ import com.iri.training.model.Account;
 
 public interface AccountService {
 
-	Account getAccount(String username) throws SQLException;
+	Account getAccountById(long accountId) throws SQLException;
 
-	Account getAccountById(Long accountId) throws SQLException;
+	Account getAccountByUsername(String username) throws SQLException;
 
 	Account getAccountByEmail(String email) throws SQLException;
 
 	List<Account> getAccountList() throws SQLException;
 
-	void createAccount(Account account) throws SQLException;
+	void addAccount(Account account) throws SQLException;
 
 	boolean verifyNewAccount(Account account) throws SQLException;
 }

@@ -22,7 +22,6 @@ public class AccountController {
 
 	Logger logger = Logger.getLogger(AccountController.class);
 
-
 	@Autowired
 	AccountService accountService;
 
@@ -46,12 +45,12 @@ public class AccountController {
 	public ResponseEntity<Account> getAccount(@PathVariable("username") String username) throws SQLException {
 
 
-		logger.debug("ENTERED getAccount: " + username);
+		logger.debug("ENTERED getAccountByUsername: " + username);
 
 
-		Account account = accountService.getAccount(username);
+		Account account = accountService.getAccountByUsername(username);
 
-		logger.debug("EXITING getAccount " + account);
+		logger.debug("EXITING getAccountByUsername " + account);
 
 		if (account != null) {
 			return new ResponseEntity<Account>(account, HttpStatus.OK);
@@ -100,7 +99,7 @@ public class AccountController {
 	public ResponseEntity<String> isUsernameUnique(@PathVariable("username") String username) throws SQLException {
 		logger.debug("ENTERED isUsernameUnique for username: " + username);
 
-		if (accountService.getAccount(username) != null) {
+		if (accountService.getAccountByUsername(username) != null) {
 			logger.debug("EXITING isUsernameUnique (false) for username " + username);
 			return new ResponseEntity("{\"isUnique\": false}", HttpStatus.OK);
 		}
