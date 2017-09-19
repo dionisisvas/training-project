@@ -5,18 +5,17 @@ import java.util.List;
 
 import com.iri.training.model.User;
 
-
 public interface UserService {
+
+	User getUserById(long userId) throws SQLException;
 
 	User getUserByUsername(String username) throws SQLException;
 
-	User getUserById(Long userId) throws SQLException;
-
 	List<User> getUserList() throws SQLException;
 
-	long addUserAndGetGeneratedId(User user) throws SQLException;
-
-	boolean verifyNewUser(User user) throws SQLException;
+	Long addUserAndGetGeneratedId(User user);
 
 	void updateUser(User user) throws SQLException;
+
+	boolean verifyNewUser(User user);
 }

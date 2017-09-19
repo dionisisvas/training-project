@@ -1,50 +1,51 @@
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
-    accountId    INTEGER    PRIMARY KEY,
+    id           INTEGER    PRIMARY KEY,
     username     TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
     password     TEXT       NOT_NULL,
     email        TEXT       NOT_NULL  UNIQUE  COLLATE NOCASE,
-    FOREIGN KEY (accountId) REFERENCES users(userId)
+    join_date    INTEGER    NOT_NULL,
+    FOREIGN KEY (id) REFERENCES users(id)
 );
 
-INSERT INTO accounts(accountId, username, password, email) VALUES
+INSERT INTO accounts(id, username, password, email, join_date) VALUES
 -- User 1 --
-(1, "jdoe",  "password1", "testmail1@t-mail.com"),
+(1, "jpap",  "password1", "john.pappas@t-mail.com", 1503141306),
 -- User 2 --
-(2, "jadoe",  "password2", "testmail2@t-mail.com"),
+(2, "jane2",  "password2", "jslater@t-mail.com", 1503144663),
 -- User 3 --
-(3, "cdjoe",  "password3", "testmail3@t-mail.com"),
+(3, "chris_g",  "password3", "cgian@t-mail.com", 1503165780),
 -- User 4 --
-(4, "jjs",  "password4", "testmail4@t-mail.com"),
+(4, "JSON",  "password4", "jason.brown@t-mail.com", 1503165786),
 -- User 5 --
-(5, "droe",  "password5", "testmail5@t-mail.com"),
+(5, "x_Zoe_x",  "password5", "zoe.an@t-mail.com", 1503166086),
 -- User 6 --
-(6, "jdoep1",  "password6", "testmail6@t-mail.com"),
+(6, "jimd",  "password6", "darulo.jim@t-mail.com", 1503183272),
 -- User 7 --
-(7, "janedoep",  "password7", "testmail7@t-mail.com"),
+(7, "mairy_",  "password7", "abraham.mairy@t-mail.com", 1503211496),
 -- User 8 --
-(8, "jj123",  "password8", "testmail8@t-mail.com"),
+(8, "pantelinio",  "password8", "jpantelis@t-mail.com", 1503231934),
 -- User 9 --
-(9, "ja2",  "password9", "testmail9@t-mail.com"),
+(9, "giorgio_g7",  "password9", "mancini.george@t-mail.com", 1503588874),
 -- User 10 --
-(10, "droep2",  "password10", "testmail10@t-mail.com"),
+(10, "dim",  "password10", "dimitrakakis@t-mail.com", 1503749541),
 -- User 11 --
-(11, "jdoelog",  "password11", "testmail11@t-mail.com"),
+(11, "athan61",  "password11", "athanasiou61@t-mail.com", 1504036621),
 -- User 12 --
-(12, "aserj",  "password12", "testmail12@t-mail.com"),
+(12, "jenny",  "password12", "jennaki@t-mail.com", 1504037042),
 -- User 13 --
-(13, "done",  "password13", "testmail13@t-mail.com"),
+(13, "DonL",  "password13", "don.lewis@t-mail.com", 1504147652),
 -- User 14 --
-(14, "j2kis",  "password14", "testmail14@t-mail.com"),
+(14, "the_romero",  "password14", "bromero@t-mail.com", 1504254683),
 -- User 15 --
-(15, "doeroe",  "password15", "testmail15@t-mail.com"),
+(15, "heather1",  "password15", "h.paxton@t-mail.com", 1504617737),
 -- User 16 --
-(16, "jdkis",  "password16", "testmail16@t-mail.com"),
+(16, "john123",  "password16", "papadopoulos.j@t-mail.com", 1504951439),
 -- User 17 --
-(17, "jd78",  "password17", "testmail17@t-mail.com"),
+(17, "dg88",  "password17", "dimitra88@t-mail.com", 1505412420),
 -- User 18 --
-(18, "cdoe66",  "password18", "testmail18@t-mail.com"),
+(18, "trulli_not_jarno",  "password18", "andrew.trulli@t-mail.com", 1505652983),
 -- User 19 --
-(19, "jjsndis",  "password19", "testmail19@t-mail.com"),
+(19, "nigel91",  "password19", "n.smith@t-mail.com", 1505692528),
 -- User 20 --
-(20, "doe123",  "password20", "testmail20@t-mail.com");
+(20, "fischer84",  "password20", "w.fischer.84@t-mail.com", 1505819888);

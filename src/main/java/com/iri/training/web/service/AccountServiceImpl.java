@@ -12,8 +12,9 @@ import com.iri.training.model.Account;
 import com.iri.training.repository.AccountRepository;
 
 @Service
-public  class AccountServiceImpl implements AccountService {
-	Logger logger = Logger.getLogger(AccountServiceImpl.class);
+public class AccountServiceImpl implements AccountService {
+
+	private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 
 	private static final String EMAIL_PATTERN =
 		"^[[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
@@ -23,28 +24,60 @@ public  class AccountServiceImpl implements AccountService {
 	AccountRepository accountRepository;
 
 	@Override
-	public Account getAccount(String username) throws SQLException {
-		Account account = accountRepository.getAccount(username);
+	public final Account getAccountById(final long accountId) throws SQLException {
+
+		logger.debug("ENTERED getAccountById for accountId: " + accountId);
+
+		final Account account = accountRepository.getAccountById(accountId);
+
+		logger.debug("EXITING getAccountById with account: " + account);
 
 		return account;
 	}
 
 	@Override
-	public Account getAccountById(Long accountId) throws SQLException {
-		Account account = accountRepository.getAccountById(accountId);
+	public final Account getAccountByUsername(final String username) throws SQLException {
 
-		return account;
-	}
+		logger.debug("ENTERED getAccountByUsername for username: " + username);
 
-	@Override public Account getAccountByEmail(final String email) throws SQLException {
-		Account account = accountRepository.getAccountByEmail(email);
+		final Account account = accountRepository.getAccountByUsername(username);
+
+		logger.debug("EXITING getAccountByUsername with account: " + account);
 
 		return account;
 	}
 
 	@Override
-	public void createAccount(Account account) throws SQLException {
-		accountRepository.createAccount(account);
+	public final Account getAccountByEmail(final String email) throws SQLException {
+
+		logger.debug("ENTERED getAccountByEmail for email: " + email);
+
+		final Account account = accountRepository.getAccountByEmail(email);
+
+		logger.debug("EXITING getAccountByEmail with account: " + account);
+
+		return account;
+	}
+
+	public final List<Account> getAccountList() throws SQLException {
+
+		logger.debug("ENTERED getAccountList");
+
+		final List<Account> accountList = new ArrayList<>(accountRepository.getAccountList());
+
+		logger.debug("EXITING getAccountList");
+
+		return accountList;
+	}
+
+	@Override
+	public final void addAccount(final Account account) throws SQLException {
+
+		logger.debug("ENTERED addAccount for account: " + account);
+
+		accountRepository.addAccount(account);
+
+		logger.debug("EXITING addAccount for account: " + account);
 	}
 
 	@Override
@@ -53,15 +86,9 @@ public  class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAccountList() throws SQLException {
-		List<Account> accountList = new ArrayList<Account>(accountRepository.getAccountList());
+	public final boolean verifyNewAccount(final Account account) throws SQLException {
 
-		return accountList;
-	}
-
-	@Override public boolean verifyNewAccount(final Account account) throws SQLException {
-
-		logger.debug("ENTERED verifyNewUser for " + account);
+		logger.debug("ENTERED verifyNewAccount for " + account);
 
 		boolean verified = true;
 
@@ -79,7 +106,7 @@ public  class AccountServiceImpl implements AccountService {
 			logger.debug("Invalid username.");
 		}
 		// Check if the username is unique.
-		if (accountRepository.getAccount(account.getUsername()) != null) {
+		if (accountRepository.getAccountByUsername(account.getUsername()) != null) {
 			verified = false;
 			logger.debug("Username already exists.");
 		}
@@ -107,7 +134,7 @@ public  class AccountServiceImpl implements AccountService {
 			logger.debug("Weak password.");
 		}
 
-		logger.debug("EXITING verifyNewUser for " + account);
+		logger.debug("EXITING verifyNewAccount for " + account);
 
 		return verified;
 	}

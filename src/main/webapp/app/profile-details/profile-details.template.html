@@ -1,0 +1,39 @@
+<md-card>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">About {{$ctrl.user.name}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <span class="details-subcategory">General information</span>
+    <p ng-show="$ctrl.user.dateOfBirth">
+       Birthday:
+       <span class="about-user-field">
+         {{$ctrl.user.dateOfBirth[2]}}-{{$ctrl.user.dateOfBirth[1]}}-{{$ctrl.user.dateOfBirth[0]}} ({{$ctrl.user.age}} years old)
+       </span>
+    </p>
+    <md-divider></md-divider><br>
+    <span class="details-subcategory">Contact details</span>
+    <p ng-show="!$ctrl.userEmail && !$ctrl.user.phoneNo && !$ctrl.user.address">
+      {{$ctrl.user.name}} has no contact information available.
+    </p>
+    <p ng-show="$ctrl.userEmail">
+       e-mail:
+       <span class="about-user-field">
+         {{$ctrl.account.email}}
+       </span>
+    </p>
+    <p ng-show="$ctrl.user.phoneNo">
+       Phone No:
+       <span class="about-user-field">
+         {{$ctrl.user.phoneNo}}
+       </span>
+    </p>
+    <p ng-show="$ctrl.user.address">
+       Address:
+       <span class="about-user-field">
+         {{$ctrl.user.address}}
+       </span>
+    </p>
+  </md-card-content>
+</md-card>

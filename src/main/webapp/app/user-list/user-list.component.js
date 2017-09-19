@@ -12,7 +12,7 @@ angular.
                 self.users = User.UserList.query(function() {
                     self.profileImage = new Array(self.users.length);
                     angular.forEach(self.users, function(user, key) {
-                        user.profileImage = Image.ProfileImage.get({userId: user.userId}, function(imgResult) {
+                        user.profileImage = Image.ProfileImage.get({userId: user.id}, function(imgResult) {
                             user.profileImage = imgResult;
                         }, function() {
                             user.profileImage.imgUri = self.defaultImgUri;

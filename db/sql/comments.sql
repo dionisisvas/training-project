@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS comments(
     content           TEXT        NOT_NULL,
     creation_date     INTEGER     NOT_NULL,
     last_edit_date    INTEGER,
-    FOREIGN KEY (poster_id) REFERENCES users(userId)
+    FOREIGN KEY (poster_id) REFERENCES users(id)
 );
 
 INSERT INTO comments(id, poster_id, subject_type, subject_id, content, creation_date, last_edit_date) VALUES

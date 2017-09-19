@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.CommentReply;
 import com.iri.training.model.builder.CommentReplyBuilder;
 
@@ -28,11 +29,6 @@ public class CommentReplyRepositoryImpl implements CommentReplyRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
-
-
-	public CommentReplyRepositoryImpl() throws IOException {}
 
 	@Override
 	public CommentReply getReplyById(final long replyId) throws SQLException {
@@ -40,9 +36,10 @@ public class CommentReplyRepositoryImpl implements CommentReplyRepository {
 		logger.debug("ENTERED getReplyById for replyId: " + replyId);
 
 		final CommentReply reply;
-		final String sql = property.getString("GET_COMMENT_REPLY_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		reply = jdbcTemplate.query(sql, new Object[]{replyId}, new ReplyResultSetExtractor());
+		reply = jdbcTemplate.query(PropertiesConfig.GET_COMMENT_REPLY_BY_ID,
+			new Object[]{replyId},
+			new ReplyResultSetExtractor());
 
 		logger.debug("EXITING getReplyById for replyId: " + replyId);
 
@@ -55,10 +52,9 @@ public class CommentReplyRepositoryImpl implements CommentReplyRepository {
 		logger.debug("ENTERED getCommentReplies for parentId: " + parentId);
 
 		final List<CommentReply> replies;
-		final String sql = property.getString("GET_COMMENT_REPLIES");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		replies = new ArrayList<CommentReply>(
-						jdbcTemplate.query(sql,
+						jdbcTemplate.query(PropertiesConfig.GET_COMMENT_REPLIES_BY_PARENT_ID,
 								new Object[]{parentId},
 								new CommentRepliesResultSetExtractor()));
 
