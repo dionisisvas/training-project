@@ -17,7 +17,7 @@ public interface AccountService {
 
 	void addAccount(Account account) throws SQLException;
 
-	void updateAccount(Account account) throws SQLException;
+	void editAccount(Account account) throws SQLException;
 
 	boolean verifyNewAccount(Account account) throws SQLException;
 }

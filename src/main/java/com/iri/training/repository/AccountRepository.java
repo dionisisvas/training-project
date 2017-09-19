@@ -17,5 +17,5 @@ public interface AccountRepository {
 
 	void addAccount(Account account) throws SQLException;
 
-	void updateAccount(Account account) throws SQLException;
+	void editAccount(Account account) throws SQLException;
 }

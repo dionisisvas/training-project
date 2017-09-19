@@ -81,8 +81,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void updateAccount(Account account) throws SQLException {
-		accountRepository.updateAccount(account);
+	public final void editAccount(final Account account) throws SQLException {
+
+		logger.debug("ENTERED editAccount for account: " + account);
+
+		accountRepository.editAccount(account);
+
+		logger.debug("EXITING editAccount for account: " + account);
 	}
 
 	@Override

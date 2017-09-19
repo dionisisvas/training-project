@@ -46,7 +46,7 @@ public class AccountController {
 
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<Account> getAccount(@PathVariable("username") final String username) throws SQLException {
+	public final ResponseEntity<Account> getAccountByUsername(@PathVariable("username") final String username) throws SQLException {
 
 		logger.debug("ENTERED getAccountByUsername for username: " + username);
 
@@ -80,13 +80,13 @@ public class AccountController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<ArrayList<Account>> getAllAccounts() throws SQLException {
+	public final ResponseEntity<ArrayList<Account>> getAccountList() throws SQLException {
 
-		logger.debug("ENTERED getAllAccounts");
+		logger.debug("ENTERED getAccountList");
 
 		final ArrayList<Account> accounts = new ArrayList<>(accountService.getAccountList());
 
-		logger.debug("EXITING getAllAccounts");
+		logger.debug("EXITING getAccountList");
 
 		if (accounts != null) {
 			return new ResponseEntity<ArrayList<Account>>(accounts, HttpStatus.OK);
@@ -95,20 +95,17 @@ public class AccountController {
 		return new ResponseEntity<ArrayList<Account>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-		produces = "application/json")
-	public ResponseEntity<String> editAccount(@RequestBody Account account) throws SQLException {
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String>  editAccount(@RequestBody final Account account) throws SQLException {
 
-		logger.debug("ENTERED editAccount: " + account );
-		if ( accountService.verifyNewAccount(account)) {
-			accountService.updateAccount(account);
+		logger.debug("ENTERED editAccount for account: " + account );
 
-			logger.debug("EXITING editAccount: " + account);
+		accountService.editAccount(account);
 
-			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
-		}else{
-			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
-		}
+		logger.debug("EXITING editAccount: " + account);
+
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET,

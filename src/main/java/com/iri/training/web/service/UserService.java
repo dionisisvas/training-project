@@ -15,7 +15,7 @@ public interface UserService {
 
 	Long addUserAndGetGeneratedId(User user);
 
-	void updateUser(User user) throws SQLException;
+	void editUser(User user) throws SQLException;
 
 	boolean verifyNewUser(User user);
 }

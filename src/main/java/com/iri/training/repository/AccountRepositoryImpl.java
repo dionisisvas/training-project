@@ -96,11 +96,11 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public void addAccount(final Account account) throws SQLException {
+	public final void addAccount(final Account account) throws SQLException {
 
 		logger.debug("ENTERED addAccount for account: " + account);
 
-		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update(PropertiesConfig.ADD_ACCOUNT,
 			account.getId(),
 			account.getUsername(),
@@ -113,18 +113,18 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 
 	@Override
-	public void updateAccount(final Account account) throws SQLException {
+	public final void editAccount(final Account account) throws SQLException {
 
-		logger.debug("ENTERED updateAccount for account: " + account);
+		logger.debug("ENTERED editAccount for account: " + account);
 
-		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update(PropertiesConfig.EDIT_ACCOUNT,
 			account.getUsername(),
 			account.getPassword(),
 			account.getEmail(),
 		 	account.getId());
 
-		logger.debug("EXITING updateAccount: " + account);
+		logger.debug("EXITING editAccount for account: " + account);
 	}
 
 	private static final class AccountResultSetExtractor implements ResultSetExtractor<Account> {

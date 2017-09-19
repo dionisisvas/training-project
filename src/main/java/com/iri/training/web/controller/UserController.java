@@ -79,19 +79,16 @@ public final class UserController {
 		return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-		produces = "application/json")
-	public ResponseEntity<String> editUser(@RequestBody User user) throws SQLException {
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String> editUser(@RequestBody final User user) throws SQLException {
 
-		logger.debug("ENTERED editUser: " + user );
-		if ( userService.verifyNewUser(user)) {
-			userService.updateUser(user);
+		logger.debug("ENTERED editUser for user: " + user );
 
-			logger.debug("EXITING editUser: " + user);
+		userService.editUser(user);
 
-			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
-		}else{
-			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
-		}
+		logger.debug("EXITING editUser for user: " + user);
+
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
 }

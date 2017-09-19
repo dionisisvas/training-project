@@ -99,11 +99,11 @@ public final class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
-	public void updateUser(final User user) throws SQLException {
+	public final void editUser(final User user) throws SQLException {
 
-		logger.debug("ENTERED updateUser for user: " + user);
+		logger.debug("ENTERED editUser for user: " + user);
 
-		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		jdbcTemplate.update(PropertiesConfig.EDIT_USER,
 			user.getName(),
@@ -112,7 +112,7 @@ public final class UserRepositoryImpl implements UserRepository {
 			user.getPhoneNo(),
 			user.getId());
 
-		logger.debug("EXITING updateUser: " + user);
+		logger.debug("EXITING editUser for user: " + user);
 	}
 
 	private static final class UserResultSetExtractor implements ResultSetExtractor<User> {

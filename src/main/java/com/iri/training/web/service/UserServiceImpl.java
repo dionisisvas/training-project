@@ -106,6 +106,16 @@ public final class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public final void editUser(final User user) throws SQLException {
+
+		logger.debug("ENTERED editAccount for user: " + user);
+
+		userRepository.editUser(user);
+
+		logger.debug("EXITING editAccount for user: " + user);
+	}
+
+	@Override
 	public final boolean verifyNewUser(final User user) {
 
 		logger.debug("ENTERED verifyNewUser for user: " + user);
@@ -153,9 +163,5 @@ public final class UserServiceImpl implements UserService {
 		logger.debug("EXITING verifyNewUser for user: " + user);
 
 		return verified;
-	}
-
-	@Override public void updateUser(final User user) throws SQLException {
-		userRepository.updateUser(user);
 	}
 }
