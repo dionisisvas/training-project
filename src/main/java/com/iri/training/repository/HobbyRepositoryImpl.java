@@ -78,7 +78,6 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
 			jdbcTemplate.update(PropertiesConfig.ADD_USER_HOBBY,
-				hobby.getUserId(),
 				hobby.getHobbyId());
 
 			logger.debug("EXITING addHobbies : ");

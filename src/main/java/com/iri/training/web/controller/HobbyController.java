@@ -35,15 +35,9 @@ public class HobbyController {
 
 		logger.debug("ENTERED editHobbies: ");
 
-		if (hobbyList.get(0).getUserId() != null) {
+		hobbyService.editHobby(hobbyList);
 
-			hobbyService.editHobby(hobbyList);
-
-			return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
-		} else {
-
-			return new ResponseEntity("{\"message\": \"Edit failed.\"}", HttpStatus.BAD_REQUEST);
-		}
+		return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

@@ -147,6 +147,4 @@ public class AccountController {
 
 		return new ResponseEntity("{\"isUnique\": " + isUnique +"}", HttpStatus.OK);
 	}
-
-
 }
