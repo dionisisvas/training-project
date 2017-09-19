@@ -75,23 +75,23 @@ public class PropertiesConfig {
 
 			// User queries
 			GET_USER_BY_ID = sqlProperties.getString("GetUserById",
-				"SELECT * FROM users WHERE userId = ?;");
+				"SELECT * FROM users WHERE id = ?;");
 			GET_USER_LIST = sqlProperties.getString("GetUserList",
-				"SELECT userId, name, surname, dob FROM users;");
+				"SELECT id, name, surname, date_of_birth FROM users;");
 			ADD_USER = sqlProperties.getString("AddUser",
-				"INSERT INTO users(name, surname, dob) VALUES(?, ?, ?);");
+				"INSERT INTO users(name, surname, date_of_birth) VALUES(?, ?, ?);");
 
 			// Account queries
 			GET_ACCOUNT_BY_ID = sqlProperties.getString("GetAccountById",
-				"SELECT * FROM accounts WHERE accountId = ?;");
+				"SELECT * FROM accounts WHERE id = ?;");
 			GET_ACCOUNT_BY_USERNAME = sqlProperties.getString("GetAccountByUsername",
 				"SELECT * FROM accounts WHERE username = ?;");
 			GET_ACCOUNT_BY_EMAIL = sqlProperties.getString("GetAccountByEmail",
 				"SELECT * FROM accounts WHERE email = ?;");
 			GET_ACCOUNT_LIST = sqlProperties.getString("GetAccountList",
-				"SELECT accountId, username, email FROM accounts;");
+				"SELECT id, username, email, join_date FROM accounts;");
 			ADD_ACCOUNT = sqlProperties.getString("AddAccount",
-				"INSERT INTO accounts(accountId, username, password, email) VALUES(?, ?, ?, ?);");
+				"INSERT INTO accounts(id, username, password, email, join_date) VALUES(?, ?, ?, ?, ?);");
 
 			// Image queries
 			GET_IMAGE_BY_ID = sqlProperties.getString("GetImageById",

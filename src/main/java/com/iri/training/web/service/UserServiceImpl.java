@@ -48,7 +48,7 @@ public final class UserServiceImpl implements UserService {
 		logger.debug("ENTERED getUserByUsername for username: " + username);
 
 		final Account account = accountRepository.getAccount(username);
-		final User user = getUserById(account.getAccountId());
+		final User user = getUserById(account.getId());
 		if (user != null) {
 			// Age is not stored in the db.
 			user.setAge((short) (ChronoUnit.YEARS.between(user.getDateOfBirth(), LocalDate.now())));

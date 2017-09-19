@@ -51,7 +51,7 @@ public class AuthController {
 
 			final long userId = userService.addUserAndGetGeneratedId(user);
 
-			account.setAccountId(userId);
+			account.setId(userId);
 			accountService.createAccount(account);
 			metricsService.initializeUserMetrics(userId);
 
@@ -83,7 +83,7 @@ public class AuthController {
 		}
 
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
-			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
+			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getId()))
 			.setIssuedAt(new Date())
 			.setExpiration(Date.from((PropertiesConfig.KEY_EXPIRY_DATE).toInstant(ZoneOffset.UTC)))
 			.claim("name", user.getName())
