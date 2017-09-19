@@ -95,7 +95,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 		jdbcTemplate=new JdbcTemplate(dataSource);
 		jdbcTemplate.update(PropertiesConfig.ADD_ACCOUNT,
-			account.getAccountId(),
+			account.getId(),
 			account.getUsername(),
 			account.getPassword(),
 			account.getEmail());
@@ -112,7 +112,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 			if (resultSet.next()) {
 				account = new AccountBuilder()
-					.withAccountId(resultSet.getLong("accountId"))
+					.withId(resultSet.getLong("accountId"))
 					.withUsername(resultSet.getString("username"))
 					.withPassword(resultSet.getString("password"))
 					.withEmail(resultSet.getString("email"))
@@ -136,7 +136,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 			while (resultSet.next()) {
 				accountList.add(new AccountBuilder()
 					.withUsername(resultSet.getString("username"))
-					.withAccountId(resultSet.getLong("accountId"))
+					.withId(resultSet.getLong("accountId"))
 					.withEmail(resultSet.getString("email"))
 					.build());
 			}
