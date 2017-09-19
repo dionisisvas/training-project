@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
 	AccountRepository accountRepository;
 
 	@Override
-	public Account getAccountById(long accountId) throws SQLException {
+	public final Account getAccountById(final long accountId) throws SQLException {
 
 		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account getAccountByUsername(String username) throws SQLException {
+	public final Account getAccountByUsername(final String username) throws SQLException {
 
 		logger.debug("ENTERED getAccountByUsername for username: " + username);
 
@@ -47,7 +47,8 @@ public class AccountServiceImpl implements AccountService {
 		return account;
 	}
 
-	@Override public Account getAccountByEmail(final String email) throws SQLException {
+	@Override
+	public final Account getAccountByEmail(final String email) throws SQLException {
 
 		logger.debug("ENTERED getAccountByEmail for email: " + email);
 
@@ -59,7 +60,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void addAccount(Account account) throws SQLException {
+	public final void addAccount(final Account account) throws SQLException {
 
 		logger.debug("ENTERED addAccount for account: " + account);
 
@@ -69,7 +70,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAccountList() throws SQLException {
+	public final List<Account> getAccountList() throws SQLException {
 
 		logger.debug("ENTERED getAccountList");
 
@@ -80,7 +81,8 @@ public class AccountServiceImpl implements AccountService {
 		return accountList;
 	}
 
-	@Override public boolean verifyNewAccount(final Account account) throws SQLException {
+	@Override
+	public final boolean verifyNewAccount(final Account account) throws SQLException {
 
 		logger.debug("ENTERED verifyNewAccount for " + account);
 
