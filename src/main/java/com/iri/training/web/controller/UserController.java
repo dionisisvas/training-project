@@ -31,11 +31,11 @@ public final class UserController {
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<User> getUserById(@PathVariable("userId") final long userId) throws SQLException {
 
-		logger.debug("ENTERED getUserById for ID: " + userId);
+		logger.debug("ENTERED getUserById for userId: " + userId);
 
 		final User user = userService.getUserById(userId);
 
-		logger.debug("EXITING getUserById for user: " + user);
+		logger.debug("EXITING getUserById with user: " + user);
 
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
@@ -52,7 +52,7 @@ public final class UserController {
 
 		final User user = userService.getUserByUsername(username);
 
-		logger.debug("EXITING getUserByUsername for user: " + user);
+		logger.debug("EXITING getUserByUsername with user: " + user);
 
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);

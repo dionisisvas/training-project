@@ -51,8 +51,8 @@ public class AuthController {
 
 			final long userId = userService.addUserAndGetGeneratedId(user);
 
-			account.setAccountId(userId);
-			accountService.createAccount(account);
+			account.setId(userId);
+			accountService.addAccount(account);
 			metricsService.initializeUserMetrics(userId);
 
 			logger.debug("EXITING registerAccount for id: " + userId);
@@ -75,21 +75,21 @@ public class AuthController {
 		if (account.getUsername() == null || account.getPassword() == null) {
 			return new ResponseEntity("{\"message\": \"Insufficient log in data.\"}", HttpStatus.BAD_REQUEST);
 		}
-		else if (accountService.getAccount(account.getUsername()) == null) {
+		else if (accountService.getAccountByUsername(account.getUsername()) == null) {
 			return new ResponseEntity("{\"message\": \"Username does not exist.\"}", HttpStatus.NOT_FOUND);
 		}
-		else if (!accountService.getAccount(account.getUsername()).getPassword().equals(account.getPassword())) {
+		else if (!accountService.getAccountByUsername(account.getUsername()).getPassword().equals(account.getPassword())) {
 			return new ResponseEntity("{\"message\": \"Invalid log in details.\"}", HttpStatus.BAD_REQUEST);
 		}
 
 		String jwt = Jwts.builder().setIssuer("IRI Training App")
-			.setSubject(String.valueOf(accountService.getAccount(account.getUsername()).getAccountId()))
+			.setSubject(String.valueOf(accountService.getAccountByUsername(account.getUsername()).getId()))
 			.setIssuedAt(new Date())
 			.setExpiration(Date.from((PropertiesConfig.KEY_EXPIRY_DATE).toInstant(ZoneOffset.UTC)))
 			.claim("name", user.getName())
 			.claim("surname", user.getSurname())
 			.claim("username", account.getUsername())
-			.claim("email", accountService.getAccount(account.getUsername()).getEmail())
+			.claim("email", accountService.getAccountByUsername(account.getUsername()).getEmail())
 			.signWith(SignatureAlgorithm.HS256, PropertiesConfig.JWT_KEY)
 			.compact();
 

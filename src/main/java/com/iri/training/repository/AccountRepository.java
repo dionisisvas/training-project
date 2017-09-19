@@ -6,14 +6,14 @@ import java.util.List;
 import com.iri.training.model.Account;
 
 public interface AccountRepository {
+	
+	Account getAccountById(long accountId) throws SQLException;
 
-	Account getAccount(String username) throws SQLException;
-
-	Account getAccountById(Long accountId) throws SQLException;
+	Account getAccountByUsername(String username) throws SQLException;
 
 	Account getAccountByEmail(String email) throws SQLException;
 
 	List<Account> getAccountList() throws SQLException;
 
-	void createAccount(Account account) throws SQLException;
+	void addAccount(Account account) throws SQLException;
 }
