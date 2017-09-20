@@ -39,7 +39,7 @@ angular.
                     templateUrl: 'app/views/profile.template.html'
                 }).
                 when('/settings', {
-                    templateUrl: 'app/Edit/Edit-Account/edit-account.template.html'
+                    templateUrl: 'app/views/settings.template.html'
                 }).
                 otherwise('/error');
         }

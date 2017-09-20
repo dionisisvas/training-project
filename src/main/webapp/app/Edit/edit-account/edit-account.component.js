@@ -1,17 +1,13 @@
 'use strict';
 
 angular.
-    module('editAccount').
-        component('editAccount', {
-        templateUrl: 'app/Edit/Edit-Account/edit-account.template.html',
-        controller: ['Account', 'Authorization', 'JWToken','$scope',
-            function EditAccountController(Account, User, JWToken,$scope) {
-                var self = this;
-              var account = JSON.stringify({
-                                    username :    $scope.account.username,
-                                    password :    $scope.account.password,
-                                    email:        $scope.account.email
-                        });
+    module('editMyAccount').
+        component('editMyAccount', {
+        templateUrl: 'app/Edit/edit-account/edit-account.template.html',
+        controller: ['Account','User', 'Authorization', 'JWToken','$scope',
+            function EditMyAccountController(Account,User, Authorization, JWToken,$scope) {
+               var self = this;
+
 
                 if (JWToken.getToken()) {
                     JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
@@ -33,7 +29,21 @@ angular.
                     });
                 }
 
-
+ $scope.user = {
+    name: 'email@example.com',
+    surname: '123-45-67',
+    number: 29,
+    range: 10,
+    url: 'http://example.com',
+    search: 'blabla',
+    color: '#6a4415',
+    date: null,
+    time: '12:30',
+    datetime: null,
+    month: null,
+    week: null
+  };
+  console.log("hjkhkjkj");
 
      }]
     });

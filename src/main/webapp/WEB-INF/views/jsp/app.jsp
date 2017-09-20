@@ -28,6 +28,7 @@
       <div ng-view class="view-frame" layout="column" md-theme="myTheme" layout-fill></div>
     </div>
 
+
     <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
     <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
     <spring:url value="/resources/lib/angular/angular-aria.js" var="angularAriaJs" />
@@ -103,9 +104,8 @@
     <spring:url value="/app/user-maps/user-maps.component.js" var="userMapsComponentJs" />
     <spring:url value="/app/user-statistics/user-statistics.module.js" var="userStatisticsModuleJs" />
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
-    <spring:url value="/app/Edit/Edit-Account/edit-account.module.js" var="editAccountsModuleJs" />
-    <spring:url value="/app/Edit/Edit-Account/edit-account.component.js" var="editAccountsComponentJs" />
-
+    <spring:url value="/app/Edit/edit-account/edit-account.module.js" var="editAccountModuleJs" />
+    <spring:url value="/app/Edit/edit-account/edit-account.component.js" var="editAccountComponentJs" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
@@ -136,8 +136,6 @@
     <script src="${imageServiceJs}"></script>
     <script src="${jwtokenModuleJs}"></script>
     <script src="${jwtokenServiceJs}"></script>
-    <script src="${editAccountsModuleJs}"></script>
-    <script src="${editAccountsComponentJs}"></script>
     <script src="${metricsModuleJs}"></script>
     <script src="${metricsServiceJs}"></script>
     <script src="${timelineModuleJs}"></script>
@@ -191,7 +189,7 @@
     <script src="${userMapsComponentJs}"></script>
     <script src="${userStatisticsModuleJs}"></script>
     <script src="${userStatisticComponentJs}"></script>
-    <script src="${userDatesModuleJs}"></script>
-    <script src="${userDatesComponentJs}"></script>
+    <script src="${editAccountModuleJs}"></script>
+    <script src="${editAccountComponentJs}"></script>
   </body>
 </html>
