@@ -57,7 +57,7 @@ public class HobbyServiceImpl implements HobbyService {
 	public void editHobby(final List<Hobby> hobbyList) throws SQLException {
 
 		logger.debug("ENTERED editHobby for " + hobbyList);
-			hobbyRepository.removeHobbies(hobbyList.get(0).getUserId());
+			hobbyRepository.removeHobbies(hobbyList.get(0).getHobbyId());
 
 			hobbyRepository.addHobbies(hobbyList);
 

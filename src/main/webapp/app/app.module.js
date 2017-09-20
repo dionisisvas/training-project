@@ -27,9 +27,6 @@ angular.module('trainingApp', [
     'myUserList',
     'myUserMaps',
     'myUserStatistics',
-    'myUserProfile',
-    'myUserRegistration',
-    'editMyAccount',
-    'myUserStatistics'
-
+    'myUserStatistics',
+    'editMyAccount'
 ]);
