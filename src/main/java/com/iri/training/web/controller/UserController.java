@@ -2,6 +2,7 @@ package com.iri.training.web.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,78 +21,74 @@ import com.iri.training.web.service.UserService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/user")
-public class UserController {
+public final class UserController {
 
-	Logger logger = Logger.getLogger(UserController.class);
-
+	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-		produces = "application/json")
-	public ResponseEntity<String> editUser(@RequestBody User user) throws SQLException {
+	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<User> getUserById(@PathVariable("userId") final long userId) throws SQLException {
 
-		logger.debug("ENTERED editUser: " + user );
-		if ( userService.verifyNewUser(user)) {
-			userService.updateUser(user);
+		logger.debug("ENTERED getUserById for userId: " + userId);
 
-			logger.debug("EXITING editUser: " + user);
+		final User user = userService.getUserById(userId);
 
-			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
-		}else{
-			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
+		logger.debug("EXITING getUserById with user: " + user);
+
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 
+		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<User>> getAllUsers() throws SQLException {
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<User> getUserByUsername(@PathVariable("username") final String username) throws SQLException {
 
-		logger.debug("ENTERED getAllUsers");
+		logger.debug("ENTERED getUserByUsername for username: " + username);
 
-		ArrayList<User> users = (ArrayList) userService.getUserList();
+		final User user = userService.getUserByUsername(username);
 
-		logger.debug("EXITING getAllUsers");
+		logger.debug("EXITING getUserByUsername with user: " + user);
+
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<List<User>> getUserList() throws SQLException {
+
+		logger.debug("ENTERED getUserList");
+
+		final List<User> users = new ArrayList<>(userService.getUserList());
+
+		logger.debug("EXITING getUserList");
 
 		if (users != null) {
-			return new ResponseEntity<ArrayList<User>>(users, HttpStatus.OK);
+			return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<ArrayList<User>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) throws SQLException {
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String> editUser(@RequestBody final User user) throws SQLException {
 
+		logger.debug("ENTERED editUser for user: " + user );
 
-		logger.debug("ENTERED getUserByUsername: " + username);
+		userService.editUser(user);
 
-		User user = userService.getUserByUsername(username);
+		logger.debug("EXITING editUser for user: " + user);
 
-		logger.debug("EXITING getUserByUsername " + user);
-
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUserById(@PathVariable("userId") Long userId) throws SQLException {
-
-		logger.debug("ENTERED getUserById: " + userId);
-
-		User user = userService.getUserById(userId);
-
-		logger.debug("EXITING getUserById " + user);
-
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	}
-
 }

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.iri.training.config.converters.StringToEnumConverterFactory;
+import com.iri.training.util.converters.StringToEnumConverterFactory;
 
 @EnableWebMvc
 @Configuration

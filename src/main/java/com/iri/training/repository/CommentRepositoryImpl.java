@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
 import com.iri.training.model.builder.CommentBuilder;
@@ -29,11 +30,6 @@ public class CommentRepositoryImpl implements CommentRepository {
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new PropertyResourceBundle(resourceAsStream);
-
-
-	public CommentRepositoryImpl() throws IOException {}
 
 	@Override
 	public Comment getCommentById(final long commentId) throws SQLException {
@@ -41,9 +37,10 @@ public class CommentRepositoryImpl implements CommentRepository {
 		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
 		final Comment comment;
-		final String sql = property.getString("GET_COMMENT_BY_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		comment = jdbcTemplate.query(sql, new Object[]{commentId}, new CommentResultSetExtractor());
+		comment = jdbcTemplate.query(PropertiesConfig.GET_COMMENT_BY_ID,
+			new Object[]{commentId},
+			new CommentResultSetExtractor());
 
 		logger.debug("EXITING getCommentById for commentId: " + commentId);
 
@@ -57,10 +54,9 @@ public class CommentRepositoryImpl implements CommentRepository {
 			"with subjectId: " + subjectId);
 
 		final List<Comment> comments;
-		final String sql = property.getString("GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		comments = new ArrayList<Comment>(
-						jdbcTemplate.query(sql,
+						jdbcTemplate.query(PropertiesConfig.GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID,
 								new Object[]{subjectType.name(), subjectId},
 								new SubjectCommentsResultSetExtractor()));
 
@@ -76,10 +72,9 @@ public class CommentRepositoryImpl implements CommentRepository {
 		logger.debug("ENTERED getCommentsByPoster for posterId: " + posterId);
 
 		final List<Comment> comments;
-		final String sql = property.getString("GET_COMMENTS_BY_POSTER_ID");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		comments = new ArrayList<Comment>(
-			jdbcTemplate.query(sql,
+			jdbcTemplate.query(PropertiesConfig.GET_COMMENTS_BY_POSTER_ID,
 				new Object[]{posterId},
 				new UserCommentsResultSetExtractor()));
 

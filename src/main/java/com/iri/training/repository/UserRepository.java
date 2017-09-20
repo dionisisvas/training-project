@@ -5,14 +5,13 @@ import java.util.List;
 
 import com.iri.training.model.User;
 
-
 public interface UserRepository {
 
-	User getUserById(Long userId) throws SQLException;
+	User getUserById(long userId) throws SQLException;
 
 	List<User> getUserList() throws SQLException;
 
 	long addUserAndGetGeneratedId(User user) throws SQLException;
 
-	void updateUser(User user) throws SQLException;
+	void editUser(User user) throws SQLException;
 }

@@ -58,6 +58,26 @@ angular.
                 return deferred.promise;
             }
 
+            self.isLoggedIn = function() {
+                var deferred = $q.defer();
+
+                if (self.token) {
+                    self.getTokenBody(self.token).then(function(tknResult) {
+                        var tknBody = JSON.parse(tknResult);
+                        // Check if the token is expired
+                        if ((tknBody.exp - (new Date().getTime() / 1000)) > 0 ) {
+                            deferred.resolve(true);
+                        } else {
+                            deferred.resolve(false)
+                        }
+                    });
+                } else {
+                    deferred.resolve(false);
+                }
+
+                return deferred.promise;
+            }
+
             self.setToken($cookieStore.get('myToken'));
         }
     ]);

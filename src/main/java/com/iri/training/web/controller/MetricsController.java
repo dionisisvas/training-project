@@ -29,7 +29,7 @@ public class MetricsController {
 	@Autowired
 	MetricsService metricsService;
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = "application/json")
 	public ResponseEntity<String> editMetrics(@RequestBody Metrics metrics) throws SQLException {
 

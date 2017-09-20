@@ -22,38 +22,71 @@ import com.iri.training.web.service.AccountService;
 @RequestMapping(value = "/api/account")
 public class AccountController {
 
-	Logger logger = Logger.getLogger(AccountController.class);
-
+	private static final Logger logger = Logger.getLogger(AccountController.class);
 
 	@Autowired
 	AccountService accountService;
 
+	@RequestMapping(value = "/id/{accountId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<Account> getAccountById(@PathVariable("accountId") final long accountId) throws SQLException {
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-		produces = "application/json")
-	public ResponseEntity<String> editAccount(@RequestBody Account account) throws SQLException {
+		logger.debug("ENTERED getAccountById for accountId: " + accountId);
 
-		logger.debug("ENTERED editAccount: " + account );
-		if ( accountService.verifyNewAccount(account)) {
-			accountService.updateAccount(account);
+		final Account account = accountService.getAccountById(accountId);
 
-			logger.debug("EXITING editAccount: " + account);
+		logger.debug("EXITING getAccountById with account: " + account);
 
-			return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
-		}else{
-			return new ResponseEntity("{\"message\": \"Update failed.\"}", HttpStatus.BAD_REQUEST);
+		if (account != null) {
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
 		}
 
+		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Account>> getAllAccounts() throws SQLException {
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<Account> getAccountByUsername(@PathVariable("username") final String username) throws SQLException {
 
-		logger.debug("ENTERED getAllAccounts");
+		logger.debug("ENTERED getAccountByUsername for username: " + username);
 
-		ArrayList<Account> accounts = (ArrayList) accountService.getAccountList();
+		final Account account = accountService.getAccountByUsername(username);
 
-		logger.debug("EXITING getAllAccounts");
+		logger.debug("EXITING getAccountByUsername with account: " + account);
+
+		if (account != null) {
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/email/{email:.+}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<Account> getAccountByEmail(@PathVariable("email") final String email) throws SQLException {
+
+		logger.debug("ENTERED getAccountByEmail for email: " + email);
+
+		final Account account = accountService.getAccountByEmail(email);
+
+		logger.debug("EXITING getAccountByEmail with account: " + account);
+
+		if (account != null) {
+			return new ResponseEntity<Account>(account, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<ArrayList<Account>> getAccountList() throws SQLException {
+
+		logger.debug("ENTERED getAccountList");
+
+		final ArrayList<Account> accounts = new ArrayList<>(accountService.getAccountList());
+
+		logger.debug("EXITING getAccountList");
 
 		if (accounts != null) {
 			return new ResponseEntity<ArrayList<Account>>(accounts, HttpStatus.OK);
@@ -62,87 +95,56 @@ public class AccountController {
 		return new ResponseEntity<ArrayList<Account>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
-	public ResponseEntity<Account> getAccount(@PathVariable("username") String username) throws SQLException {
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String>  editAccount(@RequestBody final Account account) throws SQLException {
 
+		logger.debug("ENTERED editAccount for account: " + account );
 
-		logger.debug("ENTERED getAccount: " + username);
+		accountService.editAccount(account);
 
+		logger.debug("EXITING editAccount: " + account);
 
-		Account account = accountService.getAccount(username);
-
-		logger.debug("EXITING getAccount " + account);
-
-		if (account != null) {
-			return new ResponseEntity<Account>(account, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/id/{accountId}", method = RequestMethod.GET)
-	public ResponseEntity<Account> getAccountById(@PathVariable("accountId") Long accountId) throws SQLException {
+	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> isUsernameUnique(@PathVariable("username") final String username) throws SQLException {
 
-
-		logger.debug("ENTERED getAccountById: " + accountId);
-
-
-		Account account = accountService.getAccountById(accountId);
-
-		logger.debug("EXITING getAccountById " + account);
-
-		if (account != null) {
-			return new ResponseEntity<Account>(account, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
-	}
-
-	@RequestMapping(value = "/email/{email:.+}", method = RequestMethod.GET)
-	public ResponseEntity<Account> getAccountByEmail(@PathVariable("email") String email) throws SQLException {
-
-
-		logger.debug("ENTERED getAccountByEmail: " + email);
-
-
-		Account account = accountService.getAccountByEmail(email);
-
-		logger.debug("EXITING getAccountByEmail: " + account);
-
-		if (account != null) {
-			return new ResponseEntity<Account>(account, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
-	}
-
-	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET)
-	public ResponseEntity<String> isUsernameUnique(@PathVariable("username") String username) throws SQLException {
 		logger.debug("ENTERED isUsernameUnique for username: " + username);
 
-		if (accountService.getAccount(username) != null) {
-			logger.debug("EXITING isUsernameUnique (false) for username " + username);
-			return new ResponseEntity("{\"isUnique\": false}", HttpStatus.OK);
+		final boolean isUnique;
+
+		if (accountService.getAccountByUsername(username) != null) {
+			isUnique = false;
 		}
 		else {
-			logger.debug("EXITING isUsernameUnique (true) for username " + username);
-			return new ResponseEntity("{\"isUnique\": true}", HttpStatus.OK);
+			isUnique = true;
 		}
+
+		logger.debug("EXITING isUsernameUnique for username: " + username + ", with result: " + isUnique);
+
+		return new ResponseEntity("{\"isUnique\": " + isUnique +"}", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/is-unique/email/{email:.+}", method = RequestMethod.GET)
-	public ResponseEntity<String> isEmailUnique(@PathVariable("email") String email) throws SQLException {
+	@RequestMapping(value = "/is-unique/email/{email:.+}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> isEmailUnique(@PathVariable("email") final String email) throws SQLException {
+
 		logger.debug("ENTERED isEmailUnique for username: " + email);
 
+		final boolean isUnique;
+
 		if (accountService.getAccountByEmail(email) != null) {
-			logger.debug("EXITING isEmailUnique (false) for e-mail " + email);
-			return new ResponseEntity("{\"isUnique\": false}", HttpStatus.OK);
+			isUnique = false;
 		}
 		else {
-			logger.debug("EXITING isEmailUnique (true) for e-mail " + email);
-			return new ResponseEntity("{\"isUnique\": true}", HttpStatus.OK);
+			isUnique = true;
 		}
+
+		logger.debug("EXITING isEmailUnique for email: " + email + ", with result: " + isUnique);
+
+		return new ResponseEntity("{\"isUnique\": " + isUnique +"}", HttpStatus.OK);
 	}
-
-
 }

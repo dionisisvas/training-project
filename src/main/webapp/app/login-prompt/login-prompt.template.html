@@ -1,4 +1,4 @@
-<md-card class="md-padding" md-colors="{background: 'deep-orange'}" ng-show="!$ctrl.isLoggedIn && !$ctrl.cardDismissed">
+<md-card class="md-padding dismissable-card" md-colors="{background: 'deep-orange'}" ng-show="!$ctrl.isLoggedIn && !$ctrl.cardDismissed">
   <div layout="row">
     <md-card-title layout="column" layout-align="start start">
       <md-card-title-text>
@@ -7,13 +7,13 @@
       </md-card-title-text>
     </md-card-title>
     <md-card-actions layout="column" layout-align="start end">
-      <md-button class="md-icon-button" ng-click="$ctrl.cardDismissed = true;">
+      <md-button class="md-icon-button" ng-click="$ctrl.dismissPrompt()">
         <md-icon md-font-set="material-icons" ng-style="{color: 'white'}"> close </md-icon>
       </md-button>
     </md-card-actions>
   </div>
   <md-card-actions layout="row" layout-align="start">
-    <md-button ng-href="/auth/1">Log in</md-button>
-    <md-button ng-href="/auth/0">Register</md-button>
+    <md-button ng-href="/auth/0" ng-attr-title="Register a new account...">Register</md-button>
+    <md-button ng-href="/auth/1" ng-attr-title="Log into your account...">Log in</md-button>
   </md-card-actions>
 </md-card>

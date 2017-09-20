@@ -7,13 +7,6 @@
     "working": true
   },
   {
-    "title": "Profile",
-    "url": null,
-    "info": "Visit your profile page.",
-    "icon": "person",
-    "working": false
-  },
-  {
     "title": "Users",
     "url": "users",
     "info": "View your friends and find new ones.",

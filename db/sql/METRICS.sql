@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS METRICS(
     nationality     TEXT,
     placeOfBirth    TEXT,
     education       TEXT,
-    FOREIGN KEY (userId) REFERENCES users(userId)
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 INSERT INTO METRICS(height, weight, nationality, placeOfBirth, userId, education) VALUES

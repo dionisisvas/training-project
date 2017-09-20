@@ -1,12 +1,9 @@
 package com.iri.training.repository;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PropertyResourceBundle;
 
 import javax.sql.DataSource;
 
@@ -15,31 +12,31 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.Metrics;
 import com.iri.training.model.builder.MetricsBuilder;
 
 @Repository
 public class MetricsRepositoryImpl implements MetricsRepository {
-private	Logger logger = Logger.getLogger(this.getClass());
+
+	private static final Logger logger = Logger.getLogger(MetricsRepository.class);
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
-	private InputStream resourceAsStream = this.getClass().getResourceAsStream("/sql_queries.properties");
-	private PropertyResourceBundle property = new java.util.PropertyResourceBundle(resourceAsStream);
-
-	public MetricsRepositoryImpl() throws IOException {}
-
 
 	@Override
 	public Metrics getMetricsByUserId(final Long userId) throws SQLException {
 
 		logger.debug("ENTERED getMetricsByUserId: " + userId);
 
-		String sql=property.getString("SELECT_METRICS");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		Metrics metrics=jdbcTemplate.query(sql,new Object[]{userId},new UserMetricsMapper());
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		Metrics metrics = jdbcTemplate.query(PropertiesConfig.GET_METRICS_BY_USER_ID,
+			new Object[]{userId},
+			new UserMetricsMapper());
+
 		logger.debug("EXITING getMetricsByUserId: " + metrics);
+
 		return metrics;
 
 	}
@@ -48,9 +45,9 @@ private	Logger logger = Logger.getLogger(this.getClass());
 
 		logger.debug("ENTERED getMetricsList");
 
-		String sql = property.getString("RETRIEVE_METRICS_LIST");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Metrics> metricsList = jdbcTemplate.query(sql, new MetricsRepositoryImpl.MetricsListResultSetExtractor());
+		final List<Metrics> metricsList = jdbcTemplate.query(PropertiesConfig.GET_METRICS_LIST,
+			new MetricsRepositoryImpl.MetricsListResultSetExtractor());
 
 		logger.debug("EXITING getMetricsList");
 
@@ -59,11 +56,12 @@ private	Logger logger = Logger.getLogger(this.getClass());
 
 	@Override
 	public void initializeUserMetrics(final long userId) {
-		logger.debug("ENTERED initializeUserMetrics");
 
-		String sql = property.getString("INITIALIZE_USER_METRICS");
+		logger.debug("ENTERED initializeUserMetrics");
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql,new Object[]{userId});
+
+		jdbcTemplate.update(PropertiesConfig.INIT_USER_METRICS,
+			new Object[]{userId});
 
 		logger.debug("EXITING initializeUserMetrics");
 	}
@@ -73,9 +71,9 @@ private	Logger logger = Logger.getLogger(this.getClass());
 
 		logger.debug("ENTERED updateMetrics : " + metrics);
 
-		String sql = property.getString("UPDATE_METRICS");
-		jdbcTemplate=new JdbcTemplate(dataSource);
-		jdbcTemplate.update(sql,metrics.getWeight(),
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(PropertiesConfig.EDIT_METRICS,
+			metrics.getWeight(),
 			metrics.getHeight(),
 			metrics.getEducation(),
 			metrics.getNationality(),

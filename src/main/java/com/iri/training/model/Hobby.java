@@ -5,20 +5,6 @@ public class Hobby {
 	private Long hobbyId;
 	private String hobbyName;
 	private String description;
-	private Long userId;
-
-
-	public Long getUserId() {
-
-		return userId;
-	}
-
-	public void setUserId(final Long userId) {
-
-		this.userId = userId;
-	}
-
-
 
 	public Long getHobbyId() { return hobbyId; }
 
@@ -38,7 +24,6 @@ public class Hobby {
 			"hobbyId=" + hobbyId +
 			", hobbyName='" + hobbyName + '\'' +
 			", description='" + description + '\'' +
-			", userId=" + userId +
 			'}';
 	}
 

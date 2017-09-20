@@ -32,7 +32,6 @@ md-toolbar#main-toolbar .md-block {
 
 /*********************** Sidenav ***********************/
 md-sidenav {
-  display: flex;
   height: 100%;
   background: rgb(255, 87, 34) !important;
 }
@@ -40,6 +39,10 @@ md-sidenav {
 md-sidenav .my-sidenav-toolbar {
   padding: 20px 15px 15px 15px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.40);
+}
+md-sidenav .my-sidenav-toolbar a {
+  text-decoration: inherit;
+  color: inherit;
 }
 md-sidenav .my-sidenav-toolbar .my-avatar {
   width: 64px;
@@ -64,8 +67,8 @@ md-sidenav .missing-navlink .md-list-item-text {
   text-decoration: #E64A19 double line-through;
 }
 md-sidenav .legal-disclaimer-container {
-  display: inline-block;
-  align-self: flex-end;
+  bottom: 1rem;
+  position: fixed;
 }
 md-sidenav .legal-disclaimer-text {
   color: rgba(255, 255, 255, 0.55);
