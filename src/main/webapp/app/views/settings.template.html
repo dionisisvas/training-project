@@ -2,11 +2,37 @@
 <section layout="row" flex>
 	<my-sidenav></my-sidenav>
 	<md-content class="md-padding" layout-fill>
-		<div layout="row">
-			<edit-my-account flex></edit-my-account>
-		</div>
-		<div layout="row">
-			<my-login-prompt flex></my-login-prompt>
-		</div>
+		<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab label="Account Settings">
+				<md-content class="md-padding">
+					<div layout="row">
+						<edit-my-account flex></edit-my-account>
+					</div>
+					<div layout="row">
+						<my-login-prompt flex></my-login-prompt>
+					</div>
+				</md-content>
+			</md-tab>
+			<md-tab label="Settings">
+				<md-content class="md-padding">
+					<div layout="row">
+						<edit-my-account flex></edit-my-account>
+					</div>
+					<div layout="row">
+						<my-login-prompt flex></my-login-prompt>
+					</div>
+				</md-content>
+			</md-tab>
+			<md-tab label="Settings">
+				<md-content class="md-padding">
+					<div layout="row">
+						<edit-my-account flex></edit-my-account>
+					</div>
+					<div layout="row">
+						<my-login-prompt flex></my-login-prompt>
+					</div>
+				</md-content>
+			</md-tab>
+		</md-tabs>
 	</md-content>
 </section>

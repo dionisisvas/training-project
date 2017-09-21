@@ -8,6 +8,17 @@ angular.
             function EditMyAccountController(Account,User, Authorization, JWToken,$scope) {
                var self = this;
 
+   				self.myDate = new Date();
+                self.minDate = new Date(
+                    self.myDate.getFullYear() - 125,
+                    self.myDate.getMonth(),
+                    self.myDate.getDate()
+                );
+                self.maxDate = new Date(
+                    self.myDate.getFullYear() - 18,
+                    self.myDate.getMonth(),
+                    self.myDate.getDate()
+                );
 
                 if (JWToken.getToken()) {
                     JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
@@ -15,12 +26,14 @@ angular.
                         self.userAccount = Account.AccountByUsername.get({username: self.tokenBody.username});
                         self.userAccount.$promise.then(function(accountResult) {
                         self.userAccount = accountResult;
+
                         }, function() {
                         	console.log("Failed to retrieve the account for user with username: " + self.tokenBody.username);
                         });
                         self.user = User.UserById.get({userId: self.tokenBody.sub});
                         self.user.$promise.then(function(userResult) {
                         self.user = userResult;
+
                         }, function() {
                         	console.log("Failed to retrieve the account for user with userId: " + self.tokenBody.sub);
                         });
@@ -28,22 +41,27 @@ angular.
                         console.error("Couldn't retrieve JWT body");
                     });
                 }
+                    self.submitForm = function(isValid) {
 
- $scope.user = {
-    name: 'email@example.com',
-    surname: '123-45-67',
-    number: 29,
-    range: 10,
-    url: 'http://example.com',
-    search: 'blabla',
-    color: '#6a4415',
-    date: null,
-    time: '12:30',
-    datetime: null,
-    month: null,
-    week: null
-  };
-  console.log("hjkhkjkj");
+                    if (isValid) {
+                        var account = JSON.stringify({
+                                    username :    self.userAccount.username,
+                                    password :    self.userAccount.password,
+                                    email:        self.userAccount.email
+                        });
+
+                        var user = JSON.stringify({
+                                    name :        self.user.name,
+                                    surname :     self.user.surname,
+                                    dateOfBirth : self.user.dateOfBirth
+                        });
+
+                        var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
+console.log(account);
+console.log(user);
+}
+}
+
 
      }]
     });
