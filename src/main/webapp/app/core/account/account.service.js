@@ -10,7 +10,8 @@ angular.
                 AccountByEmail: $resource('api/account/email/:email'),
                 AccountList: $resource('api/account/list'),
                 IsUsernameUnique: $resource('api/account/is-unique/username/:username'),
-                IsEmailUnique: $resource('api/account/is-unique/email/:email')
+                IsEmailUnique: $resource('api/account/is-unique/email/:email'),
+                EditAccount:$resource('api/account/edit')
             };
         }
     ]);

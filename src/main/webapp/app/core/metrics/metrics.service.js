@@ -6,7 +6,8 @@ angular.
 		function($resource) {
 			return {
 				MetricsByUserId: $resource('api/metrics/{userId}'),
-				MetricsList: $resource('api/metrics/list')
+				MetricsList: $resource('api/metrics/list'),
+				EditMetrics:$resource('apo/metrics/edit')
 			};
 		}
 	]);
