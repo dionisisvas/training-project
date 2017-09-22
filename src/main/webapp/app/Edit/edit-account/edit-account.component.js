@@ -4,8 +4,8 @@ angular.
     module('editMyAccount').
         component('editMyAccount', {
         templateUrl: 'app/Edit/edit-account/edit-account.template.html',
-        controller: ['Account','User', 'Authorization', 'JWToken','$scope',
-            function EditMyAccountController(Account,User, Authorization, JWToken,$scope) {
+        controller: ['Account','User', 'Authorization', 'JWToken','$scope','$mdToast',
+            function EditMyAccountController(Account,User, Authorization, JWToken,$scope,$mdToast) {
                var self = this;
 
    				self.myDate = new Date();
@@ -53,12 +53,35 @@ angular.
                         var user = JSON.stringify({
                                     name :        self.user.name,
                                     surname :     self.user.surname,
-                                    dateOfBirth : self.user.dateOfBirth
+                                    dateOfBirth : self.user.dateOfBirth,
+                                    address : self.user.address,
+                                    id : self.tokenBody.sub
                         });
 
                         var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
 console.log(account);
 console.log(user);
+                         User.EditUser.update(user, function(response) {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                      .textContent(response.message + ' Logging you in...')
+                                      .position('bottom center')
+                                      .hideDelay(600)
+                                      )
+                                });
+                        /* Account.EditAccount.update(account, function(response) {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                        .textContent(response.message + ' Logging you in...')
+                                        .position('bottom center')
+                                        .hideDelay(600)
+                                        )
+                                });*/
+
+
+
+
+
 }
 }
 

@@ -1,4 +1,5 @@
 <div id="registration-container" layout="column">
+	<h2 class="md-title inset">Edit your account settings</h2>
 	<md-card>
 		<form name="registrationForm" ng-submit="$ctrl.submitForm(registrationForm.$valid)" novalidate>
 			<br>
@@ -8,7 +9,10 @@
 					<md-icon md-font-set="material-icons"> face </md-icon>
 					<input ng-model="$ctrl.user.name" name="name" type="text"
 						   ng-required="true" md-maxlength="64">
-
+					<div ng-messages="registrationForm.name.$error" role="alert">
+						<div ng-message="required">The name is required.</div>
+						<div ng-message="md-maxlength">The name currently can't exceed 64 characters.</div>
+					</div>
 				</md-input-container>
 
 				<md-input-container class="md-block">
@@ -64,7 +68,7 @@
 				</md-input-container>
 			</div>
 			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-				<md-button class="md-raised md-primary" type="submit" ng-disabled="registrationForm.$invalid">SAVE</md-button>
+				<md-button class="md-raised md-primary" type="submit"  ng-disabled="registrationForm.$invalid">SAVE</md-button>
 			</section>
 			<br>
 		</form>

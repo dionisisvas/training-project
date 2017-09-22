@@ -8,7 +8,11 @@ angular.
 				UserByUsername: $resource('api/user/:username'),                
 				UserById: $resource('api/user/uid/:userId'),
 				UserList: $resource('api/user/list'),
-				EditUser:$resource('api/user/edit')
+				EditUser: $resource('api/user/edit', {}, {
+                          'update': {
+                         	 method: 'PUT'
+                          }
+                })
 			};
 		}
 	]);

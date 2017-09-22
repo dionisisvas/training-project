@@ -108,8 +108,9 @@ public final class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate.update(PropertiesConfig.EDIT_USER,
 			user.getName(),
 			user.getSurname(),
-			user.getAddress(),
 			user.getPhoneNo(),
+			user.getAddress(),
+
 			user.getId());
 
 		logger.debug("EXITING editUser for user: " + user);
