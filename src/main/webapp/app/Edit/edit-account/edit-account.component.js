@@ -7,7 +7,6 @@ angular.
         controller: ['Account','User', 'Authorization', 'JWToken','$scope','$mdToast','$timeout','$location','$window','$q',
             function EditMyAccountController(Account,User, Authorization, JWToken,$scope,$mdToast,$timeout,$location,$window,$q) {
                var self = this;
-               self.loginUrl = 'auth/1';
    				self.myDate = new Date();
                 self.minDate = new Date(
                     self.myDate.getFullYear() - 125,
@@ -62,21 +61,24 @@ angular.
 
 
                         	 Account.EditAccount.update(account);
-                        	 	User.EditUser.update(user).then(function(){
-
-                        	 		JWToken.removeToken().then(function(){
-                               			Authorization.Login.save(account, function(response) {
-                               			console.log("Login succeeded: " + response.token);
-                              			 JWToken.setToken(response.token).then(function() {
-                               				$location.path('/');
-                               				$window.location.reload();
-											});
-                               			}, function(response) {
-                               				console.log("Login failed: " + response.data.message);
-                               				});
+                        	 	User.EditUser.update(user,function(response){
+                        	 		JWToken.removeToken().then(function() {
+                        	 		$timeout(function() {
+                                     Authorization.Login.save(account, function(response) {
+                                      console.log("Login succeeded: " + response.token);
+                                      JWToken.setToken(response.token).then(function() {
+                                       $location.path('/');
+                                       $window.location.reload();
+                                       });
+                                       }, function(response) {
+                                        console.log("Login failed: " + response.data.message);
+                                        });
+                                        }, 500);
+                                        });
 });
 
-});
+
+
 
 }
 }
