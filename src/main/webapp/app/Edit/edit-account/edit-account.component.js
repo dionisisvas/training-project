@@ -4,10 +4,10 @@ angular.
     module('editMyAccount').
         component('editMyAccount', {
         templateUrl: 'app/Edit/edit-account/edit-account.template.html',
-        controller: ['Account','User', 'Authorization', 'JWToken','$scope','$mdToast',
-            function EditMyAccountController(Account,User, Authorization, JWToken,$scope,$mdToast) {
+        controller: ['Account','User', 'Authorization', 'JWToken','$scope','$mdToast','$timeout','$location','$window','$q',
+            function EditMyAccountController(Account,User, Authorization, JWToken,$scope,$mdToast,$timeout,$location,$window,$q) {
                var self = this;
-
+               self.loginUrl = 'auth/1';
    				self.myDate = new Date();
                 self.minDate = new Date(
                     self.myDate.getFullYear() - 125,
@@ -45,42 +45,38 @@ angular.
 
                     if (isValid) {
                         var account = JSON.stringify({
-                                    username :    self.userAccount.username,
+                                    username :    self.tokenBody.username,
                                     password :    self.userAccount.password,
-                                    email:        self.userAccount.email
+                                    email:        self.userAccount.email,
+                                    id : 		  self.tokenBody.sub
                         });
 
                         var user = JSON.stringify({
                                     name :        self.user.name,
                                     surname :     self.user.surname,
                                     dateOfBirth : self.user.dateOfBirth,
-                                    address : self.user.address,
-                                    id : self.tokenBody.sub
+                                    address : 	  self.user.address,
+                                    id : 		  self.tokenBody.sub
                         });
 
-                        var dataWrapper = "{\"account\":" + account + ",\"user\":" + user + "}";
-console.log(account);
-console.log(user);
-                         User.EditUser.update(user, function(response) {
-                                $mdToast.show(
-                                    $mdToast.simple()
-                                      .textContent(response.message + ' Logging you in...')
-                                      .position('bottom center')
-                                      .hideDelay(600)
-                                      )
-                                });
-                        /* Account.EditAccount.update(account, function(response) {
-                                $mdToast.show(
-                                    $mdToast.simple()
-                                        .textContent(response.message + ' Logging you in...')
-                                        .position('bottom center')
-                                        .hideDelay(600)
-                                        )
-                                });*/
 
 
+                        	 Account.EditAccount.update(account);
+                        	 	User.EditUser.update(user).then(function(){
 
+                        	 		JWToken.removeToken().then(function(){
+                               			Authorization.Login.save(account, function(response) {
+                               			console.log("Login succeeded: " + response.token);
+                              			 JWToken.setToken(response.token).then(function() {
+                               				$location.path('/');
+                               				$window.location.reload();
+											});
+                               			}, function(response) {
+                               				console.log("Login failed: " + response.data.message);
+                               				});
+});
 
+});
 
 }
 }
