@@ -26,7 +26,7 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 
-	@RequestMapping(value = "/id/{accountId}", method = RequestMethod.GET,
+	@RequestMapping(value = "{accountId}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<Account> getAccountById(@PathVariable("accountId") final long accountId) throws SQLException {
 
@@ -43,7 +43,7 @@ public class AccountController {
 		return new ResponseEntity<Account>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
+	@RequestMapping(value = "/username/{username}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<Account> getAccountByUsername(@PathVariable("username") final String username) throws SQLException {
 

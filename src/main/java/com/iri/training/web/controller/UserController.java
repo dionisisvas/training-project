@@ -27,7 +27,7 @@ public final class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET,
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<User> getUserById(@PathVariable("userId") final long userId) throws SQLException {
 
@@ -44,7 +44,7 @@ public final class UserController {
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
+	@RequestMapping(value = "/username/{username}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<User> getUserByUsername(@PathVariable("username") final String username) throws SQLException {
 

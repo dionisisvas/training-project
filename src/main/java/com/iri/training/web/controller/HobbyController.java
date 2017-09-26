@@ -25,22 +25,6 @@ public class HobbyController {
 	@Autowired
 	HobbyService hobbyService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {
-
-		logger.debug("ENTERED getAllHobbies");
-
-		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getHobbyList();
-
-		logger.debug("EXITING getAllHobbies");
-
-		if (hobbies != null) {
-			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
-	}
-
 	@RequestMapping(value = "/{hobbyId}", method = RequestMethod.GET)
 	public ResponseEntity<Hobby> getHobby(@PathVariable("hobbyId") Long hobbyId) throws SQLException {
 
@@ -55,6 +39,22 @@ public class HobbyController {
 		}
 
 		return new ResponseEntity<Hobby>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {
+
+		logger.debug("ENTERED getAllHobbies");
+
+		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getHobbyList();
+
+		logger.debug("EXITING getAllHobbies");
+
+		if (hobbies != null) {
+			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
