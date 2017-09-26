@@ -11,7 +11,7 @@ import com.iri.training.model.Image;
 import com.iri.training.repository.ImageRepository;
 
 @Service
-public  class ImageServiceImpl implements ImageService {
+public class ImageServiceImpl implements ImageService {
 
 	private static final Logger logger = Logger.getLogger(ImageRepository.class);
 
