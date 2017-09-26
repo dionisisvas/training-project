@@ -24,7 +24,7 @@ public class HobbyServiceImpl implements HobbyService{
 
 		logger.debug("ENTERED getHobbyById for hobbyId: " + hobbyId);
 
-		final Hobby hobby =  hobbyRepository.getHobbyById(hobbyId);
+		final Hobby hobby = hobbyRepository.getHobbyById(hobbyId);
 
 		logger.debug("ENTERED getHobbyById with hobby: " + hobby);
 

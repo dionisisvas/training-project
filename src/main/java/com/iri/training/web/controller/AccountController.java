@@ -2,6 +2,7 @@ package com.iri.training.web.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,19 +80,19 @@ public class AccountController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<ArrayList<Account>> getAllAccounts() throws SQLException {
+	public final ResponseEntity<List<Account>> getAccountList() throws SQLException {
 
-		logger.debug("ENTERED getAllAccounts");
+		logger.debug("ENTERED getAccountList");
 
-		final ArrayList<Account> accounts = new ArrayList<>(accountService.getAccountList());
+		final List<Account> accounts = new ArrayList<>(accountService.getAccountList());
 
-		logger.debug("EXITING getAllAccounts");
+		logger.debug("EXITING getAccountList");
 
 		if (accounts != null) {
-			return new ResponseEntity<ArrayList<Account>>(accounts, HttpStatus.OK);
+			return new ResponseEntity<List<Account>>(accounts, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<ArrayList<Account>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Account>>(HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET,
