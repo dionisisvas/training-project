@@ -27,7 +27,7 @@ public final class EducationServiceImpl implements EducationService {
 
 		final List<Education> userEducation = new ArrayList<>(educationRepository.getEducationByUserId(userId));
 
-		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId with userEducation: " + userEducation);
 
 		return userEducation;
 	}
