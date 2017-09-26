@@ -2,31 +2,54 @@ package com.iri.training.model;
 
 public class Hobby {
 
-	private Long hobbyId;
-	private String hobbyName;
+	private long id;
+	private String name;
 	private String description;
 
-	public Long getHobbyId() { return hobbyId; }
+	public Long getId() {
 
-	public void setHobbyId(final Long hobbyId) { this.hobbyId = hobbyId; }
+		return id;
+	}
 
-	public String getHobbyName() { return hobbyName; }
+	public void setId(final long id) {
 
-	public void setHobbyName(final String hobbyName) { this.hobbyName = hobbyName; }
+		this.id = id;
+	}
 
-	public String getDescription() { return description; }
+	public String getName() {
 
-	public void setDescription(final String description) { this.description = description; }
+		return name;
+	}
 
-	@Override public String toString() {
+	public void setName(final String name) {
+
+		this.name = name;
+	}
+
+	public String getDescription() {
+
+		return description;
+	}
+
+	public void setDescription(final String description) {
+
+		this.description = description;
+	}
+
+	@Override
+	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("Hobby{");
-		sb.append("hobbyId=");
-		sb.append(hobbyId);
+		sb.append("id=");
+		sb.append(id);
 		sb.append('\'');
-		sb.append(", hobbyName='");
-		sb.append(hobbyName);
+		sb.append(", name='");
+		sb.append(name);
+		sb.append('\'');
+		sb.append(", description='");
+		sb.append(description);
 		sb.append('\'');
 		sb.append('}');
 
