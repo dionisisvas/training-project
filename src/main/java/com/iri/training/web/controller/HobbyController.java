@@ -20,7 +20,7 @@ import com.iri.training.web.service.HobbyService;
 @RequestMapping(value = "/api/hobby")
 public class HobbyController {
 
-	Logger logger = Logger.getLogger(HobbyController.class);
+	private static final Logger logger = Logger.getLogger(HobbyController.class);
 
 	@Autowired
 	HobbyService hobbyService;

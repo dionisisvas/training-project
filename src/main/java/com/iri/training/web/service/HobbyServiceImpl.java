@@ -49,7 +49,7 @@ public class HobbyServiceImpl implements HobbyService{
 	}
 
 	@Override
-	public List<Hobby> getHobbyList() throws SQLException {
+	public final List<Hobby> getHobbyList() throws SQLException {
 
 		logger.debug("ENTERED getHobbyList");
 

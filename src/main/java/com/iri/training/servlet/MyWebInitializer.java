@@ -1,12 +1,8 @@
 package com.iri.training.servlet;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.iri.training.config.SpringWebConfig;
-import com.iri.training.servlet.filter.JwtFilter;
 
 public class MyWebInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {
