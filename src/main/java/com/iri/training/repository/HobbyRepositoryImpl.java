@@ -64,15 +64,15 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 
 		logger.debug("ENTERED getHobbyList");
 
-		final List<Hobby> hobbies;
+		final List<Hobby> hobbyList;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		hobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
+		hobbyList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
 			new HobbyListResultSetExtractor()));
 
 		logger.debug("EXITING getHobbyList");
 
-		return hobbies;
+		return hobbyList;
 	}
 
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {

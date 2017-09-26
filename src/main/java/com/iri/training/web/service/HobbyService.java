@@ -7,9 +7,9 @@ import com.iri.training.model.Hobby;
 
 public interface HobbyService {
 
-	Hobby getHobbyById(Long hobbyId) throws SQLException;
+	Hobby getHobbyById(long hobbyId) throws SQLException;
+
+	List<Hobby> getUserHobbies(long userId) throws SQLException;
 
 	List<Hobby> getHobbyList() throws SQLException;
-
-	List<Hobby> getUserHobbies(Long userId) throws SQLException;
 }
