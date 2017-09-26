@@ -29,8 +29,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @RequestMapping(value = "/api/auth")
 public class AuthController {
 
-	Logger logger = Logger.getLogger(AuthController.class);
-
+	private static final Logger logger = Logger.getLogger(AuthController.class);
 
 	@Autowired
 	AccountService accountService;
@@ -39,12 +38,15 @@ public class AuthController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-		produces = "application/json")
-	public ResponseEntity<String> registerAccount(@RequestBody RegistrationWrapper rw) throws SQLException {
-		Account account = rw.getAccount();
-		User user = rw.getUser();
-		logger.debug("ENTERED registerAccount: " + account + user);
+	@RequestMapping(value = "/register", method = RequestMethod.POST,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> addAccountAndUser(@RequestBody final RegistrationWrapper rw) throws SQLException {
+
+		final Account account = rw.getAccount();
+		final User user = rw.getUser();
+
+		logger.debug("ENTERED addAccountAndUser for account: " + account +
+			" and user: " + user);
 
 		if ( accountService.verifyNewAccount(account) &&
 				userService.verifyNewUser(user)) {
@@ -55,34 +57,45 @@ public class AuthController {
 			accountService.addAccount(account);
 			metricsService.initializeUserMetrics(userId);
 
-			logger.debug("EXITING registerAccount for id: " + userId);
+			logger.debug("EXITING addAccountAndUser for id: " + userId);
 
 			return new ResponseEntity("{\"message\": \"Registration success.\"}", HttpStatus.OK);
 		}
 		else {
-			logger.debug("EXITING registerAccount - Registration failed");
+			logger.debug("EXITING addAccountAndUser - Registration failed");
 
 			return new ResponseEntity("{\"message\": \"Registration failed.\"}", HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> authAccount(@RequestBody Account account) throws SQLException {
-		logger.debug("ENTERED authAccount " + account);
+	@RequestMapping(value = "/login", method = RequestMethod.POST,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> authLogin(@RequestBody final Account account) throws SQLException {
+
+		logger.debug("ENTERED authLogin for account: " + account);
 
 		final User user = userService.getUserByUsername(account.getUsername());
 
 		if (account.getUsername() == null || account.getPassword() == null) {
+			logger.debug("EXITING authLogin for account: " + account +
+			 " with insufficient log in data failure");
+
 			return new ResponseEntity("{\"message\": \"Insufficient log in data.\"}", HttpStatus.BAD_REQUEST);
 		}
 		else if (accountService.getAccountByUsername(account.getUsername()) == null) {
-			return new ResponseEntity("{\"message\": \"Username does not exist.\"}", HttpStatus.NOT_FOUND);
+			logger.debug("EXITING authLogin for account: " + account +
+				" with nonexistent username failure");
+
+			return new ResponseEntity("{\"message\": \"Username does not exist.\"}", HttpStatus.BAD_REQUEST);
 		}
 		else if (!accountService.getAccountByUsername(account.getUsername()).getPassword().equals(account.getPassword())) {
+			logger.debug("EXITING authLogin for account: " + account +
+				" with invalid log in details failure");
+
 			return new ResponseEntity("{\"message\": \"Invalid log in details.\"}", HttpStatus.BAD_REQUEST);
 		}
 
-		String jwt = Jwts.builder().setIssuer("IRI Training App")
+		final String jwt = Jwts.builder().setIssuer("IRI Training App")
 			.setSubject(String.valueOf(accountService.getAccountByUsername(account.getUsername()).getId()))
 			.setIssuedAt(new Date())
 			.setExpiration(Date.from((PropertiesConfig.KEY_EXPIRY_DATE).toInstant(ZoneOffset.UTC)))
@@ -93,7 +106,8 @@ public class AuthController {
 			.signWith(SignatureAlgorithm.HS256, PropertiesConfig.JWT_KEY)
 			.compact();
 
-		logger.debug("EXITING authAccount" + account + " Token: "+ jwt);
+		logger.debug("EXITING authLogin for account" + account +
+			" with JSON Web Token: " + jwt);
 
 		return new ResponseEntity<String>(new StringBuilder(200)
 			.append("{\"token\": \"")
@@ -108,12 +122,12 @@ public class AuthController {
 		private Account account;
 		private User user;
 
-		public Account getAccount() { return account; }
+		private Account getAccount() { return account; }
 
-		public void setAccount(Account account) { this.account = account; }
+		private void setAccount(Account account) { this.account = account; }
 
-		public User getUser() { return user; }
+		private User getUser() { return user; }
 
-		public void setUser(User user) { this.user = user; }
+		private void setUser(User user) { this.user = user; }
 	}
 }
