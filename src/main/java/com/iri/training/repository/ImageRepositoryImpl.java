@@ -83,10 +83,10 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 			if (resultSet.next()) {
 				img = new ImageBuilder()
-					.withImageId(resultSet.getLong("imgId"))
-					.withUserId(resultSet.getLong("userId"))
-					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-					.withImageUri(resultSet.getString("imgUri"))
+					.withImageId(resultSet.getLong("id"))
+					.withUserId(resultSet.getLong("user_id"))
+					.withIsProfileImage(resultSet.getBoolean("is_profile_img"))
+					.withImageUri(resultSet.getString("img_uri"))
 					.build();
 			}
 			else
@@ -106,10 +106,10 @@ public class ImageRepositoryImpl implements ImageRepository {
 			final List<Image> imgList = new ArrayList<>();
 			while (resultSet.next()) {
 				imgList.add(new ImageBuilder()
-					.withImageId(resultSet.getLong("imgId"))
-					.withUserId(resultSet.getLong("userId"))
-					.withIsProfileImage(resultSet.getBoolean("isProfileImg"))
-					.withImageUri(resultSet.getString("imgUri"))
+					.withImageId(resultSet.getLong("id"))
+					.withUserId(resultSet.getLong("user_id"))
+					.withIsProfileImage(resultSet.getBoolean("is_profile_img"))
+					.withImageUri(resultSet.getString("img_uri"))
 					.build());
 			}
 
