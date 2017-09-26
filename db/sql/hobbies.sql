@@ -1,36 +1,48 @@
 DROP TABLE IF EXISTS hobbies;
 CREATE TABLE IF NOT EXISTS hobbies(
-    hobbyId        INTEGER    PRIMARY KEY  AUTOINCREMENT,
-    hobbyName      TEXT       NOT_NULL  UNIQUE,
+    id             INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    name           TEXT       NOT_NULL  UNIQUE,
     description    TEXT
 );
 
-INSERT INTO hobbies(hobbyName, description) VALUES
--- Skiing --
+INSERT INTO hobbies(name, description) VALUES
+-- Hobby 1 --
 ("Skiing", NULL),
--- Knitting --
+-- Hobby 2 --
 ("Knitting", NULL),
--- Chess --
+-- Hobby 3 --
 ("Chess", NULL),
--- Biking --
+-- Hobby 4 --
 ("Biking", NULL),
--- Travelling --
+-- Hobby 5 --
 ("Travelling", NULL),
--- Jogging --
+-- Hobby 6 --
 ("Jogging", NULL),
--- Martial Arts --
+-- Hobby 7 --
 ("Martial Arts", NULL),
--- Tennis --
+-- Hobby 8 --
 ("Tennis", NULL),
--- Football --
+-- Hobby 9 --
 ("Football", NULL),
--- Basketball --
+-- Hobby 10 --
 ("Basketball", NULL),
--- Cooking --
+-- Hobby 11 --
 ("Cooking", NULL),
--- Gardenning --
+-- Hobby 12 --
 ("Gardenning", NULL),
--- Gaming --
+-- Hobby 13 --
 ("Gaming", NULL),
--- Swimming --
-("Swimming", NULL);
+-- Hobby 14 --
+("Swimming", NULL),
+-- Hobby 15 --
+("Dancing", NULL),
+-- Hobby 16 --
+("Parkour", NULL),
+-- Hobby 17 --
+("Hiking", NULL),
+-- Hobby 18 --
+("Paintball", NULL),
+-- Hobby 19 --
+("Baseball", NULL),
+-- Hobby 20 --
+("Paragliding", NULL);

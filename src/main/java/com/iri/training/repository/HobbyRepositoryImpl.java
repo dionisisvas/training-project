@@ -78,8 +78,8 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 
 			if (resultSet.next()) {
 				hobby = new HobbyBuilder()
-					.withHobbyId(resultSet.getLong("hobbyId"))
-					.withHobbyName(resultSet.getString("hobbyName"))
+					.withHobbyId(resultSet.getLong("id"))
+					.withHobbyName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build();
 			}
@@ -100,8 +100,8 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 			final List<Hobby> hobbyList = new ArrayList<>();
 			while (resultSet.next()) {
 				hobbyList.add(new HobbyBuilder()
-					.withHobbyId(resultSet.getLong("hobbyId"))
-					.withHobbyName(resultSet.getString("hobbyName"))
+					.withHobbyId(resultSet.getLong("id"))
+					.withHobbyName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build());
 			}
@@ -117,7 +117,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 
 			final List<Long> userHobbyList = new ArrayList<>();
 			while (resultSet.next()) {
-				userHobbyList.add(resultSet.getLong("hobbyId"));
+				userHobbyList.add(resultSet.getLong("hobby_id"));
 			}
 
 			return userHobbyList;
