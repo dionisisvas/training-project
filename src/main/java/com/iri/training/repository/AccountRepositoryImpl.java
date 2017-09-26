@@ -24,8 +24,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	private static final Logger logger = Logger.getLogger(UserRepository.class);
 
-	private DatabaseConnection dbConnection = new DatabaseConnection();
-	private DataSource dataSource = dbConnection .getDataSource();
+	private final DatabaseConnection dbConnection = new DatabaseConnection();
+	private final DataSource dataSource = dbConnection .getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
 	@Override

@@ -19,52 +19,58 @@ import com.iri.training.model.builder.HobbyBuilder;
 @Repository
 public class HobbyRepositoryImpl implements HobbyRepository {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = Logger.getLogger(HobbyRepository.class);
 
- 	private JdbcTemplate jdbcTemplate;
-	private DatabaseConnection dbConnection = new DatabaseConnection();
-	private DataSource dataSource = dbConnection .getDataSource();
+	private final DatabaseConnection dbConnection = new DatabaseConnection();
+	private final DataSource dataSource = dbConnection.getDataSource();
+	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public Hobby getHobbyById(Long hobbyId) throws SQLException {
+	public final Hobby getHobbyById(final long hobbyId) throws SQLException {
 
 		logger.debug("ENTERED getHobbyById for hobbyId: " + hobbyId);
 
 		final Hobby hobby;
-
 		jdbcTemplate = new JdbcTemplate(dataSource);
+
 		hobby = jdbcTemplate.query(PropertiesConfig.GET_HOBBY_BY_ID,
 			new Object[]{hobbyId},
 			new HobbyResultSetExtractor());
 
-		logger.debug("EXITING getHobbyById: " + hobby);
+		logger.debug("EXITING getHobbyById with hobby: " + hobby);
 
 		return hobby;
 	}
 
 	@Override
-	public List<Long> getUserHobbies(Long userId) throws SQLException {
+	public final List<Long> getUserHobbies(final long userId) throws SQLException {
+
 		logger.debug("ENTERED getUserHobbies for userId: " + userId);
 
+		final List<Long> userHobbies;
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Long> userHobbies = jdbcTemplate.query(PropertiesConfig.GET_HOBBIES_BY_USER_ID,
-			new Object[]{userId},
-			new UserHobbyListResultSetExtractor());
 
-		logger.debug("EXITING getUserHobbies: " + userHobbies);
+		userHobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBIES_BY_USER_ID,
+			new Object[]{userId},
+			new UserHobbyListResultSetExtractor()));
+
+		logger.debug("EXITING getUserHobbies with hobby IDs: " + userHobbies);
 
 		return userHobbies;
 	}
 
 	@Override
-	public List<Hobby> getHobbyList() throws SQLException {
+	public final List<Hobby> getHobbyList() throws SQLException {
+
 		logger.debug("ENTERED getHobbyList");
 
+		final List<Hobby> hobbies;
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		final List<Hobby> hobbies = jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
-			new HobbyListResultSetExtractor());
 
-		logger.debug("EXITING getHobbyList: " + hobbies);
+		hobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
+			new HobbyListResultSetExtractor()));
+
+		logger.debug("EXITING getHobbyList");
 
 		return hobbies;
 	}

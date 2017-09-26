@@ -45,7 +45,7 @@ public class AccountController {
 
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<Account> getAccount(@PathVariable("username") final String username) throws SQLException {
+	public final ResponseEntity<Account> getAccountByUsername(@PathVariable("username") final String username) throws SQLException {
 
 		logger.debug("ENTERED getAccountByUsername for username: " + username);
 
