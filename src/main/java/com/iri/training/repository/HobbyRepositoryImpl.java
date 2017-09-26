@@ -64,15 +64,15 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 
 		logger.debug("ENTERED getHobbyList");
 
-		final List<Hobby> hobbyList;
+		final List<Hobby> hobbies;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		hobbyList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
+		hobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
 			new HobbyListResultSetExtractor()));
 
 		logger.debug("EXITING getHobbyList");
 
-		return hobbyList;
+		return hobbies;
 	}
 
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
@@ -103,16 +103,16 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		@Override
 		public List<Hobby> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<Hobby> hobbyList = new ArrayList<>();
+			final List<Hobby> hobbies = new ArrayList<>();
 			while (resultSet.next()) {
-				hobbyList.add(new HobbyBuilder()
+				hobbies.add(new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("id"))
 					.withHobbyName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build());
 			}
 
-			return hobbyList;
+			return hobbies;
 		}
 	}
 
@@ -121,12 +121,12 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		@Override
 		public List<Long> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<Long> userHobbyList = new ArrayList<>();
+			final List<Long> userHobbies = new ArrayList<>();
 			while (resultSet.next()) {
-				userHobbyList.add(resultSet.getLong("hobby_id"));
+				userHobbies.add(resultSet.getLong("hobby_id"));
 			}
 
-			return userHobbyList;
+			return userHobbies;
 		}
 	}
 }

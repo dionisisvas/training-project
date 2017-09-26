@@ -53,10 +53,10 @@ public class HobbyServiceImpl implements HobbyService{
 
 		logger.debug("ENTERED getHobbyList");
 
-		final List<Hobby> hobbyList = new ArrayList<>(hobbyRepository.getHobbyList());
+		final List<Hobby> hobbies = new ArrayList<>(hobbyRepository.getHobbyList());
 
 		logger.debug("EXITING getHobbyList");
 
-		return hobbyList;
+		return hobbies;
 	}
 }
