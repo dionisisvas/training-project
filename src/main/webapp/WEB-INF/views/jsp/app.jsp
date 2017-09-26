@@ -12,6 +12,7 @@
     <title>IRI Training Project</title>
 
     <spring:url value="/resources/css/app.css" var="appCss" />
+    <spring:url value="/resources/css/simple.css" var="simpleCss" />
     <spring:url value="/resources/css/app.animation.css" var="appAnimationCss" />
     <spring:url value="/resources/css/timeline.css" var="timelineCss" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link href="${appCss}" rel="stylesheet" />
+    <link href="${simpleCss}" rel="stylesheet" />
     <link href="${appAnimationCss}" rel="stylesheet" />
     <link href="${timelineCss}" rel="stylesheet" />
   </head>
@@ -28,14 +30,6 @@
       <div ng-view class="view-frame" layout="column" md-theme="myTheme" layout-fill></div>
     </div>
 
-
-    <spring:url value="/resources/lib/angular/angular.js" var="angularJs" />
-    <spring:url value="/resources/lib/angular/angular-animate.js" var="angularAnimateJs" />
-    <spring:url value="/resources/lib/angular/angular-aria.js" var="angularAriaJs" />
-    <spring:url value="/resources/lib/angular/angular-cookies.js" var="angularCookiesJs" />
-    <spring:url value="/resources/lib/angular/angular-messages.js" var="angularMessagesJs" />
-    <spring:url value="/resources/lib/angular/angular-resource.js" var="angularResourceJs" />
-    <spring:url value="/resources/lib/angular/angular-route.js" var="angularRouteJs" />
     <spring:url value="/app/app.module.js" var="appModuleJs" />
     <spring:url value="/app/app.config.js" var="appConfigJs" />
     <spring:url value="/app/core/core.module.js" var="coreModuleJs" />
@@ -112,6 +106,8 @@
     <spring:url value="/app/user-statistics/user-statistics.component.js" var="userStatisticComponentJs" />
     <spring:url value="/app/Edit/edit-account/edit-account.module.js" var="editAccountModuleJs" />
     <spring:url value="/app/Edit/edit-account/edit-account.component.js" var="editAccountComponentJs" />
+    <spring:url value="/app/Edit/Edit-Hobbies-Images/edit-hobbies.module.js" var="editHobbiesModuleJs" />
+    <spring:url value="/app/Edit/Edit-Hobbies-Images/edit-hobbies.component.js" var="editHobbiesComponentJs" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
@@ -127,6 +123,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js"></script>
     <script src="${coreModuleJs}"></script>
     <script src="${appModuleJs}"></script>
     <script src="${appConfigJs}"></script>
@@ -203,5 +200,7 @@
     <script src="${userStatisticComponentJs}"></script>
     <script src="${editAccountModuleJs}"></script>
     <script src="${editAccountComponentJs}"></script>
+    <script src="${editHobbiesModuleJs}"></script>
+    <script src="${editHobbiesComponentJs}"></script>
   </body>
 </html>

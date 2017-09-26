@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('editMyAccount', [
+angular.module('editMyHobbies', [
     'ngRoute',
     'core.jwtoken'
 ]);
