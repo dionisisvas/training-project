@@ -17,7 +17,7 @@ import com.iri.training.model.Hobby;
 import com.iri.training.model.builder.HobbyBuilder;
 
 @Repository
-public class HobbyRepositoryImpl implements HobbyRepository {
+public final class HobbyRepositoryImpl implements HobbyRepository {
 
 	private static final Logger logger = Logger.getLogger(HobbyRepository.class);
 

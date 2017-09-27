@@ -14,7 +14,7 @@ import com.iri.training.repository.CommentReplyRepository;
 import com.iri.training.repository.CommentRepository;
 
 @Service
-public class CommentServiceImpl implements CommentService {
+public final class CommentServiceImpl implements CommentService {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

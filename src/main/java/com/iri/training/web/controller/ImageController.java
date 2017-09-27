@@ -21,7 +21,7 @@ import com.iri.training.web.service.ImageService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/image")
-public class ImageController {
+public final class ImageController {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 

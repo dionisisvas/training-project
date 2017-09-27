@@ -12,7 +12,7 @@ import com.iri.training.model.Account;
 import com.iri.training.repository.AccountRepository;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public final class AccountServiceImpl implements AccountService {
 
 	private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 

@@ -19,7 +19,7 @@ import com.iri.training.model.CommentReply;
 import com.iri.training.model.builder.CommentReplyBuilder;
 
 @Repository
-public class CommentReplyRepositoryImpl implements CommentReplyRepository {
+public final class CommentReplyRepositoryImpl implements CommentReplyRepository {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

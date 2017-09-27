@@ -21,7 +21,7 @@ import com.iri.training.web.service.AccountService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/account")
-public class AccountController {
+public final class AccountController {
 
 	private static final Logger logger = Logger.getLogger(AccountController.class);
 

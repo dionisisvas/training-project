@@ -22,7 +22,7 @@ import com.iri.training.web.service.MetricsService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "api/metrics")
-public class MetricsController {
+public final class MetricsController {
 
 	Logger logger = Logger.getLogger(MetricsController.class);
 

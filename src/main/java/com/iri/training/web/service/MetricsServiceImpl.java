@@ -12,7 +12,7 @@ import com.iri.training.model.Metrics;
 import com.iri.training.repository.MetricsRepository;
 
 @Service
-public class MetricsServiceImpl implements MetricsService{
+public final class MetricsServiceImpl implements MetricsService{
 	Logger logger = Logger.getLogger(MetricsServiceImpl.class);
 
 	@Autowired

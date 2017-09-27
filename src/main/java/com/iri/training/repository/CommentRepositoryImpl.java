@@ -20,7 +20,7 @@ import com.iri.training.model.Comment;
 import com.iri.training.model.builder.CommentBuilder;
 
 @Repository
-public class CommentRepositoryImpl implements CommentRepository {
+public final class CommentRepositoryImpl implements CommentRepository {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

@@ -12,7 +12,7 @@ import com.iri.training.model.CommentReply;
 import com.iri.training.repository.CommentReplyRepository;
 
 @Service
-public class CommentReplyServiceImpl implements CommentReplyService {
+public final class CommentReplyServiceImpl implements CommentReplyService {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

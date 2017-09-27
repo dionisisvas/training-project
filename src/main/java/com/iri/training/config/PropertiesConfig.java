@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import com.iri.training.util.IRIProperties;
 
 @Component
-public class PropertiesConfig {
+public final class PropertiesConfig {
 
 	private static final Logger logger = Logger.getLogger(PropertiesConfig.class);
 

@@ -18,7 +18,7 @@ import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.Events;
 import com.iri.training.model.builder.EventBuilder;
 @Repository
-public class EventRepositoryImpl implements EventRepository {
+public final class EventRepositoryImpl implements EventRepository {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

@@ -20,7 +20,7 @@ import com.iri.training.model.Account;
 import com.iri.training.model.builder.AccountBuilder;
 
 @Repository
-public class AccountRepositoryImpl implements AccountRepository {
+public final class AccountRepositoryImpl implements AccountRepository {
 
 	private static final Logger logger = Logger.getLogger(UserRepository.class);
 

@@ -12,7 +12,7 @@ import com.iri.training.model.Hobby;
 import com.iri.training.repository.HobbyRepository;
 
 @Service
-public class HobbyServiceImpl implements HobbyService {
+public final class HobbyServiceImpl implements HobbyService {
 
 	private static final Logger logger = Logger.getLogger(HobbyService.class);
 
@@ -87,7 +87,7 @@ public class HobbyServiceImpl implements HobbyService {
 
 		logger.debug("ENTERED editHobbies");
 
-		hobbyRepository.deleteHobbies(0)
+		hobbyRepository.deleteHobbies(0);
 
 		hobbyRepository.addHobbies(hobbies);
 

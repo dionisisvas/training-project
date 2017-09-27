@@ -17,7 +17,7 @@ import com.iri.training.model.Image;
 import com.iri.training.model.builder.ImageBuilder;
 
 @Repository
-public class ImageRepositoryImpl implements ImageRepository {
+public final class ImageRepositoryImpl implements ImageRepository {
 
 	private static final Logger logger = Logger.getLogger(ImageRepository.class);
 

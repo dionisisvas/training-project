@@ -21,7 +21,7 @@ import com.iri.training.web.service.HobbyService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/hobby")
-public class HobbyController {
+public final class HobbyController {
 
 	private static final Logger logger = Logger.getLogger(HobbyController.class);
 

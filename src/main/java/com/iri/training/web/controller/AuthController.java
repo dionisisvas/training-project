@@ -27,7 +27,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/auth")
-public class AuthController {
+public final class AuthController {
 
 	private static final Logger logger = Logger.getLogger(AuthController.class);
 

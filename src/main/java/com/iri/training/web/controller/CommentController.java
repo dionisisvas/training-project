@@ -24,7 +24,7 @@ import com.iri.training.web.service.CommentService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/api/comment")
-public class CommentController {
+public final class CommentController {
 
 	Logger logger = Logger.getLogger(this.getClass());
 

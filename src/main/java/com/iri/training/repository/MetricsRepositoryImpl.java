@@ -17,7 +17,7 @@ import com.iri.training.model.Metrics;
 import com.iri.training.model.builder.MetricsBuilder;
 
 @Repository
-public class MetricsRepositoryImpl implements MetricsRepository {
+public final class MetricsRepositoryImpl implements MetricsRepository {
 
 	private static final Logger logger = Logger.getLogger(MetricsRepository.class);
 

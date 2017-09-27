@@ -20,7 +20,7 @@ import com.iri.training.web.service.EventService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api")
-public class EventController {
+public final class EventController {
 	Logger logger = Logger.getLogger(this.getClass());
 
 	@Autowired
