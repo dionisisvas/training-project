@@ -85,7 +85,7 @@ public class HobbyController {
 
 		logger.debug("ENTERED editHobbies for hobbies: " + hobbies);
 
-		// hobbyService.editHobby(hobbyList); TODO: implement this
+		hobbyService.editHobbies(hobbies);
 
 		logger.debug("EXITING editHobbies for hobbies: " + hobbies);
 

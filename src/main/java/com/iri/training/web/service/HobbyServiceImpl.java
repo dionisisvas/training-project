@@ -61,7 +61,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public void addHobbies(final List<Hobby> hobbies) throws SQLException {
+	public final void addHobbies(final List<Hobby> hobbies) throws SQLException {
 
 		logger.debug("ENTERED addHobbies for hobbies: " + hobbies);
 
@@ -71,7 +71,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public void deleteHobbies(final long userId) throws SQLException {
+	public final void deleteHobbies(final long userId) throws SQLException {
 
 		logger.debug("ENTERED deleteHobbies for userId: " + userId);
 
@@ -79,4 +79,19 @@ public class HobbyServiceImpl implements HobbyService {
 
 		logger.debug("EXITING deleteHobbies for userId: " + userId);
 	}
+
+	@Override
+	public final void editHobbies(final List<Hobby> hobbies) throws SQLException {
+
+		// TODO: get userId, write correct logging messages
+
+		logger.debug("ENTERED editHobbies");
+
+		hobbyRepository.deleteHobbies(0)
+
+		hobbyRepository.addHobbies(hobbies);
+
+		logger.debug("EXITING editHobbies");
+	}
+
 }
