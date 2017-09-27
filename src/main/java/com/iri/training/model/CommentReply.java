@@ -1,6 +1,7 @@
 package com.iri.training.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.iri.training.model.interfaces.IPostable;
 
@@ -73,15 +74,32 @@ public class CommentReply implements IPostable{
 		this.lastEditDate = lastEditDate;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
 
-		return "CommentReply{" +
-			"id=" + id +
-			", posterId=" + posterId +
-			", parentId=" + parentId +
-			", content='" + content + '\'' +
-			", creationDate=" + creationDate +
-			", lastEditDate=" + lastEditDate +
-			'}';
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Comment{");
+		sb.append("id=");
+		sb.append(id);
+		sb.append('\'');
+		sb.append(", posterId='");
+		sb.append(posterId);
+		sb.append('\'');
+		sb.append(", parentId='");
+		sb.append(parentId);
+		sb.append('\'');
+		sb.append(", content='");
+		sb.append(content);
+		sb.append('\'');
+		sb.append(", creationDate='");
+		sb.append(creationDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		sb.append('\'');
+		sb.append(", lastEditDate='");
+		sb.append(lastEditDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
 	}
 }

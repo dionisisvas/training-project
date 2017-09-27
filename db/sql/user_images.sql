@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS user_images;
 CREATE TABLE IF NOT EXISTS user_images(
-    imgId           INTEGER    PRIMARY KEY  AUTOINCREMENT,
-    userId          INTEGER    NOT_NULL,
-    isProfileImg    BOOLEAN    DEFAULT '0',
-    imgUri          TEXT       NOT_NULL  UNIQUE,
-    FOREIGN KEY (userId) REFERENCES users(id)
+    id                INTEGER    PRIMARY KEY  AUTOINCREMENT,
+    user_id           INTEGER    NOT_NULL,
+    is_profile_img    BOOLEAN    DEFAULT '0',
+    img_uri           TEXT       NOT_NULL  UNIQUE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-INSERT INTO user_images(userId, isProfileImg, imgUri) VALUES
+INSERT INTO user_images(user_id, is_profile_img, img_uri) VALUES
 -- User 1 --
 (1, 1, "resources/img/users/1_0.png"),
 (1, 0, "resources/img/users/1_1.png"),

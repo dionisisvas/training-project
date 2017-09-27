@@ -5,17 +5,13 @@ angular.
     factory('Account', ['$resource',
         function($resource) {
             return {
-                AccountByUsername: $resource('api/account/:username'),
-                AccountById: $resource('api/account/id/:accountId'),
+                AccountById: $resource('api/account/:accountId'),
+                AccountByUsername: $resource('api/account/username/:username'),
                 AccountByEmail: $resource('api/account/email/:email'),
                 AccountList: $resource('api/account/list'),
                 IsUsernameUnique: $resource('api/account/is-unique/username/:username'),
                 IsEmailUnique: $resource('api/account/is-unique/email/:email'),
-                EditAccount:$resource('api/account/edit', {}, {
-                             'update': {
-                             method: 'PUT'
-                             }
-                 })
+                EditAccount:$resource('api/account/edit')
             };
         }
     ]);

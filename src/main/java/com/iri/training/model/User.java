@@ -1,6 +1,7 @@
 package com.iri.training.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.iri.training.enums.EducationLevel;
 
@@ -139,7 +140,9 @@ public class User {
 		this.weight = weight;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("User{");
@@ -153,7 +156,7 @@ public class User {
 		sb.append(surname);
 		sb.append('\'');
 		sb.append(", dateOfBirth='");
-		sb.append(dateOfBirth);
+		sb.append(dateOfBirth.format(DateTimeFormatter.ISO_LOCAL_DATE));
 		sb.append('\'');
 		sb.append(", placeOfBirth='");
 		sb.append(placeOfBirth);

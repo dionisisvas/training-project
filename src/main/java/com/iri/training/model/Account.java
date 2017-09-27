@@ -10,16 +10,6 @@ public class Account {
 	private String email;
 	private LocalDateTime joinDate;
 
-	public String getUsername() {
-
-		return username;
-	}
-
-	public void setUsername(final String username) {
-
-		this.username = username;
-	}
-
 	public long getId() {
 
 		return id;
@@ -28,6 +18,16 @@ public class Account {
 	public void setId(final long id) {
 
 		this.id = id;
+	}
+
+	public String getUsername() {
+
+		return username;
+	}
+
+	public void setUsername(final String username) {
+
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -60,7 +60,9 @@ public class Account {
 		this.joinDate = joinDate;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("Account{");

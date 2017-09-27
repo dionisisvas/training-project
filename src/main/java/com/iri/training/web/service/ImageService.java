@@ -7,11 +7,13 @@ import com.iri.training.model.Image;
 
 public interface ImageService {
 
-	Image getImageById(Long imgId) throws SQLException;
+	Image getImageById(long imgId) throws SQLException;
 
-	Image getProfileImage(Long userId) throws SQLException;
+	Image getProfileImage(long userId) throws SQLException;
 
-	List<Image> getUserImages(Long userId) throws SQLException;
+	List<Image> getUserImages(long userId) throws SQLException;
+
 	void addImage(Image image) throws SQLException;
-	void removeImage(Image image) throws SQLException;
+
+	void deleteImage(Image image) throws SQLException;
 }

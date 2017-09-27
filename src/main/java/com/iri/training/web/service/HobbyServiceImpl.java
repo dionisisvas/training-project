@@ -3,6 +3,7 @@ package com.iri.training.web.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,57 +13,85 @@ import com.iri.training.repository.HobbyRepository;
 
 @Service
 public class HobbyServiceImpl implements HobbyService {
-	Logger logger = Logger.getLogger(this.getClass());
+
+	private static final Logger logger = Logger.getLogger(HobbyService.class);
+
 	@Autowired
 	HobbyRepository hobbyRepository;
 
 	@Override
-	public Hobby getHobbyById(Long hobbyId) throws SQLException {
+	public final Hobby getHobbyById(final long hobbyId) throws SQLException {
 
-		return hobbyRepository.getHobbyById(hobbyId);
-	}
+		logger.debug("ENTERED getHobbyById for hobbyId: " + hobbyId);
 
-	@Override
-	public List<Hobby> getHobbyList() throws SQLException {
+		final Hobby hobby = hobbyRepository.getHobbyById(hobbyId);
 
-		return hobbyRepository.getHobbyList();
-	}
-
-	@Override
-	public List<Hobby> getUserHobbies(Long userId) throws SQLException {
-
-		final List<Hobby> userHobbies = new ArrayList<>();
-
-		for (Long hobbyId : hobbyRepository.getUserHobbies(userId)) {
-			userHobbies.add(getHobbyById(hobbyId));
-		}
-
-		return userHobbies;
-	}
-
-	@Override
-	public void addHobbies(final List<Hobby> hobbyList) throws SQLException {
-		hobbyRepository.addHobbies(hobbyList);
-
-	}
-
-	@Override
-	public Hobby removeHobbies(final Long userId) throws SQLException {
-		Hobby hobby = hobbyRepository.removeHobbies(userId);
+		logger.debug("ENTERED getHobbyById with hobby: " + hobby);
 
 		return hobby;
 	}
 
 	@Override
-	public void editHobby(final List<Hobby> hobbyList) throws SQLException {
+	public final List<Hobby> getUserHobbies(final long userId) throws SQLException {
 
-		logger.debug("ENTERED editHobby for " + hobbyList);
-			hobbyRepository.removeHobbies(hobbyList.get(0).getHobbyId());
+		logger.debug("ENTERED getUserHobbies for userId: " + userId);
 
-			hobbyRepository.addHobbies(hobbyList);
+		final List<Hobby> userHobbies = new ArrayList<>();
 
-			 logger.debug("Edit Success");
+		for (long hobbyId : hobbyRepository.getUserHobbies(userId)) {
+			userHobbies.add(getHobbyById(hobbyId));
+		}
 
-		logger.debug("EXITING editHobby ");
+		logger.debug("EXITING getUserHobbies for userId: " + userId +
+			" with hobbies: " + userHobbies);
+
+		return userHobbies;
 	}
+
+	@Override
+	public final List<Hobby> getHobbyList() throws SQLException {
+
+		logger.debug("ENTERED getHobbyList");
+
+		final List<Hobby> hobbies = new ArrayList<>(hobbyRepository.getHobbyList());
+
+		logger.debug("EXITING getHobbyList");
+
+		return hobbies;
+	}
+
+	@Override
+	public final void addHobbies(final List<Hobby> hobbies) throws SQLException {
+
+		logger.debug("ENTERED addHobbies for hobbies: " + hobbies);
+
+		hobbyRepository.addHobbies(hobbies);
+
+		logger.debug("EXITING addHobbies for hobbies: " + hobbies);
+	}
+
+	@Override
+	public final void deleteHobbies(final long userId) throws SQLException {
+
+		logger.debug("ENTERED deleteHobbies for userId: " + userId);
+
+		hobbyRepository.deleteHobbies(userId);
+
+		logger.debug("EXITING deleteHobbies for userId: " + userId);
+	}
+
+	@Override
+	public final void editHobbies(final List<Hobby> hobbies) throws SQLException {
+
+		// TODO: get userId, write correct logging messages
+
+		logger.debug("ENTERED editHobbies");
+
+		hobbyRepository.deleteHobbies(0)
+
+		hobbyRepository.addHobbies(hobbies);
+
+		logger.debug("EXITING editHobbies");
+	}
+
 }
