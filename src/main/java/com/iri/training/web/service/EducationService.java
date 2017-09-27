@@ -10,9 +10,9 @@ public interface EducationService {
 
 	List<Education> getEducationByUserId(long userId) throws SQLException;
 
-	EducationLevel getEducationLevelByUserId(long userId) throws SQLException;
-
 	List<Long> getUsersByEducationLevel(EducationLevel educationLevel) throws SQLException;
+
+	EducationLevel getEducationLevelByUserId(long userId) throws SQLException;
 
 	int getUserPopulationByEducationLevel(EducationLevel educationLevel) throws SQLException;
 }

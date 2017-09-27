@@ -1,6 +1,7 @@
 package com.iri.training.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.iri.training.enums.SubjectType;
@@ -97,16 +98,38 @@ public class Comment implements IPostable{
 		this.replies = replies;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
 
-		return "Comment{" +
-			"id=" + id +
-			", posterId=" + posterId +
-			", subjectType=" + subjectType +
-			", subjectId=" + subjectId +
-			", content='" + content + '\'' +
-			", creationDate=" + creationDate +
-			", lastEditDate=" + lastEditDate +
-			'}';
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Comment{");
+		sb.append("id=");
+		sb.append(id);
+		sb.append('\'');
+		sb.append(", posterId='");
+		sb.append(posterId);
+		sb.append('\'');
+		sb.append(", subjectType='");
+		sb.append(subjectType);
+		sb.append('\'');
+		sb.append(", subjectId='");
+		sb.append(subjectId);
+		sb.append('\'');
+		sb.append(", content='");
+		sb.append(content);
+		sb.append('\'');
+		sb.append(", creationDate='");
+		sb.append(creationDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		sb.append('\'');
+		sb.append(", lastEditDate='");
+		sb.append(lastEditDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+		sb.append('\'');
+		sb.append(", replies='");
+		sb.append(replies);
+		sb.append('\'');
+		sb.append('}');
+
+		return sb.toString();
 	}
 }

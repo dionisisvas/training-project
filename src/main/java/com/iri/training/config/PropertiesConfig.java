@@ -107,27 +107,27 @@ public class PropertiesConfig {
 
 			// Image queries
 			GET_IMAGE_BY_ID = sqlProperties.getString("GetImageById",
-				"SELECT * FROM user_images WHERE imgId = ?;");
+				"SELECT * FROM user_images WHERE id = ?;");
 			GET_PROFILE_IMAGE_BY_USER_ID = sqlProperties.getString("GetProfileImageByUserId",
-				"SELECT * FROM user_images WHERE userId = ? AND isProfileImg = 1;");
+				"SELECT * FROM user_images WHERE user_id = ? AND is_profile_img = 1;");
 			GET_IMAGES_BY_USER_ID = sqlProperties.getString("GetImagesByUserId",
-				"SELECT imgId, userId, isProfileImg, imgUri FROM user_images WHERE userId = ?;");
+				"SELECT * FROM user_images WHERE user_id = ?;");
 			ADD_IMAGE = sqlProperties.getString("AddImage",
-				"INSERT INTO user_images(userId, isProfileImg, imgUri) VALUES(?, ?, ?);");
+				"INSERT INTO user_images(user_id, is_profile_img, img_uri) VALUES(?, ?, ?);");
 			DELETE_IMAGE = sqlProperties.getString("DeleteImage",
-				"DELETE FROM user_images WHERE imgId = ?;");
+				"DELETE FROM user_images WHERE id = ?;");
 
 			// Hobby queries
 			GET_HOBBY_BY_ID = sqlProperties.getString("GetHobbyById",
-				"SELECT * FROM hobbies WHERE hobbyId = ?;");
+				"SELECT * FROM hobbies WHERE id = ?;");
 			GET_HOBBY_LIST = sqlProperties.getString("GetHobbyList",
 				"SELECT * FROM hobbies;");
 			GET_HOBBIES_BY_USER_ID = sqlProperties.getString("GetHobbiesByUserId",
-				"SELECT * FROM user_hobbies WHERE userId = ?;");
+				"SELECT * FROM user_hobbies WHERE user_id = ?;");
 			ADD_USER_HOBBY = sqlProperties.getString("AddUserHobby",
-				"INSERT INTO user_hobbies (userId, hobbyId) VALUES(?, ?);");
+				"INSERT INTO user_hobbies (user_id, hobby_id) VALUES(?, ?);");
 			DELETE_USER_HOBBY = sqlProperties.getString("DeleteUserHobby",
-				"DELETE FROM user_hobbies WHERE userId = ? AND hobbyId = ?;");
+				"DELETE FROM user_hobbies WHERE user_id = ? AND hobby_id = ?;");
 
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",

@@ -56,15 +56,15 @@ public final class UserRepositoryImpl implements UserRepository {
 
 		logger.debug("ENTERED getUserList");
 
-		final List<User> userList;
+		final List<User> users;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		userList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
+		users = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
 			new UserListResultSetExtractor()));
 
 		logger.debug("EXITING getUserList");
 
-		return userList;
+		return users;
 	}
 
 	@Override
@@ -152,10 +152,10 @@ public final class UserRepositoryImpl implements UserRepository {
 		@Override
 		public List<User> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<User> userList = new ArrayList<>();
+			final List<User> users = new ArrayList<>();
 
 			while (resultSet.next()) {
-				userList.add(new UserBuilder()
+				users.add(new UserBuilder()
 					.withId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withSurname(resultSet.getString("surname"))
@@ -165,7 +165,7 @@ public final class UserRepositoryImpl implements UserRepository {
 					.build());
 			}
 
-			return userList;
+			return users;
 		}
 	}
 }

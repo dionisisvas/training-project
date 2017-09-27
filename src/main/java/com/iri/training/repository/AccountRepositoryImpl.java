@@ -24,8 +24,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	private static final Logger logger = Logger.getLogger(UserRepository.class);
 
-	private DatabaseConnection dbConnection = new DatabaseConnection();
-	private DataSource dataSource = dbConnection .getDataSource();
+	private final DatabaseConnection dbConnection = new DatabaseConnection();
+	private final DataSource dataSource = dbConnection .getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
@@ -84,15 +84,15 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 		logger.debug("ENTERED getAccountList");
 
-		final List<Account> accountsList;
+		final List<Account> accounts;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		accountsList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
+		accounts = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
 			new AccountListResultSetExtractor()));
 
 		logger.debug("EXITING getAccountList");
 
-		return accountsList;
+		return accounts;
 	}
 
 	@Override
@@ -159,10 +159,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 		@Override
 		public List<Account> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<Account> accountList = new ArrayList<>();
+			final List<Account> accounts = new ArrayList<>();
 
 			while (resultSet.next()) {
-				accountList.add(new AccountBuilder()
+				accounts.add(new AccountBuilder()
 					.withUsername(resultSet.getString("username"))
 					.withId(resultSet.getLong("accountId"))
 					.withEmail(resultSet.getString("email"))
@@ -172,7 +172,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 					.build());
 			}
 
-			return accountList;
+			return accounts;
 		}
 	}
 }

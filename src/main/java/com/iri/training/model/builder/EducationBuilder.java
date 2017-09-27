@@ -25,9 +25,13 @@ class EducationBuilderBase<GeneratorT extends EducationBuilderBase<GeneratorT>> 
 
 	private final Education instance;
 
-	protected EducationBuilderBase(final Education aInstance) { instance = aInstance; }
+	protected EducationBuilderBase(final Education aInstance) {
+
+		instance = aInstance;
+	}
 
 	protected Education getInstance() {
+
 		return instance;
 	}
 

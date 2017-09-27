@@ -38,7 +38,7 @@ public final class EducationRepositoryImpl implements EducationRepository {
 			new Object[]{userId},
 			new UserEducationResultSetExtractor());
 
-		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId with userEducation: " + userEducation);
 
 		return userEducation;
 	}
@@ -48,15 +48,16 @@ public final class EducationRepositoryImpl implements EducationRepository {
 
 		logger.debug("ENTERED getUsersByEducationLevel for educationLevel: " + educationLevel);
 
-		final List<Long> userIdList;
+		final List<Long> userIds;
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		userIdList = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USERS_BY_EDUCATION_LEVEL,
+		userIds = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USERS_BY_EDUCATION_LEVEL,
 			new UserIdListResultSetExtractor()));
 
-		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel);
+		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel +
+			" with user ids: " + userIds);
 
-		return userIdList;
+		return userIds;
 	}
 
 	private static final class UserEducationResultSetExtractor implements ResultSetExtractor<List<Education>> {
@@ -64,7 +65,7 @@ public final class EducationRepositoryImpl implements EducationRepository {
 		@Override
 		public List<Education> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<Education> userEducation = new ArrayList<>();;
+			final List<Education> userEducation = new ArrayList<>();
 
 			while (resultSet.next()) {
 				userEducation.add(new EducationBuilder()
@@ -87,13 +88,13 @@ public final class EducationRepositoryImpl implements EducationRepository {
 		@Override
 		public List<Long> extractData(final ResultSet resultSet) throws SQLException {
 
-			final List<Long> userIdList = new ArrayList<>();
+			final List<Long> userIds = new ArrayList<>();
 
 			while (resultSet.next()) {
-				userIdList.add(resultSet.getLong("user_id"));
+				userIds.add(resultSet.getLong("user_id"));
 			}
 
-			return userIdList;
+			return userIds;
 		}
 	}
 }

@@ -28,7 +28,7 @@ public final class EducationController {
 	@Autowired
 	EducationService educationService;
 
-	@RequestMapping(value = "/uid/{userId}", method = RequestMethod.GET,
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<List<Education>> getEducationByUserId(@PathVariable("userId") final long userId) throws SQLException {
 
@@ -36,7 +36,7 @@ public final class EducationController {
 
 		final List<Education> userEducation = new ArrayList<>(educationService.getEducationByUserId(userId));
 
-		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId with userEducation: " + userEducation);
 
 		if (!userEducation.isEmpty()) {
 			return new ResponseEntity<List<Education>>(userEducation, HttpStatus.OK);
@@ -45,7 +45,7 @@ public final class EducationController {
 		return new ResponseEntity<List<Education>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/level/uid/{userId}", method = RequestMethod.GET,
+	@RequestMapping(value = "/level/user/{userId}", method = RequestMethod.GET,
 	produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<EducationLevel> getEducationLevelByUserId(@PathVariable("userId") final long userId) throws SQLException {
 
@@ -53,8 +53,8 @@ public final class EducationController {
 
 		final EducationLevel educationLevel = educationService.getEducationLevelByUserId(userId);
 
-		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId + " with education level: "
-			+ educationLevel);
+		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId +
+			" with education level: " + educationLevel);
 
 		if (educationLevel != null) {
 			return new ResponseEntity<EducationLevel>(educationLevel, HttpStatus.OK);
@@ -88,8 +88,8 @@ public final class EducationController {
 
 		final int population = educationService.getUserPopulationByEducationLevel(educationLevel);
 
-		logger.debug("EXITING getUserPopulationByEducationLevel for educationLevel: " + educationLevel + ", with population: "
-			+ population);
+		logger.debug("EXITING getUserPopulationByEducationLevel for educationLevel: " + educationLevel +
+			", with population: " + population);
 
 		return new ResponseEntity<Integer>(population, HttpStatus.OK);
 	}

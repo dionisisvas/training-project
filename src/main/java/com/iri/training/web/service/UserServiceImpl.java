@@ -63,9 +63,9 @@ public final class UserServiceImpl implements UserService {
 
 		logger.debug("ENTERED getUserList");
 
-		final List<User> userList = new ArrayList<>(userRepository.getUserList());
+		final List<User> users = new ArrayList<>(userRepository.getUserList());
 
-		for (User user : userList) {
+		for (User user : users) {
 			if (user != null) {
 				// Age is not stored in the db so calculate it for each user.
 				// Also, hide the exact date of birth.
@@ -76,7 +76,7 @@ public final class UserServiceImpl implements UserService {
 
 		logger.debug("EXITING getUserList");
 
-		return userList;
+		return users;
 	}
 
 	/*
