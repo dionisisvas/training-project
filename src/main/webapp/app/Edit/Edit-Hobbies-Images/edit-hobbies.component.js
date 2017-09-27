@@ -10,8 +10,9 @@ angular.
 
   $scope.models = {
         selected: null,
-        lists: {"A": [], "B": []}
+        lists: {"All": [],"User": [] }
     };
+     $scope.hobbyArray=[];
 				if (JWToken.getToken()) {
                     JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
                     self.tokenBody = JSON.parse(tknResult);
@@ -19,29 +20,40 @@ angular.
                         self.userHobbies.$promise.then(function(hobbiesResult) {
                         self.userHobbies = hobbiesResult;
                         angular.forEach(hobbiesResult,function(hobby){
-                        $scope.models.lists.A.push({label: "Item " + hobby.hobbyName});
+                        $scope.models.lists.User.push({label:  hobby.hobbyName});
                         });
 
                         }, function() {
                         	console.log("Failed to retrieve hobbies for user with userId: " + self.tokenBody.sub);
                         });
+
+                        /*  angular.forEach($scope.models.lists.User,function(items){
+                          $scope.hobbyArray.push({id:self.tokenBody.sub,hobbyName:items})
+
+                          });*/
                     }, function() {
                         console.error("Couldn't retrieve JWT body");
                     });
                 }
-
-
-
-    // Generate initial model
-    for (var i = 1; i <= 3; ++i) {
-
-        $scope.models.lists.B.push({label: "Item B" + i});
-    }
-    // Model to JSON for demo purpose
+  self.allHobbies = Hobby.HobbyList.query(function(allHobbies) {
+  self.allHobbies = allHobbies;
+  angular.forEach(allHobbies,function(hobby){
+  $scope.models.lists.All.push({label:  hobby.hobbyName});
+  });
+  }, function() {
+    console.log("Failed to retrieve hobbies for user with userId: " + self.tokenBody.sub);
+  });
+$scope.modelAsJson=[];
     $scope.$watch('models', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
+        $scope.modelAsJson = angular.toJson(model.lists.User, true);
+       // angular.forEach(model.lists.User,function(item){
+        //});
+        console.log($scope.modelAsJson.label);
+        $scope.hobbyArray.push({id:self.tokenBody.sub,hobbyName:model.lists.User.hobbyName})
     }, true);
 
+
+console.log($scope.hobbyArray);
 
             }]
         });

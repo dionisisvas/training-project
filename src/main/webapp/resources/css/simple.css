@@ -23,25 +23,23 @@
  * over it.
  */
 .simpleDemo ul[dnd-list] .dndPlaceholder {
-    background-color: #ddd;
+    background-color: #ff9999;
     display: block;
     min-height: 42px;
 }
 
 .simpleDemo ul[dnd-list] li {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #ffbda3;
+    border: 1px solid #f96616;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
     display: block;
     padding: 10px 15px;
     margin-bottom: -1px;
 }
-
-/**
- * Show selected elements in green
- */
-.simpleDemo ul[dnd-list] li.selected {
-    background-color: #dff0d8;
-    color: #3c763d;
+.panel  {
+  background-color: #ef4c0b;
+}
+.panel-title {
+  color: white;
 }
