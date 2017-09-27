@@ -140,7 +140,9 @@ public class User {
 		this.weight = weight;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("User{");

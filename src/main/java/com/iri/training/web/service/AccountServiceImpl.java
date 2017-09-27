@@ -74,11 +74,11 @@ public class AccountServiceImpl implements AccountService {
 
 		logger.debug("ENTERED getAccountList");
 
-		final List<Account> accountList = new ArrayList<>(accountRepository.getAccountList());
+		final List<Account> accounts = new ArrayList<>(accountRepository.getAccountList());
 
 		logger.debug("EXITING getAccountList");
 
-		return accountList;
+		return accounts;
 	}
 
 	@Override

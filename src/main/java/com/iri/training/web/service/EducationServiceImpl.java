@@ -27,17 +27,29 @@ public final class EducationServiceImpl implements EducationService {
 
 		final List<Education> userEducation = new ArrayList<>(educationRepository.getEducationByUserId(userId));
 
-		logger.debug("EXITING getEducationByUserId for userEducation: " + userEducation);
+		logger.debug("EXITING getEducationByUserId with userEducation: " + userEducation);
 
 		return userEducation;
 	}
 
 	@Override
-	public final EducationLevel getEducationLevelByUserId(long userId) throws SQLException {
+	public final List<Long> getUsersByEducationLevel(final EducationLevel educationLevel) throws SQLException {
+
+		logger.debug("ENTERED getUsersByEducationLevel for educationLevel: " + educationLevel);
+
+		final List<Long> userIds = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
+
+		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel);
+
+		return userIds;
+	}
+
+	@Override
+	public final EducationLevel getEducationLevelByUserId(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getEducationLevelByUserId for userId: " + userId);
 
-		final List<Education> userEducation = new ArrayList<>(this.getEducationByUserId(userId));
+		final List<Education> userEducation = new ArrayList<>(getEducationByUserId(userId));
 
 		EducationLevel highestEducationLevel = EducationLevel.NO_SCHOOL;
 
@@ -68,32 +80,21 @@ public final class EducationServiceImpl implements EducationService {
 			}
 		}
 
-		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId + " with education level: "
-			+ highestEducationLevel);
+		logger.debug("EXITING getEducationLevelByUserId for userId: " + userId +
+			" with education level: " + highestEducationLevel);
 
 		return highestEducationLevel;
 	}
 
 	@Override
-	public final List<Long> getUsersByEducationLevel(final EducationLevel educationLevel) throws SQLException {
-
-		logger.debug("ENTERED getUsersByEducationLevel for educationLevel: " + educationLevel);
-
-		final List<Long> userIdList = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
-
-		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel);
-
-		return userIdList;
-	}
-
-	@Override
 	public final int getUserPopulationByEducationLevel(final EducationLevel educationLevel) throws SQLException {
+
 		logger.debug("ENTERED getUserPopulationByEducationLevel for educationLevel: " + educationLevel);
 
 		final int population;
-		final List<Long> userIdList = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
+		final List<Long> userIds = new ArrayList<>(educationRepository.getUsersByEducationLevel(educationLevel));
 
-		population = userIdList.size();
+		population = userIds.size();
 
 		logger.debug("EXITING getUserPopulationByEducationLevel for educationLevel: " + educationLevel + ", with population: "
 			+ population);

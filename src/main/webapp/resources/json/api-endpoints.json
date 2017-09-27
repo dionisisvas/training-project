@@ -1,6 +1,6 @@
 [
   {
-    "dir": ["account"],
+    "dir": ["account/username"],
     "params": "username",    
     "type": "GET",
     "info": "Search for an account by username."
@@ -12,7 +12,7 @@
     "info": "Search for an account by email."
   },
   {
-    "dir": ["account/id"],
+    "dir": ["account"],
     "params": "accountId",    
     "type": "GET",
     "info": "Search for an account by account ID."
@@ -96,7 +96,7 @@
     "info": "Returns a list of all the metrics."
   },
   {
-    "dir": ["user"],
+    "dir": ["user/username"],
     "params": "username",    
     "type": "GET",
     "info": "Search for a user by username."
@@ -108,7 +108,7 @@
     "info": "Returns a list of all the  users."
   },
   {
-    "dir": ["user/uid"],
+    "dir": ["user"],
     "params": "userId",    
     "type": "GET",
     "info": "Search for a user by user ID."

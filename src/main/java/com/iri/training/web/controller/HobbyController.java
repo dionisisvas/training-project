@@ -2,10 +2,12 @@ package com.iri.training.web.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,35 +22,20 @@ import com.iri.training.web.service.HobbyService;
 @RequestMapping(value = "/api/hobby")
 public class HobbyController {
 
-	Logger logger = Logger.getLogger(HobbyController.class);
+	private static final Logger logger = Logger.getLogger(HobbyController.class);
 
 	@Autowired
 	HobbyService hobbyService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Hobby>> getAllHobbies() throws SQLException {
+	@RequestMapping(value = "/{hobbyId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<Hobby> getHobbyById(@PathVariable("hobbyId") final long hobbyId) throws SQLException {
 
-		logger.debug("ENTERED getAllHobbies");
+		logger.debug("ENTERED getHobbyById for hobbyId: " + hobbyId);
 
-		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getHobbyList();
+		final Hobby hobby = hobbyService.getHobbyById(hobbyId);
 
-		logger.debug("EXITING getAllHobbies");
-
-		if (hobbies != null) {
-			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
-		}
-
-		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
-	}
-
-	@RequestMapping(value = "/{hobbyId}", method = RequestMethod.GET)
-	public ResponseEntity<Hobby> getHobby(@PathVariable("hobbyId") Long hobbyId) throws SQLException {
-
-		logger.debug("ENTERED getHobby for hobbyId: " + hobbyId);
-
-		Hobby hobby = hobbyService.getHobbyById(hobbyId);
-
-		logger.debug("EXITING getHobby for hobbyId: " + hobbyId);
+		logger.debug("EXITING getHobbyById with hobby: " + hobby);
 
 		if (hobby != null) {
 			return new ResponseEntity<Hobby>(hobby, HttpStatus.OK);
@@ -57,19 +44,37 @@ public class HobbyController {
 		return new ResponseEntity<Hobby>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Hobby>> getAllUserHobbies(@PathVariable("userId") Long userId) throws SQLException {
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<List<Hobby>> getUserHobbies(@PathVariable("userId") final long userId) throws SQLException {
 
-		logger.debug("ENTERED getAllUserHobbies for userId: " + userId);
+		logger.debug("ENTERED getUserHobbies for userId: " + userId);
 
-		ArrayList<Hobby> hobbies = (ArrayList) hobbyService.getUserHobbies(userId);
+		final List<Hobby> hobbies = new ArrayList<>(hobbyService.getUserHobbies(userId));
 
-		logger.debug("EXITING getAllUserHobbies for userId: " + userId);
+		logger.debug("EXITING getUserHobbies for userId: " + userId +
+			" with hobbies: " + hobbies);
 
 		if (hobbies != null) {
-			return new ResponseEntity<ArrayList<Hobby>>(hobbies, HttpStatus.OK);
+			return new ResponseEntity<List<Hobby>>(hobbies, HttpStatus.OK);
 		}
 
-		return new ResponseEntity<ArrayList<Hobby>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Hobby>>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public final ResponseEntity<List<Hobby>> getHobbyList() throws SQLException {
+
+		logger.debug("ENTERED getHobbyList");
+
+		final List<Hobby> hobbies = new ArrayList<>(hobbyService.getHobbyList());
+
+		logger.debug("EXITING getHobbyList");
+
+		if (hobbies != null) {
+			return new ResponseEntity<List<Hobby>>(hobbies, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<List<Hobby>>(HttpStatus.NOT_FOUND);
 	}
 }
