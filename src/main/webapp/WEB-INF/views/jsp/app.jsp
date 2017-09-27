@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://marceljuenemann.github.io/angular-drag-and-drop-lists/demo/framework/vendor/bootstrap.min.css" />
     <link href="${appCss}" rel="stylesheet" />
     <link href="${simpleCss}" rel="stylesheet" />
     <link href="${appAnimationCss}" rel="stylesheet" />

@@ -2,5 +2,6 @@
 
 angular.module('editMyHobbies', [
     'ngRoute',
-    'core.jwtoken'
+    'core.jwtoken',
+     'dndLists'
 ]);
