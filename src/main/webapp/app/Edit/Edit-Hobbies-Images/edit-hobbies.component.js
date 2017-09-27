@@ -20,7 +20,7 @@ angular.
                         self.userHobbies.$promise.then(function(hobbiesResult) {
                         self.userHobbies = hobbiesResult;
                         angular.forEach(hobbiesResult,function(hobby){
-                        $scope.models.lists.User.push({label:  hobby.hobbyName});
+                        $scope.models.lists.User.push({label:  hobby.name});
                         });
 
                         }, function() {
@@ -38,7 +38,7 @@ angular.
   self.allHobbies = Hobby.HobbyList.query(function(allHobbies) {
   self.allHobbies = allHobbies;
   angular.forEach(allHobbies,function(hobby){
-  $scope.models.lists.All.push({label:  hobby.hobbyName});
+  $scope.models.lists.All.push({label:  hobby.name});
   });
   }, function() {
     console.log("Failed to retrieve hobbies for user with userId: " + self.tokenBody.sub);
