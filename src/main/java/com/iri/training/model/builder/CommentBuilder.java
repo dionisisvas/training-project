@@ -1,9 +1,11 @@
 package com.iri.training.model.builder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
+import com.iri.training.model.CommentReply;
 
 public class CommentBuilder extends CommentBuilderBase<CommentBuilder> {
 
@@ -12,7 +14,7 @@ public class CommentBuilder extends CommentBuilderBase<CommentBuilder> {
 		return new CommentBuilder();
 	}
 
-	public  CommentBuilder() {
+	public CommentBuilder() {
 
 		super(new Comment());
 	}
@@ -89,6 +91,14 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	public GeneratorT withLastEditDate(final LocalDateTime aValue) {
 
 		instance.setLastEditDate(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withReplies(final List<CommentReply> aValue) {
+
+		instance.setReplies(aValue);
 
 		return (GeneratorT) this;
 	}

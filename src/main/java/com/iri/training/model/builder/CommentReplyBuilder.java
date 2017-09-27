@@ -11,7 +11,7 @@ public class CommentReplyBuilder extends CommentReplyBuilderBase<CommentReplyBui
 		return new CommentReplyBuilder();
 	}
 
-	public  CommentReplyBuilder() {
+	public CommentReplyBuilder() {
 
 		super(new CommentReply());
 	}
