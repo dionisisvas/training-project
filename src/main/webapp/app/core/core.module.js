@@ -17,5 +17,6 @@ angular.module('core', [
     'core.usernameUnique',
     'core.metrics',
     'core.timeline',
-    'core.post'
+    'core.post',
+    'core.comment'
 ]);
