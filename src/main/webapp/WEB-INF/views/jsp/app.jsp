@@ -100,11 +100,13 @@
     <spring:url value="/app/login-card/login-card.module.js" var="loginCardModuleJs" />
     <spring:url value="/app/login-card/login-card.component.js" var="loginCardComponentJs" />
     <spring:url value="/app/profile-details/profile-details.module.js" var="profileDetailsModuleJs" />
-    <spring:url value="/app/profile-details/profile-details.component.js" var="profileDetailsComponentJs" />
+    <spring:url value="/app/profile-details/profile-details.component.js" var="profileDetailsComponentJs" />    
     <spring:url value="/app/profile-header/profile-header.module.js" var="profileHeaderModuleJs" />
     <spring:url value="/app/profile-header/profile-header.component.js" var="profileHeaderComponentJs" />
     <spring:url value="/app/profile-hobbies/profile-hobbies.module.js" var="profileHobbiesModuleJs" />
     <spring:url value="/app/profile-hobbies/profile-hobbies.component.js" var="profileHobbiesComponentJs" />
+    <spring:url value="/app/profile-posts/profile-posts.module.js" var="profilePostsModuleJs" />
+    <spring:url value="/app/profile-posts/profile-posts.component.js" var="profilePostsComponentJs" />
     <spring:url value="/app/profile-timeline/profile-timeline.module.js" var="profileTimelineModuleJs" />
     <spring:url value="/app/profile-timeline/profile-timeline.component.js" var="profileTimelineComponentJs" />
     <spring:url value="/app/registration-card/registration-card.module.js" var="registrationCardModuleJs" />
@@ -198,7 +200,9 @@
     <script src="${profileHeaderModuleJs}"></script>
     <script src="${profileHeaderComponentJs}"></script>
     <script src="${profileHobbiesModuleJs}"></script>
-    <script src="${profileHobbiesComponentJs}"></script>
+    <script src="${profileHobbiesComponentJs}"></script>    
+    <script src="${profilePostsModuleJs}"></script>
+    <script src="${profilePostsComponentJs}"></script>
     <script src="${profileTimelineModuleJs}"></script>
     <script src="${profileTimelineComponentJs}"></script>
     <script src="${registrationCardModuleJs}"></script>

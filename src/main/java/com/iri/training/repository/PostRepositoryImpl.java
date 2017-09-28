@@ -49,7 +49,7 @@ public final class PostRepositoryImpl implements PostRepository {
 	public final List<Post> getPostsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
 		logger.debug("ENTERED getPostsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId);
 
 		final List<Post> posts;
 		jdbcTemplate = new JdbcTemplate(dataSource);

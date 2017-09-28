@@ -1,0 +1,12 @@
+<md-card ng-repeat="post in $ctrl.posts">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{post.title}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p ng-show="$ctrl.user.dateOfBirth">
+        {{post.content}}
+    </p>
+  </md-card-content>
+</md-card>

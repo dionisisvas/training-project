@@ -49,7 +49,7 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	public final List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId) throws SQLException {
 
 		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId);
 
 		final List<Comment> comments;
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -60,7 +60,7 @@ public final class CommentRepositoryImpl implements CommentRepository {
 								new CommentsBySubjectResultSetExtractor()));
 
 		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId);
 
 		return comments;
 	}
