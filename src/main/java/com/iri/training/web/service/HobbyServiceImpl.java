@@ -85,7 +85,7 @@ public final class HobbyServiceImpl implements HobbyService {
 
 		// TODO: get userId, write correct logging messages
 
-		logger.debug("ENTERED editHobbies for user" + userId);
+		logger.debug("ENTERED editHobbies for user :" + userId);
 
 		hobbyRepository.deleteHobbies(userId);
 

@@ -86,9 +86,8 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 			jdbcTemplate.update(PropertiesConfig.ADD_USER_HOBBY,
 				userId,
 				hobby.getHobbyId());
-
-			logger.debug("EXITING addHobbies for hobbies: " + hobbies);
 		}
+		logger.debug("EXITING addHobbies for hobbies: " + hobbies);
 	}
 
 	@Override
