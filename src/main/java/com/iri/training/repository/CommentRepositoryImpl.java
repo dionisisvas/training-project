@@ -57,7 +57,7 @@ public final class CommentRepositoryImpl implements CommentRepository {
 		comments = new ArrayList<Comment>(
 						jdbcTemplate.query(PropertiesConfig.GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID,
 								new Object[]{subjectType.name(), subjectId},
-								new CommentsResultSetExtractor()));
+								new CommentsBySubjectResultSetExtractor()));
 
 		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
 			"with subjectId: " + subjectId);
@@ -96,7 +96,7 @@ public final class CommentRepositoryImpl implements CommentRepository {
 		}
 	}
 
-	private static final class CommentsResultSetExtractor implements ResultSetExtractor<List<Comment>> {
+	private static final class CommentsBySubjectResultSetExtractor implements ResultSetExtractor<List<Comment>> {
 
 		@Override
 		public List<Comment> extractData(final ResultSet resultSet) throws SQLException {
@@ -107,9 +107,6 @@ public final class CommentRepositoryImpl implements CommentRepository {
 				comments.add(new CommentBuilder()
 					.withId(resultSet.getLong("id"))
 					.withPosterId(resultSet.getLong("poster_id"))
-					.withSubjectType(SubjectType.valueOf(
-						resultSet.getString("subject_type")))
-					.withSubjectId(resultSet.getLong("subject_id"))
 					.withContent(resultSet.getString("content"))
 					.withCreationDate(LocalDateTime.ofEpochSecond(
 						resultSet.getLong("creation_date"),

@@ -57,10 +57,10 @@ public final class PostRepositoryImpl implements PostRepository {
 		posts = new ArrayList<Post>(
 						jdbcTemplate.query(PropertiesConfig.GET_POSTS_BY_SUBJECT_TYPE_AND_ID,
 								new Object[]{subjectType.name(), subjectId},
-								new PostsResultSetExtractor()));
+								new PostsBySubjectResultSetExtractor()));
 
 		logger.debug("EXITING getPostsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId);
 
 		return posts;
 	}
@@ -76,7 +76,7 @@ public final class PostRepositoryImpl implements PostRepository {
 		posts = new ArrayList<Post>(
 			jdbcTemplate.query(PropertiesConfig.GET_POSTS_BY_POSTER_ID,
 				new Object[]{posterId},
-				new PostsResultSetExtractor()));
+				new PostsByPosterResultSetExtractor()));
 
 		logger.debug("EXITING getPostsByPoster for posterId: " + posterId);
 
@@ -115,7 +115,33 @@ public final class PostRepositoryImpl implements PostRepository {
 		}
 	}
 
-	private static final class PostsResultSetExtractor implements ResultSetExtractor<List<Post>> {
+	private static final class PostsBySubjectResultSetExtractor implements ResultSetExtractor<List<Post>> {
+
+		@Override
+		public List<Post> extractData(final ResultSet resultSet) throws SQLException {
+
+			final List<Post> posts = new ArrayList<>();
+
+			while (resultSet.next()) {
+				posts.add(new PostBuilder()
+					.withId(resultSet.getLong("id"))
+					.withPosterId(resultSet.getLong("poster_id"))
+					.withTitle(resultSet.getString("title"))
+					.withContent(resultSet.getString("content"))
+					.withCreationDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("creation_date"),
+						0, ZoneOffset.UTC))
+					.withLastEditDate(LocalDateTime.ofEpochSecond(
+						resultSet.getLong("last_edit_date"),
+						0, ZoneOffset.UTC))
+					.build());
+			}
+
+			return posts;
+		}
+	}
+
+	private static final class PostsByPosterResultSetExtractor implements ResultSetExtractor<List<Post>> {
 
 		@Override
 		public List<Post> extractData(final ResultSet resultSet) throws SQLException {
