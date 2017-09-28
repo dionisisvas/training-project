@@ -35,9 +35,9 @@ class HobbyBuilderBase<GeneratorT extends HobbyBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withId(final Long aValue) {
+	public GeneratorT withHobbyId(final Long aValue) {
 
-		instance.setId(aValue);
+		instance.setHobbyId(aValue);
 
 		return (GeneratorT) this;
 	}

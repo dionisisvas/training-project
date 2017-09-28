@@ -84,7 +84,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
 			jdbcTemplate.update(PropertiesConfig.ADD_USER_HOBBY,
-				hobby.getId());
+				hobby.getHobbyId());
 
 			logger.debug("EXITING addHobbies for hobbies: " + hobbies);
 		}
@@ -112,7 +112,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 
 			if (resultSet.next()) {
 				hobby = new HobbyBuilder()
-					.withId(resultSet.getLong("id"))
+					.withHobbyId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build();
@@ -134,7 +134,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 			final List<Hobby> hobbies = new ArrayList<>();
 			while (resultSet.next()) {
 				hobbies.add(new HobbyBuilder()
-					.withId(resultSet.getLong("id"))
+					.withHobbyId(resultSet.getLong("id"))
 					.withName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build());

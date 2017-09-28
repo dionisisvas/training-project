@@ -2,18 +2,18 @@ package com.iri.training.model;
 
 public class Hobby {
 
-	private long id;
+	private long hobbyId;
 	private String name;
 	private String description;
 
-	public Long getId() {
+	public Long getHobbyId() {
 
-		return id;
+		return hobbyId;
 	}
 
-	public void setId(final long id) {
+	public void setHobbyId(final long hobbyId) {
 
-		this.id = id;
+		this.hobbyId = hobbyId;
 	}
 
 	public String getName() {
@@ -42,8 +42,8 @@ public class Hobby {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("Hobby{");
-		sb.append("id=");
-		sb.append(id);
+		sb.append("hobbyId=");
+		sb.append(hobbyId);
 		sb.append('\'');
 		sb.append(", name='");
 		sb.append(name);
