@@ -18,6 +18,7 @@ public class Post implements IPostable{
 	private LocalDateTime lastEditDate;
 	private List<Comment> comments;
 
+	@Override
 	public long getId() {
 
 		return id;
@@ -28,6 +29,7 @@ public class Post implements IPostable{
 		this.id = id;
 	}
 
+	@Override
 	public long getPosterId() {
 
 		return posterId;
@@ -38,6 +40,7 @@ public class Post implements IPostable{
 		this.posterId = posterId;
 	}
 
+	@Override
 	public SubjectType getSubjectType() {
 
 		return subjectType;
@@ -48,6 +51,7 @@ public class Post implements IPostable{
 		this.subjectType = subjectType;
 	}
 
+	@Override
 	public long getSubjectId() {
 
 		return subjectId;
@@ -68,6 +72,7 @@ public class Post implements IPostable{
 		this.title = title;
 	}
 
+	@Override
 	public String getContent() {
 
 		return content;
@@ -78,6 +83,7 @@ public class Post implements IPostable{
 		this.content = content;
 	}
 
+	@Override
 	public LocalDateTime getCreationDate() {
 
 		return creationDate;

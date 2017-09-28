@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
-import com.iri.training.model.CommentReply;
 
 public class CommentBuilder extends CommentBuilderBase<CommentBuilder> {
 
@@ -96,9 +95,9 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public GeneratorT withReplies(final List<CommentReply> aValue) {
+	public GeneratorT withComments(final List<Comment> aValue) {
 
-		instance.setReplies(aValue);
+		instance.setComments(aValue);
 
 		return (GeneratorT) this;
 	}

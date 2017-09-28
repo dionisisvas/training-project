@@ -15,8 +15,9 @@ public class Comment implements IPostable{
 	private String content;
 	private LocalDateTime creationDate;
 	private LocalDateTime lastEditDate;
-	private List<CommentReply> replies;
+	private List<Comment> comments;
 
+	@Override
 	public long getId() {
 
 		return id;
@@ -27,6 +28,7 @@ public class Comment implements IPostable{
 		this.id = id;
 	}
 
+	@Override
 	public long getPosterId() {
 
 		return posterId;
@@ -37,6 +39,7 @@ public class Comment implements IPostable{
 		this.posterId = posterId;
 	}
 
+	@Override
 	public SubjectType getSubjectType() {
 
 		return subjectType;
@@ -47,6 +50,7 @@ public class Comment implements IPostable{
 		this.subjectType = subjectType;
 	}
 
+	@Override
 	public long getSubjectId() {
 
 		return subjectId;
@@ -57,6 +61,7 @@ public class Comment implements IPostable{
 		this.subjectId = subjectId;
 	}
 
+	@Override
 	public String getContent() {
 
 		return content;
@@ -67,6 +72,7 @@ public class Comment implements IPostable{
 		this.content = content;
 	}
 
+	@Override
 	public LocalDateTime getCreationDate() {
 
 		return creationDate;
@@ -87,26 +93,32 @@ public class Comment implements IPostable{
 		this.lastEditDate = lastEditDate;
 	}
 
-	public List<CommentReply> getReplies() {
+	public List<Comment> getComments() {
 
-		return replies;
+		return comments;
 	}
 
-	public void setReplies(final List<CommentReply> replies) {
+	public void setComments(final List<Comment> replies) {
 
-		this.replies = replies;
+		this.comments = replies;
 	}
 
-	@Override public String toString() {
+	@Override
+	public String toString() {
 
-		return "Comment{" +
-			"id=" + id +
-			", posterId=" + posterId +
-			", subjectType=" + subjectType +
-			", subjectId=" + subjectId +
-			", content='" + content + '\'' +
-			", creationDate=" + creationDate +
-			", lastEditDate=" + lastEditDate +
-			'}';
+		final StringBuilder sb = new StringBuilder();
+
+		sb.append("Comment{");
+		sb.append("id=").append(id);
+		sb.append(", posterId=").append(posterId);
+		sb.append(", subjectType=").append(subjectType);
+		sb.append(", subjectId=").append(subjectId);
+		sb.append(", content='").append(content).append('\'');
+		sb.append(", creationDate=").append(creationDate);
+		sb.append(", lastEditDate=").append(lastEditDate);
+		sb.append(", comments=").append(comments);
+		sb.append('}');
+
+		return sb.toString();
 	}
 }
