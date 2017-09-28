@@ -42,8 +42,7 @@ public final class PostController {
 
 		final Post post = postService.getPostById(postId, getComments.orElse(false));
 
-		logger.debug("EXITING getPostById for postId: " + postId +
-			"with getComments=" + getComments);
+		logger.debug("EXITING getPostById with post: " + post);
 
 		if (post != null) {
 			return new ResponseEntity<Post>(post, HttpStatus.OK);

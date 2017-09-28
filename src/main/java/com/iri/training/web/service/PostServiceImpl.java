@@ -36,11 +36,10 @@ public final class PostServiceImpl implements PostService {
 		}
 		else {
 			post = postRepository.getPostById(postId);
-			post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, post.getId()));
+			post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, postId));
 		}
 
-		logger.debug("EXITING getPostById for postId: " + postId +
-			"with getComments=" + getComments);
+		logger.debug("EXITING getPostById with post: " + post);
 
 		return post;
 	}
