@@ -14,7 +14,7 @@ import com.iri.training.repository.HobbyRepository;
 @Service
 public final class HobbyServiceImpl implements HobbyService {
 
-	private static final Logger logger = Logger.getLogger(HobbyService.class);
+	private static final Logger logger = Logger.getLogger(HobbyServiceImpl.class);
 
 	@Autowired
 	HobbyRepository hobbyRepository;
@@ -61,11 +61,11 @@ public final class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public final void addHobbies(final List<Hobby> hobbies) throws SQLException {
+	public final void addHobbies(final List<Hobby> hobbies,final long userId) throws SQLException {
 
 		logger.debug("ENTERED addHobbies for hobbies: " + hobbies);
 
-		hobbyRepository.addHobbies(hobbies);
+		hobbyRepository.addHobbies(userId, hobbies);
 
 		logger.debug("EXITING addHobbies for hobbies: " + hobbies);
 	}
@@ -81,15 +81,15 @@ public final class HobbyServiceImpl implements HobbyService {
 	}
 
 	@Override
-	public final void editHobbies(final List<Hobby> hobbies) throws SQLException {
+	public final void editHobbies(final List<Hobby> hobbies,final long userId) throws SQLException {
 
 		// TODO: get userId, write correct logging messages
 
-		logger.debug("ENTERED editHobbies");
+		logger.debug("ENTERED editHobbies for user" + userId);
 
-		hobbyRepository.deleteHobbies(0);
+		hobbyRepository.deleteHobbies(userId);
 
-		hobbyRepository.addHobbies(hobbies);
+		hobbyRepository.addHobbies(userId,hobbies);
 
 		logger.debug("EXITING editHobbies");
 	}

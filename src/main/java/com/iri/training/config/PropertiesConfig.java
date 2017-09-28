@@ -127,7 +127,7 @@ public final class PropertiesConfig {
 			ADD_USER_HOBBY = sqlProperties.getString("AddUserHobby",
 				"INSERT INTO user_hobbies (user_id, hobby_id) VALUES(?, ?);");
 			DELETE_USER_HOBBY = sqlProperties.getString("DeleteUserHobby",
-				"DELETE FROM user_hobbies WHERE user_id = ? AND hobby_id = ?;");
+				"DELETE FROM user_hobbies WHERE user_id = ?;");
 
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",

@@ -79,15 +79,15 @@ public final class HobbyController {
 		return new ResponseEntity<List<Hobby>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/edit/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = "application/json")
-	public final ResponseEntity<String> editHobbies(@RequestBody final List<Hobby> hobbies) throws SQLException {
+	public final ResponseEntity<String> editHobbies(@PathVariable("userId")  Long userId,@RequestBody final List<Hobby> hobbies) throws SQLException {
 
-		logger.debug("ENTERED editHobbies for hobbies: " + hobbies);
+		logger.debug("ENTERED editHobbies for hobbies: " + hobbies + userId);
 
-		hobbyService.editHobbies(hobbies);
+		hobbyService.editHobbies(hobbies,userId);
 
-		logger.debug("EXITING editHobbies for hobbies: " + hobbies);
+		logger.debug("EXITING editHobbies for User: " + userId);
 
 		return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
 	}

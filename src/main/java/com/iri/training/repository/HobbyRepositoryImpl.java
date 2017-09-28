@@ -19,7 +19,7 @@ import com.iri.training.model.builder.HobbyBuilder;
 @Repository
 public final class HobbyRepositoryImpl implements HobbyRepository {
 
-	private static final Logger logger = Logger.getLogger(HobbyRepository.class);
+	private static final Logger logger = Logger.getLogger(HobbyRepositoryImpl.class);
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
 	private final DataSource dataSource = dbConnection.getDataSource();
@@ -76,7 +76,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 	}
 
 	@Override
-	public final void addHobbies(final List<Hobby> hobbies) throws SQLException {
+	public final void addHobbies(final long userId, final List<Hobby> hobbies) throws SQLException {
 
 		logger.debug("ENTERED addHobbies for hobbies: " + hobbies);
 
@@ -84,6 +84,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 			jdbcTemplate = new JdbcTemplate(dataSource);
 
 			jdbcTemplate.update(PropertiesConfig.ADD_USER_HOBBY,
+				userId,
 				hobby.getHobbyId());
 
 			logger.debug("EXITING addHobbies for hobbies: " + hobbies);
@@ -91,14 +92,13 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 	}
 
 	@Override
-	public final void deleteHobbies(long userId) throws SQLException {
+	public final void deleteHobbies(final long userId) throws SQLException {
 
 		logger.debug("ENTERED deleteHobbies for userId: " + userId);
 
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
-		jdbcTemplate.update(PropertiesConfig.DELETE_USER_HOBBY,
-			new Object[]{userId});
+		jdbcTemplate.update(PropertiesConfig.DELETE_USER_HOBBY, userId);
 
 		logger.debug("EXITING deleteHobbies for userId: " + userId);
 	}
