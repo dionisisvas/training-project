@@ -107,8 +107,7 @@ public final class PostRepositoryImpl implements PostRepository {
 						0, ZoneOffset.UTC))
 					.build();
 			}
-			else
-			{
+			else {
 				return null;
 			}
 

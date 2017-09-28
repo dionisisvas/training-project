@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
-import com.iri.training.model.CommentReply;
 import com.iri.training.web.service.CommentReplyService;
 import com.iri.training.web.service.CommentService;
 
