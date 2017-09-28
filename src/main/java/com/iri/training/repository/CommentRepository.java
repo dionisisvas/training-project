@@ -11,6 +11,4 @@ public interface CommentRepository {
 	Comment getCommentById(long commentId) throws SQLException;
 
 	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId) throws SQLException;
-
-	List<Comment> getCommentsByPoster(long posterId) throws SQLException;
 }
