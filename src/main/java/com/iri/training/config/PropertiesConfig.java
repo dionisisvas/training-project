@@ -114,9 +114,9 @@ public class PropertiesConfig {
 			GET_POST_BY_ID = sqlProperties.getString("GetPostById",
 				"SELECT * FROM posts WHERE id = ?;");
 			GET_POSTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetPostsBySubjectTypeAndId",
-				"SELECT id, poster_id, title, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
+				"SELECT id, poster_id, title, content, creation_date, last_edit_date FROM posts WHERE subject_type = ? AND subject_id = ?;");
 			GET_POSTS_BY_POSTER_ID = sqlProperties.getString("GetPostsByPosterId",
-				"SELECT * FROM comments WHERE poster_id = ?;");
+				"SELECT * FROM posts WHERE poster_id = ?;");
 
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",
