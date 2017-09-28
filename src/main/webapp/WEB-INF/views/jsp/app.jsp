@@ -60,6 +60,8 @@
     <spring:url value="/app/core/api-endpoint/api-endpoint.service.js" var="apiEndpointServiceJs" />
     <spring:url value="/app/core/user/user.module.js" var="userModuleJs" />
     <spring:url value="/app/core/user/user.service.js" var="userServiceJs" />
+    <spring:url value="/app/core/post/post.module.js" var="postModuleJs" />
+    <spring:url value="/app/core/post/post.service.js" var="postServiceJs" />
     <spring:url value="/app/core/directives/email-unique/email-unique.module.js" var="emailUniqueModuleJs" />
     <spring:url value="/app/core/directives/email-unique/email-unique.directive.js" var="emailUniqueDirectiveJs" />
     <spring:url value="/app/core/directives/focus-on/focus-on.module.js" var="focusOnModuleJs" />
@@ -150,6 +152,8 @@
     <script src="${apiEndpointServiceJs}"></script>
     <script src="${userModuleJs}"></script>
     <script src="${userServiceJs}"></script>
+    <script src="${postModuleJs}"></script>
+    <script src="${postServiceJs}"></script>
     <script src="${emailUniqueModuleJs}"></script>
     <script src="${emailUniqueDirectiveJs}"></script>
     <script src="${focusOnModuleJs}"></script>
