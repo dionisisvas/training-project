@@ -47,9 +47,6 @@ public class PropertiesConfig {
 	// Comment queries
 	public static String GET_COMMENT_BY_ID;
 	public static String GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID;
-	public static String GET_COMMENTS_BY_POSTER_ID;
-	public static String GET_COMMENT_REPLY_BY_ID;
-	public static String GET_COMMENT_REPLIES_BY_PARENT_ID;
 	// Metrics queries
 	public static String GET_METRICS_BY_USER_ID;
 	public static String GET_METRICS_LIST;
@@ -126,12 +123,6 @@ public class PropertiesConfig {
 				"SELECT * FROM comments WHERE id = ?;");
 			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetCommentsBySubjectTypeAndId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
-			GET_COMMENTS_BY_POSTER_ID = sqlProperties.getString("GetCommentsByPosterId",
-				"SELECT id, poster_id, subject_type, subject_id, content, creation_date FROM comments WHERE poster_id = ?;");
-			GET_COMMENT_REPLY_BY_ID = sqlProperties.getString("GetCommentReplyById",
-				"SELECT * FROM comment_replies WHERE id = ?;");
-			GET_COMMENT_REPLIES_BY_PARENT_ID = sqlProperties.getString("GetCommentRepliesByParentId",
-				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comment_replies WHERE parent_id = ?;");
 
 			// Metrics queries
 			GET_METRICS_BY_USER_ID = sqlProperties.getString("GetMetricsByUserId",
