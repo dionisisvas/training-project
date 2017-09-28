@@ -64,7 +64,6 @@ public final class PostController {
 		final List<Post> posts = new ArrayList<Post>(
 			postService.getPostsBySubject(subjectType, subjectId, getComments.orElse(false)));
 
-
 		logger.debug("EXITING getPostsBySubject for subjectType: " + subjectType +
 			" with subjectId: " + subjectId +
 			" with getComments=" + getComments);

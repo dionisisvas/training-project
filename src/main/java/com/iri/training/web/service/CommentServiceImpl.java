@@ -47,7 +47,8 @@ public final class CommentServiceImpl implements CommentService {
 	public final List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId, final boolean getComments) throws SQLException {
 
 		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId +
+			" with getComments=" + getComments);
 
 		final List<Comment> comments;
 
@@ -62,7 +63,8 @@ public final class CommentServiceImpl implements CommentService {
 		}
 
 		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
-			"with subjectId: " + subjectId);
+			" with subjectId: " + subjectId +
+			" with getComments=" + getComments);
 
 		return comments;
 	}
