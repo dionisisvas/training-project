@@ -21,8 +21,10 @@ angular.
                         self.userHobbies = hobbiesResult;
                         angular.forEach(hobbiesResult,function(hobby){
                         $scope.models.lists.User.push({label:  hobby.name});
-                        });
+                        $scope.hobbyArray.push({id:self.tokenBody.sub,hobbyId:hobby.hobbyId});
 
+                        });
+console.log($scope.hobbyArray);
                         }, function() {
                         	console.log("Failed to retrieve hobbies for user with userId: " + self.tokenBody.sub);
                         });
@@ -36,24 +38,34 @@ angular.
                     });
                 }
   self.allHobbies = Hobby.HobbyList.query(function(allHobbies) {
-  self.allHobbies = allHobbies;
+  $scope.allHobbies = allHobbies;
   angular.forEach(allHobbies,function(hobby){
   $scope.models.lists.All.push({label:  hobby.name});
+
   });
   }, function() {
     console.log("Failed to retrieve hobbies for user with userId: " + self.tokenBody.sub);
   });
-$scope.modelAsJson=[];
+
+
     $scope.$watch('models', function(model) {
-        $scope.modelAsJson = angular.toJson(model.lists.User, true);
-       // angular.forEach(model.lists.User,function(item){
-        //});
-        console.log($scope.modelAsJson.label);
-        $scope.hobbyArray.push({id:self.tokenBody.sub,hobbyName:model.lists.User.hobbyName})
-    }, true);
 
+           $scope.modelAsJson = angular.toJson(model.lists.User, true);
+   		$scope.list = [];
+           console.log($scope.modelAsJson);
+           var keys = _.keys(model.lists.User);
+   		_.forEach(keys, function(key){
+           	var hobbyFound = _.find($scope.allHobbies, function(hobby) {
+           		return hobby.name == model.lists.User[key].label;
+           	});
+           	//list.push({id:self.tokenBody.sub,hobbyId:hobbyFound.id})
+           	list.push(hobbyFound);
+           });
 
-console.log($scope.hobbyArray);
+       }, true);
+   //   hobbyArray =$scope.list;
+   //     Hobby.EditHobby.save(hobbyArray);
+   //     console.log(hobbyArray);
 
-            }]
-        });
+               }]
+});
