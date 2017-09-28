@@ -24,14 +24,14 @@ public final class PostServiceImpl implements PostService {
 	CommentRepository commentRepository;
 
 	@Override
-	public final Post getPostById(final long postId, final boolean getReplies) throws SQLException {
+	public final Post getPostById(final long postId, final boolean getComments) throws SQLException {
 
 		logger.debug("ENTERED getPostById for postId: " + postId +
-			" with getReplies=" + getReplies);
+			" with getComments=" + getComments);
 
 		final Post post;
 
-		if (!getReplies) {
+		if (!getComments) {
 			post = postRepository.getPostById(postId);
 		}
 		else {
@@ -40,21 +40,21 @@ public final class PostServiceImpl implements PostService {
 		}
 
 		logger.debug("EXITING getPostById for postId: " + postId +
-			"with getReplies=" + getReplies);
+			"with getComments=" + getComments);
 
 		return post;
 	}
 
 	@Override
-	public final List<Post> getPostsBySubject(final SubjectType subjectType, final long subjectId, final boolean getReplies) throws SQLException {
+	public final List<Post> getPostsBySubject(final SubjectType subjectType, final long subjectId, final boolean getComments) throws SQLException {
 
 		logger.debug("ENTERED getPostsBySubject for subjectType: " + subjectType +
 			" with subjectId: " + subjectId +
-			" with getReplies=" + getReplies);
+			" with getComments=" + getComments);
 
 		final List<Post> posts;
 
-		if (!getReplies) {
+		if (!getComments) {
 			posts = new ArrayList<Post>(postRepository.getPostsBySubject(subjectType, subjectId));
 		}
 		else {
@@ -66,20 +66,20 @@ public final class PostServiceImpl implements PostService {
 
 		logger.debug("EXITING getPostsBySubject for subjectType: " + subjectType +
 			" with subjectId: " + subjectId +
-			" with getReplies=" + getReplies);
+			" with getComments=" + getComments);
 
 		return posts;
 	}
 
 	@Override
-	public final List<Post> getPostsByPoster(final long posterId, final boolean getReplies) throws SQLException {
+	public final List<Post> getPostsByPoster(final long posterId, final boolean getComments) throws SQLException {
 
 		logger.debug("ENTERED getPostByPoster for posterId: " + posterId +
-			" with getReplies=" + getReplies);
+			" with getComments=" + getComments);
 
 		final List<Post> posts;
 
-		if (!getReplies) {
+		if (!getComments) {
 			posts = new ArrayList<Post>(postRepository.getPostsByPoster(posterId));
 		}
 		else {
@@ -90,7 +90,7 @@ public final class PostServiceImpl implements PostService {
 		}
 
 		logger.debug("EXITING getPostByPoster for posterId: " + posterId +
-			" with getReplies=" + getReplies);
+			" with getComments=" + getComments);
 
 		return posts;
 	}
