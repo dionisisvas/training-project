@@ -4,15 +4,14 @@ angular.
     module('editMyHobbies').
         component('editMyHobbies', {
         templateUrl: 'app/Edit/Edit-Hobbies-Images/edit-hobbies.template.html',
-        controller: ['Account','Hobby', 'Authorization', 'JWToken','$scope','$http','$resource',
-            function EditMyHobbiesController(Account,Hobby, Authorization,JWToken,$scope,$http,$resource) {
+        controller: ['Account','Hobby', 'Authorization', 'JWToken','$scope','$http','$window',
+            function EditMyHobbiesController(Account,Hobby, Authorization,JWToken,$scope,$http,$window) {
                var self = this;
 
   $scope.models = {
         selected: null,
         lists: {"All": [],"User": [] }
     };
-
 				if (JWToken.getToken()) {
                     JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
                     self.tokenBody = JSON.parse(tknResult);
@@ -54,6 +53,7 @@ angular.
            });
            self.setUserHobbies=function(){
            $http.post("api/hobby/edit/"+self.tokenBody.sub,$scope.list);
+           $window.location.reload();
            }
            console.log($scope.list);
            }, true);
