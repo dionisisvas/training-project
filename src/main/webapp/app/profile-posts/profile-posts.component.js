@@ -20,13 +20,20 @@ angular.
                                                                post.creationDate[3],
                                                                post.creationDate[4],
                                                                post.creationDate[5])).toLocaleString();
-                                                               
+
                         post.formattedLastEditDate = (new Date(post.lastEditDate[0],
                                                                post.lastEditDate[1],
                                                                post.lastEditDate[2],
                                                                post.lastEditDate[3],
                                                                post.lastEditDate[4],
                                                                post.lastEditDate[5])).toLocaleString();
+
+                        post.poster = User.UserById.get({userId: post.posterId});
+                        post.posterProfileImage = Image.ProfileImage.get({userId: post.posterId}, function(imgResult){
+                            post.posterProfileImage = imgResult;
+                        }, function() {
+                            console.log("User " + post.posterId + " has no profile image.");
+                        });
                     });
                 });
                 self.user = User.UserById.get({userId: $routeParams.userId});
