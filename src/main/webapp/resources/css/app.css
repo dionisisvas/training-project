@@ -150,6 +150,11 @@ md-input-container.md-input-focused .grey-parent-card {
   color: grey;
   font-size: 13px;
 }
+#user-post-card .poster-profile-img {
+  width: 36px;
+  height: 36px;
+  vertical-align: text-top;
+}
 /* API endpoints list template */
 .api-param {
   color: grey;
