@@ -81,9 +81,9 @@ public final class HobbyController {
 
 	@RequestMapping(value = "/edit/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
 		produces = "application/json")
-	public final ResponseEntity<String> editHobbies(@PathVariable("userId")  Long userId,@RequestBody final List<Hobby> hobbies) throws SQLException {
+	public final ResponseEntity<String> editHobbies(@PathVariable("userId")  long userId,@RequestBody final List<Hobby> hobbies) throws SQLException {
 
-		logger.debug("ENTERED editHobbies for hobbies: " + hobbies + userId);
+		logger.debug("ENTERED editHobbies for hobbies: " + hobbies +" and user: "+ userId);
 
 		hobbyService.editHobbies(hobbies,userId);
 
