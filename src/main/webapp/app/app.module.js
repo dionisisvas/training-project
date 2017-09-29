@@ -19,6 +19,7 @@ angular.module('trainingApp', [
     'myProfileDetails',
     'myProfileHeader',
     'myProfileHobbies',
+    'myProfilePosts',
     'myProfileTimeline',
     'myRegistrationCard',
     'mySidenav',

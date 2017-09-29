@@ -69,7 +69,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 
 		images = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_IMAGES_BY_USER_ID,
 			new Object[]{userId},
-			new ImageListResultSetExtractor()));
+			new ImagesResultSetExtractor()));
 
 		logger.debug("EXITING getUserImages for userId: " + userId);
 
@@ -91,8 +91,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 					.withImageUri(resultSet.getString("img_uri"))
 					.build();
 			}
-			else
-			{
+			else {
 				return null;
 			}
 
@@ -100,7 +99,7 @@ public class ImageRepositoryImpl implements ImageRepository {
 		}
 	}
 
-	private static final class ImageListResultSetExtractor implements ResultSetExtractor<List<Image>> {
+	private static final class ImagesResultSetExtractor implements ResultSetExtractor<List<Image>> {
 
 		@Override
 		public List<Image> extractData(final ResultSet resultSet) throws SQLException {

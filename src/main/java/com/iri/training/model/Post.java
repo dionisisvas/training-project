@@ -6,12 +6,13 @@ import java.util.List;
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.interfaces.IPostable;
 
-public class Comment implements IPostable{
+public class Post implements IPostable{
 
 	private long id;
 	private long posterId;
 	private SubjectType subjectType;
 	private long subjectId;
+	private String title;
 	private String content;
 	private LocalDateTime creationDate;
 	private LocalDateTime lastEditDate;
@@ -61,6 +62,16 @@ public class Comment implements IPostable{
 		this.subjectId = subjectId;
 	}
 
+	public String getTitle() {
+
+		return title;
+	}
+
+	public void setTitle(final String title) {
+
+		this.title = title;
+	}
+
 	@Override
 	public String getContent() {
 
@@ -98,9 +109,9 @@ public class Comment implements IPostable{
 		return comments;
 	}
 
-	public void setComments(final List<Comment> replies) {
+	public void setComments(final List<Comment> comments) {
 
-		this.comments = replies;
+		this.comments = comments;
 	}
 
 	@Override
@@ -108,11 +119,12 @@ public class Comment implements IPostable{
 
 		final StringBuilder sb = new StringBuilder();
 
-		sb.append("Comment{");
+		sb.append("Post{");
 		sb.append("id=").append(id);
 		sb.append(", posterId=").append(posterId);
 		sb.append(", subjectType=").append(subjectType);
 		sb.append(", subjectId=").append(subjectId);
+		sb.append(", title='").append(title).append('\'');
 		sb.append(", content='").append(content).append('\'');
 		sb.append(", creationDate=").append(creationDate);
 		sb.append(", lastEditDate=").append(lastEditDate);
