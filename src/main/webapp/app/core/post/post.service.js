@@ -19,7 +19,9 @@ angular.
                     params: {
                         getComments:'@getComments'
                     }
-                })
+                }),
+                DeletePost: $resource('api/post/:postId/delete'),
+                EditPost: $resource('api/post/poster/:posterId')
             };
         }
     ]);

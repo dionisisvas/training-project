@@ -1,4 +1,4 @@
-<md-card id="user-post-card" ng-repeat="post in $ctrl.posts | orderBy:'-'">
+<md-card id="user-post-card" class="dismissable-card" ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.posts[key].deleted">
   <md-card-header>
     <md-card-avatar>
       <img class="md-user-avatar" ng-src="{{post.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
@@ -23,7 +23,7 @@
         </md-menu-item>
 
         <md-menu-item>
-          <md-button>
+          <md-button ng-click="$ctrl.deletePost(post.id, key)">
             <md-icon md-font-set="material-icons"> delete </md-icon>Delete
           </md-button>
         </md-menu-item>

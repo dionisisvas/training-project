@@ -8,12 +8,15 @@ angular.
             function ProfilePostsController($routeParams, Image, Post, User) {
                 var self = this;
 
+                self.postDeleted;
+                
                 self.posts = Post.PostsBySubject.query({
                     subjectType: 'USER',
                     subjectId: $routeParams.userId,
                     getComments: true
                 }, function()  {
                     angular.forEach(self.posts, function(post, key) {
+                        post.deleted = false;
                         post.formattedCreationDate = (new Date(post.creationDate[0],
                                                                post.creationDate[1],
                                                                post.creationDate[2],
@@ -38,5 +41,14 @@ angular.
                 });
                 self.user = User.UserById.get({userId: $routeParams.userId});
                 self.profileImage = Image.ProfileImage.get({userId: $routeParams.userId});
+                
+                self.deletePost = function(id, key) {
+                    Post.DeletePost.delete({postId: id}, function() {
+                        self.posts[key].deleted = true;
+                        console.log("Post with post ID: " + id + " was deleted successfully.");
+                    }, function() {
+                        console.log("Post with post ID: " + id + " deletion failed.");
+                    });
+                }
         }]
     });

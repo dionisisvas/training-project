@@ -134,7 +134,7 @@ public final class PostServiceImpl implements PostService {
 				.parseClaimsJws(token).getBody();
 		} catch (final SignatureException e) {
 			logger.debug("EXITING verifyDeleteRights for postId: " + postId +
-				"JWT parsing failed: " + e);
+				". JWT parsing failed: " + e);
 
 			return false;
 		}
@@ -145,7 +145,7 @@ public final class PostServiceImpl implements PostService {
 			post = getPostById(postId, false);
 		} catch (SQLException e) {
 			logger.debug("EXITING verifyDeleteRights for postId: " + postId +
-				"Getting post from the DB failed: " + e);
+				". Getting post from the DB failed: " + e);
 
 			return false;
 		}
@@ -177,7 +177,7 @@ public final class PostServiceImpl implements PostService {
 				.parseClaimsJws(token).getBody();
 		} catch (final SignatureException e) {
 			logger.debug("EXITING verifyEditRights for post: " + post +
-				"JWT parsing failed: " + e);
+				". JWT parsing failed: " + e);
 
 			return false;
 		}
@@ -188,7 +188,7 @@ public final class PostServiceImpl implements PostService {
 			postFromDB = getPostById(post.getId(), false);
 		} catch (SQLException e) {
 			logger.debug("EXITING verifyEditRights for post: " + post +
-				"Getting post from the DB failed: " + e);
+				". Getting post from the DB failed: " + e);
 
 			return false;
 		}
