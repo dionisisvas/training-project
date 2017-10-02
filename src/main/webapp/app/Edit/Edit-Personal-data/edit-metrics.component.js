@@ -59,8 +59,10 @@ angular.
           });
         }
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    $(document).bind("projectLoadComplete", initialize);
 
+google.maps.event.addDomListener(window, 'load', initialize);
+$(document).ready(function(){
+  initialize();
+});
             }]
             });
