@@ -25,8 +25,8 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	private static final Logger logger = Logger.getLogger(CommentRepository.class);
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
-	private final DataSource dataSource = dbConnection .getDataSource();
-	private JdbcTemplate jdbcTemplate;
+	private final DataSource dataSource = dbConnection.getDataSource();
+	private final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 	@Override
 	public final Comment getCommentById(final long commentId) throws SQLException {
@@ -34,7 +34,6 @@ public final class CommentRepositoryImpl implements CommentRepository {
 		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
 		final Comment comment;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		comment = jdbcTemplate.query(PropertiesConfig.GET_COMMENT_BY_ID,
 			new Object[]{commentId},
@@ -52,7 +51,6 @@ public final class CommentRepositoryImpl implements CommentRepository {
 			" with subjectId: " + subjectId);
 
 		final List<Comment> comments;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		comments = new ArrayList<Comment>(
 						jdbcTemplate.query(PropertiesConfig.GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID,
@@ -63,6 +61,16 @@ public final class CommentRepositoryImpl implements CommentRepository {
 			" with subjectId: " + subjectId);
 
 		return comments;
+	}
+
+	@Override
+	public final void deletePostComments(final long postId) throws SQLException {
+
+		logger.debug("ENTERED deletePostComments for postId: " + postId);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_POST_COMMENTS, postId);
+
+		logger.debug("EXITING deletePostComments for postId: " + postId);
 	}
 
 	private static final class CommentResultSetExtractor implements ResultSetExtractor<Comment> {

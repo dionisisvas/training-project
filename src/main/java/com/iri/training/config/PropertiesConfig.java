@@ -123,7 +123,7 @@ public class PropertiesConfig {
 			DELETE_POST = sqlProperties.getString("DeletePost",
 				"DELETE FROM posts WHERE id = ?;");
 			EDIT_POST = sqlProperties.getString("EditPost",
-				"UPDATE posts SET title = ?, content = ?, last_edit_date = ?;");
+				"UPDATE posts SET title = ?, content = ?, last_edit_date = ? WHERE id = ?;");
 
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",
