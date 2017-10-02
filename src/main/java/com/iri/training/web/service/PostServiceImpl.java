@@ -150,14 +150,62 @@ public final class PostServiceImpl implements PostService {
 			return false;
 		}
 
-		logger.debug("EXITING verifyDeleteRights for postId: " + postId);
-
 		if ((post.getPosterId() == requesterId) ||
 			(post.getSubjectType() == SubjectType.USER &&
 				post.getSubjectId() == requesterId)) {
+			logger.debug("EXITING verifyDeleteRights for postId: " + postId);
 
 			return true;
 		}
+
+		logger.debug("EXITING verifyDeleteRights for postId: " + postId + ". Insufficient rights.");
+
+		return false;
+	}
+
+	@Override
+	public final boolean verifyEditRights(final Post post, final String authHeader) {
+
+		logger.debug("ENTERED verifyEditRights for post: " + post);
+
+		final String token = authHeader.substring(7);
+		final Claims claims;
+		final Post postFromDB;
+
+		try {
+			claims = Jwts.parser().setSigningKey(PropertiesConfig.JWT_KEY)
+				.parseClaimsJws(token).getBody();
+		} catch (final SignatureException e) {
+			logger.debug("EXITING verifyEditRights for post: " + post +
+				"JWT parsing failed: " + e);
+
+			return false;
+		}
+
+		final long requesterId = Long.parseLong(claims.getSubject());
+
+		try {
+			postFromDB = getPostById(post.getId(), false);
+		} catch (SQLException e) {
+			logger.debug("EXITING verifyEditRights for post: " + post +
+				"Getting post from the DB failed: " + e);
+
+			return false;
+		}
+
+		if (post.getContent() == null) {
+			logger.debug("EXITING verifyEditRights for post: " + post + ". New post content is null.");
+
+			return false;
+		}
+
+		if (postFromDB.getPosterId() == requesterId) {
+			logger.debug("EXITING verifyEditRights for post: " + post);
+
+			return true;
+		}
+
+		logger.debug("EXITING verifyEditRights for post: " + post + ". Insufficient rights.");
 
 		return false;
 	}

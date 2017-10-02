@@ -109,7 +109,6 @@ public final class PostController {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-
 		if (postService.verifyDeleteRights(postId, authHeader)) {
 			postService.deletePost(postId);
 
@@ -130,11 +129,17 @@ public final class PostController {
 				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
+		if (postService.verifyEditRights(post, authHeader)) {
+			postService.editPost(post);
 
-		postService.editPost(post);
+			logger.debug("EXITING editPost for post: " + post + ". Post edited successfully.");
 
-		logger.debug("EXITING editPost for post: " + post);
+			return new ResponseEntity("{\"message\": \"Post edited successfully.\"}", HttpStatus.OK);
+		}
+		else {
+			logger.debug("EXITING editPost for post: " + post + ". Post editing failed.");
 
-		return new ResponseEntity("{\"message\": \"Post edited successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity("{\"message\": \"Post editing failed.\"}", HttpStatus.BAD_REQUEST);
+		}
 	}
 }
