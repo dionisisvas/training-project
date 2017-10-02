@@ -13,4 +13,8 @@ public interface PostService {
 	List<Post> getPostsBySubject(SubjectType subjectType, long subjectId, boolean getComments) throws SQLException;
 
 	List<Post> getPostsByPoster(long posterId, boolean getComments) throws SQLException;
+
+	void deletePost(long postId) throws  SQLException;
+
+	void editPost(Post post) throws SQLException;
 }

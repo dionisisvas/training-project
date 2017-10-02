@@ -93,4 +93,25 @@ public final class PostServiceImpl implements PostService {
 
 		return posts;
 	}
+
+	@Override
+	public final void deletePost(final long postId) throws SQLException {
+
+		logger.debug("ENTERED deletePost for postId: " + postId);
+
+		commentRepository.deletePostComments(postId);
+		postRepository.deletePost(postId);
+
+		logger.debug("EXITING deletePost for postId: " + postId);
+	}
+
+	@Override
+	public final void editPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED editPost for post: " + post);
+
+		postRepository.editPost(post);
+
+		logger.debug("EXITING editPost for post: " + post);
+	}
 }

@@ -8,8 +8,10 @@ import java.util.Optional;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,8 @@ public final class PostController {
 	@Autowired
 	CommentService commentService;
 
-	@RequestMapping(value = "/{postId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{postId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<Post> getPostById(
 			@PathVariable("postId") final long postId,
 			@RequestParam("getComments") final Optional<Boolean> getComments) throws SQLException {
@@ -51,7 +54,8 @@ public final class PostController {
 		return new ResponseEntity<Post>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/subject/{subjectType}/{subjectId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/subject/{subjectType}/{subjectId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<List<Post>>  getPostsBySubject(
 			@PathVariable("subjectType") final SubjectType subjectType,
 			@PathVariable("subjectId") final long subjectId,
@@ -75,7 +79,8 @@ public final class PostController {
 		return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(value = "/poster/{posterId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/poster/{posterId}", method = RequestMethod.GET,
+		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<List<Post>> getPostsByPoster(
 				@PathVariable("posterId") final long posterId,
 				@RequestParam("getComments") final Optional<Boolean> getComments) throws SQLException {
@@ -94,5 +99,31 @@ public final class PostController {
 		}
 
 		return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/{postId}/delete", method = RequestMethod.DELETE,
+		produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> deletePost(@PathVariable("postId") final long postId) throws SQLException {
+
+		logger.debug("ENTERED deletePost for postId: " + postId);
+
+		postService.deletePost(postId);
+
+		logger.debug("EXITING deletePost for postId: " + postId);
+
+		return new ResponseEntity("{\"message\": \"Post deleted successfully.\"}", HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> editPost(@RequestBody final Post post) throws SQLException {
+
+		logger.debug("ENTERED editPost for post: " + post);
+
+		postService.editPost(post);
+
+		logger.debug("EXITING editPost for post: " + post);
+
+		return new ResponseEntity("{\"message\": \"Post edited successfully.\"}", HttpStatus.OK);
 	}
 }
