@@ -8,10 +8,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iri.training.config.PropertiesConfig;
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
 import com.iri.training.repository.CommentRepository;
 import com.iri.training.repository.PostRepository;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
 
 @Service
 public final class PostServiceImpl implements PostService {
@@ -113,5 +118,47 @@ public final class PostServiceImpl implements PostService {
 		postRepository.editPost(post);
 
 		logger.debug("EXITING editPost for post: " + post);
+	}
+
+	@Override
+	public final boolean verifyDeleteRights(final long postId, final String authHeader) {
+
+		logger.debug("ENTERED verifyDeleteRights for postId: " + postId);
+
+		final String token = authHeader.substring(7);
+		final Claims claims;
+		final Post post;
+
+		try {
+			claims = Jwts.parser().setSigningKey(PropertiesConfig.JWT_KEY)
+				.parseClaimsJws(token).getBody();
+		} catch (final SignatureException e) {
+			logger.debug("EXITING verifyDeleteRights for postId: " + postId +
+				"JWT parsing failed: " + e);
+
+			return false;
+		}
+
+		final long requesterId = Long.parseLong(claims.getSubject());
+
+		try {
+			post = getPostById(postId, false);
+		} catch (SQLException e) {
+			logger.debug("EXITING verifyDeleteRights for postId: " + postId +
+				"Getting post from the DB failed: " + e);
+
+			return false;
+		}
+
+		logger.debug("EXITING verifyDeleteRights for postId: " + postId);
+
+		if ((post.getPosterId() == requesterId) ||
+			(post.getSubjectType() == SubjectType.USER &&
+				post.getSubjectId() == requesterId)) {
+
+			return true;
+		}
+
+		return false;
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,20 +104,30 @@ public final class PostController {
 
 	@RequestMapping(value = "/{postId}/delete", method = RequestMethod.DELETE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> deletePost(@PathVariable("postId") final long postId) throws SQLException {
+	public final ResponseEntity<String> deletePost(@RequestHeader(value="Authorization") final String authHeader,
+				@PathVariable("postId") final long postId) throws SQLException {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-		postService.deletePost(postId);
 
-		logger.debug("EXITING deletePost for postId: " + postId);
+		if (postService.verifyDeleteRights(postId, authHeader)) {
+			postService.deletePost(postId);
 
-		return new ResponseEntity("{\"message\": \"Post deleted successfully.\"}", HttpStatus.OK);
+			logger.debug("EXITING deletePost for postId: " + postId + ". Delete success.");
+
+			return new ResponseEntity("{\"message\": \"Post deleted successfully.\"}", HttpStatus.OK);
+		}
+		else {
+			logger.debug("EXITING deletePost for postId: " + postId + ". Delete failed.");
+
+			return new ResponseEntity("{\"message\": \"Post deletion failed.\"}", HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> editPost(@RequestBody final Post post) throws SQLException {
+	public final ResponseEntity<String> editPost(@RequestHeader(value="Authorization") final String authHeader,
+				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
 

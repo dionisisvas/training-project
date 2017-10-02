@@ -17,4 +17,6 @@ public interface PostService {
 	void deletePost(long postId) throws  SQLException;
 
 	void editPost(Post post) throws SQLException;
+
+	boolean verifyDeleteRights(long postId, String authHeader);
 }
