@@ -8,7 +8,7 @@ angular.
                 /[a-z]/, // Contains lowercase characters
                 /[A-Z]/, // Contains uppercase characters
                 /\d/,    // Contains numerals
-                /[\W]/   // Contains special characters
+                /[\W_]/   // Contains special characters
             ];
 
             return {
