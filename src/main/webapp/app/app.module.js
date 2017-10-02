@@ -28,5 +28,6 @@ angular.module('trainingApp', [
     'myUserMaps',
     'myUserStatistics',
     'editMyAccount',
-    'editMyHobbies'
+    'editMyHobbies',
+    'editMetrics'
 ]);
