@@ -44,9 +44,12 @@ public class PropertiesConfig {
 	public static String GET_POST_BY_ID;
 	public static String GET_POSTS_BY_SUBJECT_TYPE_AND_ID;
 	public static String GET_POSTS_BY_POSTER_ID;
+	public static String DELETE_POST;
+	public static String EDIT_POST;
 	// Comment queries
 	public static String GET_COMMENT_BY_ID;
 	public static String GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID;
+	public static String DELETE_POST_COMMENTS;
 	// Metrics queries
 	public static String GET_METRICS_BY_USER_ID;
 	public static String GET_METRICS_LIST;
@@ -117,12 +120,18 @@ public class PropertiesConfig {
 				"SELECT id, poster_id, title, content, creation_date, last_edit_date FROM posts WHERE subject_type = ? AND subject_id = ?;");
 			GET_POSTS_BY_POSTER_ID = sqlProperties.getString("GetPostsByPosterId",
 				"SELECT * FROM posts WHERE poster_id = ?;");
+			DELETE_POST = sqlProperties.getString("DeletePost",
+				"DELETE FROM posts WHERE id = ?;");
+			EDIT_POST = sqlProperties.getString("EditPost",
+				"UPDATE posts SET title = ?, content = ?, last_edit_date = ?;");
 
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",
 				"SELECT * FROM comments WHERE id = ?;");
 			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetCommentsBySubjectTypeAndId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
+			DELETE_POST_COMMENTS = sqlProperties.getString("DeletePostComments",
+				"DELETE FROM comments WHERE subject_type = \"POST\" AND subject_id = ?;");
 
 			// Metrics queries
 			GET_METRICS_BY_USER_ID = sqlProperties.getString("GetMetricsByUserId",
