@@ -60,7 +60,7 @@ angular.
         }
       }
       google.maps.event.addDomListener(window, 'load', initialize);
-
+    $(document).bind("projectLoadComplete", initialize);
 
             }]
             });

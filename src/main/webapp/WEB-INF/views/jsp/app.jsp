@@ -129,7 +129,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaLaQ-9VlWlK1XkcfWvYDGmr7kWNg931Y&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaLaQ-9VlWlK1XkcfWvYDGmr7kWNg931Y&callback=initMap"></script>
     <script src="${coreModuleJs}"></script>
     <script src="${appModuleJs}"></script>
     <script src="${appConfigJs}"></script>
