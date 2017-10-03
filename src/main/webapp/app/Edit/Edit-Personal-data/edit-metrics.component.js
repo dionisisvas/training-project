@@ -4,9 +4,10 @@ angular.
     module('editMetrics').
         component('editMetrics', {
         templateUrl: 'app/Edit/Edit-Personal-data/edit-metrics.template.html',
-        controller: ['$scope',
-            function EditMyHobbiesController($scope) {
+        controller: ['$scope','Metrics',
+            function EditMyHobbiesController($scope,Metrics) {
 
+            $scope.Metrics = Metrics.CountriesList.query();
 
       var map;
       var geocoder;

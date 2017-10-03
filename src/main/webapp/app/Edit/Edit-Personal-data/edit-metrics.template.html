@@ -14,6 +14,14 @@
 					<input ng-model="user.name" type="text">
 				</md-input-container>
 			</md-content>
+
+			<md-input-container class="md-block" flex-gt-sm="">
+				<span>Nationality:</span>
+				<select ng-model="country" ng-options="country.name for country in Metrics track by country.code">
+					<option value="">-- Select a Country --</option>
+				</select>
+			</md-input-container>
+
 		</md-card-title-text>
 	</md-card-title>
 </md-card>
