@@ -148,7 +148,7 @@ public final class PropertiesConfig {
 				"SELECT * FROM METRICS;");
 			INIT_USER_METRICS = sqlProperties.getString("InitUserMetrics",
 				"INSERT INTO METRICS(userId) VALUES(?);");
-			EDIT_METRICS = sqlProperties.getString("EditMetrics," +
+			EDIT_METRICS = sqlProperties.getString("EditMetrics",
 				"UPDATE METRICS SET weight=?, height=?, education=?, nationality=?, placeOfBirth=? WHERE userId=?;");
 
 			// Event queries
