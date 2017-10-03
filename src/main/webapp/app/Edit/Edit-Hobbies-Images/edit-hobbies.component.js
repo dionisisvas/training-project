@@ -55,7 +55,6 @@ angular.
            $http.post("api/hobby/edit/"+self.tokenBody.sub,$scope.list);
            $window.location.reload();
            }
-           console.log($scope.list);
            }, true);
 
   }]

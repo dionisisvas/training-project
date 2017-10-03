@@ -1,27 +1,44 @@
 <md-card>
 	<md-card-title>
 		<md-card-title-text>
-			<div>
+<div>
+<span style="font-style:italic">Pick your place of birth from the map</span><br>
 <input type="text" id="address" size="30"><br>
 <input type="text" id="lat" size="10">
 <input type="text" id="lng" size="10"></div>
 <div id="map_canvas"></div>
 <br>
-			<md-content class="md-no-momentum">
-				<md-input-container class="md-icon-float md-block">
-					<label>Nationality</label>
-					<md-icon md-font-set="material-icons">person_pin_circle</md-icon>
-					<input ng-model="user.name" type="text">
-				</md-input-container>
-			</md-content>
 
 			<md-input-container class="md-block" flex-gt-sm="">
-				<span>Nationality:</span>
-				<select ng-model="country" ng-options="country.name for country in Metrics track by country.code">
-					<option value="">-- Select a Country --</option>
+
+				<span style="font-style:italic">Nationality:</span>
+				<select ng-model="$ctrl.metrics.nationality" ng-options="country.name for country in Metrics">
+					<option value="$ctrl.metrics.nationality">{{$ctrl.metrics.nationality}}</option>
 				</select>
 			</md-input-container>
 
+			<md-content class="md-no-momentum">
+				<md-input-container class="md-icon-float md-block">
+					<label>Education Level</label>
+					<md-icon md-font-set="material-icons">school</md-icon>
+					<input ng-model="$ctrl.metrics.education" type="text">
+				</md-input-container>
+			</md-content>
+
+			<div layout-gt-sm="row">
+				<md-icon md-font-set="material-icons">accessibility</md-icon>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Height</label>
+					<input ng-model="$ctrl.metrics.height">
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Weight</label>
+					<input ng-model="$ctrl.metrics.weight">
+				</md-input-container>
+			</div>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<md-button class="md-raised md-primary"  ng-click="$ctrl.SaveForm();">SAVE CHANGES</md-button>
+			</section>
 		</md-card-title-text>
 	</md-card-title>
 </md-card>

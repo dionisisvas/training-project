@@ -4,11 +4,11 @@ angular.
     module('editMetrics').
         component('editMetrics', {
         templateUrl: 'app/Edit/Edit-Personal-data/edit-metrics.template.html',
-        controller: ['$scope','Metrics',
-            function EditMyHobbiesController($scope,Metrics) {
+        controller: ['$scope','Metrics','JWToken','$http',
+            function EditMyHobbiesController($scope,Metrics,JWToken,$http) {
 
-            $scope.Metrics = Metrics.CountriesList.query();
 
+	  var self=this;
       var map;
       var geocoder;
       var mapOptions = { center: new google.maps.LatLng(0.0, 0.0), zoom: 2,
@@ -49,6 +49,7 @@ angular.
             if(status == google.maps.GeocoderStatus.OK) {
               if(results[0]) {
                 document.getElementById("address").value = results[0].formatted_address;
+                self.address=results[0].formatted_address;
               }
               else {
                 document.getElementById("address").value = "No results";
@@ -65,5 +66,35 @@ google.maps.event.addDomListener(window, 'load', initialize);
 $(document).ready(function(){
   initialize();
 });
+
+$scope.Metrics = Metrics.CountriesList.query();
+ if (JWToken.getToken()) {
+  JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
+  self.tokenBody = JSON.parse(tknResult);
+  self.metrics = Metrics.MetricsByUserId.get({userId: self.tokenBody.sub});
+  self.metrics.$promise.then(function(metricsResult) {
+  self.metrics = metricsResult;
+
+  }, function() {
+  console.log("Failed to retrieve metrics for user with userId: " + self.tokenBody.sub);
+  });
+}, function() {
+  console.error("Couldn't retrieve JWT body");
+});
+
+}
+self.SaveForm=function(){
+  var metrics = JSON.stringify({
+  	height	: self.metrics.height,
+  	weight	: self.metrics.weight,
+  	nationality	: self.metrics.nationality.name,
+  	placeOfBirth	: self.address,
+  	education	: self.metrics.education,
+  	userId	: self.tokenBody.sub
+  	});
+  	$http.put('api/metrics/edit',metrics);
+  	//Metrics.EditMetrics.update(metrics);
+  	console.log(metrics);
+}
             }]
             });

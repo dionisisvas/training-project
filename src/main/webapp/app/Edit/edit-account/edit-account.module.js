@@ -2,5 +2,7 @@
 
 angular.module('editMyAccount', [
     'ngRoute',
-    'core.jwtoken'
+    'core.jwtoken',
+    'core.account',
+    'core.user'
 ]);
