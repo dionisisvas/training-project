@@ -4,12 +4,13 @@ angular.
     module('myProfilePosts').
     component('myProfilePosts', {
         templateUrl: 'app/profile-posts/profile-posts.template.html',
-        controller: ['$routeParams', 'Image', 'Post', 'User',
-            function ProfilePostsController($routeParams, Image, Post, User) {
+        controller: ['$routeParams', 'JWToken', 'Image', 'Post', 'User',
+            function ProfilePostsController($routeParams, JWToken, Image, Post, User) {
                 var self = this;
 
-                self.postDeleted;
-                
+                self.isLoggedIn = false;
+                self.isProfileOwner = false;
+
                 self.posts = Post.PostsBySubject.query({
                     subjectType: 'USER',
                     subjectId: $routeParams.userId,
@@ -17,6 +18,9 @@ angular.
                 }, function()  {
                     angular.forEach(self.posts, function(post, key) {
                         post.deleted = false;
+                        JWToken.isOwner(post.posterId).then(function(res) {
+                            post.owner = res;
+                        });
                         post.formattedCreationDate = (new Date(post.creationDate[0],
                                                                post.creationDate[1],
                                                                post.creationDate[2],
@@ -41,7 +45,18 @@ angular.
                 });
                 self.user = User.UserById.get({userId: $routeParams.userId});
                 self.profileImage = Image.ProfileImage.get({userId: $routeParams.userId});
-                
+
+                JWToken.isLoggedIn().then(function(authResult) {
+                    self.isLoggedIn = authResult;
+                });
+
+                JWToken.isOwner($routeParams.userId).then(function(res) {
+                    self.isProfileOwner = res;
+                });
+
+                self.isPostOwner = function(id) {
+                    return JWToken.isOwner(id);
+                }
                 self.deletePost = function(id, key) {
                     Post.DeletePost.delete({postId: id}, function() {
                         self.posts[key].deleted = true;

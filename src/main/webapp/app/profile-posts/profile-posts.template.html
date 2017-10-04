@@ -9,14 +9,14 @@
           <span class="md-subhead" ng-show="post.lastEditDate[0] != 1970">Edited {{post.formattedLastEditDate}}</span>
     </md-card-header-text>
 
-    <md-menu md-position-mode="target-right bottom" layout-align="end">
+    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
       <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
         <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
       </md-button>
 
       <md-menu-content width="3">
 
-        <md-menu-item>
+        <md-menu-item ng-show="post.owner">
           <md-button>
             <md-icon md-font-set="material-icons"> edit </md-icon>Edit
           </md-button>
