@@ -80,6 +80,16 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	}
 
 	@Override
+	public final void deleteComment(final long commentId) throws SQLException {
+
+		logger.debug("ENTERED deleteComment for commentId: " + commentId);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_COMMENT, commentId);
+
+		logger.debug("EXITING deleteComment for commentId: " + commentId);
+	}
+
+	@Override
 	public final void deletePostComments(final long postId) throws SQLException {
 
 		logger.debug("ENTERED deletePostComments for postId: " + postId);
@@ -87,6 +97,19 @@ public final class CommentRepositoryImpl implements CommentRepository {
 		jdbcTemplate.update(PropertiesConfig.DELETE_POST_COMMENTS, postId);
 
 		logger.debug("EXITING deletePostComments for postId: " + postId);
+	}
+
+	@Override
+	public final void editComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED editComment for comment: " + comment);
+
+		jdbcTemplate.update(PropertiesConfig.EDIT_COMMENT,
+			comment.getContent(),
+			Instant.now().getEpochSecond(),
+			comment.getId());
+
+		logger.debug("EXITING editComment for comment: " + comment);
 	}
 
 	private static final class CommentResultSetExtractor implements ResultSetExtractor<Comment> {
