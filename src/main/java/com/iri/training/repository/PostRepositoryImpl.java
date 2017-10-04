@@ -82,6 +82,22 @@ public final class PostRepositoryImpl implements PostRepository {
 	}
 
 	@Override
+	public final void addPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED addPost for post: " + post);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_POST,
+			post.getPosterId(),
+			post.getSubjectType(),
+			post.getSubjectId(),
+			post.getTitle(),
+			post.getContent(),
+			Instant.now().getEpochSecond()); // creation_date
+
+		logger.debug("EXITING addPost for post: " + post);
+	}
+
+	@Override
 	public final void deletePost(final long postId) throws SQLException {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);

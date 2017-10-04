@@ -2,6 +2,7 @@ package com.iri.training.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -61,6 +62,21 @@ public final class CommentRepositoryImpl implements CommentRepository {
 			" with subjectId: " + subjectId);
 
 		return comments;
+	}
+
+	@Override
+	public final void addComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED addComment for comment: " + comment);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_COMMENT,
+			comment.getPosterId(),
+			comment.getSubjectType(),
+			comment.getSubjectId(),
+			comment.getContent(),
+			Instant.now().getEpochSecond()); // creation_date
+
+		logger.debug("EXITING addComment for comment: " + comment);
 	}
 
 	@Override

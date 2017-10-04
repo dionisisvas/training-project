@@ -12,5 +12,7 @@ public interface CommentRepository {
 
 	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId) throws SQLException;
 
+	void addComment(Comment comment) throws SQLException;
+
 	void deletePostComments(long postId) throws SQLException;
 }
