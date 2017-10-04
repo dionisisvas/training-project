@@ -11,7 +11,12 @@ angular.
                 AccountList: $resource('api/account/list'),
                 IsUsernameUnique: $resource('api/account/is-unique/username/:username'),
                 IsEmailUnique: $resource('api/account/is-unique/email/:email'),
-                EditAccount:$resource('api/account/edit')
+                EditAccount:$resource('api/account/edit', {}, {
+                            update: {
+                                method: 'PUT'
+                            }
+                })
+
             };
         }
     ]);
