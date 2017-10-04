@@ -30,5 +30,6 @@ angular.module('trainingApp', [
     'myUserStatistics',
     'editMyAccount',
     'editMyHobbies',
-    'editMetrics'
+    'editMetrics',
+    'addEvent'
 ]);

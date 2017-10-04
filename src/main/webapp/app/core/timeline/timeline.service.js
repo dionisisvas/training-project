@@ -7,8 +7,11 @@ angular.
 			return {
 				EventByUserId: $resource('api/dates/:userId'),
 				AllEvents: $resource('api/dates/list'),
-				EditEvents:$resource('api/dates/add')
-
+				EditEvents:$resource('api/dates/add', {}, {
+                   update: {
+                    method: 'POST'
+                   }
+                })
 			};
 		}
 	]);

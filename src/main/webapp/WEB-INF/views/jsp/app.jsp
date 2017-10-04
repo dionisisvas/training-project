@@ -119,6 +119,8 @@
     <spring:url value="/app/Edit/Edit-Hobbies-Images/edit-hobbies.component.js" var="editHobbiesComponentJs" />
     <spring:url value="/app/Edit/Edit-Personal-data/edit-metrics.module.js" var="editMetricsModuleJs" />
     <spring:url value="/app/Edit/Edit-Personal-data/edit-metrics.component.js" var="editMetricsComponentJs" />
+    <spring:url value="/app/Edit/add-event/add-event.module.js" var="addEventModuleJs" />
+    <spring:url value="/app/Edit/add-event/add-event.component.js" var="addEventComponentJs" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script
@@ -222,5 +224,7 @@
     <script src="${editHobbiesComponentJs}"></script>
     <script src="${editMetricsModuleJs}"></script>
     <script src="${editMetricsComponentJs}"></script>
+    <script src="${addEventModuleJs}"></script>
+    <script src="${addEventComponentJs}"></script>
   </body>
 </html>
