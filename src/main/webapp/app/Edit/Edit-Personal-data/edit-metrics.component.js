@@ -93,8 +93,7 @@ self.SaveForm=function(){
   	education	: self.metrics.education.level,
   	userId	: self.tokenBody.sub
   	});
-  	$http.put('api/metrics/edit',metrics);
-  	//Metrics.EditMetrics.update(metrics);
+  	Metrics.EditMetrics.update(metrics);
   	console.log(metrics);
   	$location.path('/');
     $window.location.reload();
