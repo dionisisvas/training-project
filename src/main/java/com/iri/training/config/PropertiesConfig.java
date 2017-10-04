@@ -44,12 +44,16 @@ public class PropertiesConfig {
 	public static String GET_POST_BY_ID;
 	public static String GET_POSTS_BY_SUBJECT_TYPE_AND_ID;
 	public static String GET_POSTS_BY_POSTER_ID;
+	public static String ADD_POST;
 	public static String DELETE_POST;
 	public static String EDIT_POST;
 	// Comment queries
 	public static String GET_COMMENT_BY_ID;
 	public static String GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID;
+	public static String ADD_COMMENT;
+	public static String DELETE_COMMENT;
 	public static String DELETE_POST_COMMENTS;
+	public static String EDIT_COMMENT;
 	// Metrics queries
 	public static String GET_METRICS_BY_USER_ID;
 	public static String GET_METRICS_LIST;
@@ -120,6 +124,8 @@ public class PropertiesConfig {
 				"SELECT id, poster_id, title, content, creation_date, last_edit_date FROM posts WHERE subject_type = ? AND subject_id = ?;");
 			GET_POSTS_BY_POSTER_ID = sqlProperties.getString("GetPostsByPosterId",
 				"SELECT * FROM posts WHERE poster_id = ?;");
+			ADD_POST = sqlProperties.getString("AddPost",
+				"INSERT INTO posts(poster_id, subject_type, subject_id, title, content, creation_date) VALUES(?, ?, ?, ?, ?, ?);");
 			DELETE_POST = sqlProperties.getString("DeletePost",
 				"DELETE FROM posts WHERE id = ?;");
 			EDIT_POST = sqlProperties.getString("EditPost",
@@ -130,8 +136,14 @@ public class PropertiesConfig {
 				"SELECT * FROM comments WHERE id = ?;");
 			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetCommentsBySubjectTypeAndId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
+			ADD_COMMENT = sqlProperties.getString("AddComment",
+				"INSERT INTO comments(poster_id, subject_type, subject_id, content, creation_date) VALUES(?, ?, ?, ?, ?);");
+			DELETE_COMMENT = sqlProperties.getString("DeleteComment",
+				"DELETE FROM comments WHERE id = ?;");
 			DELETE_POST_COMMENTS = sqlProperties.getString("DeletePostComments",
 				"DELETE FROM comments WHERE subject_type = \"POST\" AND subject_id = ?;");
+			EDIT_COMMENT = sqlProperties.getString("EditComment",
+				"UPDATE comments SET content = ?, last_edit_date = ? WHERE id = ?;");
 
 			// Metrics queries
 			GET_METRICS_BY_USER_ID = sqlProperties.getString("GetMetricsByUserId",
