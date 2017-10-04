@@ -9,4 +9,5 @@ public interface EventService {
 	List<Events> getUserDates(Long userId) throws SQLException;
 
 	List<Events> getDatesList() throws SQLException;
+	void addEvent(Events events) throws SQLException;
 }

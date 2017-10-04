@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import com.iri.training.web.service.AccountService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/account")
-public class AccountController {
+public final class AccountController {
 
 	private static final Logger logger = Logger.getLogger(AccountController.class);
 
@@ -93,6 +94,19 @@ public class AccountController {
 		}
 
 		return new ResponseEntity<List<Account>>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String>  editAccount(@RequestBody final Account account) throws SQLException {
+
+		logger.debug("ENTERED editAccount for account: " + account );
+
+		accountService.editAccount(account);
+
+		logger.debug("EXITING editAccount: " + account);
+
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/is-unique/username/{username}", method = RequestMethod.GET,

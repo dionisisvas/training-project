@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,13 +21,46 @@ import com.iri.training.web.service.ImageService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/image")
-public class ImageController {
+public final class ImageController {
 
 	private static final Logger logger = Logger.getLogger(ImageController.class);
 
 	@Autowired
 	ImageService imgService;
 
+	@RequestMapping(value = "/add", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public ResponseEntity<String> addImage(@RequestBody Image image) throws SQLException {
+
+		logger.debug("ENTERED addImage: ");
+
+		if (image != null) {
+
+			imgService.addImage(image);
+
+			return new ResponseEntity("{\"message\": \"Add success.\"}", HttpStatus.OK);
+		} else {
+
+			return new ResponseEntity("{\"message\": \"Add failed.\"}", HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public ResponseEntity<String> removeImage(@RequestBody Image image) throws SQLException {
+
+		logger.debug("ENTERED addImage: ");
+
+		if (image != null) {
+
+			imgService.deleteImage(image);
+
+			return new ResponseEntity("{\"message\": \"Remove success.\"}", HttpStatus.OK);
+		} else {
+
+			return new ResponseEntity("{\"message\": \"Remove failed.\"}", HttpStatus.BAD_REQUEST);
+		}
+	}
 	@RequestMapping(value = "/{imgId}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<Image> getImageById(@PathVariable("imgId") final long imgId) throws SQLException {

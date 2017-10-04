@@ -16,4 +16,6 @@ public interface AccountRepository {
 	List<Account> getAccountList() throws SQLException;
 
 	void addAccount(Account account) throws SQLException;
+
+	void editAccount(Account account) throws SQLException;
 }

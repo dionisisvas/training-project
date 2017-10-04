@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import com.iri.training.web.service.HobbyService;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping(value = "/api/hobby")
-public class HobbyController {
+public final class HobbyController {
 
 	private static final Logger logger = Logger.getLogger(HobbyController.class);
 
@@ -76,5 +77,18 @@ public class HobbyController {
 		}
 
 		return new ResponseEntity<List<Hobby>>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/edit/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = "application/json")
+	public final ResponseEntity<String> editHobbies(@PathVariable("userId")  long userId,@RequestBody final List<Hobby> hobbies) throws SQLException {
+
+		logger.debug("ENTERED editHobbies for hobbies: " + hobbies +" and user: "+ userId);
+
+		hobbyService.editHobbies(hobbies,userId);
+
+		logger.debug("EXITING editHobbies for User: " + userId);
+
+		return new ResponseEntity("{\"message\": \"Edit success.\"}", HttpStatus.OK);
 	}
 }

@@ -1,0 +1,50 @@
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+<div>
+<span style="font-style:italic">Pick your place of birth from the map</span><br>
+<input type="text" id="address" size="30"><br>
+<input type="text" id="lat" size="10">
+<input type="text" id="lng" size="10"></div>
+<div id="map_canvas"></div>
+<br>
+			<md-content class="md-no-momentum">
+				<md-input-container class="md-block" flex-gt-sm="">
+					<md-icon md-font-set="material-icons">place</md-icon>
+					<label>Select Nationality</label>
+					<md-select ng-model="$ctrl.metrics.nationality">
+						<md-option ng-value="country" ng-repeat="country in Metrics">{{country.name}}</md-option>
+					</md-select>
+				</md-input-container>
+			</md-content><br>
+
+			<md-content class="md-no-momentum">
+					<md-input-container class="md-block" flex-gt-sm="">
+						<md-icon md-font-set="material-icons">school</md-icon>
+						<label>Education Level</label>
+						<md-select ng-model="$ctrl.metrics.education">
+							<md-option ng-repeat="edu in Education" ng-value="edu">
+								{{edu.level}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+				</md-input-container>
+			</md-content><br>
+
+			<div layout-gt-sm="row">
+				<md-icon md-font-set="material-icons">accessibility</md-icon>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Height</label>
+					<input ng-model="$ctrl.metrics.height">
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Weight</label>
+					<input ng-model="$ctrl.metrics.weight">
+				</md-input-container>
+			</div>
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<md-button class="md-raised md-primary"  ng-click="$ctrl.SaveForm();">SAVE CHANGES</md-button>
+			</section>
+		</md-card-title-text>
+	</md-card-title>
+</md-card>

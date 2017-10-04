@@ -13,7 +13,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -35,7 +34,7 @@ public final class UserRepositoryImpl implements UserRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	@Cacheable(value="findUser", key="#userId")
+	//@Cacheable(value="findUser", key="#userId")
 	public final User getUserById(final long userId) throws SQLException {
 
 		logger.debug("ENTERED getUserById for userId: " + userId);
@@ -96,6 +95,24 @@ public final class UserRepositoryImpl implements UserRepository {
 			" with generated user ID: " + userId);
 
 		return userId;
+	}
+
+	@Override
+	public final void editUser(final User user) throws SQLException {
+
+		logger.debug("ENTERED editUser for user: " + user);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(PropertiesConfig.EDIT_USER,
+			user.getName(),
+			user.getSurname(),
+			user.getPhoneNo(),
+			user.getAddress(),
+
+			user.getId());
+
+		logger.debug("EXITING editUser for user: " + user);
 	}
 
 	private static final class UserResultSetExtractor implements ResultSetExtractor<User> {

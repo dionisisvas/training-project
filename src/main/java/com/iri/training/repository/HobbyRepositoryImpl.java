@@ -17,9 +17,9 @@ import com.iri.training.model.Hobby;
 import com.iri.training.model.builder.HobbyBuilder;
 
 @Repository
-public class HobbyRepositoryImpl implements HobbyRepository {
+public final class HobbyRepositoryImpl implements HobbyRepository {
 
-	private static final Logger logger = Logger.getLogger(HobbyRepository.class);
+	private static final Logger logger = Logger.getLogger(HobbyRepositoryImpl.class);
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
 	private final DataSource dataSource = dbConnection.getDataSource();
@@ -75,6 +75,33 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 		return hobbies;
 	}
 
+	@Override
+	public final void addHobbies(final long userId, final List<Hobby> hobbies) throws SQLException {
+
+		logger.debug("ENTERED addHobbies for hobbies: " + hobbies);
+
+		for (Hobby hobby : hobbies) {
+			jdbcTemplate = new JdbcTemplate(dataSource);
+
+			jdbcTemplate.update(PropertiesConfig.ADD_USER_HOBBY,
+				userId,
+				hobby.getHobbyId());
+		}
+		logger.debug("EXITING addHobbies for hobbies: " + hobbies);
+	}
+
+	@Override
+	public final void deleteHobbies(final long userId) throws SQLException {
+
+		logger.debug("ENTERED deleteHobbies for userId: " + userId);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_USER_HOBBY, userId);
+
+		logger.debug("EXITING deleteHobbies for userId: " + userId);
+	}
+
 	private static final class HobbyResultSetExtractor implements ResultSetExtractor<Hobby> {
 
 		@Override
@@ -85,7 +112,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 			if (resultSet.next()) {
 				hobby = new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("id"))
-					.withHobbyName(resultSet.getString("name"))
+					.withName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build();
 			}
@@ -107,7 +134,7 @@ public class HobbyRepositoryImpl implements HobbyRepository {
 			while (resultSet.next()) {
 				hobbies.add(new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("id"))
-					.withHobbyName(resultSet.getString("name"))
+					.withName(resultSet.getString("name"))
 					.withDescription(resultSet.getString("description"))
 					.build());
 			}

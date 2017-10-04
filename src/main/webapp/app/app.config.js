@@ -38,6 +38,9 @@ angular.
                 when('/user/uid/:userId', {
                     templateUrl: 'app/views/profile.template.html'
                 }).
+                when('/settings', {
+                    templateUrl: 'app/views/settings.template.html'
+                }).
                 otherwise('/error');
         }
     ]);

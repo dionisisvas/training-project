@@ -12,7 +12,7 @@ import com.iri.training.model.Account;
 import com.iri.training.repository.AccountRepository;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public final class AccountServiceImpl implements AccountService {
 
 	private static final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 
@@ -59,6 +59,17 @@ public class AccountServiceImpl implements AccountService {
 		return account;
 	}
 
+	public final List<Account> getAccountList() throws SQLException {
+
+		logger.debug("ENTERED getAccountList");
+
+		final List<Account> accounts = new ArrayList<>(accountRepository.getAccountList());
+
+		logger.debug("EXITING getAccountList");
+
+		return accounts;
+	}
+
 	@Override
 	public final void addAccount(final Account account) throws SQLException {
 
@@ -70,15 +81,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public final List<Account> getAccountList() throws SQLException {
+	public final void editAccount(final Account account) throws SQLException {
 
-		logger.debug("ENTERED getAccountList");
+		logger.debug("ENTERED editAccount for account: " + account);
 
-		final List<Account> accounts = new ArrayList<>(accountRepository.getAccountList());
+		accountRepository.editAccount(account);
 
-		logger.debug("EXITING getAccountList");
-
-		return accounts;
+		logger.debug("EXITING editAccount for account: " + account);
 	}
 
 	@Override
