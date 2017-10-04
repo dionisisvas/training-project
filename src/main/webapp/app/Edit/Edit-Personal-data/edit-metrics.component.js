@@ -4,8 +4,8 @@ angular.
     module('editMetrics').
         component('editMetrics', {
         templateUrl: 'app/Edit/Edit-Personal-data/edit-metrics.template.html',
-        controller: ['$scope','Metrics','JWToken','$http',
-            function EditMyHobbiesController($scope,Metrics,JWToken,$http) {
+        controller: ['$scope','Metrics','JWToken','$http','$window','$location',
+            function EditMyHobbiesController($scope,Metrics,JWToken,$http,$window,$location) {
 
 
 	  var self=this;
@@ -68,6 +68,7 @@ $(document).ready(function(){
 });
 
 $scope.Metrics = Metrics.CountriesList.query();
+$scope.Education=Metrics.EducationList.query();
  if (JWToken.getToken()) {
   JWToken.getTokenBody(JWToken.getToken()).then(function(tknResult) {
   self.tokenBody = JSON.parse(tknResult);
@@ -87,14 +88,16 @@ self.SaveForm=function(){
   var metrics = JSON.stringify({
   	height	: self.metrics.height,
   	weight	: self.metrics.weight,
-  	nationality	: self.metrics.nationality.name,
+  	nationality	: self.metrics.nationality.code,
   	placeOfBirth	: self.address,
-  	education	: self.metrics.education,
+  	education	: self.metrics.education.level,
   	userId	: self.tokenBody.sub
   	});
   	$http.put('api/metrics/edit',metrics);
   	//Metrics.EditMetrics.update(metrics);
   	console.log(metrics);
+  	$location.path('/');
+    $window.location.reload();
 }
             }]
             });

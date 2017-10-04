@@ -8,7 +8,8 @@ angular.
 				MetricsByUserId: $resource('api/metrics/:userId'),
 				MetricsList: $resource('api/metrics/list'),
 				EditMetrics:$resource('apo/metrics/edit'),
-				CountriesList:$resource('resources/json/countries.json')
+				CountriesList:$resource('resources/json/countries.json'),
+				EducationList:$resource('resources/json/education.json')
 			};
 		}
 	]);

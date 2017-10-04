@@ -8,22 +8,28 @@
 <input type="text" id="lng" size="10"></div>
 <div id="map_canvas"></div>
 <br>
-
-			<md-input-container class="md-block" flex-gt-sm="">
-
-				<span style="font-style:italic">Nationality:</span>
-				<select ng-model="$ctrl.metrics.nationality" ng-options="country.name for country in Metrics">
-					<option value="$ctrl.metrics.nationality">{{$ctrl.metrics.nationality}}</option>
-				</select>
-			</md-input-container>
+			<md-content class="md-no-momentum">
+				<md-input-container class="md-block" flex-gt-sm="">
+					<md-icon md-font-set="material-icons">place</md-icon>
+					<label>Select Nationality</label>
+					<md-select ng-model="$ctrl.metrics.nationality">
+						<md-option ng-value="country" ng-repeat="country in Metrics">{{country.name}}</md-option>
+					</md-select>
+				</md-input-container>
+			</md-content><br>
 
 			<md-content class="md-no-momentum">
-				<md-input-container class="md-icon-float md-block">
-					<label>Education Level</label>
-					<md-icon md-font-set="material-icons">school</md-icon>
-					<input ng-model="$ctrl.metrics.education" type="text">
+					<md-input-container class="md-block" flex-gt-sm="">
+						<md-icon md-font-set="material-icons">school</md-icon>
+						<label>Education Level</label>
+						<md-select ng-model="$ctrl.metrics.education">
+							<md-option ng-repeat="edu in Education" ng-value="edu">
+								{{edu.level}}
+							</md-option>
+						</md-select>
+					</md-input-container>
 				</md-input-container>
-			</md-content>
+			</md-content><br>
 
 			<div layout-gt-sm="row">
 				<md-icon md-font-set="material-icons">accessibility</md-icon>
