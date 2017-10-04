@@ -1,4 +1,5 @@
-<md-card id="user-post-card" class="dismissable-card" ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.posts[key].deleted">
+<h2 class="md-title inset" ng-show="$ctrl.postCounter === 0">{{$ctrl.user.name}} has no posts to show.</h2>
+<md-card id="user-post-card" class="dismissable-card" ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
   <md-card-header>
     <md-card-avatar>
       <img class="md-user-avatar" ng-src="{{post.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"

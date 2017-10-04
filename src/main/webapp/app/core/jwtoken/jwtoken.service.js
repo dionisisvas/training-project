@@ -77,8 +77,8 @@ angular.
                 }
 
                 return deferred.promise;
-            }            
-            
+            }
+
             self.isOwner = function(id) {
                 var deferred = $q.defer();
 
@@ -99,5 +99,7 @@ angular.
 
                 return deferred.promise;
             }
+
+            self.setToken($cookieStore.get('myToken'));
         }
     ]);

@@ -10,14 +10,18 @@ angular.
 
                 self.isLoggedIn = false;
                 self.isProfileOwner = false;
+                self.isPostDeleted = [];
+                self.postCounter = 0;
 
+                self.user = User.UserById.get({userId: $routeParams.userId});
                 self.posts = Post.PostsBySubject.query({
                     subjectType: 'USER',
                     subjectId: $routeParams.userId,
                     getComments: true
                 }, function()  {
+                    self.postCounter = self.posts.length;
                     angular.forEach(self.posts, function(post, key) {
-                        post.deleted = false;
+                        self.isPostDeleted[key] = false;
                         JWToken.isOwner(post.posterId).then(function(res) {
                             post.owner = res;
                         });
@@ -42,9 +46,14 @@ angular.
                             console.log("User " + post.posterId + " has no profile image.");
                         });
                     });
+                }, function() {
+                    console.log("User " + $routeParams.userId + " has no posts.");
                 });
-                self.user = User.UserById.get({userId: $routeParams.userId});
-                self.profileImage = Image.ProfileImage.get({userId: $routeParams.userId});
+                Image.ProfileImage.get({userId: $routeParams.userId}, function(imgRes) {
+                    self.profileImage = imgRes;
+                }, function() {
+                    console.log("User " + $routeParams.userId + " has no profile image.");
+                });
 
                 JWToken.isLoggedIn().then(function(authResult) {
                     self.isLoggedIn = authResult;
@@ -59,8 +68,10 @@ angular.
                 }
                 self.deletePost = function(id, key) {
                     Post.DeletePost.delete({postId: id}, function() {
-                        self.posts[key].deleted = true;
-                        console.log("Post with post ID: " + id + " was deleted successfully.");
+                        self.isPostDeleted[key] = true;
+                        self.postCounter--;
+                        self.posts.remove(key);
+                        console.log("Post with post ID: " + id + " was deleted successfully." + self.posts.length);
                     }, function() {
                         console.log("Post with post ID: " + id + " deletion failed.");
                     });
