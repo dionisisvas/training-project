@@ -11,12 +11,12 @@ CREATE TABLE IF NOT EXISTS comments(
 );
 
 INSERT INTO comments(id, poster_id, subject_type, subject_id, content, creation_date, last_edit_date) VALUES
-(1, 7, "USER", 1, "John is the best guy ever :)", 1479249799, 1479249899),
-(2, 1, "USER", 12, "Welcome to the network", 1479785641, NULL),
-(3, 19, "USER", 17, "What game are you playing right now?", 1483339344, NULL),
-(4, 14, "USER", 1, "Call me when you get a chance", 1491489341, 1491489441),
-(5, 1, "USER", 14, "Missed your comment, what's up?", 149149942300, NULL),
-(6, 5, "USER", 4, "Hellooooooooooooo", 1493434511, NULL),
-(7, 14, "USER", 1, "What's up? Long time no see", 1501420766, NULL),
-(8, 6, "USER", 3, "You owe me dude", 1502356755, NULL),
-(9, 13, "USER", 8, "Work from home now and make over a bazillion dollars with this simple trick", 1504185566, NULL);
+(1, 1, "POST", 3, "Nothing, taking a break.", 1503248114, 1503248182),
+(2, 8, "POST", 2, "Me!", 1503314534, NULL),
+(3, 2, "POST", 8, "Welcome", 1503209002, 1503209182),
+(4, 10, "POST", 9, "That is an amazing offer!", 1503831982, NULL),
+(5, 11, "POST", 2, "Me too!", 1504100567, NULL),
+(6, 1, "COMMENT", 5, "Hey! I know you!", 1504176261, NULL),
+(7, 4, "POST", 17, "Relax, be yourself and good luck!", 1505497088, NULL),
+(8, 6, "POST", 19, "Daft Punk? pffttt...", 1506165834, NULL),
+(9, 6, "COMMENT",9, "I will find you, and I'll make you pay for those words!", 1506196598, NULL);

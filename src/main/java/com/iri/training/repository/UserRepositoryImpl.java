@@ -60,7 +60,7 @@ public final class UserRepositoryImpl implements UserRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		users = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USER_LIST,
-			new UserListResultSetExtractor()));
+			new UsersResultSetExtractor()));
 
 		logger.debug("EXITING getUserList");
 
@@ -138,8 +138,7 @@ public final class UserRepositoryImpl implements UserRepository {
 					.withWeight(resultSet.getFloat("weight"))
 					.build();
 			}
-			else
-			{
+			else {
 				return null;
 			}
 
@@ -147,7 +146,7 @@ public final class UserRepositoryImpl implements UserRepository {
 		}
 	}
 
-	private static final class UserListResultSetExtractor implements ResultSetExtractor<List<User>> {
+	private static final class UsersResultSetExtractor implements ResultSetExtractor<List<User>> {
 
 		@Override
 		public List<User> extractData(final ResultSet resultSet) throws SQLException {

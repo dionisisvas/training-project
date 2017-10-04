@@ -16,5 +16,7 @@ angular.module('core', [
     'core.passwordStrength',
     'core.usernameUnique',
     'core.metrics',
-    'core.timeline'
+    'core.timeline',
+    'core.post',
+    'core.comment'
 ]);

@@ -5,35 +5,36 @@ import java.util.List;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
+import com.iri.training.model.Post;
 
-public class CommentBuilder extends CommentBuilderBase<CommentBuilder> {
+public class PostBuilder extends PostBuilderBase<PostBuilder> {
 
-	public static CommentBuilder comment() {
+	public static PostBuilder post() {
 
-		return new CommentBuilder();
+		return new PostBuilder();
 	}
 
-	public CommentBuilder() {
+	public PostBuilder() {
 
-		super(new Comment());
+		super(new Post());
 	}
 
-	public Comment build() {
+	public Post build() {
 
 		return getInstance();
 	}
 }
 
-class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
+class PostBuilderBase<GeneratorT extends PostBuilderBase<GeneratorT>> {
 
-	private final Comment instance;
+	private final Post instance;
 
-	protected CommentBuilderBase(final Comment aInstance) {
+	protected PostBuilderBase(final Post aInstance) {
 
 		instance = aInstance;
 	}
 
-	protected Comment getInstance() {
+	protected Post getInstance() {
 
 		return instance;
 	}
@@ -66,6 +67,14 @@ class CommentBuilderBase<GeneratorT extends CommentBuilderBase<GeneratorT>> {
 	public GeneratorT withSubjectId(final long aValue) {
 
 		instance.setSubjectId(aValue);
+
+		return (GeneratorT) this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public GeneratorT withTitle(final String aValue) {
+
+		instance.setTitle(aValue);
 
 		return (GeneratorT) this;
 	}

@@ -52,7 +52,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 
 		userHobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBIES_BY_USER_ID,
 			new Object[]{userId},
-			new UserHobbyListResultSetExtractor()));
+			new UserHobbiesResultSetExtractor()));
 
 		logger.debug("EXITING getUserHobbies with hobby IDs: " + userHobbies);
 
@@ -68,7 +68,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		hobbies = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_HOBBY_LIST,
-			new HobbyListResultSetExtractor()));
+			new HobbiesResultSetExtractor()));
 
 		logger.debug("EXITING getHobbyList");
 
@@ -116,8 +116,7 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 					.withDescription(resultSet.getString("description"))
 					.build();
 			}
-			else
-			{
+			else {
 				return null;
 			}
 
@@ -125,12 +124,13 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 		}
 	}
 
-	private static final class HobbyListResultSetExtractor implements ResultSetExtractor<List<Hobby>> {
+	private static final class HobbiesResultSetExtractor implements ResultSetExtractor<List<Hobby>> {
 
 		@Override
 		public List<Hobby> extractData(final ResultSet resultSet) throws SQLException {
 
 			final List<Hobby> hobbies = new ArrayList<>();
+
 			while (resultSet.next()) {
 				hobbies.add(new HobbyBuilder()
 					.withHobbyId(resultSet.getLong("id"))
@@ -143,12 +143,13 @@ public final class HobbyRepositoryImpl implements HobbyRepository {
 		}
 	}
 
-	private static final class UserHobbyListResultSetExtractor implements ResultSetExtractor<List<Long>> {
+	private static final class UserHobbiesResultSetExtractor implements ResultSetExtractor<List<Long>> {
 
 		@Override
 		public List<Long> extractData(final ResultSet resultSet) throws SQLException {
 
 			final List<Long> userHobbies = new ArrayList<>();
+
 			while (resultSet.next()) {
 				userHobbies.add(resultSet.getLong("hobby_id"));
 			}

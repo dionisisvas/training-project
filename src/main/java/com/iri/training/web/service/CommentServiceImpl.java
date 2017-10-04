@@ -10,62 +10,62 @@ import org.springframework.stereotype.Service;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
-import com.iri.training.repository.CommentReplyRepository;
 import com.iri.training.repository.CommentRepository;
 
 @Service
 public final class CommentServiceImpl implements CommentService {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = Logger.getLogger(CommentService.class);
 
 	@Autowired
 	CommentRepository commentRepository;
-	@Autowired
-	CommentReplyRepository replyRepository;
 
 	@Override
-	public Comment getCommentById(final long commentId, final boolean getReplies) throws SQLException {
+	public final Comment getCommentById(final long commentId, final boolean getComments) throws SQLException {
 
-		if (!getReplies) {
-			return commentRepository.getCommentById(commentId);
+		logger.debug("ENTERED getCommentById for commentId: " + commentId +
+			" with getComments=" + getComments);
+
+		final Comment comment;
+
+		if (!getComments) {
+			comment = commentRepository.getCommentById(commentId);
 		}
 		else {
-			Comment comment = commentRepository.getCommentById(commentId);
-			comment.setReplies(replyRepository.getCommentReplies(commentId));
+			comment = commentRepository.getCommentById(commentId);
+			comment.setComments(commentRepository.getCommentsBySubject(SubjectType.COMMENT, commentId));
 
 			return comment;
 		}
+
+		logger.debug("EXITING getCommentById with comment: " + comment);
+
+		return comment;
 	}
 
 	@Override
-	public List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId, boolean getReplies) throws SQLException {
+	public final List<Comment> getCommentsBySubject(final SubjectType subjectType, final long subjectId, final boolean getComments) throws SQLException {
 
-		if (!getReplies) {
-			return new ArrayList<Comment>(commentRepository.getCommentsBySubject(subjectType, subjectId));
+		logger.debug("ENTERED getCommentsBySubject for subjectType: " + subjectType +
+			" with subjectId: " + subjectId +
+			" with getComments=" + getComments);
+
+		final List<Comment> comments;
+
+		if (!getComments) {
+			comments = new ArrayList<Comment>(commentRepository.getCommentsBySubject(subjectType, subjectId));
 		}
 		else {
-			List<Comment> comments = new ArrayList<Comment>(commentRepository.getCommentsBySubject(subjectType, subjectId));
+			comments = new ArrayList<Comment>(commentRepository.getCommentsBySubject(subjectType, subjectId));
 			for(Comment comment : comments) {
-				comment.setReplies(replyRepository.getCommentReplies(comment.getId()));
+				comment.setComments(commentRepository.getCommentsBySubject(SubjectType.COMMENT, comment.getId()));
 			}
-
-			return comments;
 		}
-	}
 
-	@Override
-	public List<Comment> getCommentsByPoster(final long posterId, boolean getReplies) throws SQLException {
+		logger.debug("EXITING getCommentsBySubject for subjectType: " + subjectType +
+			" with subjectId: " + subjectId +
+			" with getComments=" + getComments);
 
-		if (!getReplies) {
-			return new ArrayList<Comment>(commentRepository.getCommentsByPoster(posterId));
-		}
-		else {
-			List<Comment> comments = new ArrayList<Comment>(commentRepository.getCommentsByPoster(posterId));
-			for(Comment comment : comments) {
-				comment.setReplies(replyRepository.getCommentReplies(comment.getId()));
-			}
-
-			return comments;
-		}
+		return comments;
 	}
 }

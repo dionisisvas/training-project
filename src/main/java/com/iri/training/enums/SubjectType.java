@@ -1,9 +1,10 @@
 package com.iri.training.enums;
 
 public enum SubjectType {
-	USER,
+	COMMENT,
+	EVENT,
+	HOBBY,
 	IMAGE,
 	POST,
-	EVENT,
-	HOBBY
+	USER
 }

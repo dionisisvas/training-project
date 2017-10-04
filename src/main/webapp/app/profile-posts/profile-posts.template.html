@@ -1,0 +1,24 @@
+<md-card id="user-post-card" ng-repeat="post in $ctrl.posts | orderBy:'-'">
+  <md-card-header>
+    <md-card-avatar>
+      <img class="md-user-avatar" ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
+          alt="{{$ctrl.user.name}} "/>
+    </md-card-avatar>
+    <md-card-header-text>
+          <span class="md-title">{{post.formattedCreationDate}}</span>
+          <span class="md-subhead" ng-show="post.lastEditDate[0] != 1970">Edited {{post.formattedLastEditDate}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{post.title}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p>
+      <md-subheader>{{post.content}}</md-subheader>
+    </p>
+    <md-button class="md-primary" ng-show="post.comments.length == 1">Load 1 comment</md-button>
+    <md-button class="md-primary" ng-show="post.comments.length > 1">Load {{post.comments.length}} comments</md-button>
+  </md-card-content>
+</md-card>

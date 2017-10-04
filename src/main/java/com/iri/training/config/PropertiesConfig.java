@@ -44,14 +44,18 @@ public final class PropertiesConfig {
 	public static String GET_HOBBY_BY_ID;
 	public static String GET_HOBBY_LIST;
 	public static String GET_HOBBIES_BY_USER_ID;
+
 	public static String ADD_USER_HOBBY;
 	public static String DELETE_USER_HOBBY;
+
+	// Post queries
+	public static String GET_POST_BY_ID;
+	public static String GET_POSTS_BY_SUBJECT_TYPE_AND_ID;
+	public static String GET_POSTS_BY_POSTER_ID;
+
 	// Comment queries
 	public static String GET_COMMENT_BY_ID;
 	public static String GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID;
-	public static String GET_COMMENTS_BY_POSTER_ID;
-	public static String GET_COMMENT_REPLY_BY_ID;
-	public static String GET_COMMENT_REPLIES_BY_PARENT_ID;
 	// Metrics queries
 	public static String GET_METRICS_BY_USER_ID;
 	public static String GET_METRICS_LIST;
@@ -129,17 +133,19 @@ public final class PropertiesConfig {
 			DELETE_USER_HOBBY = sqlProperties.getString("DeleteUserHobby",
 				"DELETE FROM user_hobbies WHERE user_id = ?;");
 
+			// Post queries
+			GET_POST_BY_ID = sqlProperties.getString("GetPostById",
+				"SELECT * FROM posts WHERE id = ?;");
+			GET_POSTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetPostsBySubjectTypeAndId",
+				"SELECT id, poster_id, title, content, creation_date, last_edit_date FROM posts WHERE subject_type = ? AND subject_id = ?;");
+			GET_POSTS_BY_POSTER_ID = sqlProperties.getString("GetPostsByPosterId",
+				"SELECT * FROM posts WHERE poster_id = ?;");
+
 			// Comment queries
 			GET_COMMENT_BY_ID = sqlProperties.getString("GetCommentById",
 				"SELECT * FROM comments WHERE id = ?;");
 			GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID = sqlProperties.getString("GetCommentsBySubjectTypeAndId",
 				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comments WHERE subject_type = ? AND subject_id = ?;");
-			GET_COMMENTS_BY_POSTER_ID = sqlProperties.getString("GetCommentsByPosterId",
-				"SELECT id, poster_id, subject_type, subject_id, content, creation_date FROM comments WHERE poster_id = ?;");
-			GET_COMMENT_REPLY_BY_ID = sqlProperties.getString("GetCommentReplyById",
-				"SELECT * FROM comment_replies WHERE id = ?;");
-			GET_COMMENT_REPLIES_BY_PARENT_ID = sqlProperties.getString("GetCommentRepliesByParentId",
-				"SELECT id, poster_id, content, creation_date, last_edit_date FROM comment_replies WHERE parent_id = ?;");
 
 			// Metrics queries
 			GET_METRICS_BY_USER_ID = sqlProperties.getString("GetMetricsByUserId",

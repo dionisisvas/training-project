@@ -88,7 +88,7 @@ public final class AccountRepositoryImpl implements AccountRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		accounts = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_ACCOUNT_LIST,
-			new AccountListResultSetExtractor()));
+			new AccountsResultSetExtractor()));
 
 		logger.debug("EXITING getAccountList");
 
@@ -145,8 +145,7 @@ public final class AccountRepositoryImpl implements AccountRepository {
 						0, ZoneOffset.UTC))
 					.build();
 			}
-			else
-			{
+			else {
 				return null;
 			}
 
@@ -154,7 +153,7 @@ public final class AccountRepositoryImpl implements AccountRepository {
 		}
 	}
 
-	private static final class AccountListResultSetExtractor implements ResultSetExtractor<List<Account>> {
+	private static final class AccountsResultSetExtractor implements ResultSetExtractor<List<Account>> {
 
 		@Override
 		public List<Account> extractData(final ResultSet resultSet) throws SQLException {

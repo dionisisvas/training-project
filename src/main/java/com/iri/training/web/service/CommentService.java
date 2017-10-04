@@ -8,9 +8,7 @@ import com.iri.training.model.Comment;
 
 public interface CommentService {
 
-	Comment getCommentById(long commentId, boolean getReplies) throws SQLException;
+	Comment getCommentById(long commentId, boolean getComments) throws SQLException;
 
-	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId, boolean getReplies) throws SQLException;
-
-	List<Comment> getCommentsByPoster(long posterId, boolean getReplies) throws SQLException;
+	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId, boolean getComments) throws SQLException;
 }

@@ -52,7 +52,7 @@ public final class EducationRepositoryImpl implements EducationRepository {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		userIds = new ArrayList<>(jdbcTemplate.query(PropertiesConfig.GET_USERS_BY_EDUCATION_LEVEL,
-			new UserIdListResultSetExtractor()));
+			new UserIdsResultSetExtractor()));
 
 		logger.debug("EXITING getUsersByEducationLevel for educationLevel: " + educationLevel +
 			" with user ids: " + userIds);
@@ -83,7 +83,7 @@ public final class EducationRepositoryImpl implements EducationRepository {
 		}
 	}
 
-	private static final class UserIdListResultSetExtractor implements ResultSetExtractor<List<Long>> {
+	private static final class UserIdsResultSetExtractor implements ResultSetExtractor<List<Long>> {
 
 		@Override
 		public List<Long> extractData(final ResultSet resultSet) throws SQLException {
