@@ -109,7 +109,7 @@ public final class UserRepositoryImpl implements UserRepository {
 			user.getSurname(),
 			user.getPhoneNo(),
 			user.getAddress(),
-
+			user.getDateOfBirth(),
 			user.getId());
 
 		logger.debug("EXITING editUser for user: " + user);
