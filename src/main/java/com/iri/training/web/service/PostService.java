@@ -14,9 +14,13 @@ public interface PostService {
 
 	List<Post> getPostsByPoster(long posterId, boolean getComments) throws SQLException;
 
+	void addPost(Post post) throws SQLException;
+
 	void deletePost(long postId) throws  SQLException;
 
 	void editPost(Post post) throws SQLException;
+
+	boolean verifyAddRights(String authHeader);
 
 	boolean verifyDeleteRights(long postId, String authHeader);
 

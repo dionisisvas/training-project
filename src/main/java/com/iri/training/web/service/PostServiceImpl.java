@@ -100,6 +100,16 @@ public final class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	public final void addPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED addPost for post: " + post);
+
+		postRepository.addPost(post);
+
+		logger.debug("EXITING addPost for post: " + post);
+	}
+
+	@Override
 	public final void deletePost(final long postId) throws SQLException {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
@@ -118,6 +128,30 @@ public final class PostServiceImpl implements PostService {
 		postRepository.editPost(post);
 
 		logger.debug("EXITING editPost for post: " + post);
+	}
+
+	@Override
+	public final boolean verifyAddRights(final String authHeader) {
+
+		logger.debug("ENTERED verifyAddRights");
+
+		final String token = authHeader.substring(7);
+		final Claims claims;
+
+		try {
+			claims = Jwts.parser().setSigningKey(PropertiesConfig.JWT_KEY)
+				.parseClaimsJws(token).getBody();
+		} catch (final SignatureException e) {
+			logger.debug("EXITING verifyAddRights, couldn't parse the token. Exception: " + e);
+
+			return false;
+		}
+
+		final long requesterId = Long.parseLong(claims.getSubject());
+
+		logger.debug("EXITING verifyAddRights, user with id: " + requesterId + " has sufficient rights to post.");
+
+		return true;
 	}
 
 	@Override
