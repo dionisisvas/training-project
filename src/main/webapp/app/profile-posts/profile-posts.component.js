@@ -4,8 +4,8 @@ angular.
     module('myProfilePosts').
     component('myProfilePosts', {
         templateUrl: 'app/profile-posts/profile-posts.template.html',
-        controller: ['$routeParams', 'JWToken', 'Image', 'Post', 'User',
-            function ProfilePostsController($routeParams, JWToken, Image, Post, User) {
+        controller: ['$routeParams', '$scope', 'JWToken', 'Image', 'Post', 'User',
+            function ProfilePostsController($routeParams, $scope, JWToken, Image, Post, User) {
                 var self = this;
 
                 self.isLoggedIn = false;
@@ -76,5 +76,28 @@ angular.
                         console.log("Post with post ID: " + id + " deletion failed.");
                     });
                 }
+
+                self.submitPost = function(isValid) {
+                    if (isValid) {
+                        var tkn = JWToken.getToken();
+                        JWToken.getTokenBody(tkn).then(function(tknBodyRes) {
+                            var tknBody = JSON.parse(tknBodyRes);
+
+                            var newPost = JSON.stringify({
+                                        posterId:    tknBody.sub,
+                                        subjectType: 'USER',
+                                        subjectId:   $routeParams.userId,
+                                        title :      $scope.title,
+                                        content :    $scope.content
+                            });
+
+                            Post.AddPost.save(newPost, function(response) {
+                                console.log("Post submitted succesfully.");
+                            }, function() {
+                                console.log("Posting failed.");
+                            });
+                        });
+                    }
+                };
         }]
     });
