@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import com.iri.training.util.IRIProperties;
 
 @Component
-public class PropertiesConfig {
+public final class PropertiesConfig {
 
 	private static final Logger logger = Logger.getLogger(PropertiesConfig.class);
 
@@ -26,20 +26,26 @@ public class PropertiesConfig {
 	public static String GET_USER_BY_ID;
 	public static String GET_USER_LIST;
 	public static String ADD_USER;
+	public static String EDIT_USER;
 	// Account queries
 	public static String GET_ACCOUNT_BY_ID;
 	public static String GET_ACCOUNT_BY_USERNAME;
 	public static String GET_ACCOUNT_BY_EMAIL;
 	public static String GET_ACCOUNT_LIST;
 	public static String ADD_ACCOUNT;
+	public static String EDIT_ACCOUNT;
 	// Image queries
 	public static String GET_IMAGE_BY_ID;
 	public static String GET_PROFILE_IMAGE_BY_USER_ID;
 	public static String GET_IMAGES_BY_USER_ID;
+	public static String ADD_IMAGE;
+	public static String DELETE_IMAGE;
 	// Hobby queries
 	public static String GET_HOBBY_BY_ID;
 	public static String GET_HOBBY_LIST;
 	public static String GET_HOBBIES_BY_USER_ID;
+	public static String ADD_USER_HOBBY;
+	public static String DELETE_USER_HOBBY;
 	// Post queries
 	public static String GET_POST_BY_ID;
 	public static String GET_POSTS_BY_SUBJECT_TYPE_AND_ID;
@@ -58,10 +64,11 @@ public class PropertiesConfig {
 	public static String GET_METRICS_BY_USER_ID;
 	public static String GET_METRICS_LIST;
 	public static String INIT_USER_METRICS;
+	public static String EDIT_METRICS;
 	// Event queries
 	public static String GET_EVENTS_BY_USER_ID;
 	public static String GET_EVENT_LIST;
-	public static int KEY_LIFETIME_IN_HOURS;
+	public static String ADD_EVENT;
 	// User education queries
 	public static String GET_USER_EDUCATION_BY_USER_ID;
 	public static String GET_USERS_BY_EDUCATION_LEVEL;
@@ -72,6 +79,7 @@ public class PropertiesConfig {
 	public static final String JWT_FILE = "/jwt.properties";
 	public static SecretKey JWT_KEY;
 	public static LocalDateTime KEY_EXPIRY_DATE;
+	public static int KEY_LIFETIME_IN_HOURS;
 
 	@PostConstruct
 	public static void load() throws NoSuchAlgorithmException {
@@ -88,6 +96,8 @@ public class PropertiesConfig {
 				"SELECT id, name, surname, date_of_birth FROM users;");
 			ADD_USER = sqlProperties.getString("AddUser",
 				"INSERT INTO users(name, surname, date_of_birth) VALUES(?, ?, ?);");
+			EDIT_USER = sqlProperties.getString("EditUser",
+				"UPDATE users SET name = ?, surname = ?,  phone_no = ?, address = ?,date_of_birth=? WHERE id = ?;");
 
 			// Account queries
 			GET_ACCOUNT_BY_ID = sqlProperties.getString("GetAccountById",
@@ -100,6 +110,8 @@ public class PropertiesConfig {
 				"SELECT id, username, email, join_date FROM accounts;");
 			ADD_ACCOUNT = sqlProperties.getString("AddAccount",
 				"INSERT INTO accounts(id, username, password, email, join_date) VALUES(?, ?, ?, ?, ?);");
+			EDIT_ACCOUNT = sqlProperties.getString("EditAccount",
+				"UPDATE accounts SET username = ?, password = ?, email = ? WHERE id = ?;");
 
 			// Image queries
 			GET_IMAGE_BY_ID = sqlProperties.getString("GetImageById",
@@ -108,6 +120,10 @@ public class PropertiesConfig {
 				"SELECT * FROM user_images WHERE user_id = ? AND is_profile_img = 1;");
 			GET_IMAGES_BY_USER_ID = sqlProperties.getString("GetImagesByUserId",
 				"SELECT * FROM user_images WHERE user_id = ?;");
+			ADD_IMAGE = sqlProperties.getString("AddImage",
+				"INSERT INTO user_images(user_id, is_profile_img, img_uri) VALUES(?, ?, ?);");
+			DELETE_IMAGE = sqlProperties.getString("DeleteImage",
+				"DELETE FROM user_images WHERE id = ?;");
 
 			// Hobby queries
 			GET_HOBBY_BY_ID = sqlProperties.getString("GetHobbyById",
@@ -116,6 +132,10 @@ public class PropertiesConfig {
 				"SELECT * FROM hobbies;");
 			GET_HOBBIES_BY_USER_ID = sqlProperties.getString("GetHobbiesByUserId",
 				"SELECT * FROM user_hobbies WHERE user_id = ?;");
+			ADD_USER_HOBBY = sqlProperties.getString("AddUserHobby",
+				"INSERT INTO user_hobbies (user_id, hobby_id) VALUES(?, ?);");
+			DELETE_USER_HOBBY = sqlProperties.getString("DeleteUserHobby",
+				"DELETE FROM user_hobbies WHERE user_id = ?;");
 
 			// Post queries
 			GET_POST_BY_ID = sqlProperties.getString("GetPostById",
@@ -151,13 +171,17 @@ public class PropertiesConfig {
 			GET_METRICS_LIST = sqlProperties.getString("GetMetricsList",
 				"SELECT * FROM METRICS;");
 			INIT_USER_METRICS = sqlProperties.getString("InitUserMetrics",
-				"INSERT INTO METRICS DEFAULT VALUES;");
+				"INSERT INTO METRICS(userId) VALUES(?);");
+			EDIT_METRICS = sqlProperties.getString("EditMetrics",
+				"UPDATE METRICS SET weight=?, height=?, education=?, nationality=?, placeOfBirth=? WHERE userId=?;");
 
 			// Event queries
 			GET_EVENTS_BY_USER_ID = sqlProperties.getString("GetEventsByUserId",
 				"SELECT * FROM USER_SELECTED_DATES WHERE userID = ?");
 			GET_EVENT_LIST = sqlProperties.getString("GetEventList",
 				"SELECT * FROM USER_SELECTED_DATES;");
+			ADD_EVENT = sqlProperties.getString("AddEvent",
+				"INSERT INTO USER_SELECTED_DATES (userId,dateOfEvent,Title,Description) VALUES (?,?,?,?);");
 
 			// User education queries
 			GET_USER_EDUCATION_BY_USER_ID = sqlProperties.getString("GetUserEducationByUserId",

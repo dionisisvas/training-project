@@ -17,9 +17,9 @@ import com.iri.training.model.Metrics;
 import com.iri.training.model.builder.MetricsBuilder;
 
 @Repository
-public class MetricsRepositoryImpl implements MetricsRepository {
+public final class MetricsRepositoryImpl implements MetricsRepository {
 
-	Logger logger = Logger.getLogger(this.getClass());
+	private static final Logger logger = Logger.getLogger(MetricsRepository.class);
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
@@ -58,11 +58,29 @@ public class MetricsRepositoryImpl implements MetricsRepository {
 	public void initializeUserMetrics(final long userId) {
 
 		logger.debug("ENTERED initializeUserMetrics");
-
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		jdbcTemplate.update(PropertiesConfig.INIT_USER_METRICS);
+
+		jdbcTemplate.update(PropertiesConfig.INIT_USER_METRICS,
+			new Object[]{userId});
 
 		logger.debug("EXITING initializeUserMetrics");
+	}
+
+	@Override
+	public void updateMetrics(final Metrics metrics) throws SQLException {
+
+		logger.debug("ENTERED updateMetrics : " + metrics);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(PropertiesConfig.EDIT_METRICS,
+			metrics.getWeight(),
+			metrics.getHeight(),
+			metrics.getEducation(),
+			metrics.getNationality(),
+			metrics.getPlaceOfBirth(),
+			metrics.getUserId());
+
+		logger.debug("EXITING updateMetrics: " + metrics);
 	}
 
 	private static final class UserMetricsMapper implements ResultSetExtractor<Metrics> {

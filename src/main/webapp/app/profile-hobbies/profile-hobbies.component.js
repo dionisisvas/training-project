@@ -18,6 +18,6 @@ angular.
                 }
 
                 self.getUserHobbies();
-                self.user = User.UserById.get({userId: $routeParams.userId});                
+                self.user = User.UserById.get({userId: $routeParams.userId});
         }]
     });

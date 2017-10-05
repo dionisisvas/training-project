@@ -12,7 +12,7 @@ import com.iri.training.model.Metrics;
 import com.iri.training.repository.MetricsRepository;
 
 @Service
-public class MetricsServiceImpl implements MetricsService{
+public final class MetricsServiceImpl implements MetricsService{
 	Logger logger = Logger.getLogger(MetricsServiceImpl.class);
 
 	@Autowired
@@ -35,5 +35,9 @@ public class MetricsServiceImpl implements MetricsService{
 	@Override
 	public void initializeUserMetrics(long userId) throws SQLException {
 		metricsRepository.initializeUserMetrics(userId);
+	}
+
+	@Override public void updateMetrics(final Metrics metrics) throws SQLException {
+		metricsRepository.updateMetrics(metrics);
 	}
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.iri.training.model.Events;
 import com.iri.training.repository.EventRepository;
 @Service
-public class EventServiceImpl implements EventService {
+public final class EventServiceImpl implements EventService {
 	@Autowired
 	EventRepository eventRepository;
 
@@ -22,5 +22,10 @@ public class EventServiceImpl implements EventService {
 	public List<Events> getDatesList() throws SQLException {
 		List<Events> datesList = new ArrayList<Events>(eventRepository.getDatesList());
 		return datesList;
+	}
+	@Override
+	public void addEvent(final Events events) throws SQLException {
+		eventRepository.addEvent(events);
+
 	}
 }

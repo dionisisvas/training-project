@@ -17,7 +17,7 @@ import com.iri.training.model.Image;
 import com.iri.training.model.builder.ImageBuilder;
 
 @Repository
-public class ImageRepositoryImpl implements ImageRepository {
+public final class ImageRepositoryImpl implements ImageRepository {
 
 	private static final Logger logger = Logger.getLogger(ImageRepository.class);
 
@@ -25,7 +25,6 @@ public class ImageRepositoryImpl implements ImageRepository {
 	private final DataSource dataSource = dbConnection .getDataSource();
 	private JdbcTemplate jdbcTemplate;
 
-	@Override
 	public final Image getImageById(final long imgId) throws SQLException {
 
 		logger.debug("ENTERED getImageById for imgId: " + imgId);
@@ -74,6 +73,34 @@ public class ImageRepositoryImpl implements ImageRepository {
 		logger.debug("EXITING getUserImages for userId: " + userId);
 
 		return images;
+	}
+
+	@Override
+	public final void addImage(final Image image) throws SQLException {
+
+		logger.debug("ENTERED addImage for image: " + image);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_IMAGE,
+			image.getUserId(),
+			image.isProfileImg(),
+			image.getImgUri());
+
+		logger.debug("EXITING addImage for image: " + image);
+	}
+
+	@Override
+	public final void deleteImage(final Image image) throws SQLException {
+
+		logger.debug("ENTERED deleteImage for image: " + image);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_IMAGE,
+			image.getImgUri());
+
+		logger.debug("EXITING deleteImage for image: " + image);
 	}
 
 	private static final class ImageResultSetExtractor implements ResultSetExtractor<Image> {
