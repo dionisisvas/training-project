@@ -16,7 +16,7 @@ public interface CommentRepository {
 
 	void deleteComment(long commentId) throws  SQLException;
 
-	void deletePostComments(long postId) throws SQLException;
+	void deleteCommentReplies(SubjectType subjectType, long parentId) throws SQLException;
 
 	void editComment(Comment comment) throws SQLException;
 }

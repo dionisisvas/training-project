@@ -24,9 +24,9 @@ public final class PostServiceImpl implements PostService {
 	private static final Logger logger = Logger.getLogger(PostService.class);
 
 	@Autowired
-	PostRepository postRepository;
+	CommentService commentService;
 	@Autowired
-	CommentRepository commentRepository;
+	PostRepository postRepository;
 
 	@Override
 	public final Post getPostById(final long postId, final boolean getComments) throws SQLException {
@@ -41,7 +41,7 @@ public final class PostServiceImpl implements PostService {
 		}
 		else {
 			post = postRepository.getPostById(postId);
-			post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, postId));
+			post.setComments(commentService.getCommentsBySubject(SubjectType.POST, postId, false));
 		}
 
 		logger.debug("EXITING getPostById with post: " + post);
@@ -64,7 +64,7 @@ public final class PostServiceImpl implements PostService {
 		else {
 			posts = new ArrayList<Post>(postRepository.getPostsBySubject(subjectType, subjectId));
 			for(Post post : posts) {
-				post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, post.getId()));
+				post.setComments(commentService.getCommentsBySubject(SubjectType.POST, post.getId(), false));
 			}
 		}
 
@@ -89,7 +89,7 @@ public final class PostServiceImpl implements PostService {
 		else {
 			posts = new ArrayList<Post>(postRepository.getPostsByPoster(posterId));
 			for(Post post : posts) {
-				post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, post.getId()));
+				post.setComments(commentService.getCommentsBySubject(SubjectType.POST, post.getId(), false));
 			}
 		}
 
@@ -114,7 +114,7 @@ public final class PostServiceImpl implements PostService {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-		commentRepository.deletePostComments(postId);
+		commentService.deleteCommentReplies(SubjectType.POST, postId);
 		postRepository.deletePost(postId);
 
 		logger.debug("EXITING deletePost for postId: " + postId);

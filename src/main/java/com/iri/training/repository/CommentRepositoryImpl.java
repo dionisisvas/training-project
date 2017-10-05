@@ -90,13 +90,13 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	}
 
 	@Override
-	public final void deletePostComments(final long postId) throws SQLException {
+	public final void deleteCommentReplies(final SubjectType subjectType, final long parentId) throws SQLException {
 
-		logger.debug("ENTERED deletePostComments for postId: " + postId);
+		logger.debug("ENTERED deleteCommentReplies for postId: " + parentId);
 
-		jdbcTemplate.update(PropertiesConfig.DELETE_POST_COMMENTS, postId);
+		jdbcTemplate.update(PropertiesConfig.DELETE_COMMENT_REPLIES, subjectType, parentId);
 
-		logger.debug("EXITING deletePostComments for postId: " + postId);
+		logger.debug("EXITING deleteCommentReplies for postId: " + parentId);
 	}
 
 	@Override

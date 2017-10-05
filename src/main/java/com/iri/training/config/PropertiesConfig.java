@@ -52,7 +52,7 @@ public class PropertiesConfig {
 	public static String GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID;
 	public static String ADD_COMMENT;
 	public static String DELETE_COMMENT;
-	public static String DELETE_POST_COMMENTS;
+	public static String DELETE_COMMENT_REPLIES;
 	public static String EDIT_COMMENT;
 	// Metrics queries
 	public static String GET_METRICS_BY_USER_ID;
@@ -140,8 +140,8 @@ public class PropertiesConfig {
 				"INSERT INTO comments(poster_id, subject_type, subject_id, content, creation_date) VALUES(?, ?, ?, ?, ?);");
 			DELETE_COMMENT = sqlProperties.getString("DeleteComment",
 				"DELETE FROM comments WHERE id = ?;");
-			DELETE_POST_COMMENTS = sqlProperties.getString("DeletePostComments",
-				"DELETE FROM comments WHERE subject_type = \"POST\" AND subject_id = ?;");
+			DELETE_COMMENT_REPLIES = sqlProperties.getString("DeleteCommentReplies",
+				"DELETE FROM comments WHERE subject_type = ? AND subject_id = ?;");
 			EDIT_COMMENT = sqlProperties.getString("EditComment",
 				"UPDATE comments SET content = ?, last_edit_date = ? WHERE id = ?;");
 
