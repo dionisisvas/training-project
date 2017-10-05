@@ -1,0 +1,27 @@
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<md-content md-theme="docs-dark"  layout-gt-sm="row" layout-padding="">
+				<div>
+					<md-input-container>
+						<label>Title</label>
+						<input ng-model="$ctrl.event.title">
+					</md-input-container>
+
+					<md-input-container>
+						<label>Description</label>
+						<input ng-model="$ctrl.event.description" >
+					</md-input-container>
+					<md-input-container>
+					<label>Enter date</label>
+					<md-datepicker ng-model="$ctrl.event.dateOfEvent"></md-datepicker>
+					</md-input-container>
+					<md-input-container>
+						<md-button class="md-raised md-primary"  ng-click="$ctrl.setEvent();">ADD</md-button>
+					</md-input-container>
+				</div>
+			</md-content>
+
+		</md-card-title-text>
+	</md-card-title>
+</md-card>

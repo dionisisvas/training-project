@@ -18,13 +18,29 @@ import com.iri.training.config.PropertiesConfig;
 import com.iri.training.model.Events;
 import com.iri.training.model.builder.EventBuilder;
 @Repository
-public class EventRepositoryImpl implements EventRepository {
+public final class EventRepositoryImpl implements EventRepository {
 
 	Logger logger = Logger.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
 	private DatabaseConnection dbConnection = new DatabaseConnection();
 	private DataSource dataSource = dbConnection .getDataSource();
+
+	@Override
+	public void addEvent(final Events events) throws SQLException {
+
+		logger.debug("ENTERED addEvent : " + events);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_EVENT,
+			events.getUserId(),
+			events.getDateOfEvent(),
+			events.getTitle(),
+			events.getDescription());
+
+		logger.debug("EXITING addEvent: ");
+	}
 
 	@Override
 	public List<Events> getUserDates(Long userId) throws SQLException {

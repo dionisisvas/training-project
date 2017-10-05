@@ -9,7 +9,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-public class IRIProperties extends Properties {
+public final class IRIProperties extends Properties {
 
 	private static final Logger logger = Logger.getLogger(IRIProperties.class);
 	private HashMap<String, String> propsMap = new HashMap<String, String>();

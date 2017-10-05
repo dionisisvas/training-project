@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,5 +77,18 @@ public final class UserController {
 		}
 
 		return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+	public final ResponseEntity<String> editUser(@RequestBody final User user) throws SQLException {
+
+		logger.debug("ENTERED editUser for user: " + user );
+
+		userService.editUser(user);
+
+		logger.debug("EXITING editUser for user: " + user);
+
+		return new ResponseEntity("{\"message\": \"Update success.\"}", HttpStatus.OK);
 	}
 }

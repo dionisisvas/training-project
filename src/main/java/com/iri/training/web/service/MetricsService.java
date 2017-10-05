@@ -12,4 +12,5 @@ public interface  MetricsService {
 	List<Metrics> getMetricsList() throws SQLException;
 
 	void initializeUserMetrics(long userId) throws SQLException;
+	void updateMetrics(Metrics metrics) throws SQLException;
 }

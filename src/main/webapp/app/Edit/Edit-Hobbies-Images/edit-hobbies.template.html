@@ -1,0 +1,41 @@
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+<div class="simpleDemo row">
+	<div class="col-md-8">
+		<div class="row">
+			<div ng-repeat="(listName, list) in models.lists" class="col-md-6">
+				<div class="panel">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{listName}} Hobbies</h3>
+					</div>
+					<div class="panel-body" >
+						<ul dnd-list="list">
+							<li ng-repeat="item in list"
+								dnd-draggable="item"
+								dnd-moved="list.splice($index, 1)"
+								dnd-effect-allowed="move"
+								dnd-selected="{models.selected = item}"
+								ng-class="{'selected': models.selected === item}">
+								{{item.label}}
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+			<div view-source="simple"></div>
+
+		</div>
+	</div>
+
+		</div>
+
+	</div>
+
+			<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+				<md-button class="md-raised md-primary"  ng-click="$ctrl.setUserHobbies();">SAVE CHANGES</md-button>
+			</section>
+		</md-card-title-text>
+	</md-card-title>
+</md-card>

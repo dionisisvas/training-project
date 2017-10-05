@@ -20,7 +20,7 @@ import com.iri.training.model.Account;
 import com.iri.training.model.builder.AccountBuilder;
 
 @Repository
-public class AccountRepositoryImpl implements AccountRepository {
+public final class AccountRepositoryImpl implements AccountRepository {
 
 	private static final Logger logger = Logger.getLogger(UserRepository.class);
 
@@ -96,11 +96,11 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public void addAccount(final Account account) throws SQLException {
+	public final void addAccount(final Account account) throws SQLException {
 
 		logger.debug("ENTERED addAccount for account: " + account);
 
-		jdbcTemplate=new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 		jdbcTemplate.update(PropertiesConfig.ADD_ACCOUNT,
 			account.getId(),
 			account.getUsername(),
@@ -109,6 +109,22 @@ public class AccountRepositoryImpl implements AccountRepository {
 			Instant.now().getEpochSecond()); // Set current timestamp as join date
 
 		logger.debug("EXITING addAccount for account: " + account);
+	}
+
+
+	@Override
+	public final void editAccount(final Account account) throws SQLException {
+
+		logger.debug("ENTERED editAccount for account: " + account);
+
+		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(PropertiesConfig.EDIT_ACCOUNT,
+			account.getUsername(),
+			account.getPassword(),
+			account.getEmail(),
+		 	account.getId());
+
+		logger.debug("EXITING editAccount for account: " + account);
 	}
 
 	private static final class AccountResultSetExtractor implements ResultSetExtractor<Account> {

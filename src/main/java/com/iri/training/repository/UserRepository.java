@@ -12,4 +12,6 @@ public interface UserRepository {
 	List<User> getUserList() throws SQLException;
 
 	long addUserAndGetGeneratedId(User user) throws SQLException;
+
+	void editUser(User user) throws SQLException;
 }
