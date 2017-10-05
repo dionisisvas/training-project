@@ -106,6 +106,26 @@ public final class PostController {
 		return new ResponseEntity<List<Post>>(HttpStatus.NOT_FOUND);
 	}
 
+	@RequestMapping(value = "/add", method = RequestMethod.POST,
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ResponseEntity<String> addPost(@RequestHeader(value="Authorization") final String authHeader,
+		@RequestBody final Post post) throws SQLException {
+
+		logger.debug("ENTERED addPost for post: " + post);
+		if (authService.verifyAddRights(post, authHeader)) {
+			postService.addPost(post);
+
+			logger.debug("EXITING addPost for post: " + post + ". Post added successfully.");
+
+			return new ResponseEntity("{\"message\": \"Post added successfully.\"}", HttpStatus.OK);
+		}
+		else {
+			logger.debug("EXITING addPost for post: " + post + ". Posting failed.");
+
+			return new ResponseEntity("{\"message\": \"Posting failed.\"}", HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	@RequestMapping(value = "/{postId}/delete", method = RequestMethod.DELETE,
 		produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ResponseEntity<String> deletePost(@RequestHeader(value="Authorization") final String authHeader,
