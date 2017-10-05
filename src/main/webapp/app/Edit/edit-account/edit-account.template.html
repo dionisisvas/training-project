@@ -19,14 +19,12 @@
 					<md-icon md-font-set="material-icons"> group </md-icon>
 					<input ng-model="$ctrl.user.surname" name="surname" type="text"
 						   ng-required="true" md-maxlength="64">
-
 				</md-input-container>
 
 				<md-input-container class="md-block">
 					<md-datepicker md-current-view="year" ng-model="$ctrl.user.dateOfBirth" name="dateOfBirth"
 								   ng-required="true" md-min-date="$ctrl.minDate"
 								   md-max-date="$ctrl.maxDate"></md-datepicker>
-
 				</md-input-container>
 			</div>
 			<br>
@@ -35,7 +33,7 @@
 					<md-icon md-font-set="material-icons"> email </md-icon>
 					<input ng-model="$ctrl.userAccount.email" name="email" type="email"  ng-required="true"
 						   md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/" email-unique
-						   ng-model-options="{updateOn: 'blur'}">
+						   ng-model-options="{updateOn: 'blur'}" >
 				</md-input-container>
 
 				<md-input-container class="md-block">

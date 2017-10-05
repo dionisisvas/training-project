@@ -9,8 +9,8 @@ angular.
       }).
         component('addEvent', {
         templateUrl: 'app/Edit/add-event/add-event.template.html',
-        controller: ['Timeline', 'JWToken','$scope','$http','$window',
-            function AddEventController(Timeline,JWToken,$scope,$http,$window) {
+        controller: ['Timeline', 'JWToken','$scope','$window','$mdToast',
+            function AddEventController(Timeline,JWToken,$scope,$window,$mdToast) {
                var self = this;
 
 
@@ -28,8 +28,14 @@ self.setEvent=function(){
                      description : 	  self.event.description
                      });
 
-Timeline.EditEvents.update(event);
-console.log(event);
+           Timeline.EditEvents.update(event);
+            $mdToast.show(
+             $mdToast.simple()
+             .textContent('New event added successfully')
+              .position('top right')
+               .hideDelay(600)
+               );
+
 }
 }]
 });
