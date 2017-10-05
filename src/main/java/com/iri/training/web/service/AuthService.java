@@ -11,7 +11,7 @@ public interface AuthService {
 
 	boolean verifyAddRights(IPostable postable, String authHeader);
 
-	boolean verifyDeleteRights(IPostable postable, String authHeader);
+	boolean verifyDeleteRights(SubjectType postableType, long postableId, String authHeader);
 
 	boolean verifyEditRights(IPostable postable, String authHeader);
 }

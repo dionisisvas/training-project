@@ -133,7 +133,7 @@ public final class PostController {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-		if (authService.verifyDeleteRights(new PostBuilder().withId(postId).build(), authHeader)) {
+		if (authService.verifyDeleteRights(SubjectType.POST, postId, authHeader)) {
 			postService.deletePost(postId);
 
 			logger.debug("EXITING deletePost for postId: " + postId + ". Delete success.");

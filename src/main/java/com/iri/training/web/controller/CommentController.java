@@ -105,7 +105,7 @@ public final class CommentController {
 
 		logger.debug("ENTERED deleteComment for commentId: " + commentId);
 
-		if (authService.verifyDeleteRights(new CommentBuilder().withId(commentId).build(), authHeader)) {
+		if (authService.verifyDeleteRights(SubjectType.COMMENT, commentId, authHeader)) {
 			commentService.deleteComment(commentId);
 
 			logger.debug("EXITING deleteComment for commentId: " + commentId + ". Delete success.");

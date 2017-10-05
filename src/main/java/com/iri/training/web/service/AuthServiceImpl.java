@@ -62,9 +62,9 @@ public final class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public final boolean verifyDeleteRights(final IPostable postable, final String authHeader) {
+	public final boolean verifyDeleteRights(final SubjectType postableType, final long postableId, final String authHeader) {
 
-		logger.debug("ENTERED verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId());
+		logger.debug("ENTERED verifyDeleteRights for " + postableType + " with id: " + postableId);
 
 		final String token = authHeader.substring(7);
 		final Claims claims;
@@ -74,7 +74,7 @@ public final class AuthServiceImpl implements AuthService {
 			claims = Jwts.parser().setSigningKey(PropertiesConfig.JWT_KEY)
 				.parseClaimsJws(token).getBody();
 		} catch (final SignatureException e) {
-			logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 				". JWT parsing failed: " + e);
 
 			return false;
@@ -83,27 +83,27 @@ public final class AuthServiceImpl implements AuthService {
 		final long requesterId = Long.parseLong(claims.getSubject());
 
 		try {
-			if (postable.getClass() == Post.class) {
-				postableFromDB = postService.getPostById(postable.getId(), false);
+			if (postableType == SubjectType.POST) {
+				postableFromDB = postService.getPostById(postableId, false);
 			}
-			else if (postable.getClass() == Comment.class) {
-				postableFromDB = commentService.getCommentById(postable.getId(), false);
+			else if (postableType == SubjectType.COMMENT) {
+				postableFromDB = commentService.getCommentById(postableId, false);
 			}
 			else {
-				logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+				logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 					". Unsupported IPostable implementation.");
 
 				return false;
 			}
 		} catch (SQLException e) {
-			logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 				". Getting post from the DB failed: " + e);
 
 			return false;
 		}
 
 		if (postableFromDB == null) {
-			logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 				". DB entry is null.");
 
 			return false;
@@ -112,13 +112,13 @@ public final class AuthServiceImpl implements AuthService {
 		if ((postableFromDB.getPosterId() == requesterId) ||
 			(postableFromDB.getSubjectType() == SubjectType.USER &&
 				postableFromDB.getSubjectId() == requesterId)) {
-			logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 				". Sufficient rights to delete.");
 
 			return true;
 		}
 
-		logger.debug("EXITING verifyDeleteRights for " + postable.getClass() + " with id: " + postable.getId() +
+		logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 			". Insufficient rights.");
 
 		return false;
