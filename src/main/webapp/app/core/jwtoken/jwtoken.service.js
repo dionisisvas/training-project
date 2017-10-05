@@ -9,9 +9,8 @@ angular.
             self.setToken = function(tkn) {
                 var deferred = $q.defer();
 
-                self.token = tkn;
-                $cookieStore.put('myToken', self.token);
-                $http.defaults.headers.common['Authorization'] = 'Bearer ' + self.token;
+                $cookieStore.put('myToken', tkn);
+                $http.defaults.headers.common['Authorization'] = 'Bearer ' + tkn;
 
                 deferred.resolve();
 
@@ -19,7 +18,7 @@ angular.
             }
 
             self.getToken = function() {
-                return self.token;
+                return $cookieStore.get('myToken');
             }
 
             self.removeToken = function() {
@@ -30,7 +29,6 @@ angular.
                 }
 
                 $http.defaults.headers.common['Authorization'] = '';
-                self.token = null;
 
                 deferred.resolve();
 
@@ -47,6 +45,8 @@ angular.
 
                 if (tkn) {
                     tokenParts = tkn.split('.');
+                } else {
+                    return deferred.reject("Invalid token");
                 }
 
                 if (tokenParts.length !== 3) {
@@ -61,14 +61,36 @@ angular.
             self.isLoggedIn = function() {
                 var deferred = $q.defer();
 
-                if (self.token) {
-                    self.getTokenBody(self.token).then(function(tknResult) {
-                        var tknBody = JSON.parse(tknResult);
+                var tkn = self.getToken();
+                if (tkn) {
+                    self.getTokenBody(tkn).then(function(tknBodyResult) {
+                        var tknBody = JSON.parse(tknBodyResult);
                         // Check if the token is expired
                         if ((tknBody.exp - (new Date().getTime() / 1000)) > 0 ) {
                             deferred.resolve(true);
                         } else {
-                            deferred.resolve(false)
+                            deferred.resolve(false);
+                        }
+                    });
+                } else {
+                    deferred.resolve(false);
+                }
+
+                return deferred.promise;
+            }
+
+            self.isOwner = function(id) {
+                var deferred = $q.defer();
+
+                var tkn = self.getToken();
+                if (tkn) {
+                    self.getTokenBody(tkn).then(function(tknResult) {
+                        var tknBody = JSON.parse(tknResult);
+
+                        if (tknBody.sub == id) {
+                            deferred.resolve(true);
+                        } else {
+                            deferred.resolve(false);
                         }
                     });
                 } else {

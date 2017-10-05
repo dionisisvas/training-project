@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
-import com.iri.training.repository.CommentRepository;
 import com.iri.training.repository.PostRepository;
 
 @Service
@@ -19,9 +18,9 @@ public final class PostServiceImpl implements PostService {
 	private static final Logger logger = Logger.getLogger(PostService.class);
 
 	@Autowired
-	PostRepository postRepository;
+	CommentService commentService;
 	@Autowired
-	CommentRepository commentRepository;
+	PostRepository postRepository;
 
 	@Override
 	public final Post getPostById(final long postId, final boolean getComments) throws SQLException {
@@ -36,7 +35,7 @@ public final class PostServiceImpl implements PostService {
 		}
 		else {
 			post = postRepository.getPostById(postId);
-			post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, postId));
+			post.setComments(commentService.getCommentsBySubject(SubjectType.POST, postId, false));
 		}
 
 		logger.debug("EXITING getPostById with post: " + post);
@@ -59,7 +58,7 @@ public final class PostServiceImpl implements PostService {
 		else {
 			posts = new ArrayList<Post>(postRepository.getPostsBySubject(subjectType, subjectId));
 			for(Post post : posts) {
-				post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, post.getId()));
+				post.setComments(commentService.getCommentsBySubject(SubjectType.POST, post.getId(), false));
 			}
 		}
 
@@ -84,7 +83,7 @@ public final class PostServiceImpl implements PostService {
 		else {
 			posts = new ArrayList<Post>(postRepository.getPostsByPoster(posterId));
 			for(Post post : posts) {
-				post.setComments(commentRepository.getCommentsBySubject(SubjectType.POST, post.getId()));
+				post.setComments(commentService.getCommentsBySubject(SubjectType.POST, post.getId(), false));
 			}
 		}
 
@@ -92,5 +91,36 @@ public final class PostServiceImpl implements PostService {
 			" with getComments=" + getComments);
 
 		return posts;
+	}
+
+	@Override
+	public final void addPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED addPost for post: " + post);
+
+		postRepository.addPost(post);
+
+		logger.debug("EXITING addPost for post: " + post);
+	}
+
+	@Override
+	public final void deletePost(final long postId) throws SQLException {
+
+		logger.debug("ENTERED deletePost for postId: " + postId);
+
+		commentService.deleteCommentReplies(SubjectType.POST, postId);
+		postRepository.deletePost(postId);
+
+		logger.debug("EXITING deletePost for postId: " + postId);
+	}
+
+	@Override
+	public final void editPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED editPost for post: " + post);
+
+		postRepository.editPost(post);
+
+		logger.debug("EXITING editPost for post: " + post);
 	}
 }

@@ -2,6 +2,7 @@ package com.iri.training.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public final class PostRepositoryImpl implements PostRepository {
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
 	private final DataSource dataSource = dbConnection .getDataSource();
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 	@Override
 	public final Post getPostById(final long postId) throws SQLException {
@@ -34,7 +35,6 @@ public final class PostRepositoryImpl implements PostRepository {
 		logger.debug("ENTERED getPostById for postId: " + postId);
 
 		final Post post;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		post = jdbcTemplate.query(PropertiesConfig.GET_POST_BY_ID,
 			new Object[]{postId},
@@ -52,7 +52,6 @@ public final class PostRepositoryImpl implements PostRepository {
 			" with subjectId: " + subjectId);
 
 		final List<Post> posts;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		posts = new ArrayList<Post>(
 						jdbcTemplate.query(PropertiesConfig.GET_POSTS_BY_SUBJECT_TYPE_AND_ID,
@@ -71,7 +70,6 @@ public final class PostRepositoryImpl implements PostRepository {
 		logger.debug("ENTERED getPostsByPoster for posterId: " + posterId);
 
 		final List<Post> posts;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		posts = new ArrayList<Post>(
 			jdbcTemplate.query(PropertiesConfig.GET_POSTS_BY_POSTER_ID,
@@ -81,6 +79,46 @@ public final class PostRepositoryImpl implements PostRepository {
 		logger.debug("EXITING getPostsByPoster for posterId: " + posterId);
 
 		return posts;
+	}
+
+	@Override
+	public final void addPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED addPost for post: " + post);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_POST,
+			post.getPosterId(),
+			post.getSubjectType(),
+			post.getSubjectId(),
+			post.getTitle(),
+			post.getContent(),
+			Instant.now().getEpochSecond()); // creation_date
+
+		logger.debug("EXITING addPost for post: " + post);
+	}
+
+	@Override
+	public final void deletePost(final long postId) throws SQLException {
+
+		logger.debug("ENTERED deletePost for postId: " + postId);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_POST, postId);
+
+		logger.debug("EXITING deletePost for postId: " + postId);
+	}
+
+	@Override
+	public final void editPost(final Post post) throws SQLException {
+
+		logger.debug("ENTERED editPost for post: " + post);
+
+		jdbcTemplate.update(PropertiesConfig.EDIT_POST,
+			post.getTitle(),
+			post.getContent(),
+			Instant.now().getEpochSecond(),
+			post.getId());
+
+		logger.debug("EXITING editPost for post: " + post);
 	}
 
 	private static final class PostResultSetExtractor implements ResultSetExtractor<Post> {

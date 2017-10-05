@@ -1,15 +1,39 @@
-<md-card id="user-post-card" ng-repeat="post in $ctrl.posts | orderBy:'-'">
+<h2 class="md-title inset" ng-show="$ctrl.postCounter === 0">{{$ctrl.user.name}} has no posts to show.</h2>
+<md-card id="user-post-card" class="dismissable-card" ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
   <md-card-header>
     <md-card-avatar>
-      <img class="md-user-avatar" ng-src="{{$ctrl.profileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
-          alt="{{$ctrl.user.name}} "/>
+      <img class="md-user-avatar" ng-src="{{post.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
+          alt="{{post.poster.name}} "/>
     </md-card-avatar>
     <md-card-header-text>
-          <span class="md-title">{{post.formattedCreationDate}}</span>
+          <span class="md-title"><a ng-href="user/uid/{{post.poster.id}}">{{post.poster.name}} {{post.poster.surname}}</a> on {{post.formattedCreationDate}}</span>
           <span class="md-subhead" ng-show="post.lastEditDate[0] != 1970">Edited {{post.formattedLastEditDate}}</span>
     </md-card-header-text>
+
+    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
+      <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
+      </md-button>
+
+      <md-menu-content width="3">
+
+        <md-menu-item ng-show="post.owner">
+          <md-button>
+            <md-icon md-font-set="material-icons"> edit </md-icon>Edit
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="$ctrl.deletePost(post.id, key)">
+            <md-icon md-font-set="material-icons"> delete </md-icon>Delete
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+    </md-menu>
+
   </md-card-header>
-  <md-card-title>
+  <md-card-title ng-show="post.title">
     <md-card-title-text>
       <span class="md-headline">{{post.title}}</span>
     </md-card-title-text>
@@ -18,7 +42,10 @@
     <p>
       <md-subheader>{{post.content}}</md-subheader>
     </p>
+    <md-button class="md-disabled" ng-show="post.comments.length <= 0">No comments</md-button>
     <md-button class="md-primary" ng-show="post.comments.length == 1">Load 1 comment</md-button>
     <md-button class="md-primary" ng-show="post.comments.length > 1">Load {{post.comments.length}} comments</md-button>
   </md-card-content>
+  <md-card-actions>
+  </md-card-actions>
 </md-card>

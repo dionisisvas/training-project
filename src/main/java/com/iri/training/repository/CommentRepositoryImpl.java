@@ -2,6 +2,7 @@ package com.iri.training.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	private static final Logger logger = Logger.getLogger(CommentRepository.class);
 
 	private final DatabaseConnection dbConnection = new DatabaseConnection();
-	private final DataSource dataSource = dbConnection .getDataSource();
-	private JdbcTemplate jdbcTemplate;
+	private final DataSource dataSource = dbConnection.getDataSource();
+	private final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 	@Override
 	public final Comment getCommentById(final long commentId) throws SQLException {
@@ -34,7 +35,6 @@ public final class CommentRepositoryImpl implements CommentRepository {
 		logger.debug("ENTERED getCommentById for commentId: " + commentId);
 
 		final Comment comment;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		comment = jdbcTemplate.query(PropertiesConfig.GET_COMMENT_BY_ID,
 			new Object[]{commentId},
@@ -52,7 +52,6 @@ public final class CommentRepositoryImpl implements CommentRepository {
 			" with subjectId: " + subjectId);
 
 		final List<Comment> comments;
-		jdbcTemplate = new JdbcTemplate(dataSource);
 
 		comments = new ArrayList<Comment>(
 						jdbcTemplate.query(PropertiesConfig.GET_COMMENTS_BY_SUBJECT_TYPE_AND_ID,
@@ -63,6 +62,54 @@ public final class CommentRepositoryImpl implements CommentRepository {
 			" with subjectId: " + subjectId);
 
 		return comments;
+	}
+
+	@Override
+	public final void addComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED addComment for comment: " + comment);
+
+		jdbcTemplate.update(PropertiesConfig.ADD_COMMENT,
+			comment.getPosterId(),
+			comment.getSubjectType(),
+			comment.getSubjectId(),
+			comment.getContent(),
+			Instant.now().getEpochSecond()); // creation_date
+
+		logger.debug("EXITING addComment for comment: " + comment);
+	}
+
+	@Override
+	public final void deleteComment(final long commentId) throws SQLException {
+
+		logger.debug("ENTERED deleteComment for commentId: " + commentId);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_COMMENT, commentId);
+
+		logger.debug("EXITING deleteComment for commentId: " + commentId);
+	}
+
+	@Override
+	public final void deleteCommentReplies(final SubjectType subjectType, final long parentId) throws SQLException {
+
+		logger.debug("ENTERED deleteCommentReplies for postId: " + parentId);
+
+		jdbcTemplate.update(PropertiesConfig.DELETE_COMMENT_REPLIES, subjectType, parentId);
+
+		logger.debug("EXITING deleteCommentReplies for postId: " + parentId);
+	}
+
+	@Override
+	public final void editComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED editComment for comment: " + comment);
+
+		jdbcTemplate.update(PropertiesConfig.EDIT_COMMENT,
+			comment.getContent(),
+			Instant.now().getEpochSecond(),
+			comment.getId());
+
+		logger.debug("EXITING editComment for comment: " + comment);
 	}
 
 	private static final class CommentResultSetExtractor implements ResultSetExtractor<Comment> {

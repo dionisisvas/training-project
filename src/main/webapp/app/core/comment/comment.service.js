@@ -14,7 +14,10 @@ angular.
                     params: {
                         getComments:'@getComments'
                     }
-                })
+                }),
+                AddComment: $resource('api/comment/add'),
+                DeleteComment: $resource('api/comment/:commentId/delete'),
+                EditComment: $resource('api/comment/edit')
             };
         }
     ]);
