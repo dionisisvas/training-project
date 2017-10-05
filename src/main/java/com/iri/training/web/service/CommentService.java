@@ -11,4 +11,10 @@ public interface CommentService {
 	Comment getCommentById(long commentId, boolean getComments) throws SQLException;
 
 	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId, boolean getComments) throws SQLException;
+
+	void addComment(Comment comment) throws SQLException;
+
+	void deleteComment(long commentId) throws  SQLException;
+
+	void editComment(Comment comment) throws SQLException;
 }

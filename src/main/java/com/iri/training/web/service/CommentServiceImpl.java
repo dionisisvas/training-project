@@ -68,4 +68,33 @@ public final class CommentServiceImpl implements CommentService {
 
 		return comments;
 	}
+
+	@Override
+	public final void addComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED addComment for comment: " + comment);
+
+		commentRepository.addComment(comment);
+
+		logger.debug("EXITING addComment for comment: " + comment);
+	}
+
+	@Override
+	public final void deleteComment(final long commentId) throws SQLException {
+
+		logger.debug("ENTERED deleteComment for commentId: " + commentId);
+
+		commentRepository.deleteComment(commentId);
+
+		logger.debug("EXITING deleteComment for commentId: " + commentId);
+	}
+
+	@Override public void editComment(final Comment comment) throws SQLException {
+
+		logger.debug("ENTERED editComment for comment: " + comment);
+
+		commentRepository.editComment(comment);
+
+		logger.debug("EXITING editComment for comment: " + comment);
+	}
 }
