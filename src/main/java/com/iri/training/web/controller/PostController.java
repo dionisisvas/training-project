@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
-import com.iri.training.model.builder.PostBuilder;
 import com.iri.training.web.service.AuthService;
 import com.iri.training.web.service.CommentService;
 import com.iri.training.web.service.PostService;

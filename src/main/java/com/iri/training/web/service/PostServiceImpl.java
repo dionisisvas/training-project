@@ -8,15 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iri.training.config.PropertiesConfig;
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
-import com.iri.training.repository.CommentRepository;
 import com.iri.training.repository.PostRepository;
-
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureException;
 
 @Service
 public final class PostServiceImpl implements PostService {

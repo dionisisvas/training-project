@@ -1,8 +1,6 @@
 package com.iri.training.web.service;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
 import com.iri.training.model.Post;
 import com.iri.training.model.interfaces.IPostable;
-import com.iri.training.repository.CommentRepository;
-import com.iri.training.repository.PostRepository;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
