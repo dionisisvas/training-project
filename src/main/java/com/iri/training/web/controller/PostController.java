@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
+import com.iri.training.model.builder.PostBuilder;
+import com.iri.training.web.service.AuthService;
 import com.iri.training.web.service.CommentService;
 import com.iri.training.web.service.PostService;
 
@@ -31,9 +33,11 @@ public final class PostController {
 	private static final Logger logger = Logger.getLogger(PostController.class);
 
 	@Autowired
-	PostService postService;
+	AuthService authService;
 	@Autowired
 	CommentService commentService;
+	@Autowired
+	PostService postService;
 
 	@RequestMapping(value = "/{postId}", method = RequestMethod.GET,
 		produces = MediaType.APPLICATION_JSON_VALUE)
@@ -109,7 +113,7 @@ public final class PostController {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-		if (postService.verifyDeleteRights(postId, authHeader)) {
+		if (authService.verifyDeleteRights(new PostBuilder().withId(postId).build(), authHeader)) {
 			postService.deletePost(postId);
 
 			logger.debug("EXITING deletePost for postId: " + postId + ". Delete success.");
@@ -129,7 +133,7 @@ public final class PostController {
 				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
-		if (postService.verifyEditRights(post, authHeader)) {
+		if (authService.verifyEditRights(post, authHeader)) {
 			postService.editPost(post);
 
 			logger.debug("EXITING editPost for post: " + post + ". Post edited successfully.");
