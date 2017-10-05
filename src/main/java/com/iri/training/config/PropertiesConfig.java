@@ -93,7 +93,7 @@ public final class PropertiesConfig {
 			ADD_USER = sqlProperties.getString("AddUser",
 				"INSERT INTO users(name, surname, date_of_birth) VALUES(?, ?, ?);");
 			EDIT_USER = sqlProperties.getString("EditUser",
-				"UPDATE users SET name = ?, surname = ?,  phone_no = ?, address = ? WHERE id = ?;");
+				"UPDATE users SET name = ?, surname = ?,  phone_no = ?, address = ?,date_of_birth=? WHERE id = ?;");
 
 			// Account queries
 			GET_ACCOUNT_BY_ID = sqlProperties.getString("GetAccountById",
