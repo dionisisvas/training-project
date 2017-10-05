@@ -59,7 +59,7 @@ angular.
                         });
 
 
-console.log(user);
+
                         	 Account.EditAccount.update(account);
                         	 	User.EditUser.update(user,function(response){
                         	 		JWToken.removeToken().then(function() {
