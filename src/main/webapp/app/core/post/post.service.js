@@ -20,8 +20,9 @@ angular.
                         getComments:'@getComments'
                     }
                 }),
+                AddPost: $resource('api/post/add'),
                 DeletePost: $resource('api/post/:postId/delete'),
-                EditPost: $resource('api/post/poster/:posterId')
+                EditPost: $resource('api/post/edit')
             };
         }
     ]);
