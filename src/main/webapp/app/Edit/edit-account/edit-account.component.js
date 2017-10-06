@@ -2,6 +2,31 @@
 
 angular.
     module('editMyAccount').
+      directive('emailAff', ['$q', 'Account',
+            function($q, Account) {
+                return {
+                    require : 'ngModel',
+                    link    : function(s$scope, $element, $attrs, ngModel) {
+                    var handle=function(){
+                                  ngModel.$asyncValidators.emailUnique = function(email) {
+                                      var deferred = $q.defer();
+                                      Account.IsEmailUnique.get({email: email}, function(res) {
+                                          if (res.isUnique) {
+                                            deferred.resolve();
+                                          }
+                                          else {
+                                            deferred.reject();
+                                          }
+                                      });
+
+                                      return deferred.promise;
+                                  };
+                                  }
+                                  $element.on('keypress', handle);
+                    }
+                }
+            }
+        ]).
         component('editMyAccount', {
         templateUrl: 'app/Edit/edit-account/edit-account.template.html',
         controller: ['Account','User', 'Authorization', 'JWToken','$scope','$mdToast','$timeout','$location','$window','$q',
@@ -83,6 +108,8 @@ angular.
 }
 }
 
+self.unique=function(){
 
+}
      }]
     });
