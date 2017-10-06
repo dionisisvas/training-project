@@ -17,9 +17,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 
 @Service
-public final class AuthServiceImpl implements AuthService {
+public final class VerificationServiceImpl implements VerificationService {
 
-	private static final Logger logger = Logger.getLogger(AuthService.class);
+	private static final Logger logger = Logger.getLogger(VerificationService.class);
 
 	@Autowired
 	CommentService commentService;
