@@ -32,7 +32,7 @@
 				<md-input-container class="md-block">
 					<md-icon md-font-set="material-icons"> email </md-icon>
 					<input ng-model="$ctrl.userAccount.email" name="email" type="email"  ng-required="true"
-						   md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/" email-unique="disabled"
+						   md-minlength="8" md-maxlength="64" ng-pattern="/^.+@.+\..+$/"   ng-keypress="" email-aff
 						   ng-model-options="{updateOn: 'blur'}" >
 				</md-input-container>
 
