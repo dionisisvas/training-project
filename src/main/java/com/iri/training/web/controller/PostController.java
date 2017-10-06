@@ -112,7 +112,9 @@ public final class PostController {
 
 		logger.debug("ENTERED addPost for post: " + post);
 
-		if (verificationService.verifyAddRights(post, authHeader)) {
+		if (verificationService.verifyAddRights(post, authHeader) &&
+			verificationService.verifyPostable(post)) {
+
 			final Post postFromDB = postService.addPost(post);
 
 			logger.debug("EXITING addPost for post: " + post + ". Post added successfully.");
@@ -153,7 +155,9 @@ public final class PostController {
 				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
-		if (verificationService.verifyEditRights(post, authHeader)) {
+		if (verificationService.verifyEditRights(post, authHeader) &&
+			verificationService.verifyPostable(post)) {
+
 			postService.editPost(post);
 
 			logger.debug("EXITING editPost for post: " + post + ". Post edited successfully.");

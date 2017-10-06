@@ -83,7 +83,9 @@ public final class CommentController {
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED addComment for comment: " + comment);
-		if (verificationService.verifyAddRights(comment, authHeader)) {
+		if (verificationService.verifyAddRights(comment, authHeader) &&
+			verificationService.verifyPostable(comment)) {
+
 			commentService.addComment(comment);
 
 			logger.debug("EXITING addComment for comment: " + comment + ". Comment added successfully.");
@@ -124,7 +126,9 @@ public final class CommentController {
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED editComment for comment: " + comment);
-		if (verificationService.verifyEditRights(comment, authHeader)) {
+		if (verificationService.verifyEditRights(comment, authHeader) &&
+			verificationService.verifyPostable(comment)) {
+
 			commentService.editComment(comment);
 
 			logger.debug("EXITING editComment for comment: " + comment + ". Comment edited successfully.");
