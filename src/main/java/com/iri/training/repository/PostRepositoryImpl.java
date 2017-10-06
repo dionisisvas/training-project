@@ -1,7 +1,10 @@
 package com.iri.training.repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -12,7 +15,10 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.config.PropertiesConfig;
@@ -82,19 +88,36 @@ public final class PostRepositoryImpl implements PostRepository {
 	}
 
 	@Override
-	public final void addPost(final Post post) throws SQLException {
+	public final long addPostAndGetGeneratedId(final Post post) throws SQLException {
 
-		logger.debug("ENTERED addPost for post: " + post);
+		logger.debug("ENTERED addPostAndGetGeneratedId for post: " + post);
 
-		jdbcTemplate.update(PropertiesConfig.ADD_POST,
-			post.getPosterId(),
-			post.getSubjectType(),
-			post.getSubjectId(),
-			post.getTitle(),
-			post.getContent(),
-			Instant.now().getEpochSecond()); // creation_date
+		final KeyHolder kh = new GeneratedKeyHolder();
+		final long postId;
 
-		logger.debug("EXITING addPost for post: " + post);
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override public PreparedStatement createPreparedStatement(final Connection connection)
+				throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(PropertiesConfig.ADD_POST,
+					Statement.RETURN_GENERATED_KEYS);
+				ps.setLong(1, post.getPosterId());
+				ps.setString(2, post.getSubjectType().name());
+				ps.setLong(3, post.getSubjectId());
+				ps.setString(4, post.getTitle());
+				ps.setString(5, post.getContent());
+				ps.setLong(6, Instant.now().getEpochSecond()); // creation_date
+
+				return ps;
+			}
+		}, kh);
+
+
+		postId = kh.getKey().longValue();
+
+		logger.debug("EXITING addPostAndGetGeneratedId for post: " + post +
+			" with generated post ID: " + postId);
+
+		return postId;
 	}
 
 	@Override

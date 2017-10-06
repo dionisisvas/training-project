@@ -107,16 +107,17 @@ public final class PostController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> addPost(@RequestHeader(value="Authorization") final String authHeader,
+	public final ResponseEntity addPost(@RequestHeader(value="Authorization") final String authHeader,
 		@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED addPost for post: " + post);
+
 		if (authService.verifyAddRights(post, authHeader)) {
-			postService.addPost(post);
+			final Post postFromDB = postService.addPost(post);
 
 			logger.debug("EXITING addPost for post: " + post + ". Post added successfully.");
 
-			return new ResponseEntity("{\"message\": \"Post added successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity(postFromDB, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING addPost for post: " + post + ". Posting failed.");
