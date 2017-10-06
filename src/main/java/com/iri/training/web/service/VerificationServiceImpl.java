@@ -17,9 +17,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 
 @Service
-public final class AuthServiceImpl implements AuthService {
+public final class VerificationServiceImpl implements VerificationService {
 
-	private static final Logger logger = Logger.getLogger(AuthService.class);
+	private static final Logger logger = Logger.getLogger(VerificationService.class);
 
 	@Autowired
 	CommentService commentService;
@@ -27,9 +27,51 @@ public final class AuthServiceImpl implements AuthService {
 	PostService postService;
 
 	@Override
+	public final boolean verifyPostable(final IPostable postable) {
+
+		logger.debug("ENTERED verifyPostable for " + postable.getClass() + ": " + postable + ". Verification success.");
+
+		if (postable.getContent() == null) {
+			logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Content is null.");
+
+			return false;
+		}
+
+		if (postable instanceof Post) {
+			if (((Post) postable).getTitle().length() > 80) {
+				logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Title exceeds allowed length.");
+
+				return false;
+			}
+
+			if (postable.getContent().length() > 800) {
+				logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Content exceeds allowed length.");
+
+				return false;
+			}
+		}
+		else if (postable instanceof Comment) {
+			if (postable.getContent().length() > 200) {
+				logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Content exceeds allowed length.");
+
+				return false;
+			}
+		}
+		else {
+			logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Unsupported IPostable implementation.");
+
+			return false;
+		}
+
+		logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Verification success.");
+
+		return true;
+	}
+
+	@Override
 	public final boolean verifyAddRights(final IPostable postable, final String authHeader) {
 
-		logger.debug("ENTERED verifyAddRights");
+		logger.debug("ENTERED verifyAddRights for " + postable.getClass() + ": " + postable);
 
 		final String token = authHeader.substring(7);
 		final Claims claims;
@@ -142,10 +184,10 @@ public final class AuthServiceImpl implements AuthService {
 		final long requesterId = Long.parseLong(claims.getSubject());
 
 		try {
-			if (postable.getClass() == Post.class) {
+			if (postable instanceof Post) {
 				postableFromDB = postService.getPostById(postable.getId(), false);
 			}
-			else if (postable.getClass() == Comment.class) {
+			else if (postable instanceof Comment) {
 				postableFromDB = commentService.getCommentById(postable.getId(), false);
 			}
 			else {

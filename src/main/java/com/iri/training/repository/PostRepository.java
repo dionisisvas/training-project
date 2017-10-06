@@ -14,7 +14,7 @@ public interface PostRepository {
 
 	List<Post> getPostsByPoster(long posterId) throws SQLException;
 
-	void addPost(Post post) throws SQLException;
+	long addPostAndGetGeneratedId(Post post) throws SQLException;
 
 	void deletePost(long postId) throws  SQLException;
 

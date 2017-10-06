@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Post;
-import com.iri.training.web.service.AuthService;
+import com.iri.training.web.service.VerificationService;
 import com.iri.training.web.service.CommentService;
 import com.iri.training.web.service.PostService;
 
@@ -32,7 +32,7 @@ public final class PostController {
 	private static final Logger logger = Logger.getLogger(PostController.class);
 
 	@Autowired
-	AuthService authService;
+	VerificationService verificationService;
 	@Autowired
 	CommentService commentService;
 	@Autowired
@@ -107,16 +107,19 @@ public final class PostController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> addPost(@RequestHeader(value="Authorization") final String authHeader,
+	public final ResponseEntity addPost(@RequestHeader(value="Authorization") final String authHeader,
 		@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED addPost for post: " + post);
-		if (authService.verifyAddRights(post, authHeader)) {
-			postService.addPost(post);
+
+		if (verificationService.verifyAddRights(post, authHeader) &&
+			verificationService.verifyPostable(post)) {
+
+			final Post postFromDB = postService.addPost(post);
 
 			logger.debug("EXITING addPost for post: " + post + ". Post added successfully.");
 
-			return new ResponseEntity("{\"message\": \"Post added successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity(postFromDB, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING addPost for post: " + post + ". Posting failed.");
@@ -132,7 +135,7 @@ public final class PostController {
 
 		logger.debug("ENTERED deletePost for postId: " + postId);
 
-		if (authService.verifyDeleteRights(SubjectType.POST, postId, authHeader)) {
+		if (verificationService.verifyDeleteRights(SubjectType.POST, postId, authHeader)) {
 			postService.deletePost(postId);
 
 			logger.debug("EXITING deletePost for postId: " + postId + ". Delete success.");
@@ -152,7 +155,9 @@ public final class PostController {
 				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
-		if (authService.verifyEditRights(post, authHeader)) {
+		if (verificationService.verifyEditRights(post, authHeader) &&
+			verificationService.verifyPostable(post)) {
+
 			postService.editPost(post);
 
 			logger.debug("EXITING editPost for post: " + post + ". Post edited successfully.");

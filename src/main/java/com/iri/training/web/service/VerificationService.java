@@ -3,7 +3,9 @@ package com.iri.training.web.service;
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.interfaces.IPostable;
 
-public interface AuthService {
+public interface VerificationService {
+
+	boolean verifyPostable(IPostable postable);
 
 	boolean verifyAddRights(IPostable postable, String authHeader);
 

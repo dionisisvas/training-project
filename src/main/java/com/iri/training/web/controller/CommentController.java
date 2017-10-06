@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iri.training.enums.SubjectType;
 import com.iri.training.model.Comment;
-import com.iri.training.web.service.AuthService;
+import com.iri.training.web.service.VerificationService;
 import com.iri.training.web.service.CommentService;
 
 @SuppressWarnings("unused")
@@ -31,7 +31,7 @@ public final class CommentController {
 	private static final Logger logger = Logger.getLogger(CommentController.class);
 
 	@Autowired
-	AuthService authService;
+	VerificationService verificationService;
 	@Autowired
 	CommentService commentService;
 
@@ -83,7 +83,9 @@ public final class CommentController {
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED addComment for comment: " + comment);
-		if (authService.verifyAddRights(comment, authHeader)) {
+		if (verificationService.verifyAddRights(comment, authHeader) &&
+			verificationService.verifyPostable(comment)) {
+
 			commentService.addComment(comment);
 
 			logger.debug("EXITING addComment for comment: " + comment + ". Comment added successfully.");
@@ -104,7 +106,7 @@ public final class CommentController {
 
 		logger.debug("ENTERED deleteComment for commentId: " + commentId);
 
-		if (authService.verifyDeleteRights(SubjectType.COMMENT, commentId, authHeader)) {
+		if (verificationService.verifyDeleteRights(SubjectType.COMMENT, commentId, authHeader)) {
 			commentService.deleteComment(commentId);
 
 			logger.debug("EXITING deleteComment for commentId: " + commentId + ". Delete success.");
@@ -124,7 +126,9 @@ public final class CommentController {
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED editComment for comment: " + comment);
-		if (authService.verifyEditRights(comment, authHeader)) {
+		if (verificationService.verifyEditRights(comment, authHeader) &&
+			verificationService.verifyPostable(comment)) {
+
 			commentService.editComment(comment);
 
 			logger.debug("EXITING editComment for comment: " + comment + ". Comment edited successfully.");

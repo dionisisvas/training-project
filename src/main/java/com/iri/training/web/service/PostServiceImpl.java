@@ -94,13 +94,15 @@ public final class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public final void addPost(final Post post) throws SQLException {
+	public final Post addPost(final Post post) throws SQLException {
 
 		logger.debug("ENTERED addPost for post: " + post);
 
-		postRepository.addPost(post);
+		final long postId = postRepository.addPostAndGetGeneratedId(post);
 
 		logger.debug("EXITING addPost for post: " + post);
+
+		return getPostById(postId, true);
 	}
 
 	@Override
