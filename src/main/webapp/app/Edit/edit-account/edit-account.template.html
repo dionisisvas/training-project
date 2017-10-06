@@ -53,7 +53,7 @@
 			<div layout="row">
 				<md-input-container class="md-block">
 					<md-icon md-font-set="material-icons"> phone </md-icon>
-					<input ng-model="$ctrl.user.phoneNo" name="phoneNo" type="text"
+					<input ng-model="$ctrl.user.phoneNo" name="phoneNo" type="text" ng-pattern="/^\d+$/"
 						    md-maxlength="10">
 				</md-input-container>
 
