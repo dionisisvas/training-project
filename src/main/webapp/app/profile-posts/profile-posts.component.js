@@ -12,6 +12,7 @@ angular.
                 self.isProfileOwner = false;
                 self.isPostDeleted = [];
                 self.postCounter = 0;
+                self.showComments = [];
 
                 self.user = User.UserById.get({userId: $routeParams.userId});
                 self.posts = Post.PostsBySubject.query({
@@ -42,6 +43,7 @@ angular.
 
                 self.formatPostData = function(post, key) {
                     self.isPostDeleted[key] = false;
+                    self.showComments[key] = false;
                     JWToken.isOwner(post.posterId).then(function(res) {
                         post.owner = res;
                     });
@@ -122,5 +124,9 @@ angular.
                         });
                     }
                 };
+                
+                self.toggleComments = function(key) {
+                    self.showComments[key] = !self.showComments[key];
+                }
         }]
     });

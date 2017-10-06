@@ -79,8 +79,9 @@
     </p>
   </md-card-content>
   <md-card-actions>
-    <md-button class="md-disabled" ng-show="post.comments.length <= 0">No comments</md-button>
-    <md-button class="md-primary" ng-show="post.comments.length == 1">Load 1 comment</md-button>
-    <md-button class="md-primary" ng-show="post.comments.length > 1">Load {{post.comments.length}} comments</md-button>
+    <md-button class="md-disabled" ng-show="(post.comments.length <= 0) && !$ctrl.showComments[key]">No comments</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length == 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load 1 comment</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length > 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load {{post.comments.length}} comments</md-button>
+    <md-button class="md-primary" ng-show="$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Hide comments</md-button>
   </md-card-actions>
 </md-card>
