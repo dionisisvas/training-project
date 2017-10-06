@@ -21,7 +21,7 @@ angular.
                         }, function(response) {
                             $mdToast.show(
                                 $mdToast.simple()
-                                  .textContent(response.data.message)
+                                  .textContent( "Login failed. ")
                                   .action('Dismiss')
                                   .highlightAction(true)
                                   .highlightClass('md-primary md-warn')
