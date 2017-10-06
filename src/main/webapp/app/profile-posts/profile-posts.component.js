@@ -75,7 +75,7 @@ angular.
                     Post.DeletePost.delete({postId: id}, function() {
                         self.isPostDeleted[key] = true;
                         self.postCounter--;
-                        self.posts.remove(key);
+
                         console.log("Post with post ID: " + id + " was deleted successfully." + self.posts.length);
                     }, function() {
                         console.log("Post with post ID: " + id + " deletion failed.");
@@ -101,7 +101,7 @@ angular.
                                 $scope.content = null;
                                 $scope.newPostForm.$setPristine();
                                 $scope.newPostForm.$setUntouched();
-                                
+
                                 self.posts.push(response);
                                 self.formatPostData(self.posts[self.posts.length - 1], (self.posts.length - 1));
                                 self.postCounter++;
@@ -111,8 +111,11 @@ angular.
                                 $mdToast.show(
                                     $mdToast.simple()
                                       .textContent('Submitting new post failed...')
+                                      .action('Dismiss')
+                                      .highlightAction(true)
+                                      .highlightClass('md-primary md-warn')
                                       .position('bottom center')
-                                      .hideDelay(600)
+                                      .hideDelay(3000)
                                 );
                                 console.log("Posting failed.");
                             });
