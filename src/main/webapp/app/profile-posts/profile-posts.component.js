@@ -4,8 +4,8 @@ angular.
     module('myProfilePosts').
     component('myProfilePosts', {
         templateUrl: 'app/profile-posts/profile-posts.template.html',
-        controller: ['$routeParams', '$scope', 'JWToken', 'Image', 'Post', 'User',
-            function ProfilePostsController($routeParams, $scope, JWToken, Image, Post, User) {
+        controller: ['$mdToast', '$routeParams', '$scope', 'JWToken', 'Image', 'Post', 'User',
+            function ProfilePostsController($mdToast, $routeParams, $scope, JWToken, Image, Post, User) {
                 var self = this;
 
                 self.isLoggedIn = false;
@@ -97,12 +97,23 @@ angular.
                             });
 
                             Post.AddPost.save(self.newPost, function(response) {
+                                $scope.title = null;
+                                $scope.content = null;
+                                $scope.newPostForm.$setPristine();
+                                $scope.newPostForm.$setUntouched();
+                                
                                 self.posts.push(response);
                                 self.formatPostData(self.posts[self.posts.length - 1], (self.posts.length - 1));
                                 self.postCounter++;
 
                                 console.log("Post submitted succesfully.");
                             }, function() {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                      .textContent('Submitting new post failed...')
+                                      .position('bottom center')
+                                      .hideDelay(600)
+                                );
                                 console.log("Posting failed.");
                             });
                         });

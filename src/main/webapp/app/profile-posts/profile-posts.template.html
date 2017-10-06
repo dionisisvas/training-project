@@ -1,11 +1,11 @@
 <md-card layout-padding ng-show="$ctrl.isLoggedIn">
-  <md-card-title>
-    <md-card-title-text>
-      <span class="md-headline" ng-hide="$ctrl.isProfileOwner">Write something to {{$ctrl.user.name}}...</span>
-      <span class="md-headline" ng-show="$ctrl.isProfileOwner">Write something on your profile...</span>
-    </md-card-title-text>
-  </md-card-title>
   <form name="newPostForm" ng-submit="$ctrl.submitPost(newPostForm.$valid)" novalidate>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline" ng-hide="$ctrl.isProfileOwner">Write something to {{$ctrl.user.name}}...</span>
+        <span class="md-headline" ng-show="$ctrl.isProfileOwner">Write something on your profile...</span>
+      </md-card-title-text>
+    </md-card-title>
     <md-card-content>
         <md-input-container class="md-block" layout="row">
           <label>Title</label>
@@ -34,7 +34,7 @@
 
 <h2 class="md-title inset" ng-show="$ctrl.postCounter === 0">{{$ctrl.user.name}} has no posts to show.</h2>
 
-<md-card id="user-post-card" class="dismissable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
+<md-card id="user-post-card" class="dismissable-card postable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
   <md-card-header>
     <md-card-avatar>
       <img class="md-user-avatar" ng-src="{{post.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
