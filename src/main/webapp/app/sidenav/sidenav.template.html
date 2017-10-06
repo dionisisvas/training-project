@@ -89,18 +89,7 @@
 
     <br>
 
-    <md-divider></md-divider>
-
-    <div class="my-list-header"> Missing Functionality </div>
-    <md-list-item class="md-2-line missing-navlink" ng-repeat="navlink in $ctrl.navlinks" role="link" ng-href="{{navlink.url}}" ng-attr-title="{{navlink.info}}" ng-if="!navlink.working" md-ink-ripple>
-
-      <md-icon md-font-set="material-icons" class="my-navlink-icon"> {{navlink.icon}} </md-icon>
-      <div class="md-list-item-text">
-        <span flex class="md-body-2">{{navlink.title}}</span>
-      </div>
-
-    </md-list-item>
-
+    
     <md-list-item class="md-2-line legal-disclaimer-container" role="link" ng-href="#" ng-attr-title="Legal Notice" md-ink-ripple>
 
       <md-icon md-font-set="material-icons" class="my-navlink-icon"> info_outline </md-icon>
