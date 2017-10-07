@@ -16,7 +16,7 @@ angular.
                         comment.owner = res;
                     });
 
-                    if (!self.isCommentReply) { // Replying depth is 1 comment
+                    if (!self.isCommentReply) { // Replying depth is 2 comments
                         Comment.CommentsBySubject.query({
                             subjectType: 'COMMENT',
                             subjectId: comment.id,
