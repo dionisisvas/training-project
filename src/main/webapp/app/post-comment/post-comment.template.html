@@ -40,20 +40,42 @@
 
   </md-card-header>
 
+  <!-- View mode exclusive -->
+
   <md-card-content ng-hide="$ctrl.editMode">
     <p>
       <md-subheader>{{$ctrl.comment.content}}</md-subheader>
     </p>
   </md-card-content>
 
-  <md-card-actions ng-hide="$ctrl.isCommentReply" ng-hide="$ctrl.editMode">
+  <md-card-actions ng-hide="$ctrl.isCommentReply || $ctrl.editMode">
     <md-button class="md-primary" ng-show="($ctrl.comment.comments.length == 1) && !$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Load 1 reply</md-button>
     <md-button class="md-primary" ng-show="($ctrl.comment.comments.length > 1) && !$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Load {{$ctrl.comment.comments.length}} replies</md-button>
     <md-button class="md-primary" ng-show="$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Hide replies</md-button>
   </md-card-actions>
 
-  <md-card-content ng-show="$ctrl.showReplies && !$ctrl.isCommentReply" ng-hide="$ctrl.editMode">
+  <md-card-content ng-show="$ctrl.showReplies && !$ctrl.isCommentReply && !$ctrl.editMode">
     <my-post-comment ng-repeat="commentReply in $ctrl.comment.comments" comment="commentReply" class="dismissable-card" is-comment-reply="true"></my-post-comment>
   </md-card-content>
+
+  <!-- Edit mode exclusive -->
+
+  <form name="editCommentForm" ng-submit="$ctrl.editComment(editCommentForm.$valid)" novalidate>
+    <md-card-content ng-show="$ctrl.editMode">
+        <md-input-container class="md-block" layout="row">
+          <textarea name="content" ng-model="$ctrl.comment.content" ng-maxlength="200" md-maxlength="200" required>
+          </textarea>
+          <div ng-messages="editCommentForm.content.$error" ng-show="editCommentForm.content.$dirty">
+            <div ng-message="required">Can't post an empty comment! Delete it instead.</div>
+            <div ng-message="maxlength">The comment can not exceed 200 characters!</div>
+          </div>
+        </md-input-container>
+
+        <section layout="row" layout-align="center">
+          <md-button class="md-primary md-raised" type="submit" ng-disabled="editCommentForm.$invalid || editCommentForm.$pristine">Save</md-button>
+          <md-button class="md-primary md-raised" ng-click="$ctrl.toggleEditComment()">Cancel</md-button>
+        </section>
+    </md-card-content>
+  </form>
 
 </md-card>

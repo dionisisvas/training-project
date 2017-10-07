@@ -7,22 +7,22 @@
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
-        <md-input-container class="md-block" layout="row">
-          <label>Title</label>
-          <input name="title" type="text" ng-model="title" ng-maxlength="80" md-maxlength="80">
-          <div ng-messages="newPostForm.title.$error" ng-show="newPostForm.title.$dirty">
-            <div ng-message="maxlength">The post title can not exceed 80 characters!</div>
-          </div>
-        </md-input-container>
-        <md-input-container class="md-block" layout="row">
-          <label>Post content</label>
-          <textarea name="content" ng-model="content" ng-maxlength="800" md-maxlength="800" required>
-          </textarea>
-          <div ng-messages="newPostForm.content.$error" ng-show="newPostForm.content.$dirty">
-            <div ng-message="required">Can't post empty content!</div>
-            <div ng-message="maxlength">The post content can not exceed 1000 characters!</div>
-          </div>
-        </md-input-container>
+      <md-input-container class="md-block" layout="row">
+        <label>Title</label>
+        <input name="title" type="text" ng-model="title" ng-maxlength="80" md-maxlength="80">
+        <div ng-messages="newPostForm.title.$error" ng-show="newPostForm.title.$dirty">
+          <div ng-message="maxlength">The post title can not exceed 80 characters!</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block" layout="row">
+        <label>Post content</label>
+        <textarea name="content" ng-model="content" ng-maxlength="800" md-maxlength="800" required>
+        </textarea>
+        <div ng-messages="newPostForm.content.$error" ng-show="newPostForm.content.$dirty">
+          <div ng-message="required">Can't post empty content!</div>
+          <div ng-message="maxlength">The post content can not exceed 1000 characters!</div>
+        </div>
+      </md-input-container>
     </md-card-content>
     <md-card-actions>
       <section layout="row" layout-align="center">
