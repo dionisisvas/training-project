@@ -198,7 +198,7 @@ public final class VerificationServiceImpl implements VerificationService {
 					if (parentComment.getSubjectType() == SubjectType.POST) { // This check should be redundant but fail-safe
 						try {
 
-							final Post parentPost = postService.getPostById(postableFromDB.getSubjectId(), false);
+							final Post parentPost = postService.getPostById(parentComment.getSubjectId(), false);
 
 							if ((parentPost.getSubjectType() == SubjectType.USER) && // First check should be redundant but fail-safe
 									(parentPost.getSubjectId() == requesterId)) {
