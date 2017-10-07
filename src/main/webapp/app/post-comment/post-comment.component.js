@@ -4,14 +4,16 @@ angular.
     module('myPostComment').
     component('myPostComment', {
         templateUrl: 'app/post-comment/post-comment.template.html',
-        controller: ['Comment', 'Image', 'JWToken', 'User',
-            function PostCommentController(Comment, Image, JWToken, User) {
+        controller: ['$routeParams', 'Comment', 'Image', 'JWToken', 'User',
+            function PostCommentController($routeParams, Comment, Image, JWToken, User) {
                 var self = this;
 
+                self.isProfileOwner = false;
                 self.isCommentReply = self.isCommentReply || false;
 
                 self.formatCommentData = function(comment) {
                     self.showReplies = false;
+
                     JWToken.isOwner(comment.posterId).then(function(res) {
                         comment.owner = res;
                     });
@@ -50,6 +52,10 @@ angular.
                         console.log("User " + comment.posterId + " has no profile image.");
                     });
                 }
+
+                JWToken.isOwner($routeParams.userId).then(function(res) {
+                    self.isProfileOwner = res;
+                });
 
                 self.toggleReplies = function() {
                     self.showReplies = !self.showComments;

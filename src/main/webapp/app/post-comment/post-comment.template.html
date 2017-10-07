@@ -1,4 +1,4 @@
-<md-card layout-padding class="dismissable-card postable-card" >
+<md-card layout-padding class="dismissable-card postable-card">
   <md-card-header>
 
     <md-card-avatar>
@@ -15,7 +15,7 @@
           </span>
     </md-card-header-text>
 
-    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
+    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || $ctrl.comment.owner">
       <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
         <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
       </md-button>
