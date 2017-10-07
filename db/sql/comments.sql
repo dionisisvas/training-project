@@ -20,4 +20,4 @@ INSERT INTO comments(poster_id, subject_type, subject_id, content, creation_date
 (4, "POST", 17, "Relax, be yourself and good luck!", 1505497088, NULL),
 (6, "POST", 19, "Daft Punk? pffttt...", 1506165834, NULL),
 (6, "COMMENT", 9, "I will find you, and I'll make you pay for those words!", 1506196598, NULL),
-(11, "COMMENT", 6, "Yeah, from that BBQ, right?", 1506286022, NULL);
+(11, "COMMENT", 5, "Yeah, from that BBQ, right?", 1506286022, NULL);
