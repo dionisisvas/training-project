@@ -102,7 +102,7 @@ public final class PostServiceImpl implements PostService {
 
 		logger.debug("EXITING addPost for post: " + post);
 
-		return getPostById(postId, true);
+		return getPostById(postId, false);
 	}
 
 	@Override

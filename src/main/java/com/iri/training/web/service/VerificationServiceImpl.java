@@ -38,10 +38,12 @@ public final class VerificationServiceImpl implements VerificationService {
 		}
 
 		if (postable instanceof Post) {
-			if (((Post) postable).getTitle().length() > 80) {
-				logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Title exceeds allowed length.");
-
-				return false;
+			if (((Post) postable).getTitle() != null) {
+				if (((Post) postable).getTitle().length() > 80) {
+					logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Title exceeds allowed length.");
+					logger.debug("here we are");
+					return false;
+				}
 			}
 
 			if (postable.getContent().length() > 800) {
