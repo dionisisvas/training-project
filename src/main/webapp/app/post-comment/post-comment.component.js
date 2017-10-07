@@ -4,14 +4,16 @@ angular.
     module('myPostComment').
     component('myPostComment', {
         templateUrl: 'app/post-comment/post-comment.template.html',
-        controller: ['$routeParams', 'Comment', 'Image', 'JWToken', 'User',
-            function PostCommentController($routeParams, Comment, Image, JWToken, User) {
+        controller: ['$routeParams', '$timeout', 'Comment', 'Image', 'JWToken', 'User',
+            function PostCommentController($routeParams, $timeout, Comment, Image, JWToken, User) {
                 var self = this;
 
                 self.isProfileOwner = false;
                 self.isCommentReply = self.isCommentReply || false;
 
                 self.formatCommentData = function(comment) {
+                    self.flipping = false;
+                    self.editMode = false;
                     self.showReplies = false;
                     comment.deleted = false;
 
@@ -54,7 +56,7 @@ angular.
                     });
                 }
 
-                self.deleteComment = function(id, key) {
+                self.deleteComment = function(id) {
                     Comment.DeleteComment.delete({commentId: id}, function() {
                         self.comment.deleted = true;
 
@@ -62,6 +64,14 @@ angular.
                     }, function() {
                         console.log("Comment with ID: " + id + " deletion failed.");
                     });
+                }
+
+                self.toggleEditComment = function() {
+                    self.flipping = true;
+                    self.editMode = !self.editMode;
+                    $timeout(function() {
+                        self.flipping = false;
+                    }, 1000)
                 }
 
                 self.toggleReplies = function() {
