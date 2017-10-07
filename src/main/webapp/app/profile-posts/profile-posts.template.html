@@ -35,14 +35,20 @@
 <h2 class="md-title inset" ng-show="$ctrl.postCounter === 0">{{$ctrl.user.name}} has no posts to show.</h2>
 
 <md-card id="user-post-card" class="dismissable-card postable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
+
   <md-card-header>
     <md-card-avatar>
       <img class="md-user-avatar" ng-src="{{post.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
           alt="{{post.poster.name}} "/>
     </md-card-avatar>
+
     <md-card-header-text>
-          <span class="md-title"><a ng-href="user/uid/{{post.poster.id}}">{{post.poster.name}} {{post.poster.surname}}</a> on {{post.formattedCreationDate}}</span>
-          <span class="md-subhead" ng-show="post.lastEditDate[0] != 1970">Edited {{post.formattedLastEditDate}}</span>
+          <span class="md-title"><a ng-href="user/uid/{{post.poster.id}}">
+            {{post.poster.name}} {{post.poster.surname}}</a> on {{post.formattedCreationDate}}
+          </span>
+          <span class="md-subhead" ng-show="post.lastEditDate[0] != 1970"> <!-- 1970 is the default value of js new Date() when the input is null-->
+            Edited {{post.formattedLastEditDate}}
+          </span>
     </md-card-header-text>
 
     <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
@@ -68,20 +74,27 @@
     </md-menu>
 
   </md-card-header>
+
   <md-card-title ng-show="post.title">
     <md-card-title-text>
       <span class="md-headline">{{post.title}}</span>
     </md-card-title-text>
   </md-card-title>
+
   <md-card-content>
     <p>
       <md-subheader>{{post.content}}</md-subheader>
     </p>
   </md-card-content>
+
   <md-card-actions>
     <md-button class="md-disabled" ng-show="(post.comments.length <= 0) && !$ctrl.showComments[key]">No comments</md-button>
     <md-button class="md-primary" ng-show="(post.comments.length == 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load 1 comment</md-button>
     <md-button class="md-primary" ng-show="(post.comments.length > 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load {{post.comments.length}} comments</md-button>
     <md-button class="md-primary" ng-show="$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Hide comments</md-button>
   </md-card-actions>
+
+  <md-card-content ng-show="$ctrl.showComments[key]">
+    <my-post-comment ng-repeat="postComment in post.comments" comment="postComment"></my-post-comment>
+  </md-card-content>
 </md-card>
