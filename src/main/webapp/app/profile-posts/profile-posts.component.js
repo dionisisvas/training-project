@@ -78,7 +78,7 @@ angular.
                         self.isPostDeleted[key] = true;
                         self.postCounter--;
 
-                        console.log("Post with post ID: " + id + " was deleted successfully." + self.posts.length);
+                        console.log("Post with post ID: " + id + " was deleted successfully.");
                     }, function() {
                         console.log("Post with post ID: " + id + " deletion failed.");
                     });
@@ -124,7 +124,7 @@ angular.
                         });
                     }
                 };
-                
+
                 self.toggleComments = function(key) {
                     self.showComments[key] = !self.showComments[key];
                 }

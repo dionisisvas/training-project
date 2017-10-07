@@ -13,6 +13,7 @@ angular.
 
                 self.formatCommentData = function(comment) {
                     self.showReplies = false;
+                    comment.deleted = false;
 
                     JWToken.isOwner(comment.posterId).then(function(res) {
                         comment.owner = res;
@@ -53,13 +54,23 @@ angular.
                     });
                 }
 
-                JWToken.isOwner($routeParams.userId).then(function(res) {
-                    self.isProfileOwner = res;
-                });
+                self.deleteComment = function(id, key) {
+                    Comment.DeleteComment.delete({commentId: id}, function() {
+                        self.comment.deleted = true;
+
+                        console.log("Comment with ID: " + id + " was deleted successfully.");
+                    }, function() {
+                        console.log("Comment with ID: " + id + " deletion failed.");
+                    });
+                }
 
                 self.toggleReplies = function() {
                     self.showReplies = !self.showComments;
                 }
+
+                JWToken.isOwner($routeParams.userId).then(function(res) {
+                    self.isProfileOwner = res;
+                });
 
                 self.formatCommentData(self.comment);
         }],
