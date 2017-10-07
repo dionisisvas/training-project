@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS comments(
     FOREIGN KEY (poster_id) REFERENCES users(id)
 );
 
-INSERT INTO comments(id, poster_id, subject_type, subject_id, content, creation_date, last_edit_date) VALUES
+INSERT INTO comments(poster_id, subject_type, subject_id, content, creation_date, last_edit_date) VALUES
 (1, "POST", 3, "Nothing, taking a break.", 1503248114, 1503248182),
 (8, "POST", 2, "Me!", 1503314534, NULL),
 (2, "POST", 8, "Welcome", 1503209002, 1503209182),
