@@ -95,6 +95,6 @@
   </md-card-actions>
 
   <md-card-content ng-show="$ctrl.showComments[key]">
-    <my-post-comment ng-repeat="postComment in post.comments" comment="postComment" ng-hide="postComment.deleted"></my-post-comment>
+    <my-post-comment ng-repeat="postComment in post.comments" comment="postComment"></my-post-comment>
   </md-card-content>
 </md-card>

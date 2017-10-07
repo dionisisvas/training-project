@@ -1,4 +1,4 @@
-<md-card layout-padding class="dismissable-card postable-card">
+<md-card layout-padding class="dismissable-card postable-card" ng-hide="$ctrl.comment.deleted">
   <md-card-header>
 
     <md-card-avatar>
@@ -52,6 +52,6 @@
   </md-card-actions>
 
   <md-card-content ng-show="$ctrl.showReplies && !$ctrl.isCommentReply">
-    <my-post-comment ng-repeat="commentReply in $ctrl.comment.comments" comment="commentReply" is-comment-reply="true"></my-post-comment>
+    <my-post-comment ng-repeat="commentReply in $ctrl.comment.comments" comment="commentReply" class="dismissable-card" is-comment-reply="true"></my-post-comment>
   </md-card-content>
 </md-card>
