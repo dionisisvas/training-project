@@ -1,4 +1,4 @@
-<md-card class="dismissable-card postable-card" >
+<md-card layout-padding class="dismissable-card postable-card" >
   <md-card-header>
 
     <md-card-avatar>
@@ -43,5 +43,15 @@
     <p>
       <md-subheader>{{$ctrl.comment.content}}</md-subheader>
     </p>
+  </md-card-content>
+
+  <md-card-actions ng-hide="$ctrl.isCommentReply">
+    <md-button class="md-primary" ng-show="($ctrl.comment.comments.length == 1) && !$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Load 1 reply</md-button>
+    <md-button class="md-primary" ng-show="($ctrl.comment.comments.length > 1) && !$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Load {{$ctrl.comment.comments.length}} replies</md-button>
+    <md-button class="md-primary" ng-show="$ctrl.showReplies" ng-click="$ctrl.toggleReplies()">Hide replies</md-button>
+  </md-card-actions>
+
+  <md-card-content ng-show="$ctrl.showReplies && !$ctrl.isCommentReply">
+    <my-post-comment ng-repeat="commentReply in $ctrl.comment.comments" comment="commentReply" is-comment-reply="true"></my-post-comment>
   </md-card-content>
 </md-card>
