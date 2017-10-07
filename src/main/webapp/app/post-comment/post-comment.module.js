@@ -1,5 +1,8 @@
 'use strict';
 
 angular.module('myPostComment', [
-    'ngRoute'
+    'ngRoute',
+    'core.image',
+    'core.jwtoken',
+    'core.user'
 ]);

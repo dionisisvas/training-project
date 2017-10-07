@@ -1,3 +1,47 @@
-<md-card>
+<md-card class="dismissable-card postable-card" >
+  <md-card-header>
 
+    <md-card-avatar>
+      <img class="md-user-avatar" ng-src="{{$ctrl.comment.posterProfileImage.imgUri || 'resources/img/users/default-user-img.png'}}"
+          alt="{{$ctrl.comment.poster.name}} "/>
+    </md-card-avatar>
+
+    <md-card-header-text>
+          <span class="md-title">
+            <a ng-href="user/uid/{{$ctrl.comment.poster.id}}">{{$ctrl.comment.poster.name}} {{$ctrl.comment.poster.surname}}</a> on {{$ctrl.comment.formattedCreationDate}}
+          </span>
+          <span class="md-subhead" ng-show="$ctrl.comment.lastEditDate[0] != 1970"> <!-- 1970 is the default value of js new Date() when the input is null-->
+            Edited {{$ctrl.comment.formattedLastEditDate}}
+          </span>
+    </md-card-header-text>
+
+    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
+      <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
+        <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
+      </md-button>
+
+      <md-menu-content width="3">
+
+        <md-menu-item ng-show="$ctrl.comment.owner">
+          <md-button>
+            <md-icon md-font-set="material-icons"> edit </md-icon>Edit
+          </md-button>
+        </md-menu-item>
+
+        <md-menu-item>
+          <md-button ng-click="$ctrl.deleteComment($ctrl.comment.id, key)">
+            <md-icon md-font-set="material-icons"> delete </md-icon>Delete
+          </md-button>
+        </md-menu-item>
+
+      </md-menu-content>
+    </md-menu>
+
+  </md-card-header>
+
+  <md-card-content>
+    <p>
+      <md-subheader>{{$ctrl.comment.content}}</md-subheader>
+    </p>
+  </md-card-content>
 </md-card>
