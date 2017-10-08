@@ -1,7 +1,6 @@
 package com.iri.training.repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -12,7 +11,10 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.iri.training.config.PropertiesConfig;
@@ -65,18 +67,33 @@ public final class CommentRepositoryImpl implements CommentRepository {
 	}
 
 	@Override
-	public final void addComment(final Comment comment) throws SQLException {
+	public final long addCommentAndGetGeneratedId(final Comment comment) throws SQLException {
 
-		logger.debug("ENTERED addComment for comment: " + comment);
+		logger.debug("ENTERED addCommentAndGetGeneratedId for comment: " + comment);
 
-		jdbcTemplate.update(PropertiesConfig.ADD_COMMENT,
-			comment.getPosterId(),
-			comment.getSubjectType(),
-			comment.getSubjectId(),
-			comment.getContent(),
-			Instant.now().getEpochSecond()); // creation_date
+		final KeyHolder kh = new GeneratedKeyHolder();
+		final long commentId;
 
-		logger.debug("EXITING addComment for comment: " + comment);
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override public PreparedStatement createPreparedStatement(final Connection connection)
+					throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(PropertiesConfig.ADD_COMMENT,
+						Statement.RETURN_GENERATED_KEYS);
+				ps.setLong(1, comment.getPosterId());
+				ps.setString(2, comment.getSubjectType().name());
+				ps.setLong(3, comment.getSubjectId());
+				ps.setString(4, comment.getContent());
+				ps.setLong(5, Instant.now().getEpochSecond()); // creation_date
+
+				return ps;
+			}
+		}, kh);
+
+		commentId = kh.getKey().longValue();
+
+		logger.debug("EXITING addCommentAndGetGeneratedId for comment: " + comment);
+
+		return commentId;
 	}
 
 	@Override

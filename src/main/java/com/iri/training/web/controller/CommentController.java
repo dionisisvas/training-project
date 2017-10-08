@@ -79,18 +79,18 @@ public final class CommentController {
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> addComment(@RequestHeader(value="Authorization") final String authHeader,
+	public final ResponseEntity addComment(@RequestHeader(value="Authorization") final String authHeader,
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED addComment for comment: " + comment);
 		if (verificationService.verifyAddRights(comment, authHeader) &&
 			verificationService.verifyPostable(comment)) {
 
-			commentService.addComment(comment);
+			final Comment commentFromDB = commentService.addComment(comment);
 
 			logger.debug("EXITING addComment for comment: " + comment + ". Comment added successfully.");
 
-			return new ResponseEntity("{\"message\": \"Comment added successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity(commentFromDB, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING addComment for comment: " + comment + ". Comment posting failed.");
