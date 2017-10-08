@@ -99,9 +99,9 @@
       <md-button class="md-primary" ng-show="$ctrl.isLoggedIn" ng-click="$ctrl.toggleNewComment($ctrl.posts.length - (key + 1))">Comment</md-button>
     </section>
 
-    <form name="newCommentForm" ng-submit="$ctrl.submitComment(newCommentForm.$valid)" ng-show="post.commentMode" novalidate>
+    <form name="newCommentForm" ng-submit="$ctrl.submitComment(newCommentForm.$valid, $ctrl.posts.length - (key + 1))" ng-show="post.commentMode" novalidate>
       <md-input-container class="md-block" layout="row">
-        <textarea name="content" ng-model="$ctrl.newComment.content" ng-maxlength="200" md-maxlength="200" required>
+        <textarea name="content" ng-model="newCommentContent" ng-maxlength="200" md-maxlength="200" required>
         </textarea>
         <div ng-messages="newCommentForm.content.$error" ng-show="newCommentForm.content.$dirty">
           <div ng-message="required">Can't post an empty comment!</div>

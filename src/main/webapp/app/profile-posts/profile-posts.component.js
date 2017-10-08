@@ -4,8 +4,8 @@ angular.
     module('myProfilePosts').
     component('myProfilePosts', {
         templateUrl: 'app/profile-posts/profile-posts.template.html',
-        controller: ['$mdToast', '$routeParams', '$timeout', '$scope', 'JWToken', 'Image', 'Post', 'User',
-            function ProfilePostsController($mdToast, $routeParams, $timeout, $scope, JWToken, Image, Post, User) {
+        controller: ['$mdToast', '$routeParams', '$timeout', '$scope', 'Comment', 'JWToken', 'Image', 'Post', 'User',
+            function ProfilePostsController($mdToast, $routeParams, $timeout, $scope, Comment, JWToken, Image, Post, User) {
                 var self = this;
 
                 self.isLoggedIn = false;
@@ -113,11 +113,45 @@ angular.
                                       .position('bottom center')
                                       .hideDelay(3000)
                                 );
-                                console.log("Posting failed.");
                             });
                         });
                     }
                 };
+
+                self.submitComment = function(isValid, key) {
+                    if (isValid) {
+                        var tkn = JWToken.getToken();
+                        JWToken.getTokenBody(tkn).then(function(tknBodyRes) {
+                            var tknBody = JSON.parse(tknBodyRes);
+
+                            var newComment = JSON.stringify({
+                                    content     : $scope.newCommentContent,
+                                    posterId    : tknBody.sub,
+                                    subjectType : 'POST',
+                                    subjectId   : self.posts[key].id
+                            });
+
+
+                            Comment.AddComment.save(newComment, function(response) {
+                                self.posts[key].comments.push(response);
+                                self.toggleNewComment(key);
+                                self.toggleComments(key);
+
+                                console.log("Comment submitted succesfully.");
+                            }, function() {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                      .textContent('Submitting new comment failed...')
+                                      .action('Dismiss')
+                                      .highlightAction(true)
+                                      .highlightClass('md-primary md-warn')
+                                      .position('bottom center')
+                                      .hideDelay(3000)
+                                );
+                            });
+                        });
+                    }
+                }
 
                 self.toggleComments = function(key) {
                     self.posts[key].showComments = !self.posts[key].showComments;
