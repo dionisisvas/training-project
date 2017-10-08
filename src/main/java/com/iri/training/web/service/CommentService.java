@@ -18,5 +18,5 @@ public interface CommentService {
 
 	void deleteCommentReplies(SubjectType subjectType, long parentId) throws SQLException;
 
-	void editComment(Comment comment) throws SQLException;
+	Comment editComment(Comment comment) throws SQLException;
 }

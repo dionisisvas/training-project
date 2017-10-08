@@ -122,18 +122,19 @@ public final class CommentController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> editComment(@RequestHeader(value="Authorization") final String authHeader,
+	public final ResponseEntity editComment(@RequestHeader(value="Authorization") final String authHeader,
 		@RequestBody final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED editComment for comment: " + comment);
+
 		if (verificationService.verifyEditRights(comment, authHeader) &&
 			verificationService.verifyPostable(comment)) {
 
-			commentService.editComment(comment);
+			final Comment commentFromDB = commentService.editComment(comment);
 
 			logger.debug("EXITING editComment for comment: " + comment + ". Comment edited successfully.");
 
-			return new ResponseEntity("{\"message\": \"Comment edited successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity(commentFromDB, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING editComment for comment: " + comment + ". Comment editing failed.");

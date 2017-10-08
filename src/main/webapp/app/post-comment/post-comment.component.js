@@ -4,8 +4,8 @@ angular.
     module('myPostComment').
     component('myPostComment', {
         templateUrl: 'app/post-comment/post-comment.template.html',
-        controller: ['$routeParams', '$timeout', 'Comment', 'Image', 'JWToken', 'User',
-            function PostCommentController($routeParams, $timeout, Comment, Image, JWToken, User) {
+        controller: ['$mdToast', '$routeParams', '$timeout', 'Comment', 'Image', 'JWToken', 'User',
+            function PostCommentController($mdToast, $routeParams, $timeout, Comment, Image, JWToken, User) {
                 var self = this;
 
                 self.isProfileOwner = false;
@@ -81,6 +81,30 @@ angular.
                 JWToken.isOwner($routeParams.userId).then(function(res) {
                     self.isProfileOwner = res;
                 });
+
+                self.editComment = function(isValid) {
+                    if (isValid) {
+                        Comment.EditComment.update(self.comment, function(response) {
+                            self.comment = response;
+
+                            self.formatCommentData(self.comment);
+                            self.toggleEditComment(self.editMode = true);
+
+                            console.log("Comment edited succesfully.");
+                        }, function() {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                  .textContent('Editing comment failed...')
+                                  .action('Dismiss')
+                                  .highlightAction(true)
+                                  .highlightClass('md-primary md-warn')
+                                  .position('bottom center')
+                                  .hideDelay(3000)
+                            );
+                            console.log("Posting failed.");
+                        });
+                    }
+                };
 
                 self.formatCommentData(self.comment);
         }],
