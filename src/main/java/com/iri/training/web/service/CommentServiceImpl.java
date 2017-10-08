@@ -109,6 +109,6 @@ public final class CommentServiceImpl implements CommentService {
 
 		logger.debug("EXITING editComment for comment: " + comment);
 
-		return getCommentById(comment.getId(), true);
+		return getCommentById(comment.getId(), false);
 	}
 }
