@@ -34,7 +34,8 @@
 
 <h2 class="md-title inset" ng-show="$ctrl.posts.length === 0">{{$ctrl.user.name}} has no posts to show.</h2>
 
-<md-card id="user-post-card" class="dismissable-card postable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.posts[key].deleted">
+<md-card id="user-post-card" class="dismissable-card postable-card flippable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'"
+  ng-class="{'flip':$ctrl.posts[$ctrl.posts.length - (key + 1)].flipping}" ng-hide="$ctrl.posts[$ctrl.posts.length - (key + 1)].deleted">
 
   <md-card-header>
     <md-card-avatar>
@@ -51,7 +52,9 @@
           </span>
     </md-card-header-text>
 
-    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="$ctrl.isProfileOwner || post.owner">
+  <!-- View mode exclusive -->
+
+    <md-menu md-position-mode="target-right bottom" layout-align="end" ng-show="($ctrl.isProfileOwner || post.owner) && !post.editMode">
       <md-button class="md-icon-button" ng-click="$mdMenu.open($event)">
         <md-icon md-font-set="material-icons"> arrow_drop_down </md-icon>
       </md-button>
@@ -59,13 +62,13 @@
       <md-menu-content width="3">
 
         <md-menu-item ng-show="post.owner">
-          <md-button>
+          <md-button ng-click="$ctrl.toggleEditPost($ctrl.posts.length - (key + 1))">
             <md-icon md-font-set="material-icons"> edit </md-icon>Edit
           </md-button>
         </md-menu-item>
 
         <md-menu-item>
-          <md-button ng-click="$ctrl.deletePost(post.id, key)">
+          <md-button ng-click="$ctrl.deletePost(post.id, $ctrl.posts.length - (key + 1))">
             <md-icon md-font-set="material-icons"> delete </md-icon>Delete
           </md-button>
         </md-menu-item>
@@ -75,26 +78,56 @@
 
   </md-card-header>
 
-  <md-card-title ng-show="post.title">
+  <md-card-title ng-show="post.title && !post.editMode">
     <md-card-title-text>
       <span class="md-headline">{{post.title}}</span>
     </md-card-title-text>
   </md-card-title>
 
-  <md-card-content>
+  <md-card-content ng-hide="post.editMode">
     <p>
       <md-subheader>{{post.content}}</md-subheader>
     </p>
   </md-card-content>
 
-  <md-card-actions>
+  <md-card-actions ng-hide="post.editMode">
     <md-button class="md-disabled" ng-show="(post.comments.length <= 0) && !post.showComments">No comments</md-button>
-    <md-button class="md-primary" ng-show="(post.comments.length == 1) && !post.showComments" ng-click="$ctrl.toggleComments(key)">Load 1 comment</md-button>
-    <md-button class="md-primary" ng-show="(post.comments.length > 1) && !post.showComments" ng-click="$ctrl.toggleComments(key)">Load {{post.comments.length}} comments</md-button>
-    <md-button class="md-primary" ng-show="post.showComments" ng-click="$ctrl.toggleComments(key)">Hide comments</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length == 1) && !post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Load 1 comment</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length > 1) && !post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Load {{post.comments.length}} comments</md-button>
+    <md-button class="md-primary" ng-show="post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Hide comments</md-button>
   </md-card-actions>
 
-  <md-card-content ng-show="post.showComments">
+  <md-card-content ng-show="post.showComments && !post.editMode">
     <my-post-comment ng-repeat="postComment in post.comments" comment="postComment"></my-post-comment>
   </md-card-content>
+
+  <!-- Edit mode exclusive -->
+
+  <form name="editPostForm" ng-submit="$ctrl.editPost(editPostForm.$valid)" novalidate>
+    <md-card-content ng-show="post.editMode">
+      <md-input-container class="md-block" layout="row">
+        <label>Title</label>
+        <input name="title" type="text" ng-model="post.title" ng-maxlength="80" md-maxlength="80">
+        <div ng-messages="editPostForm.title.$error" ng-show="editPostForm.title.$dirty">
+          <div ng-message="maxlength">The post title can not exceed 80 characters!</div>
+        </div>
+      </md-input-container>
+
+      <md-input-container class="md-block" layout="row">
+        <label>Content</label>
+        <textarea name="content" ng-model="post.content" ng-maxlength="800" md-maxlength="800" required>
+        </textarea>
+        <div ng-messages="editPostForm.content.$error" ng-show="editPostForm.content.$dirty">
+          <div ng-message="required">Can't post empty content! Delete it instead.</div>
+          <div ng-message="maxlength">The post can not exceed 800 characters!</div>
+        </div>
+      </md-input-container>
+
+      <section layout="row" layout-align="center">
+        <md-button class="md-primary md-raised" type="submit" ng-disabled="editPostForm.$invalid || editPostForm.$pristine">Save</md-button>
+        <md-button class="md-primary md-raised" ng-click="$ctrl.toggleEditPost($ctrl.posts.length - (key + 1))">Cancel</md-button>
+      </section>
+    </md-card-content>
+  </form>
+
 </md-card>

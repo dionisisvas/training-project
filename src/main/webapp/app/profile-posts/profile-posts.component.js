@@ -4,8 +4,8 @@ angular.
     module('myProfilePosts').
     component('myProfilePosts', {
         templateUrl: 'app/profile-posts/profile-posts.template.html',
-        controller: ['$mdToast', '$routeParams', '$scope', 'JWToken', 'Image', 'Post', 'User',
-            function ProfilePostsController($mdToast, $routeParams, $scope, JWToken, Image, Post, User) {
+        controller: ['$mdToast', '$routeParams', '$timeout', '$scope', 'JWToken', 'Image', 'Post', 'User',
+            function ProfilePostsController($mdToast, $routeParams, $timeout, $scope, JWToken, Image, Post, User) {
                 var self = this;
 
                 self.isLoggedIn = false;
@@ -38,6 +38,8 @@ angular.
                 });
 
                 self.formatPostData = function(post, key) {
+                    post.flipping = false;
+                    post.editMode = false;
                     post.deleted = false;
                     post.showComments = false;
                     JWToken.isOwner(post.posterId).then(function(res) {
@@ -121,6 +123,14 @@ angular.
 
                 self.toggleComments = function(key) {
                     self.posts[key].showComments = !self.posts[key].showComments;
+                }
+
+                self.toggleEditPost = function(id) {
+                    self.posts[id].flipping = true;
+                    self.posts[id].editMode = !self.posts[id].editMode;
+                    $timeout(function() {
+                        self.posts[id].flipping = false;
+                    }, 1000)
                 }
         }]
     });
