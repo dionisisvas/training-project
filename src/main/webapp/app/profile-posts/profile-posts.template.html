@@ -32,9 +32,9 @@
   </form>
 </md-card>
 
-<h2 class="md-title inset" ng-show="$ctrl.postCounter === 0">{{$ctrl.user.name}} has no posts to show.</h2>
+<h2 class="md-title inset" ng-show="$ctrl.posts.length === 0">{{$ctrl.user.name}} has no posts to show.</h2>
 
-<md-card id="user-post-card" class="dismissable-card postable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.isPostDeleted[key]">
+<md-card id="user-post-card" class="dismissable-card postable-card" layout-padding ng-repeat="(key, post) in $ctrl.posts | orderBy:'-'" ng-hide="$ctrl.posts[key].deleted">
 
   <md-card-header>
     <md-card-avatar>
@@ -88,13 +88,13 @@
   </md-card-content>
 
   <md-card-actions>
-    <md-button class="md-disabled" ng-show="(post.comments.length <= 0) && !$ctrl.showComments[key]">No comments</md-button>
-    <md-button class="md-primary" ng-show="(post.comments.length == 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load 1 comment</md-button>
-    <md-button class="md-primary" ng-show="(post.comments.length > 1) && !$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Load {{post.comments.length}} comments</md-button>
-    <md-button class="md-primary" ng-show="$ctrl.showComments[key]" ng-click="$ctrl.toggleComments(key)">Hide comments</md-button>
+    <md-button class="md-disabled" ng-show="(post.comments.length <= 0) && !post.showComments">No comments</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length == 1) && !post.showComments" ng-click="$ctrl.toggleComments(key)">Load 1 comment</md-button>
+    <md-button class="md-primary" ng-show="(post.comments.length > 1) && !post.showComments" ng-click="$ctrl.toggleComments(key)">Load {{post.comments.length}} comments</md-button>
+    <md-button class="md-primary" ng-show="post.showComments" ng-click="$ctrl.toggleComments(key)">Hide comments</md-button>
   </md-card-actions>
 
-  <md-card-content ng-show="$ctrl.showComments[key]">
+  <md-card-content ng-show="post.showComments">
     <my-post-comment ng-repeat="postComment in post.comments" comment="postComment"></my-post-comment>
   </md-card-content>
 </md-card>

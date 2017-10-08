@@ -10,9 +10,6 @@ angular.
 
                 self.isLoggedIn = false;
                 self.isProfileOwner = false;
-                self.isPostDeleted = [];
-                self.postCounter = 0;
-                self.showComments = [];
 
                 self.user = User.UserById.get({userId: $routeParams.userId});
                 self.posts = Post.PostsBySubject.query({
@@ -20,7 +17,6 @@ angular.
                     subjectId: $routeParams.userId,
                     getComments: true
                 }, function()  {
-                    self.postCounter = self.posts.length;
                     angular.forEach(self.posts, function(post, key) {
                         self.formatPostData(post, key);
                     });
@@ -42,8 +38,8 @@ angular.
                 });
 
                 self.formatPostData = function(post, key) {
-                    self.isPostDeleted[key] = false;
-                    self.showComments[key] = false;
+                    post.deleted = false;
+                    post.showComments = false;
                     JWToken.isOwner(post.posterId).then(function(res) {
                         post.owner = res;
                     });
@@ -75,8 +71,7 @@ angular.
 
                 self.deletePost = function(id, key) {
                     Post.DeletePost.delete({postId: id}, function() {
-                        self.isPostDeleted[key] = true;
-                        self.postCounter--;
+                        self.posts[key].deleted = true;
 
                         console.log("Post with post ID: " + id + " was deleted successfully.");
                     }, function() {
@@ -106,7 +101,6 @@ angular.
 
                                 self.posts.push(response);
                                 self.formatPostData(self.posts[self.posts.length - 1], (self.posts.length - 1));
-                                self.postCounter++;
 
                                 console.log("Post submitted succesfully.");
                             }, function() {
@@ -126,7 +120,7 @@ angular.
                 };
 
                 self.toggleComments = function(key) {
-                    self.showComments[key] = !self.showComments[key];
+                    self.posts[key].showComments = !self.posts[key].showComments;
                 }
         }]
     });
