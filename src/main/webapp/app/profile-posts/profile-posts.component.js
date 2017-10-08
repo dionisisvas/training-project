@@ -40,6 +40,7 @@ angular.
                 self.formatPostData = function(post) {
                     post.flipping = false;
                     post.editMode = false;
+                    post.commentMode = false;
                     post.deleted = false;
                     post.showComments = false;
                     JWToken.isOwner(post.posterId).then(function(res) {
@@ -128,6 +129,10 @@ angular.
                     $timeout(function() {
                         self.posts[id].flipping = false;
                     }, 1000)
+                }
+
+                self.toggleNewComment = function(id) {
+                    self.posts[id].commentMode = !self.posts[id].commentMode;
                 }
 
                 self.editPost = function(isValid, key) {
