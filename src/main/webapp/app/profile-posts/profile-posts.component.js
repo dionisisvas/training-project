@@ -18,7 +18,7 @@ angular.
                     getComments: true
                 }, function()  {
                     angular.forEach(self.posts, function(post, key) {
-                        self.formatPostData(post, key);
+                        self.formatPostData(post);
                     });
                 }, function() {
                     console.log("User " + $routeParams.userId + " has no posts.");
@@ -37,7 +37,7 @@ angular.
                     self.isProfileOwner = res;
                 });
 
-                self.formatPostData = function(post, key) {
+                self.formatPostData = function(post) {
                     post.flipping = false;
                     post.editMode = false;
                     post.deleted = false;
@@ -132,5 +132,35 @@ angular.
                         self.posts[id].flipping = false;
                     }, 1000)
                 }
+
+                self.editPost = function(isValid, key) {
+                    if (isValid) {
+                        Post.EditPost.update(self.posts[key], function(response) {
+                            self.posts[key].title = response.title;
+                            self.posts[key].content = response.content;
+                            self.posts.lastEditDate = response.lastEditDate;
+                            self.posts[key].formattedLastEditDate = (new Date(self.posts[key].lastEditDate[0],
+                                                                              self.posts[key].lastEditDate[1],
+                                                                              self.posts[key].lastEditDate[2],
+                                                                              self.posts[key].lastEditDate[3],
+                                                                              self.posts[key].lastEditDate[4],
+                                                                              self.posts[key].lastEditDate[5])).toLocaleString();
+
+                            self.toggleEditPost(key);
+
+                            console.log("Post edited succesfully.");
+                        }, function() {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                  .textContent('Editing post failed...')
+                                  .action('Dismiss')
+                                  .highlightAction(true)
+                                  .highlightClass('md-primary md-warn')
+                                  .position('bottom center')
+                                  .hideDelay(3000)
+                            );
+                        });
+                    }
+                };
         }]
     });

@@ -88,7 +88,8 @@ angular.
                             self.comment = response;
 
                             self.formatCommentData(self.comment);
-                            self.toggleEditComment(self.editMode = true);
+                            self.editMode = true;
+                            self.toggleEditComment();
 
                             console.log("Comment edited succesfully.");
                         }, function() {
@@ -101,7 +102,6 @@ angular.
                                   .position('bottom center')
                                   .hideDelay(3000)
                             );
-                            console.log("Posting failed.");
                         });
                     }
                 };

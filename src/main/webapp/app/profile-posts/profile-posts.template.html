@@ -103,7 +103,7 @@
 
   <!-- Edit mode exclusive -->
 
-  <form name="editPostForm" ng-submit="$ctrl.editPost(editPostForm.$valid)" novalidate>
+  <form name="editPostForm" ng-submit="$ctrl.editPost(editPostForm.$valid, $ctrl.posts.length - (key + 1))" novalidate>
     <md-card-content ng-show="post.editMode">
       <md-input-container class="md-block" layout="row">
         <label>Title</label>

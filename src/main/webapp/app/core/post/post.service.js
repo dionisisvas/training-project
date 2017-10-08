@@ -22,7 +22,11 @@ angular.
                 }),
                 AddPost: $resource('api/post/add'),
                 DeletePost: $resource('api/post/:postId/delete'),
-                EditPost: $resource('api/post/edit')
+                EditPost: $resource('api/post/edit', {}, {
+                     update: {
+                        method: 'PUT'
+                     }
+                })
             };
         }
     ]);
