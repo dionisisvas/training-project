@@ -17,7 +17,11 @@ angular.
                 }),
                 AddComment: $resource('api/comment/add'),
                 DeleteComment: $resource('api/comment/:commentId/delete'),
-                EditComment: $resource('api/comment/edit')
+                EditComment: $resource('api/comment/edit', {}, {
+                     update: {
+                        method: 'PUT'
+                     }
+                })
             };
         }
     ]);

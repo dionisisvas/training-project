@@ -70,13 +70,15 @@ public final class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public final void addComment(final Comment comment) throws SQLException {
+	public final Comment addComment(final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED addComment for comment: " + comment);
 
-		commentRepository.addComment(comment);
+		final long commentId = commentRepository.addCommentAndGetGeneratedId(comment);
 
 		logger.debug("EXITING addComment for comment: " + comment);
+
+		return getCommentById(commentId, false);
 	}
 
 	@Override
@@ -100,12 +102,15 @@ public final class CommentServiceImpl implements CommentService {
 		logger.debug("EXITING deleteCommentReplies for " + subjectType + " with id: " + parentId);
 	}
 
-	@Override public void editComment(final Comment comment) throws SQLException {
+	@Override
+	public Comment editComment(final Comment comment) throws SQLException {
 
 		logger.debug("ENTERED editComment for comment: " + comment);
 
 		commentRepository.editComment(comment);
 
 		logger.debug("EXITING editComment for comment: " + comment);
+
+		return getCommentById(comment.getId(), false);
 	}
 }

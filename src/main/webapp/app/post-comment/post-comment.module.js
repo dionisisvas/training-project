@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('myProfilePosts', [
+angular.module('myPostComment', [
     'ngRoute',
     'core.comment',
-    'core.jwtoken',
     'core.image',
-    'core.post',
+    'core.jwtoken',
     'core.user'
 ]);

@@ -102,7 +102,7 @@ public final class PostServiceImpl implements PostService {
 
 		logger.debug("EXITING addPost for post: " + post);
 
-		return getPostById(postId, true);
+		return getPostById(postId, false);
 	}
 
 	@Override
@@ -117,12 +117,14 @@ public final class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public final void editPost(final Post post) throws SQLException {
+	public final Post editPost(final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
 
 		postRepository.editPost(post);
 
 		logger.debug("EXITING editPost for post: " + post);
+
+		return getPostById(post.getId(), false);
 	}
 }

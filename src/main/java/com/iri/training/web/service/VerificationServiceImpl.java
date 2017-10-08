@@ -38,10 +38,12 @@ public final class VerificationServiceImpl implements VerificationService {
 		}
 
 		if (postable instanceof Post) {
-			if (((Post) postable).getTitle().length() > 80) {
-				logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Title exceeds allowed length.");
-
-				return false;
+			if (((Post) postable).getTitle() != null) {
+				if (((Post) postable).getTitle().length() > 80) {
+					logger.debug("EXITING verifyPostable for " + postable.getClass() + ": " + postable + ". Title exceeds allowed length.");
+					logger.debug("here we are");
+					return false;
+				}
 			}
 
 			if (postable.getContent().length() > 800) {
@@ -147,13 +149,78 @@ public final class VerificationServiceImpl implements VerificationService {
 			return false;
 		}
 
-		if ((postableFromDB.getPosterId() == requesterId) ||
-			(postableFromDB.getSubjectType() == SubjectType.USER &&
-				postableFromDB.getSubjectId() == requesterId)) {
+		// Poster is the same one requesting to delete
+		if (postableFromDB.getPosterId() == requesterId) {
 			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
 				". Sufficient rights to delete.");
 
 			return true;
+		}
+
+		// Postable is a post on the profile of the one requesting to delete
+		if (postableFromDB instanceof Post &&
+				postableFromDB.getSubjectId() == requesterId) {
+			logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+					". Sufficient rights to delete.");
+
+			return true;
+		}
+
+		// Postable is a comment on the profile of the one requesting to delete
+		if (postableFromDB instanceof Comment) {
+
+			// Depth 1 comment (post reply)
+			if ((postableFromDB.getSubjectType() == SubjectType.POST)) {
+				try {
+
+					final Post parentPost = postService.getPostById(postableFromDB.getSubjectId(), false);
+
+					if ((parentPost.getSubjectType() == SubjectType.USER) && // First check should be redundant but fail-safe
+							(parentPost.getSubjectId() == requesterId)) {
+						logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+								". Sufficient rights to delete.");
+
+						return true;
+					}
+				} catch (SQLException e) {
+					logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+							". Getting parent post from the DB failed: " + e);
+
+					return false;
+				}
+			}
+
+			// Depth 2 comment (comment reply)
+			if (postableFromDB.getSubjectType() == SubjectType.COMMENT) {
+				try {
+					final Comment parentComment = commentService.getCommentById(postableFromDB.getSubjectId(), false);
+
+					if (parentComment.getSubjectType() == SubjectType.POST) { // This check should be redundant but fail-safe
+						try {
+
+							final Post parentPost = postService.getPostById(parentComment.getSubjectId(), false);
+
+							if ((parentPost.getSubjectType() == SubjectType.USER) && // First check should be redundant but fail-safe
+									(parentPost.getSubjectId() == requesterId)) {
+								logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+										". Sufficient rights to delete.");
+
+								return true;
+							}
+						} catch (SQLException e) {
+							logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+									". Getting parent post from the DB failed: " + e);
+
+							return false;
+						}
+					}
+				} catch (SQLException e) {
+					logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +
+							". Getting parent comment from the DB failed: " + e);
+
+					return false;
+				}
+			}
 		}
 
 		logger.debug("EXITING verifyDeleteRights for " + postableType + " with id: " + postableId +

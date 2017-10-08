@@ -18,5 +18,5 @@ public interface PostService {
 
 	void deletePost(long postId) throws  SQLException;
 
-	void editPost(Post post) throws SQLException;
+	Post editPost(Post post) throws SQLException;
 }

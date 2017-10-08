@@ -16,6 +16,7 @@ angular.module('trainingApp', [
     'myLegalCard',
     'myLoginCard',
     'myLoginPrompt',
+    'myPostComment',
     'myProfileDetails',
     'myProfileHeader',
     'myProfileHobbies',

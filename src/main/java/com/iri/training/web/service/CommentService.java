@@ -12,11 +12,11 @@ public interface CommentService {
 
 	List<Comment> getCommentsBySubject(SubjectType subjectType, long subjectId, boolean getComments) throws SQLException;
 
-	void addComment(Comment comment) throws SQLException;
+	Comment addComment(Comment comment) throws SQLException;
 
 	void deleteComment(long commentId) throws  SQLException;
 
 	void deleteCommentReplies(SubjectType subjectType, long parentId) throws SQLException;
 
-	void editComment(Comment comment) throws SQLException;
+	Comment editComment(Comment comment) throws SQLException;
 }

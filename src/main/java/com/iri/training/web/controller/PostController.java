@@ -151,18 +151,19 @@ public final class PostController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.PUT,
 		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ResponseEntity<String> editPost(@RequestHeader(value="Authorization") final String authHeader,
+	public final ResponseEntity editPost(@RequestHeader(value="Authorization") final String authHeader,
 				@RequestBody final Post post) throws SQLException {
 
 		logger.debug("ENTERED editPost for post: " + post);
+
 		if (verificationService.verifyEditRights(post, authHeader) &&
 			verificationService.verifyPostable(post)) {
 
-			postService.editPost(post);
+			final Post postFromDB = postService.editPost(post);
 
 			logger.debug("EXITING editPost for post: " + post + ". Post edited successfully.");
 
-			return new ResponseEntity("{\"message\": \"Post edited successfully.\"}", HttpStatus.OK);
+			return new ResponseEntity(postFromDB, HttpStatus.OK);
 		}
 		else {
 			logger.debug("EXITING editPost for post: " + post + ". Post editing failed.");
