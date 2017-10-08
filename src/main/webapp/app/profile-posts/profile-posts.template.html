@@ -96,14 +96,16 @@
       <md-button class="md-primary" ng-show="(post.comments.length == 1) && !post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Load 1 comment</md-button>
       <md-button class="md-primary" ng-show="(post.comments.length > 1) && !post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Load {{post.comments.length}} comments</md-button>
       <md-button class="md-primary" ng-show="post.showComments" ng-click="$ctrl.toggleComments($ctrl.posts.length - (key + 1))">Hide comments</md-button>
-      <md-button class="md-primary" ng-show="$ctrl.isLoggedIn" ng-click="$ctrl.toggleNewComment($ctrl.posts.length - (key + 1))">Comment</md-button>
+
+      <md-button class="md-primary" ng-show="$ctrl.isLoggedIn && !post.commentMode" ng-click="$ctrl.toggleNewComment($ctrl.posts.length - (key + 1))">New comment</md-button>
+      <md-button class="md-primary" ng-show="$ctrl.isLoggedIn && post.commentMode" ng-click="$ctrl.toggleNewComment($ctrl.posts.length - (key + 1))">Hide comment box</md-button>
     </section>
 
     <form name="newCommentForm" ng-submit="$ctrl.submitComment(newCommentForm.$valid, $ctrl.posts.length - (key + 1))" ng-show="post.commentMode" novalidate>
       <md-input-container class="md-block" layout="row">
-        <textarea name="content" ng-model="newCommentContent" ng-maxlength="200" md-maxlength="200" required>
+        <textarea name="newCommentContent" ng-model="$ctrl.newCommentContent" ng-maxlength="200" md-maxlength="200" required>
         </textarea>
-        <div ng-messages="newCommentForm.content.$error" ng-show="newCommentForm.content.$dirty">
+        <div ng-messages="newCommentForm.newCommentContent.$error" ng-show="newCommentForm.newCommentContent.$dirty">
           <div ng-message="required">Can't post an empty comment!</div>
           <div ng-message="maxlength">The comment can not exceed 200 characters!</div>
         </div>

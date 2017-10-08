@@ -125,7 +125,7 @@ angular.
                             var tknBody = JSON.parse(tknBodyRes);
 
                             var newComment = JSON.stringify({
-                                    content     : $scope.newCommentContent,
+                                    content     : self.newCommentContent,
                                     posterId    : tknBody.sub,
                                     subjectType : 'POST',
                                     subjectId   : self.posts[key].id
@@ -133,9 +133,13 @@ angular.
 
 
                             Comment.AddComment.save(newComment, function(response) {
+                                self.newCommentContent = null;
                                 self.posts[key].comments.push(response);
+
                                 self.toggleNewComment(key);
-                                self.toggleComments(key);
+                                if (!self.posts[key].showComments) {
+                                    self.toggleComments(key);
+                                }
 
                                 console.log("Comment submitted succesfully.");
                             }, function() {
