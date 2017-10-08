@@ -75,7 +75,7 @@ angular.
                 }
 
                 self.toggleReplies = function() {
-                    self.showReplies = !self.showComments;
+                    self.showReplies = !self.showReplies;
                 }
 
                 JWToken.isOwner($routeParams.userId).then(function(res) {
