@@ -87,17 +87,14 @@ angular.
                         JWToken.getTokenBody(tkn).then(function(tknBodyRes) {
                             var tknBody = JSON.parse(tknBodyRes);
 
-                            self.newPost = JSON.stringify({
-                                        posterId:    tknBody.sub,
-                                        subjectType: 'USER',
-                                        subjectId:   $routeParams.userId,
-                                        title :      $scope.title,
-                                        content :    $scope.content
-                            });
+                            self.newPost.posterId = tknBody.sub,
+                            self.newPost.subjectType = 'USER',
+                            self.newPost.subjectId = $routeParams.userId,
+
 
                             Post.AddPost.save(self.newPost, function(response) {
-                                $scope.title = null;
-                                $scope.content = null;
+                                self.newPost.title = null;
+                                self.newPost.content = null;
                                 $scope.newPostForm.$setPristine();
                                 $scope.newPostForm.$setUntouched();
 
